@@ -8,4 +8,6 @@
 # include <stdio.h>
 # include "../lib/libft/inc/libft.h"
 
+int	main(void);
+
 #endif
