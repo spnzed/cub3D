@@ -6,7 +6,7 @@
 #    By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/10 17:33:17 by erosas-c          #+#    #+#              #
-#    Updated: 2024/04/01 18:01:48 by erosas-c         ###   ########.fr        #
+#    Updated: 2024/04/17 16:58:55 by erosas-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,25 +41,44 @@ INC			=	-I inc/
 all: 		$(NAME)
 
 $(NAME): 	$(OBJS)
-			ar rcs $@ $(OBJS)
+			@ar rcs $@ $(OBJS)
+			@sleep 0.2
+			@echo "$(CLEAN_CAR)$(OK_COLOR)Libft compiled!$(NO_COLOR)"
 
 $(OBJS): 	| $(OBJ_DIR)
 
 $(OBJ_DIR):	
-			mkdir $@
+			@mkdir $@
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c
-				$(CC) $(CFLAGS) $(INC) -g -c $< -o $@
+			@$(CC) $(CFLAGS) $(INC) -g -c $< -o $@
+			@echo "$(CLEAN_CAR)$(OK_COLOR)[Compiling libft]$(BLUE_COLOR) : $(WARN_COLOR)$<$(NO_COLOR)"
 			
 clean:	
 		@$(RM) $(OBJS) $(DEPS)
-
+#		@echo "$(ERROR_COLOR)libft dependencies and objects removed$(NO_COLOR)"
+		
 fclean: clean
 		@$(RM) $(NAME)
 		@$(RM) $(OBJ_DIR)
+		@echo "$(ERROR_COLOR)$(NAME) removed$(NO_COLOR)"
 
 re: 	fclean all
 
 -include $(DEPS)
 
 .PHONY: all clean fclean re
+
+################################################################################
+#                                    COLOR                                     #
+################################################################################
+
+NO_COLOR		=	\x1b[0m
+OK_COLOR		=	\x1b[32;01m
+ERROR_COLOR		=	\x1b[31;01m
+WARN_COLOR		=	\x1b[33;01m
+BLUE_COLOR		=	\x1b[34;01m
+
+OK_STRING		=	$(OK_COLOR)[OK]$(NO_COLOR)
+ERROR_STRING	=	$(ERROR_COLOR)[ERRORS]$(NO_COLOR)
+WARN_STRING		=	$(WARN_COLOR)[WARNINGS]$(NO_COLOR)
