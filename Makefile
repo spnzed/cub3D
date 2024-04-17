@@ -6,7 +6,7 @@
 #    By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/04 17:25:20 by erosas-c          #+#    #+#              #
-#    Updated: 2024/04/17 16:58:03 by erosas-c         ###   ########.fr        #
+#    Updated: 2024/04/17 17:17:43 by erosas-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ libft:
 
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) -L lib/libft/ -lft $(OBJS) -o $@
-#	@sleep 0.2
+	@sleep 0.2
 	@echo "$(CLEAN_CAR)$(OK_COLOR)Cub3D compiled!$(NO_COLOR)"
 	@echo "Use $(BLUE_COLOR)./cub3D$(NO_COLOR) to launch the program"
 
@@ -55,7 +55,7 @@ $(OBJ_DIR):
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(LIBFT) Makefile
 	@$(CC) $(CFLAGS) $(INCLUDE) -g -c $< -o $@
-	@echo "$(CLEAN_CAR)$(OK_COLOR)[Compiling cub3D]$(BLUE_COLOR) : $(WARN_COLOR)$<$(NO_COLOR)"
+	@printf "$(CLEAN_CAR)$(OK_COLOR)[Compiling cub3D]$(BLUE_COLOR) : $(WARN_COLOR)$<$(NO_COLOR)\r"
 
 clean:
 	@make -C lib/libft/ clean

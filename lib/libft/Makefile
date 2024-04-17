@@ -6,7 +6,7 @@
 #    By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/10 17:33:17 by erosas-c          #+#    #+#              #
-#    Updated: 2024/04/17 16:58:55 by erosas-c         ###   ########.fr        #
+#    Updated: 2024/04/17 18:22:17 by erosas-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,27 +40,22 @@ INC			=	-I inc/
 
 all: 		$(NAME)
 
-$(NAME): 	$(OBJS)
+$(NAME): 	$(OBJ_DIR) $(OBJS)
 			@ar rcs $@ $(OBJS)
-			@sleep 0.2
-			@echo "$(CLEAN_CAR)$(OK_COLOR)Libft compiled!$(NO_COLOR)"
+			@echo "\033[K$(CLEAN_CAR)$(OK_COLOR)Libft compiled!$(NO_COLOR)"
 
-$(OBJS): 	| $(OBJ_DIR)
-
-$(OBJ_DIR):	
-			@mkdir $@
-
-$(OBJ_DIR)%.o:	$(SRC_DIR)%.c
+$(OBJ_DIR)%.o:	$(SRC_DIR)%.c | $(OBJ_DIR)
+			@printf "$(CLEAN_CAR)$(OK_COLOR)[Compiling libft...]$(NO_COLOR)\r"
 			@$(CC) $(CFLAGS) $(INC) -g -c $< -o $@
-			@echo "$(CLEAN_CAR)$(OK_COLOR)[Compiling libft]$(BLUE_COLOR) : $(WARN_COLOR)$<$(NO_COLOR)"
-			
+
+$(OBJ_DIR):
+			@mkdir -p $@			
+
 clean:	
-		@$(RM) $(OBJS) $(DEPS)
-#		@echo "$(ERROR_COLOR)libft dependencies and objects removed$(NO_COLOR)"
+		@$(RM) $(OBJ_DIR)
 		
 fclean: clean
 		@$(RM) $(NAME)
-		@$(RM) $(OBJ_DIR)
 		@echo "$(ERROR_COLOR)$(NAME) removed$(NO_COLOR)"
 
 re: 	fclean all
