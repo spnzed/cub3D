@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 20:53:28 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/04/18 18:34:30 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/18 19:16:05 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ static int comprove_extension(char *file)
 		return (1);
 }
 
-static int	check_map(char *file)
-{
+// static int	check_map(char *file)
+// {
 	
-}
+// }
 
 static int	check_args(int argc, char **argv)
 {
@@ -39,20 +39,16 @@ static int	check_args(int argc, char **argv)
 		return (printf(RED"Error: Invalid Path\n"RESET), 1);
 	if (comprove_extension(argv[1]))
 		return (printf(RED"Error: Incorret File Extension\n"RESET), 1);
-	if (check_map(argv[1]))
-		return (1);
+	// if (check_map(argv[1]))
+	// 	return (1);
 	return 0;
 }
 
-static int	check_args(int argc, char **argv)
-{
-	
-}
 
 int	main(int argc, char **argv)
 {
 	if (check_args(argc, argv))
 		return (1);
-	init_process(argv[1]);
+	// init_process(argv[1]);
 	return (0);
 }

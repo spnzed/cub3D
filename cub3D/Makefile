@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+         #
+#    By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/04 17:25:20 by erosas-c          #+#    #+#              #
-#    Updated: 2024/04/17 17:17:43 by erosas-c         ###   ########.fr        #
+#    Updated: 2024/04/18 19:13:54 by aaespino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,9 @@ OBJS		=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
 DEP_FILES	=	$(SRC_FILES:.c=.d)
 DEPS		=	$(addprefix $(OBJ_DIR), $(DEP_FILES))
 
-LIBFT		=	lib/libft/libft.a
+LIBFT		=	lib/libft_gnl/libft.a
 
-INCLUDE		=	-I inc/ -I lib/libft/
+INCLUDE		=	-I inc/ -I lib/libft_gnl/
 
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror -MMD
@@ -40,10 +40,10 @@ RM			=	rm -rf
 all: libft $(NAME)
 
 libft:
-	@make -C lib/libft/
+	@make -C lib/libft_gnl/
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) -L lib/libft/ -lft $(OBJS) -o $@
+	@$(CC) $(CFLAGS) -L lib/libft_gnl/ -lft $(OBJS) -o $@
 	@sleep 0.2
 	@echo "$(CLEAN_CAR)$(OK_COLOR)Cub3D compiled!$(NO_COLOR)"
 	@echo "Use $(BLUE_COLOR)./cub3D$(NO_COLOR) to launch the program"
@@ -58,12 +58,12 @@ $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(LIBFT) Makefile
 	@printf "$(CLEAN_CAR)$(OK_COLOR)[Compiling cub3D]$(BLUE_COLOR) : $(WARN_COLOR)$<$(NO_COLOR)\r"
 
 clean:
-	@make -C lib/libft/ clean
+	@make -C lib/libft_gnl/ clean
 	@$(RM) $(OBJS) $(DEPS)
 	@echo "$(ERROR_COLOR)Dependencies and objects removed$(NO_COLOR)"
 
 fclean: clean
-	@make -C lib/libft/ fclean
+	@make -C lib/libft_gnl/ fclean
 	@$(RM) $(NAME)
 	@$(RM) $(OBJ_DIR)
 	@echo "$(ERROR_COLOR)$(NAME) removed$(NO_COLOR)"
