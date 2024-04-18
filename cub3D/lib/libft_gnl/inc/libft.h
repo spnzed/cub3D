@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 15:58:15 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/04/18 19:11:12 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/18 20:25:26 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,13 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "get_next_line.h"
+# include <string.h>
+# include <fcntl.h>
+# include <stdio.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 64
+# endif
 
 typedef struct s_list
 {
@@ -23,6 +29,7 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+void	ft_arrfree(char **array);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
@@ -68,5 +75,6 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 int		ft_dbllen(char **s);
 int		ft_strcmp(char *s1, char *s2);
+char	*get_next_line(int fd);
 
 #endif

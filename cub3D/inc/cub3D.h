@@ -5,7 +5,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <signal.h>
-# include <stdio.h>
 # include "../lib/libft_gnl/inc/libft.h"
 
 #define RESET	"\033[0m"
@@ -17,5 +16,15 @@
 #define MAGENTA	"\033[0;35m"
 #define CYAN	"\033[0;36m"
 #define WHITE	"\033[0;37m"
+
+typedef struct 		s_data
+{
+	char	**scene;
+}					t_data;
+
+//		Program
+int		check_args(int argc, char **argv, t_data *info);
+//		Utils
+int		ft_count_lines(int fd);
 
 #endif

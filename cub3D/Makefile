@@ -6,7 +6,7 @@
 #    By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/04 17:25:20 by erosas-c          #+#    #+#              #
-#    Updated: 2024/04/18 19:13:54 by aaespino         ###   ########.fr        #
+#    Updated: 2024/04/18 20:02:32 by aaespino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ HEADER		=	inc/
 SRC_DIR		=	src/
 
 INC_DIR		=	inc
-SRC_FILES	=	main.c
+SRC_FILES	=	main.c arguments.c utils.c
 					
 OBJ_DIR		=	obj/
 OBJ_FILES	=	$(SRC_FILES:.c=.o)

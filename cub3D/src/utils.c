@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/08 18:34:45 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/18 19:11:37 by aaespino         ###   ########.fr       */
+/*   Created: 2024/04/18 19:28:53 by aaespino          #+#    #+#             */
+/*   Updated: 2024/04/18 20:18:35 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "cub3D.h"
 
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include <unistd.h>
-# include <fcntl.h>
+int ft_count_lines (int fd)
+{
+	int		count;
+	char	*buff;
 
-char	*get_next_line(int fd);
-char	*ft_main(char *save, int fd);
-char	*ft_line(char *save);
-char	*ft_static(char *save);
-
-#endif
+	count = 0;
+	buff = get_next_line(fd);
+	while (buff)
+	{
+		count++;
+		free(buff);
+		buff = get_next_line(fd);
+	}
+	return (count);
+}

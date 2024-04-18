@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_arrfree.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/15 20:53:28 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/04/18 20:12:00 by aaespino         ###   ########.fr       */
+/*   Created: 2024/04/18 19:42:37 by aaespino          #+#    #+#             */
+/*   Updated: 2024/04/18 20:15:56 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_arrfree(char **array)
 {
-	t_data	info;
+	int		i;
+	char	*str;
 
-	if (check_args(argc, argv, &info))
-		return (1);
-	// init_process(argv[1]);
-	return (0);
+	if (array == NULL)
+		return ;
+	i = 0;
+	while (array[i])
+	{
+		str = array[i];
+		if (str)
+			free(str);
+		i++;
+	}
+	free(array);
 }
