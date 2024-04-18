@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+         #
+#    By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/04 17:25:20 by erosas-c          #+#    #+#              #
-#    Updated: 2024/04/18 19:13:54 by aaespino         ###   ########.fr        #
+#    Updated: 2024/04/18 21:36:21 by erosas-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ HEADER		=	inc/
 SRC_DIR		=	src/
 
 INC_DIR		=	inc
-SRC_FILES	=	main.c
+SRC_FILES	=	main.c		window.c
 					
 OBJ_DIR		=	obj/
 OBJ_FILES	=	$(SRC_FILES:.c=.o)
@@ -26,8 +26,10 @@ DEP_FILES	=	$(SRC_FILES:.c=.d)
 DEPS		=	$(addprefix $(OBJ_DIR), $(DEP_FILES))
 
 LIBFT		=	lib/libft_gnl/libft.a
+MLX			=	lib/mlx/libmlx.a
 
-INCLUDE		=	-I inc/ -I lib/libft_gnl/
+INCLUDE		=	-I inc/ -I lib/libft_gnl/ -I lib/mlx/ -lmlx
+#FRAMES		= 	-framework OpenGL -framework AppKit 
 
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror -MMD
@@ -37,13 +39,15 @@ RM			=	rm -rf
 
 ######################################################################
 
-all: libft $(NAME)
+all: make_libs $(NAME)
 
-libft:
+make_libs:
 	@make -C lib/libft_gnl/
+	@make -C lib/mlx/ 2> ERRORS
+	@rm ERRORS
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) -L lib/libft_gnl/ -lft $(OBJS) -o $@
+	@$(CC) $(CFLAGS) -L lib/libft_gnl/ -L lib/mlx/ -lmlx -lft $(OBJS) -o $@
 	@sleep 0.2
 	@echo "$(CLEAN_CAR)$(OK_COLOR)Cub3D compiled!$(NO_COLOR)"
 	@echo "Use $(BLUE_COLOR)./cub3D$(NO_COLOR) to launch the program"
@@ -51,14 +55,17 @@ $(NAME): $(OBJS)
 $(OBJS): | $(OBJ_DIR)
 
 $(OBJ_DIR):
-	@mkdir $@
+	@mkdir -p $@
 
-$(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(LIBFT) Makefile
+$(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(LIBFT) $(MLX) Makefile
 	@$(CC) $(CFLAGS) $(INCLUDE) -g -c $< -o $@
 	@printf "$(CLEAN_CAR)$(OK_COLOR)[Compiling cub3D]$(BLUE_COLOR) : $(WARN_COLOR)$<$(NO_COLOR)\r"
 
-clean:
+clean_libs:
 	@make -C lib/libft_gnl/ clean
+	@make -C lib/mlx/ clean
+
+clean: clean_libs
 	@$(RM) $(OBJS) $(DEPS)
 	@echo "$(ERROR_COLOR)Dependencies and objects removed$(NO_COLOR)"
 
@@ -72,7 +79,7 @@ re: fclean all
 
 -include $(DEPS)
 
-.PHONY: all libft clean fclean re
+.PHONY: all make_libs clean_libs clean fclean re
 
 NO_COLOR		=	\x1b[0m
 OK_COLOR		=	\x1b[32;01m
