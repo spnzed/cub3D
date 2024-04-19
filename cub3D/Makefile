@@ -6,16 +6,15 @@
 #    By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/04 17:25:20 by erosas-c          #+#    #+#              #
-#    Updated: 2024/04/18 21:36:21 by erosas-c         ###   ########.fr        #
+#    Updated: 2024/04/19 18:08:25 by erosas-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	cub3D
-HEADER		=	inc/
 
 SRC_DIR		=	src/
 
-INC_DIR		=	inc
+INC_DIR		=	inc/
 SRC_FILES	=	main.c		window.c
 					
 OBJ_DIR		=	obj/

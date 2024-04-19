@@ -6,11 +6,11 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 20:53:28 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/04/18 19:37:41 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:58:35 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../inc/cub3D.h"
 
 static int comprove_extension(char *file)
 {
