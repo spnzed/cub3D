@@ -1,0 +1,5 @@
+.vscode
+.DS_Store
+cub3D/lib/.DS_Store
+*.o
+*.d

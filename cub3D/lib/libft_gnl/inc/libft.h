@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 15:58:15 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/04/19 16:54:59 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/19 18:16:07 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_list
 }	t_list;
 
 void	ft_arrfree(char **array);
+int		ft_arrlen(char **str);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);

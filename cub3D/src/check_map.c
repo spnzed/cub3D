@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:59:47 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/19 17:22:18 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/19 18:39:00 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,60 +32,74 @@ static int	check_grid(char *line)
 	return (0);
 }
 
-// static int	tile_is_exterior(char **grid, int y, int x, int size[2])
-// {
-// 	int	i;
-// 	int	j;
+static int	we_at_border(char **grid, int x, int y, int size_x, int size_y)
+{
+	int	i;
+	int	j;
 
-// 	i = -1;
-// 	while (i <= 1)
-// 	{
-// 		j = -1;
-// 		while (j <= 1)
-// 		{
-// 			if (y + i != 0 && x + j != 0)
-// 			{
-// 				if (y + i >= size[Y] || y + i < 0 || \
-// 					x + j >= size[X] || x + j < 0 || \
-// 					grid[y + i][x + j] == ' ')
-// 					return (1);
-// 			}
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	return (0);
-// }
+	i = -1;
+	while (i <= 1)
+	{
+		j = -1;
+		while (j <= 1)
+		{
+			if (y + i != 0 && x + j != 0)
+			{
+				if (x + i >= size_x || x + i < 0 ||
+					y + j >= size_y || y + j < 0 ||
+					grid[x + i][y + j] == ' ')
+					return (1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
 
-// static int	check_map_is_surrounded(char **grid, int size[2])
-// {
-// 	int	i;
-// 	int	j;
+static int	check_border(char **scene, int i)
+{
+	int	j;
 
-// 	i = 0;
-// 	while (i < size[Y])
-// 	{
-// 		j = 0;
-// 		while (j < size[X])
-// 		{
-// 			if (tile_is_exterior(grid, i, j, size))
-// 			{
-// 				if (grid[i][j] == '0')
-// 					return (c3d_error(ERR_MAP_NOT_ENCLOSED));
-// 				if (ft_strchr("NSWE", grid[i][j]))
-// 					return (c3d_error(ERR_MAP_SPAWN_INVALID));
-// 			}
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	return (SUCCESS);
-// }
+	while (scene[i])
+	{
+		j = 0;
+		while (scene[i][j])
+		{
+			printf ("%c", scene[i][j]);
+			if (we_at_border(scene, i, j, ft_arrlen(scene), ft_strlen(scene[i])))
+			{
+				if (scene[i][j] == '0')
+					return (printf(RED"Error: Map: Not Surrounded by Walls\n"RESET), 1);
+				if (ft_strchr("NSWE", scene[i][j]))
+					return (printf(RED"Error: Map: Invalid Player Spawn\n"RESET), 1);
+			}
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+	return (0);
+}
 
 int	check_map_border(char **scene)
 {
-	(void)scene;
-	return(0);
+	int i = -1;
+	int count = 0;
+
+	while (scene[++i])
+	{
+		if (ft_strlen(scene[i]) > 1)
+		{
+			if (count > 5)
+			{
+				if (check_border(scene, i))
+					return (1);
+			}
+			count++;
+		}
+	}
+	return (0);
 }
 
 int	check_map_char(char **scene)
