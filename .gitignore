@@ -1,5 +1,6 @@
 .vscode
 .DS_Store
 cub3D/lib/.DS_Store
+cub3D/lib/libft_gnl/libft.a
 *.o
 *.d
