@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_istype_iter.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/17 20:50:09 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/04/19 12:12:52 by aaespino         ###   ########.fr       */
+/*   Created: 2024/04/19 16:50:53 by aaespino          #+#    #+#             */
+/*   Updated: 2024/04/19 16:51:05 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+int	ft_istype_iter(const char *s, int (*f)(int))
 {
+	int	i;
+
+	i = 0;
 	if (!s)
 		return (0);
-	while (*s != '\0' && (char)c != *s)
-		s++;
-	if ((char)c == *s)
+	while (s[i] != '\0')
 	{
-		return ((char *)s);
+		if (!f(s[i]))
+			return (0);
+		i++;
 	}
-	return (0);
+	return (1);
 }

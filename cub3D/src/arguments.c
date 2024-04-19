@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:46:42 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/18 20:27:30 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:22:05 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,46 +24,15 @@ static int comprove_extension(char *file)
 		return (1);
 }
 
-static char	**get_file(int fd, int lines)
-{
-	int		i;
-	char	**scene;
-
-	i = 0;
-	scene = malloc(sizeof(char *) * (lines + 1));
-	scene[lines] = NULL;
-	while (i < lines)
-	{
-		scene[i] = get_next_line(fd);
-		printf("LINE: %s\n", scene[i]);
-		i++;
-	}
-	return (scene);
-}
-
 static int	check_file(char *file, t_data *info)
 {
-	int		fd;
-	int		lines;
-	char	**scene;
-
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-		return (printf(RED"Error: Cannot Open File\n"RESET), 1);
-	printf("SEGF\n");
-	lines = ft_count_lines(fd);
-	if (close(fd) == -1)
-		return (printf(RED"Error: Cannot Close File\n"RESET), 1);
-	scene = get_file(fd, lines);
-	if (!scene)
-		return (printf(RED"Error: Malloc\n"RESET), 1);
-	if (close(fd) == -1)
-	{
-		ft_arrfree(scene);
-		return (printf(RED"Error: Cannot Close File\n"RESET), 1);
-	}
-	// clean_scene(scene);
-	info->scene = scene;
+	get_file(file, info);
+	if (check_textures(info->scene, info))
+		return (1);
+	if (check_map_char(info->scene))
+		return (1);
+	if (check_map_border(info->scene))
+		return (1);
 	return (0);
 }
 
