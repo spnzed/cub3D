@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 20:53:28 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/04/19 17:58:35 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/04/19 19:10:10 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,6 @@ static int comprove_extension(char *file)
 	else
 		return (1);
 }
-
-// static int	check_map(char *file)
-// {
-	
-// }
 
 static int	check_args(int argc, char **argv)
 {
@@ -47,9 +42,12 @@ static int	check_args(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	if (check_args(argc, argv))
-		return (1);
-	// init_process(argv[1]);
+	(void)argc;
+	(void)argv;
 	window();
+	(void)check_args;
+	/*if (check_args(argc, argv))
+		return (1);*/
+	// init_process(argv[1]);
 	return (0);
 }
