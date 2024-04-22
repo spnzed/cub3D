@@ -5,7 +5,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <signal.h>
-# include <stdio.h>
+# include <stdbool.h>
 # include "../lib/libft_gnl/inc/libft.h"
 # include "../lib/mlx/mlx.h"
 
@@ -31,5 +31,36 @@ typedef struct s_vars
 
 /*			window.c			*/
 int	window(void);
+
+typedef struct s_parameters
+{
+	char*	north;
+	char*	south;
+	char*	west;
+	char*	east;
+	char*	sprite;
+	char*	door;
+	int		floor;
+	int		ceiling;
+}				t_parameters;
+
+typedef struct 		s_data
+{
+	char			**scene;
+	t_parameters	parameters;
+}					t_data;
+
+//		Program
+int		check_args(int argc, char **argv, t_data *info);
+void	get_file(char *file, t_data *info);
+int		check_map_char(char **scene);
+int		check_map_border(char **scene);
+int		check_textures(char **scene, t_data *info);
+char	*get_color(char *str, char rgb);
+int		rgb_check(char *channel);
+//		Utils
+int		ft_count_lines(int fd);
+int		open_file(char *file);
+void	close_file(int fd, char** scene, bool arr);
 
 #endif

@@ -15,8 +15,16 @@ HEADER		=	inc/
 
 SRC_DIR		=	src/
 
-INC_DIR		=	inc/
-SRC_FILES	=	main.c	window.c
+INC_DIR		=	inc
+SRC_FILES	=	arguments.c \
+				check_map.c	\
+				check_parameters.c \
+				get_color.c 	\
+				get_file.c 	\
+				main.c 		\
+				utils.c		\
+        main.c  \
+        window.c  \
 					
 OBJ_DIR		=	obj/
 OBJ_FILES	=	$(SRC_FILES:.c=.o)

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+         #
+#    By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/10 17:33:17 by erosas-c          #+#    #+#              #
-#    Updated: 2024/04/17 18:22:17 by erosas-c         ###   ########.fr        #
+#    Updated: 2024/04/19 18:16:18 by aaespino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,14 +15,16 @@ NAME  		=	libft.a
 INCLUDE		=	inc/
 
 SRC_DIR		=	src/
-SRC_FILES 	= 	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c \
-				ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c ft_strlcpy.c ft_strlcat.c \
-				ft_toupper.c ft_tolower.c ft_strchr.c ft_strrchr.c ft_strncmp.c ft_memchr.c \
+SRC_FILES 	= 	ft_arrfree.c ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
+				ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c ft_strlcpy.c ft_strlcat.c \
+				ft_toupper.c ft_tolower.c ft_strchr.c ft_strrcmp.c ft_istype_iter.c \
+				ft_strnchr.c ft_strrchr.c ft_strncmp.c ft_memchr.c ft_isint.c ft_arrlen.c \
 				ft_memcmp.c ft_strnstr.c ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c \
 				ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c \
-				ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_dbllen.c \
+				ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_dbllen.c ft_isspace.c\
 				ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
-				ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c ft_strcmp.c
+				ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c ft_strcmp.c get_next_line.c \
+
 SRCS		=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
 OBJ_DIR		= 	obj/

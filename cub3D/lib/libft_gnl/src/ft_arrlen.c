@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_arrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/17 20:50:09 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/04/19 12:12:52 by aaespino         ###   ########.fr       */
+/*   Created: 2024/02/15 14:53:10 by aaespino          #+#    #+#             */
+/*   Updated: 2024/04/19 18:15:56 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+int	ft_arrlen(char **str)
 {
-	if (!s)
+	int	i;
+
+	i = 0;
+	if (!str)
 		return (0);
-	while (*s != '\0' && (char)c != *s)
-		s++;
-	if ((char)c == *s)
-	{
-		return ((char *)s);
-	}
-	return (0);
+	while (str[i])
+		i++;
+	return (i);
 }

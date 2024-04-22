@@ -1,26 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strrcmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/17 20:50:09 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/04/19 12:12:52 by aaespino         ###   ########.fr       */
+/*   Created: 2024/04/19 14:38:34 by aaespino          #+#    #+#             */
+/*   Updated: 2024/04/19 14:38:52 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+int	ft_strrcmp(const char *s1, const char *s2)
 {
-	if (!s)
-		return (0);
-	while (*s != '\0' && (char)c != *s)
-		s++;
-	if ((char)c == *s)
+	size_t			i;
+	size_t			j;
+	unsigned char	*a1;
+	unsigned char	*a2;
+
+	a1 = (unsigned char *)s1;
+	a2 = (unsigned char *)s2;
+	i = ft_strlen(s1);
+	j = ft_strlen(s2);
+	while (i > 0 && j > 0)
 	{
-		return ((char *)s);
+		if (a1[i] > a2[j] || a1[i] < a2[j])
+			return (a1[i] - a2[j]);
+		else if (a1[i] == a2[j])
+		{
+			i--;
+			j--;
+		}
 	}
-	return (0);
+	if (a1[i] > a2[j] || a1[i] < a2[j])
+		return (a1[i] - a2[i]);
+	else
+		return (0);
 }
