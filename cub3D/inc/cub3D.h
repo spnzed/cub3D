@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/22 17:39:59 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/22 19:23:49 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_map
 	char		**grid;
 	int			size[2];
 	int			spawn[2];
-	int			player_dir[2];
+	int			player_dir;
 }				t_map;
 
 /*			window.c			*/
@@ -75,7 +75,7 @@ int		init_window(void);
 int		check_args(int argc, char **argv);
 void	get_file(char *file, t_data *info);
 int		handle_map(char *file, t_data *info);
-int		check_map_char(char **scene);
+int		check_map_char(char **scene, t_data *info);
 int		check_map_border(char **scene);
 int		check_textures(char **scene, t_data *info);
 char	*get_color(char *str, char rgb);
@@ -85,5 +85,6 @@ int		rgb_check(char *channel);
 int		ft_count_lines(int fd);
 int		open_file(char *file);
 void	close_file(int fd, char** scene, bool arr);
+int		valid_file(char *file);
 
 #endif

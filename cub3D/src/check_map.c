@@ -6,27 +6,42 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:59:47 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/22 18:10:21 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/22 19:24:37 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static int	check_grid(char *line)
+static void	player_direction(char c, t_data *info)
 {
-	int			i;
+	if (c == 'N')
+		info->map.player_dir = 90;
+	if (c == 'S')
+		info->map.player_dir = 270;
+	if (c == 'W')
+		info->map.player_dir = 180;
+	if (c == 'E')
+		info->map.player_dir = 0;
+}
+
+static int	check_grid(char *line, int y, t_data *info)
+{
+	int			x;
 	static int	spawn = 0;
 
-	i = -1;
-	while (line[++i])
+	x = -1;
+	while (line[++x])
 	{
-		if (ft_strchr("NSWE", line[i]))
+		if (ft_strchr("NSWE", line[x]))
 		{
-			if (spawn == 1)
+			if (spawn > 0)
 				return (printf(RED"Error: Map: Multiple Spawn Points\n"RESET), 1);
+			player_direction(line[x], info);
+			info->map.spawn[0] = x;
+			info->map.spawn[1] = y;
 			spawn++;
 		}
-		if (!ft_strchr("10NSWE ", line[i]))
+		if (!ft_strchr("10NSWE ", line[x]))
 			return (printf(RED"Error: Map: Invalid Characters\n"RESET), 1);
 	}
 	return (0);
@@ -100,7 +115,7 @@ int	check_map_border(char **scene)
 	return (0);
 }
 
-int	check_map_char(char **scene)
+int	check_map_char(char **scene, t_data *info)
 {
 	int i = -1;
 	int count = 0;
@@ -111,7 +126,7 @@ int	check_map_char(char **scene)
 		{
 			if (count > 5)
 			{
-				if (check_grid(scene[i]))
+				if (check_grid(scene[i], i, info))
 					return (1);
 			}
 			count++;

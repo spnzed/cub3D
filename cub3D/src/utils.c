@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:28:53 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/19 12:46:21 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:56:28 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,15 @@ void	close_file(int fd, char** scene, bool arr)
 		exit(1);
 	}
 	return ;
+}
+
+int	valid_file(char *file)
+{
+	int	fd;
+
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (1);
+	close(fd);
+	return (0);
 }
