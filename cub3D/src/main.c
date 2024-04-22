@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 20:53:28 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/04/23 00:12:56 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/04/23 00:46:11 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int argc, char **argv)
 	check_args(argc, argv);
 	handle_map(argv[1], &info);
 	init_window();
-	// init_process(argv[1]);
+	//	init_graphics(info);
+	//	mlx_loop();
 	return (0);
 }
