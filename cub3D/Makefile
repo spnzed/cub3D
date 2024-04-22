@@ -6,7 +6,7 @@
 #    By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/04 17:25:20 by erosas-c          #+#    #+#              #
-#    Updated: 2024/04/22 14:16:32 by aaespino         ###   ########.fr        #
+#    Updated: 2024/04/22 16:47:16 by aaespino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,14 +16,16 @@ HEADER		=	inc/
 SRC_DIR		=	src/
 
 INC_DIR		=	inc
-SRC_FILES	=	arguments.c \
-				check_map.c	\
-				check_parameters.c \
-				get_color.c 	\
-				get_file.c 	\
-				main.c 		\
-				utils.c		\
-        		window.c  \
+SRC_FILES	=	arguments.c 		\
+				check_map.c			\
+				check_parameters.c	\
+				get_color.c 		\
+				get_file.c 			\
+				main.c 				\
+				utils.c				\
+        		window.c 			\
+				handle_map.c		\
+				map_to_file.c		\
 					
 OBJ_DIR		=	obj/
 OBJ_FILES	=	$(SRC_FILES:.c=.o)
@@ -42,8 +44,7 @@ INCLUDE		=	-I $(INC_DIR) -I $(LIBFT_DIR)/inc -I $(MLX_DIR)
 FRAMES 		= 	-framework OpenGL -framework AppKit 
 
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror -MMD
-MLX_FLAGS	=	
+CFLAGS		=	-Wall -Wextra -Werror -MMD 
 CLEAN_CAR	=	\033[2K\r
 
 RM			=	rm -rf

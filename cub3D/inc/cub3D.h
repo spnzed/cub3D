@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/22 14:14:58 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/22 17:39:59 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,15 @@ typedef struct s_vars
 	void	*image;
 }	t_vars;
 
+typedef struct s_map
+{
+	char		**grid;
+	int			size[2];
+	int			spawn[2];
+	int			player_dir[2];
+}				t_map;
+
 /*			window.c			*/
-int	window(void);
 
 typedef struct s_parameters
 {
@@ -59,16 +66,20 @@ typedef struct s_parameters
 typedef struct 		s_data
 {
 	char			**scene;
+	t_map			map;
 	t_parameters	parameters;
 }					t_data;
 
 //		Program
-int		check_args(int argc, char **argv, t_data *info);
+int		init_window(void);
+int		check_args(int argc, char **argv);
 void	get_file(char *file, t_data *info);
+int		handle_map(char *file, t_data *info);
 int		check_map_char(char **scene);
 int		check_map_border(char **scene);
 int		check_textures(char **scene, t_data *info);
 char	*get_color(char *str, char rgb);
+char	**map_to_file(t_map *map, char **file);
 int		rgb_check(char *channel);
 //		Utils
 int		ft_count_lines(int fd);

@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 20:53:28 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/04/22 14:22:30 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/22 17:39:34 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int	main(int argc, char **argv)
 	t_data	info;
 
 	init_info(&info);
-	if (check_args(argc, argv, &info))
-		return (1);
-	window();
+	check_args(argc, argv);
+	handle_map(argv[1], &info);
+	init_window();
 	// init_process(argv[1]);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 15:58:15 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/04/19 18:16:07 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:17:18 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,13 @@ typedef struct s_list
 
 void	ft_arrfree(char **array);
 int		ft_arrlen(char **str);
+void	*ft_alloc_array(size_t size, size_t h, size_t w);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
-size_t	ft_strlen(const char *str);
+int		ft_strlen(const char *str);
 void	*ft_memset(void *str, int c, size_t len);
 void	ft_bzero(void *s, size_t n);
 void	*ft_memcpy(void *dst, const void *src, size_t n);

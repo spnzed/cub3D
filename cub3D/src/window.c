@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:38:09 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/04/22 14:24:27 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:45:53 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_cross(t_vars *vars)
 	return (0);
 }
 
-int	window(void)
+int	init_window(void)
 {
 	t_vars	*vars;
 	int		*buff;

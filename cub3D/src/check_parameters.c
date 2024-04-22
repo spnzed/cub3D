@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 14:04:46 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/19 17:22:35 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/22 15:06:59 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ static void	check_parameters(t_data *info, char *line, int i)
 		check_color_element(line, &info->parameters.ceiling);
 	else if (line[0] != '\0')
 	{
-		printf("%s %d\n", line, i);
 		printf(RED"Error: Parameters: Doesn't Folow Guidelines\n"RESET);
 		exit (1);
 	}
