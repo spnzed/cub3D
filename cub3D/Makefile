@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+         #
+#    By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/04 17:25:20 by erosas-c          #+#    #+#              #
-#    Updated: 2024/04/19 19:20:38 by erosas-c         ###   ########.fr        #
+#    Updated: 2024/04/22 14:16:32 by aaespino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,7 @@ SRC_FILES	=	arguments.c \
 				get_file.c 	\
 				main.c 		\
 				utils.c		\
-        main.c  \
-        window.c  \
+        		window.c  \
 					
 OBJ_DIR		=	obj/
 OBJ_FILES	=	$(SRC_FILES:.c=.o)
