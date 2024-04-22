@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_parameters.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 14:04:46 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/22 19:05:25 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/23 00:13:42 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,16 @@ static char	*check_texture_element(char *line, char *param)
 
 static int	check_color_element(char *line, int *color)
 {
-	int	line_end;
 	char	*red;
 	char	*green;
 	char	*blue;
 
 	if (*color > 0)
+	{
+		printf("[%s]\t", line);
+		printf("[%d]\n", *color);
 		return (printf(RED"Error: Parameters: Repeated Element Found\n"RESET), 1);
-	line_end = ft_strlen(line);
+	}
 	line = ft_strnchr(line + 1, ' ');
 	red = get_color(line, 'R');
 	green = get_color(line, 'G');

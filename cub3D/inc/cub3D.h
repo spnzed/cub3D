@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/22 19:23:49 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/23 00:13:25 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
 # define CYAN		"\033[0;36m"
 # define WHITE		"\033[0;37m"
 
-# define HEIGHT		1080
-# define WIDTH		1920
+# define HEIGHT		720
+# define WIDTH		1280
 
 typedef struct s_vars
 {
@@ -57,8 +57,6 @@ typedef struct s_parameters
 	char*	south;
 	char*	west;
 	char*	east;
-	char*	sprite;
-	char*	door;
 	int		floor;
 	int		ceiling;
 }				t_parameters;

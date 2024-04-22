@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 15:44:19 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/19 16:58:40 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/22 23:24:21 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,9 @@ int	rgb_check(char *rgb)
 char	*get_red(char *str)
 {
 	int		i;
-	int		count;
 	char	*ret;
 
 	i = 0;
-	count = 0;
 	ret = NULL;
 	while (str[i])
 	{

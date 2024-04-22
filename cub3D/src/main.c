@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 20:53:28 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/04/22 17:39:34 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/23 00:12:56 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static void	init_info(t_data *info)
 	info->parameters.south = NULL;
 	info->parameters.west = NULL;
 	info->parameters.east = NULL;
-	info->parameters.sprite = NULL;
-	info->parameters.door = NULL;
+	info->parameters.floor = -2;
+	info->parameters.ceiling = -2;
 }
 
 int	main(int argc, char **argv)
