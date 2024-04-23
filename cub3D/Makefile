@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+         #
+#    By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/04 17:25:20 by erosas-c          #+#    #+#              #
-#    Updated: 2024/04/23 18:02:37 by aaespino         ###   ########.fr        #
+#    Updated: 2024/04/23 20:16:41 by erosas-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,9 @@ all: make_libs $(NAME)
 
 make_libs:
 	@make -C lib/libft_gnl/
+	@echo "$(CLEAN_CAR)$(OK_COLOR)Starting compilation of Minilibx...$(NO_COLOR)"
 	@$(MAKE) -C lib/mlx 2> ERRORS
+	@echo "$(CLEAN_CAR)$(OK_COLOR)Minilibx compiled!$(NO_COLOR)"
 	@rm ERRORS
 
 $(NAME): $(OBJS) $(LIBFT) $(MLX)
