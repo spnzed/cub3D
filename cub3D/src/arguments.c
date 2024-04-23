@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:46:42 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/22 14:43:26 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/23 17:16:42 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int comprove_extension(char *file)
 		return (1);
 }
 
-int	check_args(int argc, char **argv)
+int	check_args(int argc, char **argv, t_data *info)
 {
 	int	err;
 
@@ -39,5 +39,7 @@ int	check_args(int argc, char **argv)
 		err = printf(RED"Error: Incorret File Extension\n"RESET);
 	if (err)
 		exit(1);
+	else
+		handle_map(argv[1], info);
 	return 0;
 }

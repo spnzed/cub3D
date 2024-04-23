@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/23 00:13:25 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/04/23 17:35:09 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,30 @@
 # define CYAN		"\033[0;36m"
 # define WHITE		"\033[0;37m"
 
-# define HEIGHT		720
-# define WIDTH		1280
+# define HEIGHT		512
+# define WIDTH		960
 
-typedef struct s_vars
+typedef struct s_img
+{
+	void	*img;
+	char	*img_adr;
+	int		str_len;
+	int		bpp;
+	int		endian;
+	int		height;
+	int		width;
+}	t_img;
+
+typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
-	void	*image;
-}	t_vars;
+	t_img	img;
+	t_img	north;
+	t_img	south;
+	t_img	east;
+	t_img	west;
+}	t_mlx;
 
 typedef struct s_map
 {
@@ -65,12 +80,13 @@ typedef struct 		s_data
 {
 	char			**scene;
 	t_map			map;
+	t_mlx			mlx;
 	t_parameters	parameters;
 }					t_data;
 
 //		Program
-int		init_window(void);
-int		check_args(int argc, char **argv);
+int		init_window(t_data *info);
+int		check_args(int argc, char **argv, t_data *info);
 void	get_file(char *file, t_data *info);
 int		handle_map(char *file, t_data *info);
 int		check_map_char(char **scene, t_data *info);
@@ -78,6 +94,7 @@ int		check_map_border(char **scene);
 int		check_textures(char **scene, t_data *info);
 char	*get_color(char *str, char rgb);
 char	**map_to_file(t_map *map, char **file);
+void	put_images(t_data *info);
 int		rgb_check(char *channel);
 //		Utils
 int		ft_count_lines(int fd);
