@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arguments.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:46:42 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/23 17:16:42 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/23 18:41:32 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ int	check_args(int argc, char **argv, t_data *info)
 	if (argc < 2)
 		err = printf(RED"Error: Not Enough Arguments\n"RESET);
 	if (argc > 2)
-		err = printf(RED"Error: Too Much Arguments\n"RESET);
+		err = printf(RED"Error: Too Many Arguments\n"RESET);
 	if (ft_strlen(argv[1]) <= 4)
 		err = printf(RED"Error: Invalid Path\n"RESET);
 	if (comprove_extension(argv[1]))
-		err = printf(RED"Error: Incorret File Extension\n"RESET);
+		err = printf(RED"Error: Incorrect File Extension\n"RESET);
 	if (err)
 		exit(1);
 	else
