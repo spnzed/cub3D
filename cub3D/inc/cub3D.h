@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/23 18:36:45 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/04/23 20:00:57 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ typedef struct 		s_data
 {
 	char			**scene;
 	t_map			map;
-	t_mlx			mlx;
+	t_mlx			*mlx;
 	t_parameters	parameters;
 }					t_data;
 
