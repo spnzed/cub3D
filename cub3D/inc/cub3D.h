@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/23 18:02:56 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/23 19:39:23 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ typedef struct 		s_data
 {
 	char			**scene;
 	t_map			map;
-	t_mlx			mlx;
+	t_mlx			*mlx;
 	t_parameters	parameters;
 }					t_data;
 
