@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/23 17:35:09 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/23 18:02:56 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ typedef struct 		s_data
 }					t_data;
 
 //		Program
-int		init_window(t_data *info);
 int		check_args(int argc, char **argv, t_data *info);
 void	get_file(char *file, t_data *info);
 int		handle_map(char *file, t_data *info);

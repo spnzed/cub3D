@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 20:53:28 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/04/23 17:18:25 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/23 18:03:19 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,15 @@ static void	init_info(t_data *info)
 // 	// Maintain window open 
 // 	mlx_loop(master->mlx.mlx_ptr);
 // }
+
+static int		init_window(t_data *info)
+{
+	info->mlx.mlx = mlx_init();
+	info->mlx.win = mlx_new_window(info->mlx.mlx, WIDTH, HEIGHT, "cub3D");
+	put_images(info);
+	// put_position(info);
+	return (0);
+}
 
 int	main(int argc, char **argv)
 {
