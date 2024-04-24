@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/23 20:00:57 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:09:22 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,19 @@
 # include <stdlib.h>
 # include <signal.h>
 # include <stdbool.h>
+# include <math.h>
 # include "../lib/libft_gnl/inc/libft.h"
 # include "../lib/mlx/mlx.h"
+
+# define KEY_ESC 53
+# define KEY_W 13
+# define KEY_A 0
+# define KEY_S 1
+# define KEY_D 2
+# define KEY_LEFT 123
+# define KEY_RIGHT 124
+# define KEY_DOWN 125
+# define KEY_UP 126
 
 # define RESET		"\033[0m"
 # define BLACK		"\033[0;30m"
@@ -31,8 +42,19 @@
 # define CYAN		"\033[0;36m"
 # define WHITE		"\033[0;37m"
 
-# define HEIGHT		512
-# define WIDTH		960
+# define SCALE 64
+# define HEIGHT 512
+# define WIDTH 960
+
+typedef struct s_keys
+{
+	int	W;
+	int	A;
+	int	S;
+	int	D;
+	int	R_ARR;
+	int	L_ARR;
+}	t_keys;
 
 typedef struct s_img
 {
@@ -49,6 +71,7 @@ typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
+	t_keys	*keys;
 	t_img	img;
 	t_img	north;
 	t_img	south;
@@ -59,27 +82,41 @@ typedef struct s_mlx
 typedef struct s_map
 {
 	char		**grid;
+	int			map_size;
+	int			scale;
 	int			size[2];
 	int			spawn[2];
 	int			player_dir;
+	int			floor;
+	int			ceiling;
 }				t_map;
 
 typedef struct s_parameters
 {
-	char*	north;
-	char*	south;
-	char*	west;
-	char*	east;
+	char	*north;
+	char	*south;
+	char	*west;
+	char	*east;
 	int		floor;
 	int		ceiling;
 }				t_parameters;
 
+typedef struct s_player
+{
+	float	x;
+	float	y;
+	int		p_dir;
+	int		p_dir_cos;
+	int		p_dir_sin;
+}	t_player;
+
 typedef struct 		s_data
 {
 	char			**scene;
-	t_map			map;
 	t_mlx			*mlx;
 	t_parameters	parameters;
+	t_map			map;
+	t_player		player;
 }					t_data;
 
 //		Program
@@ -92,11 +129,22 @@ int		check_textures(char **scene, t_data *info);
 char	*get_color(char *str, char rgb);
 char	**map_to_file(t_map *map, char **file);
 void	put_images(t_data *info);
+void	put_position(t_data *info);
 int		rgb_check(char *channel);
+int		ft_press(int keycode, t_mlx *mlx);
+int		ft_release(int keycode, t_mlx *mlx);
+int		ft_esc(int keycode, t_mlx *mlx);
+int		ft_cross(t_mlx *mlx);
+void	move_right(t_data *info);
+void	move_left(t_data *info);
+void	move_front(t_data *info);
+void	move_back(t_data *info);
+void	move_r_arrow(t_data *info);
+void	move_l_arrow(t_data *info);
 //		Utils
 int		ft_count_lines(int fd);
 int		open_file(char *file);
-void	close_file(int fd, char** scene, bool arr);
+void	close_file(int fd, char **scene, bool arr);
 int		valid_file(char *file);
 
 #endif

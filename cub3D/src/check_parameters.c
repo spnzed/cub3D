@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_parameters.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 14:04:46 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/23 00:13:42 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/04/24 18:32:11 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	*check_texture_element(char *line, char *param)
 {
-	if (param != NULL)
+	if (param != NULL && !param)
 	{
 		printf(RED"Error: Parameters: Repeated Element Found\n"RESET);
 		exit(1);
@@ -29,6 +29,14 @@ static char	*check_texture_element(char *line, char *param)
 	return (param);
 }
 
+int		gen_color(int R, int G, int B)
+{
+	int	color;
+
+	color = (R << 16) | (G << 8) | B;
+	return (color);
+}
+
 static int	check_color_element(char *line, int *color)
 {
 	char	*red;
@@ -36,17 +44,15 @@ static int	check_color_element(char *line, int *color)
 	char	*blue;
 
 	if (*color > 0)
-	{
-		printf("[%s]\t", line);
-		printf("[%d]\n", *color);
 		return (printf(RED"Error: Parameters: Repeated Element Found\n"RESET), 1);
-	}
 	line = ft_strnchr(line + 1, ' ');
 	red = get_color(line, 'R');
 	green = get_color(line, 'G');
 	blue = get_color(line, 'B');
 	if (rgb_check(red) || rgb_check(green) || rgb_check(blue))
 		return (printf(RED"Error: Parameters: Incorrect Format\n"RESET), 1);
+	else
+		*color = gen_color(ft_atoi(red), ft_atoi(green), ft_atoi(blue));
 	return (0);
 }
 

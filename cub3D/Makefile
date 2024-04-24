@@ -6,7 +6,7 @@
 #    By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/04 17:25:20 by erosas-c          #+#    #+#              #
-#    Updated: 2024/04/23 18:02:37 by aaespino         ###   ########.fr        #
+#    Updated: 2024/04/24 17:04:43 by aaespino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,12 @@ SRC_FILES	=	arguments.c 		\
 				main.c 				\
 				utils.c				\
 				put_images.c		\
+				put_position.c		\
 				handle_map.c		\
 				map_to_file.c		\
+				loop_functions.c	\
+				move.c				\
+				move_arrows.c		\
 					
 OBJ_DIR		=	obj/
 OBJ_FILES	=	$(SRC_FILES:.c=.o)
