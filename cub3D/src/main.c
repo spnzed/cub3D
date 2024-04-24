@@ -3,23 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 20:53:28 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/04/24 18:29:35 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/25 00:23:32 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	init_info(t_data *info)
+static t_data *init_info()
 {
+	t_data	*info;
+	
 	info = ft_calloc(1, sizeof(t_data));
 	if (!info)
 	{
 		printf(RED"Error: Malloc\n"RESET);
 		exit (1);
 	}
+	info->parameters.north = NULL;
+	info->parameters.south = NULL;
+	info->parameters.west = NULL;
+	info->parameters.east = NULL;
+	info->parameters.floor = -1;
+	info->parameters.ceiling = -1;
+	return (info);
 }
 
 static int		init_window(t_data *info)
@@ -46,11 +55,11 @@ static void init_loop(t_data *info)
 
 int	main(int argc, char **argv)
 {
-	t_data	info;
+	t_data	*info;
 
-	init_info(&info);
-	check_args(argc, argv, &info);
-	init_window(&info);
-	init_loop(&info);
+	info = init_info();
+	check_args(argc, argv, info);
+	init_window(info);
+	init_loop(info);
 	return (0);
 }

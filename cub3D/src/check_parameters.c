@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_parameters.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 14:04:46 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/24 18:32:11 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/25 00:25:57 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,15 @@ int		gen_color(int R, int G, int B)
 	return (color);
 }
 
-static int	check_color_element(char *line, int *color)
+static int	check_color_element(char *line, int color)
 {
+	int		ret;
 	char	*red;
 	char	*green;
 	char	*blue;
 
-	if (*color > 0)
+	ret = 0;
+	if (color > 0)
 		return (printf(RED"Error: Parameters: Repeated Element Found\n"RESET), 1);
 	line = ft_strnchr(line + 1, ' ');
 	red = get_color(line, 'R');
@@ -52,8 +54,8 @@ static int	check_color_element(char *line, int *color)
 	if (rgb_check(red) || rgb_check(green) || rgb_check(blue))
 		return (printf(RED"Error: Parameters: Incorrect Format\n"RESET), 1);
 	else
-		*color = gen_color(ft_atoi(red), ft_atoi(green), ft_atoi(blue));
-	return (0);
+		ret = gen_color(ft_atoi(red), ft_atoi(green), ft_atoi(blue));
+	return (ret);
 }
 
 static void	check_parameters(t_data *info, char *line, int i)
@@ -67,9 +69,9 @@ static void	check_parameters(t_data *info, char *line, int i)
 	else if (!ft_strncmp(line, "EA", 2) && i == 3)
 		info->parameters.east = check_texture_element(line, info->parameters.east);
 	else if (!ft_strncmp(line, "F", 1) && i == 4)
-		check_color_element(line, &info->parameters.floor);
+		info->parameters.floor = check_color_element(line, info->parameters.floor);
 	else if (!ft_strncmp(line, "C", 1) && i == 5)
-		check_color_element(line, &info->parameters.ceiling);
+		info->parameters.ceiling = check_color_element(line, info->parameters.ceiling);
 	else if (line[0] != '\0')
 	{
 		printf(RED"Error: Parameters: Doesn't Folow Guidelines\n"RESET);
