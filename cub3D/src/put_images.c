@@ -6,11 +6,13 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:58:59 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/24 13:05:44 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:08:29 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+
 
 static void	init_image(t_img *img)
 {
@@ -25,17 +27,17 @@ static void	create_image(t_data *info)
 	info->mlx->img.img = mlx_new_image(info->mlx->mlx, WIDTH, HEIGHT);
 	if (!info->mlx->img.img)
 	{
-		printf(RED"Error: Not Able to get MLX_IMG\n"RESET);
+		ft_err("Error: Not Able to get MLX_IMG\n");
 		exit(1);
 	}
-	info->mlx->img.img_adr = mlx_get_data_addr(
+	info->mlx->img.img_adr = (int *)mlx_get_data_addr(
 			info->mlx->img.img,
 			&info->mlx->img.bpp,
 			&info->mlx->img.str_len,
 			&info->mlx->img.endian);
 	if (!info->mlx->img.img_adr)
 	{
-		printf(RED"Error: Not Able to get MLX_IMG_ADR\n"RESET);
+		ft_err("Error: Not Able to get MLX_IMG_ADR\n");
 		exit(1);
 	}
 }
@@ -44,7 +46,7 @@ static void	check_64(t_img *img)
 {
 	if (img->width == 64 && img->height == 64)
 		return ;
-	printf(RED"Error: Insert Only Textures of 64 x 64 Pixels\n"RESET);
+	ft_err("Error: Insert Only Textures of 64 x 64 Pixels\n");
 	exit(1);
 }
 
@@ -54,14 +56,14 @@ static void	paint_walls(t_data *info, char *file, t_img *img)
 			file, &img->width, &img->height);
 	if (!img->img)
 	{
-		printf(RED"Error: Couldn't Convert File .xpm to Image\n"RESET);
+		ft_err("Error: Couldn't Convert File .xpm to Image\n");
 		exit(1);
 	}
-	img->img_adr = mlx_get_data_addr(
+	img->img_adr = (int *)mlx_get_data_addr(
 			img->img, &img->bpp, &img->str_len, &img->endian);
 	if (!img->img_adr)
 	{
-		printf(RED"Error: Not Able to get MLX_IMG_ADR\n"RESET);
+		ft_err("Error: Not Able to get MLX_IMG_ADR\n");
 		exit(1);
 	}
 	check_64(img);

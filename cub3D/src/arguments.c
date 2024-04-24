@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:46:42 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/24 13:30:00 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:49:09 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ int	check_args(int argc, char **argv, t_data *info)
 
 	err = 0;
 	if (argc < 2)
-		err = ft_error("Error: Not Enough Arguments\n");
+		err = ft_err("Error: Not Enough Arguments\n");
 	else if (argc > 2)
-		err = ft_error("Error: Too Many Arguments\n");
+		err = ft_err("Error: Too Many Arguments\n");
 	else if (ft_strlen(argv[1]) <= 4)
-		err = ft_error("Error: Invalid Path\n");
+		err = ft_err("Error: Invalid Path\n");
 	else if (check_extension(argv[1]))
-		err = ft_error(RED"Error: Incorrect File Extension\n");
+		err = ft_err("Error: Incorrect File Extension\n");
 	if (err)
 		exit(1);
 	else

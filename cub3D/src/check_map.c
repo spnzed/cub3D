@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:59:47 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/22 19:24:37 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:51:12 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,19 @@ static int	check_grid(char *line, int y, t_data *info)
 		if (ft_strchr("NSWE", line[x]))
 		{
 			if (spawn > 0)
-				return (printf(RED"Error: Map: Multiple Spawn Points\n"RESET), 1);
+				return (ft_err("Error: Map: Multiple Spawn Points\n"), 1);
 			player_direction(line[x], info);
 			info->map.spawn[0] = x;
 			info->map.spawn[1] = y;
 			spawn++;
 		}
 		if (!ft_strchr("10NSWE ", line[x]))
-			return (printf(RED"Error: Map: Invalid Characters\n"RESET), 1);
+			return (ft_err("Error: Map: Invalid Characters\n"), 1);
 	}
 	return (0);
 }
 
-static int	we_at_border(char **grid, int x, int y, int size_x, int size_y)
+static int	weatborder(char **grid, int x, int y, int size_x, int size_y)
 {
 	int	i;
 	int	j;
@@ -60,9 +60,9 @@ static int	we_at_border(char **grid, int x, int y, int size_x, int size_y)
 		{
 			if (y + i != 0 && x + j != 0)
 			{
-				if (x + i >= size_x || x + i < 0 ||
-					y + j >= size_y || y + j < 0 ||
-					grid[x + i][y + j] == ' ')
+				if (x + i >= size_x || x + i < 0
+					|| y + j >= size_y || y + j < 0
+					|| grid[x + i][y + j] == ' ')
 					return (1);
 			}
 			j++;
@@ -81,12 +81,12 @@ static int	check_border(char **scene, int i)
 		j = 0;
 		while (scene[i][j])
 		{
-			if (we_at_border(scene, i, j, ft_arrlen(scene), ft_strlen(scene[i])))
+			if (weatborder(scene, i, j, ft_arrlen(scene), ft_strlen(scene[i])))
 			{
 				if (scene[i][j] == '0')
-					return (printf(RED"Error: Map: Not Surrounded by Walls\n"RESET), 1);
+					return (ft_err("Error: Map: Not Surrounded by Walls\n"), 1);
 				if (ft_strchr("NSWE", scene[i][j]))
-					return (printf(RED"Error: Map: Invalid Player Spawn\n"RESET), 1);
+					return (ft_err("Error: Map: Invalid Player Spawn\n"), 1);
 			}
 			j++;
 		}
@@ -97,9 +97,11 @@ static int	check_border(char **scene, int i)
 
 int	check_map_border(char **scene)
 {
-	int i = -1;
-	int count = 0;
+	int	i;
+	int	count;
 
+	i = -1;
+	count = 0;
 	while (scene[++i])
 	{
 		if (ft_strlen(scene[i]) > 1)
@@ -117,9 +119,11 @@ int	check_map_border(char **scene)
 
 int	check_map_char(char **scene, t_data *info)
 {
-	int i = -1;
-	int count = 0;
+	int	i;
+	int	count;
 
+	i = -1;
+	count = 0;
 	while (scene[++i])
 	{
 		if (ft_strlen(scene[i]) > 1)

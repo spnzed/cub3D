@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:28:53 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/22 18:56:28 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:56:27 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int ft_count_lines (int fd)
+int	ft_count_lines(int fd)
 {
 	int		count;
 	char	*buff;
@@ -30,24 +30,24 @@ int ft_count_lines (int fd)
 
 int	open_file(char *file)
 {
-	int fd;
+	int	fd;
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
-		printf(RED"Error: Cannot Open File\n"RESET);
+		ft_err("Error: Cannot Open File\n");
 		exit(1);
 	}
 	return (fd);
 }
 
-void	close_file(int fd, char** scene, bool arr)
+void	close_file(int fd, char **scene, bool arr)
 {
 	if (close(fd) == -1)
 	{
 		if (arr)
 			ft_arrfree(scene);
-		printf(RED"Error: Cannot Close File\n"RESET);
+		ft_err("Error: Cannot Close File\n");
 		exit(1);
 	}
 	return ;

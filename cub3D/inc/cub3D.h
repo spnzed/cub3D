@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/24 13:23:11 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/04/24 14:28:09 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 typedef struct s_img
 {
 	void	*img;
-	char	*img_adr;
+	int		*img_adr;
 	int		str_len;
 	int		bpp;
 	int		endian;
@@ -98,6 +98,6 @@ int		ft_count_lines(int fd);
 int		open_file(char *file);
 void	close_file(int fd, char **scene, bool arr);
 int		valid_file(char *file);
-int		ft_error(char *str);
+int		ft_err(char *str);
 
 #endif

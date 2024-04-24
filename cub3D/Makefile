@@ -6,7 +6,7 @@
 #    By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/04 17:25:20 by erosas-c          #+#    #+#              #
-#    Updated: 2024/04/24 13:25:46 by erosas-c         ###   ########.fr        #
+#    Updated: 2024/04/24 15:09:50 by erosas-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,10 @@ INC_DIR		=	inc
 SRC_FILES	=	arguments.c 		\
 				check_map.c			\
 				check_parameters.c	\
-				errors.c				\
+				errors.c			\
 				get_color.c 		\
 				get_file.c 			\
+				image_2d.c			\
 				main.c 				\
 				utils.c				\
 				put_images.c		\
@@ -56,9 +57,9 @@ all: make_libs $(NAME)
 
 make_libs:
 	@make -C lib/libft_gnl/
-	@echo "$(CLEAN_CAR)$(OK_COLOR)Starting compilation of Minilibx...$(NO_COLOR)"
+#	@echo "$(CLEAN_CAR)$(OK_COLOR)Starting compilation of Minilibx...$(NO_COLOR)"
 	@$(MAKE) -C lib/mlx 2> ERRORS
-	@echo "$(CLEAN_CAR)$(OK_COLOR)Minilibx compiled!$(NO_COLOR)"
+#	@echo "$(CLEAN_CAR)$(OK_COLOR)Minilibx compiled!$(NO_COLOR)"
 	@rm ERRORS
 
 $(NAME): $(OBJS) $(LIBFT) $(MLX)
@@ -85,7 +86,6 @@ clean:
 fclean: clean
 	@make -C lib/libft_gnl/ fclean
 	@$(RM) $(NAME)
-# $(MLX)
 	@echo "$(ERROR_COLOR)$(NAME) removed$(NO_COLOR)"
 
 re: fclean all

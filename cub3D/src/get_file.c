@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:33:01 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/19 12:47:23 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:54:12 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	**get_scene_lines(int fd, int lines)
 	scene = malloc(sizeof(char *) * (lines + 1));
 	if (!scene)
 	{
-		printf(RED"Error: Malloc\n"RESET);
+		ft_err("Error: Malloc\n");
 		exit (1);
 	}
 	scene[lines] = NULL;

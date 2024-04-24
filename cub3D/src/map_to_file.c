@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_to_file.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:15:19 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/22 18:24:10 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:53:57 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char **map_to_file(t_map *map, char **file)
 	grid[map->size[1] + 1] = NULL;
 	if (!grid)
 	{
-		printf(RED"Error: Malloc: Allocation Failed\n"RESET);
+		ft_err("Error: Malloc: Allocation Failed\n");
 		exit(1);
 	}
 	get_grid(grid, file, map->size);

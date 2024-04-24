@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 20:53:28 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/04/24 12:36:23 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:04:31 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	init_info(t_data *info)
 	info = ft_calloc(1, sizeof(t_data));
 	if (!info)
 	{
-		printf(RED"Error: Malloc\n"RESET);
+		ft_err("Error: Malloc\n");
 		exit (1);
 	}
 	// info->parameters.north = NULL;
@@ -68,7 +68,7 @@ static int	init_window(t_data *info)
 	info->mlx->mlx = mlx_init();
 	info->mlx->win = mlx_new_window(info->mlx->mlx, WIDTH, HEIGHT, "cub3D");
 	put_images(info);
-	// put_position(info);
+	//put_position(info);
 	return (0);
 }
 
