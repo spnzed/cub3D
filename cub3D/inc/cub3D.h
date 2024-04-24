@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/23 20:00:57 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:23:11 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,15 @@ typedef struct s_map
 
 typedef struct s_parameters
 {
-	char*	north;
-	char*	south;
-	char*	west;
-	char*	east;
+	char	*north;
+	char	*south;
+	char	*west;
+	char	*east;
 	int		floor;
 	int		ceiling;
 }				t_parameters;
 
-typedef struct 		s_data
+typedef struct s_data
 {
 	char			**scene;
 	t_map			map;
@@ -96,7 +96,8 @@ int		rgb_check(char *channel);
 //		Utils
 int		ft_count_lines(int fd);
 int		open_file(char *file);
-void	close_file(int fd, char** scene, bool arr);
+void	close_file(int fd, char **scene, bool arr);
 int		valid_file(char *file);
+int		ft_error(char *str);
 
 #endif

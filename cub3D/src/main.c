@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 20:53:28 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/04/23 19:56:43 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/24 12:36:23 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void init_loop(t_data *info)
 	// mlx_loop_hook(info->mlx.img_ptr, &render, master);
 }
 
-static int		init_window(t_data *info)
+static int	init_window(t_data *info)
 {
 	info->mlx = (t_mlx *)malloc(sizeof(t_mlx));
 	if (!info->mlx)

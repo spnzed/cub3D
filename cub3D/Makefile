@@ -6,7 +6,7 @@
 #    By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/04 17:25:20 by erosas-c          #+#    #+#              #
-#    Updated: 2024/04/23 20:16:41 by erosas-c         ###   ########.fr        #
+#    Updated: 2024/04/24 13:25:46 by erosas-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ INC_DIR		=	inc
 SRC_FILES	=	arguments.c 		\
 				check_map.c			\
 				check_parameters.c	\
+				errors.c				\
 				get_color.c 		\
 				get_file.c 			\
 				main.c 				\

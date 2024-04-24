@@ -3,17 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   put_images.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:58:59 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/23 19:42:46 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:05:44 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+static void	init_image(t_img *img)
+{
+	img->str_len = WIDTH;
+	img->bpp = 32;
+	img->endian = 0;
+}
+
 static void	create_image(t_data *info)
 {
+	init_image(&info->mlx->img);
 	info->mlx->img.img = mlx_new_image(info->mlx->mlx, WIDTH, HEIGHT);
 	if (!info->mlx->img.img)
 	{
@@ -22,7 +30,7 @@ static void	create_image(t_data *info)
 	}
 	info->mlx->img.img_adr = mlx_get_data_addr(
 			info->mlx->img.img,
-			&info->mlx->img.bpp, 
+			&info->mlx->img.bpp,
 			&info->mlx->img.str_len,
 			&info->mlx->img.endian);
 	if (!info->mlx->img.img_adr)
