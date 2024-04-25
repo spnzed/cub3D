@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:59:47 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/25 18:12:07 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/25 19:40:36 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ static int	check_border(char **scene, int i)
 		j = 0;
 		while (scene[i][j])
 		{
+			//					SIZE 0 
 			if (we_at_border(scene, i, j, ft_arrlen(scene), ft_strlen(scene[i])))
 			{
 				if (scene[i][j] == '0')
