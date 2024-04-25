@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 14:04:46 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/24 13:55:10 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:31:08 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	*check_texture_element(char *line, char *param)
 {
-	if (param != NULL)
+	if (param != NULL && !param)
 	{
 		ft_err("Error: Parameters: Repeated Element Found\n");
 		exit(1);
@@ -29,41 +29,55 @@ static char	*check_texture_element(char *line, char *param)
 	return (param);
 }
 
-static int	check_color_element(char *line, int *color)
+int		gen_color(int R, int G, int B)
 {
+	int	color;
+
+	color = (R << 16) | (G << 8) | B;
+	return (color);
+}
+
+static int	check_color_element(char *line, int color)
+{
+	int		ret;
 	char	*red;
 	char	*green;
 	char	*blue;
 
-	if (*color > 0)
-	{
-		printf("[%s]\t", line);
-		printf("[%d]\n", *color);
-		return (ft_err("Error: Parameters: Repeated Element Found\n"), 1);
-	}
+	ret = 0;
+	if (color > 0)
+		ret = ft_err("Error: Parameters: Repeated Element Found\n");
 	line = ft_strnchr(line + 1, ' ');
 	red = get_color(line, 'R');
 	green = get_color(line, 'G');
 	blue = get_color(line, 'B');
 	if (rgb_check(red) || rgb_check(green) || rgb_check(blue))
-		return (ft_err("Error: Parameters: Incorrect Format\n"), 1);
-	return (0);
+		ret = ft_err("Error: Parameters: Incorrect Format\n");
+	else
+		ret = gen_color(ft_atoi(red), ft_atoi(green), ft_atoi(blue));
+	return (ret);
 }
 
 static void	check_parameters(t_data *info, char *line, int i)
 {
 	if (!ft_strncmp(line, "NO", 2) && i == 0)
-		info->parameters.north = check_texture_element(line, info->parameters.north);
+		info->parameters.north = check_texture_element(line, \
+			info->parameters.north);
 	else if (!ft_strncmp(line, "SO", 2) && i == 1)
-		info->parameters.south = check_texture_element(line, info->parameters.south);
+		info->parameters.south = check_texture_element(line, \
+			info->parameters.south);
 	else if (!ft_strncmp(line, "WE", 2) && i == 2)
-		info->parameters.west = check_texture_element(line, info->parameters.west);
+		info->parameters.west = check_texture_element(line, \
+			info->parameters.west);
 	else if (!ft_strncmp(line, "EA", 2) && i == 3)
-		info->parameters.east = check_texture_element(line, info->parameters.east);
+		info->parameters.east = check_texture_element(line, \
+			info->parameters.east);
 	else if (!ft_strncmp(line, "F", 1) && i == 4)
-		check_color_element(line, &info->parameters.floor);
+		info->parameters.floor = check_color_element(line, \
+			info->parameters.floor);
 	else if (!ft_strncmp(line, "C", 1) && i == 5)
-		check_color_element(line, &info->parameters.ceiling);
+		info->parameters.ceiling = check_color_element(line, \
+			info->parameters.ceiling);
 	else if (line[0] != '\0')
 	{
 		ft_err("Error: Parameters: Doesn't Folow Guidelines\n");

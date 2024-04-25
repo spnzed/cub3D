@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:58:59 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/24 15:08:29 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:13:07 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ static void	create_image(t_data *info)
 	}
 }
 
-static void	check_64(t_img *img)
+static void	check_img_scale(t_img *img)
 {
-	if (img->width == 64 && img->height == 64)
+	if (img->width == SCALE && img->height == SCALE)
 		return ;
 	ft_err("Error: Insert Only Textures of 64 x 64 Pixels\n");
 	exit(1);
@@ -66,7 +66,7 @@ static void	paint_walls(t_data *info, char *file, t_img *img)
 		ft_err("Error: Not Able to get MLX_IMG_ADR\n");
 		exit(1);
 	}
-	check_64(img);
+	check_img_scale(img);
 }
 
 static void	create_textures(t_data *info)
