@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:59:47 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/22 19:24:37 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:12:07 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ static int	check_grid(char *line, int y, t_data *info)
 	x = -1;
 	while (line[++x])
 	{
+		if (ft_strchr("10NSWE", line[x]))
+		{
+			if (info->map.grid_pos == -1)
+				info->map.grid_pos = y + 1;
+		}
 		if (ft_strchr("NSWE", line[x]))
 		{
 			if (spawn > 0)

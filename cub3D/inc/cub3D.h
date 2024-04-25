@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/25 01:58:50 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/04/25 17:53:03 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct s_mlx
 typedef struct s_map
 {
 	char		**grid;
+	int			grid_pos;
 	int			map_size;
 	int			scale;
 	int			size[2];
@@ -128,7 +129,7 @@ int		check_map_char(char **scene, t_data *info);
 int		check_map_border(char **scene);
 int		check_textures(char **scene, t_data *info);
 char	*get_color(char *str, char rgb);
-char	**map_to_file(t_map *map, char **file);
+char	**map_to_file(t_data *info, t_map *map, char **file);
 void	put_images(t_data *info);
 void	put_position(t_data *info);
 int		rgb_check(char *channel);

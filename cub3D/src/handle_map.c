@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:43:32 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/25 00:24:26 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/04/25 17:54:39 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	check_map (t_data *info)
 
 void	parse_map (t_data *info, char **grid)
 {
-	info->map.grid = map_to_file(&info->map, grid);
+	info->map.grid = map_to_file(info, &info->map, grid);
 	if (check_map_border(info->map.grid))
 		exit(1);
 }

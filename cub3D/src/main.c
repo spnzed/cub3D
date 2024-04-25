@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 20:53:28 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/04/25 01:51:20 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/04/25 17:54:59 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static	t_data *init_info(void)
 		printf(RED"Error: Malloc\n"RESET);
 		exit (1);
 	}
+	info->map.grid_pos = -1;
 	info->parameters.north = NULL;
 	info->parameters.south = NULL;
 	info->parameters.west = NULL;
