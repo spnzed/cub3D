@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/24 18:09:22 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/25 01:58:50 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@
 # define SCALE 64
 # define HEIGHT 512
 # define WIDTH 960
+# define SPEED 3
 
 typedef struct s_keys
 {
@@ -106,8 +107,8 @@ typedef struct s_player
 	float	x;
 	float	y;
 	int		p_dir;
-	int		p_dir_cos;
-	int		p_dir_sin;
+	int		p_dir_x_cos;
+	int		p_dir_y_sin;
 }	t_player;
 
 typedef struct 		s_data
@@ -141,6 +142,8 @@ void	move_front(t_data *info);
 void	move_back(t_data *info);
 void	move_r_arrow(t_data *info);
 void	move_l_arrow(t_data *info);
+float	deg_to_rad(float d);
+float	angle_correction(float ang);
 //		Utils
 int		ft_count_lines(int fd);
 int		open_file(char *file);

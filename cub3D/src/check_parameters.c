@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 14:04:46 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/25 00:25:57 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/04/25 00:32:45 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,23 @@ static int	check_color_element(char *line, int color)
 static void	check_parameters(t_data *info, char *line, int i)
 {
 	if (!ft_strncmp(line, "NO", 2) && i == 0)
-		info->parameters.north = check_texture_element(line, info->parameters.north);
+		info->parameters.north = check_texture_element(line, \
+			info->parameters.north);
 	else if (!ft_strncmp(line, "SO", 2) && i == 1)
-		info->parameters.south = check_texture_element(line, info->parameters.south);
+		info->parameters.south = check_texture_element(line, \
+			info->parameters.south);
 	else if (!ft_strncmp(line, "WE", 2) && i == 2)
-		info->parameters.west = check_texture_element(line, info->parameters.west);
+		info->parameters.west = check_texture_element(line, \
+			info->parameters.west);
 	else if (!ft_strncmp(line, "EA", 2) && i == 3)
-		info->parameters.east = check_texture_element(line, info->parameters.east);
+		info->parameters.east = check_texture_element(line, \
+			info->parameters.east);
 	else if (!ft_strncmp(line, "F", 1) && i == 4)
-		info->parameters.floor = check_color_element(line, info->parameters.floor);
+		info->parameters.floor = check_color_element(line, \
+			info->parameters.floor);
 	else if (!ft_strncmp(line, "C", 1) && i == 5)
-		info->parameters.ceiling = check_color_element(line, info->parameters.ceiling);
+		info->parameters.ceiling = check_color_element(line, \
+			info->parameters.ceiling);
 	else if (line[0] != '\0')
 	{
 		printf(RED"Error: Parameters: Doesn't Folow Guidelines\n"RESET);
@@ -81,7 +87,7 @@ static void	check_parameters(t_data *info, char *line, int i)
 
 static int	open_textures(t_data *info)
 {
-	if (valid_file(info->parameters.north) 
+	if (valid_file(info->parameters.north)
 		|| valid_file(info->parameters.south)
 		|| valid_file(info->parameters.west)
 		|| valid_file(info->parameters.east))
@@ -94,9 +100,11 @@ static int	open_textures(t_data *info)
 
 int	check_textures(char **scene, t_data *info)
 {
-	int i = -1;
-	int count = 0;
+	int	i;
+	int	count;
 
+	i = -1;
+	count = 0;
 	while (scene[++i])
 	{
 		if (ft_strlen(scene[i]) > 1)

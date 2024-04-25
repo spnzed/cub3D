@@ -6,16 +6,16 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 20:53:28 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/04/25 00:23:32 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/04/25 01:51:20 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static t_data *init_info()
+static	t_data *init_info(void)
 {
 	t_data	*info;
-	
+
 	info = ft_calloc(1, sizeof(t_data));
 	if (!info)
 	{
@@ -43,7 +43,7 @@ static int		init_window(t_data *info)
 	return (0);
 }
 
-static void init_loop(t_data *info)
+static void	init_loop(t_data *info)
 {
 	mlx_hook(info->mlx->win, 2, 1L << 0, &ft_press, info->mlx);
 	mlx_hook(info->mlx->win, 3, 1L << 0, &ft_release, info->mlx);
