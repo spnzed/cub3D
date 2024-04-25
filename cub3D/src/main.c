@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 20:53:28 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/04/25 18:15:25 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:26:32 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static	t_data *init_info(void)
 		ft_err("Error: Malloc\n");
 		exit (1);
 	}
+	info->map.grid_pos = -1;
 	info->parameters.north = NULL;
 	info->parameters.south = NULL;
 	info->parameters.west = NULL;

@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:43:32 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/25 18:02:57 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:28:29 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	check_map (t_data *info)
 
 void	parse_map (t_data *info, char **grid)
 {
-	info->map.grid = map_to_file(&info->map, grid);
+	info->map.grid = map_to_file(info, &info->map, grid);
 	if (check_map_border(info->map.grid))
 		exit(1);
 }

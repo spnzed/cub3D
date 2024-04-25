@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:15:19 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/24 13:53:57 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:29:12 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	get_grid(char **grid, char **file, int size[2])
 	int	i;
 
 	i = 0;
-	while(i < size[1])
+	while (i < size[1])
 	{
 		put_spaces(grid[i]);
 		put_lines(grid[i], file[i]);
@@ -64,12 +64,12 @@ static void	get_grid(char **grid, char **file, int size[2])
 	}
 }
 
-char **map_to_file(t_map *map, char **file)
+char **map_to_file(t_data *info, t_map *map, char **file)
 {
 	char	**grid;
 
-	map->size[0] = get_width(file);
-	map->size[1] = ft_arrlen(file);
+	map->size[0] = get_width(file + info->map.grid_pos);
+	map->size[1] = ft_arrlen(file + info->map.grid_pos);
 	grid = (char **)ft_alloc_array(sizeof(char), map->size[1] + 1, map->size[0]);
 	grid[map->size[1] + 1] = NULL;
 	if (!grid)
