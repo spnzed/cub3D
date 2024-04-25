@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 20:53:28 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/04/25 17:32:11 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:15:25 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	main(int argc, char **argv)
 	info = init_info();
 	check_args(argc, argv, info);
 	init_window(info);
+	mini_map(info);
 	init_loop(info);
 	return (0);
 }

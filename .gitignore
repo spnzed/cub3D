@@ -2,5 +2,7 @@
 .DS_Store
 cub3D/lib/.DS_Store
 cub3D/lib/libft_gnl/libft.a
+cub3D/cub3D
+cub3D/lib/mlx/libmlx.a
 *.o
 *.d

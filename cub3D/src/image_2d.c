@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:03:48 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/04/24 15:10:10 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:16:53 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ void	fill_black(int *p)
 
 void	mini_map(t_data *info)
 {
-	fill_black(info->mlx->img.img);
+	printf("HOLA\n");
+	printf("info.map->size[0] llargada (X coordinate): %i, info.map->size[1] altura mapa (Y coordinate): %i\n", info->map.size[0], info->map.size[1]);
+	printf("info.map->size[0] area mapa: %i\n", info->map.map_size);
+	// fill_black(info->mlx->img.img);
+	printf("ADIOS\n");
 	mlx_put_image_to_window(info->mlx->mlx, info->mlx->win, info->mlx->img.img, 0, 0);
 }

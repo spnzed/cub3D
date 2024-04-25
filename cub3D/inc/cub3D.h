@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/25 17:25:20 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:04:01 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@
 # define WHITE		"\033[0;37m"
 
 # define SCALE 64
-# define HEIGHT 512
-# define WIDTH 960
+# define HEIGHT 1080
+# define WIDTH 1920
+//# define HEIGHT 512
+//# define WIDTH 960
 # define SPEED 3
 
 typedef struct s_keys
@@ -144,6 +146,8 @@ void	move_r_arrow(t_data *info);
 void	move_l_arrow(t_data *info);
 float	deg_to_rad(float d);
 float	angle_correction(float ang);
+void	mini_map(t_data *info);
+
 //		Utils
 int		ft_count_lines(int fd);
 int		open_file(char *file);
