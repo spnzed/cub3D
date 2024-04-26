@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/25 21:25:34 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/04/26 19:15:20 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@
 # define WHITE		"\033[0;37m"
 
 # define SCALE 64
-//# define HEIGHT 1080
-//# define WIDTH 1920
-# define HEIGHT 100
-# define WIDTH 100
+# define HEIGHT 1080
+# define WIDTH 1920
+//# define HEIGHT 400
+//# define WIDTH 800
 # define SPEED 3
 
 typedef struct s_keys
