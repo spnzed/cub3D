@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "cub3D.h"
-//test
-static void	fill_map(int *scr, char **grid)
+
+/*static void	fill_map(int *scr, char **grid)
 {
 	int		i;
 	int		j;
@@ -23,7 +23,7 @@ static void	fill_map(int *scr, char **grid)
 	j = 0;
 	k = 0;
 	p = 0;
-	while (j < 3/*grid[j] && p < HEIGHT * WIDTH*/)
+	while (j < 3 && grid[j] && p < HEIGHT * WIDTH)
 	{
 		while (i < 5)
 		{
@@ -48,23 +48,35 @@ static void	fill_map(int *scr, char **grid)
 		i = 0;
 		printf("p: %i\n", p);
 	}
-}
+}*/
 
-static void	fill_black(int *p)
+static void	paint_ceil_floor(int *p)
 {
 	int	y;
 	int	x;
-	int	color;
+	int	floor;
+	int	ceiling;
 
 	x = 0;
 	y = 0;
-	color = 0x000000;
+	floor = 0xDC6400;
+	ceiling = 0xE11E00;
 	//color = 0x0000FF;
+	while (y < HEIGHT / 2)
+	{
+		while (x < WIDTH)
+		{
+			p[(y * WIDTH) + x] = ceiling;
+			x++;
+		}
+		x = 0;
+		y++;
+	}
 	while (y < HEIGHT)
 	{
 		while (x < WIDTH)
 		{
-			p[(y * WIDTH) + x] = color;
+			p[(y * WIDTH) + x] = floor;
 			x++;
 		}
 		x = 0;
@@ -74,13 +86,13 @@ static void	fill_black(int *p)
 
 void	mini_map(t_data *info)
 {
-	char *temp[3];
+//	char *temp[3];
 
-	temp[0] = "11";
-	temp[1] = "1";
-	temp[2] = "1";
-//	printf("HERE\n");
-	fill_black(info->mlx->img.img_adr);
-	fill_map(info->mlx->img.img_adr, temp/*info->map.grid*/);
+//	temp[0] = "11";
+//	temp[1] = "1";
+//	temp[2] = "1";
+//	printf("info->map->floor: %i, ceiling: %i\n", info->map.floor, info->map.ceiling);
+	paint_ceil_floor(info->mlx->img.img_adr);
+//	fill_map(info->mlx->img.img_adr, temp/*info->map.grid*/);
 	mlx_put_image_to_window(info->mlx->mlx, info->mlx->win, info->mlx->img.img, 0, 0);
 }

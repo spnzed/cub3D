@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-static void	check_map (t_data *info)
+static void	check_map(t_data *info)
 {
 	if (check_textures(info->scene, info))
 		exit(1);
@@ -20,9 +20,10 @@ static void	check_map (t_data *info)
 		exit(1);
 }
 
-void	parse_map (t_data *info, char **grid)
+void	parse_map(t_data *info, char **grid)
 {
 	info->map.grid = map_to_file(info, &info->map, grid);
+	printf("info->scene[5]: %s\n", info->scene[5]);
 	if (check_map_border(info->map.grid))
 		exit(1);
 }
