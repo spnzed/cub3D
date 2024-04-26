@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
+//test
 static void	fill_map(int *scr, char **grid)
 {
 	int		i;
