@@ -6,50 +6,37 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:03:48 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/04/26 19:27:35 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/04/26 19:51:18 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	fill_map(int *scr, char **grid)
+static void	fill_map(int *scr, char **grid, int p)
 {
 	int		i;
 	int		j;
 	int		k;
-	int		p;
-	//int		l;
 
-	i = 0;
-	j = 0;
-	k = 0;
-	p = 0;
-//	l = 0;
-	while (j < 5 /*p < HEIGHT * WIDTH*/) // j < altura del map quan la tinguem a l'estructura amb la xifra ja parsejada
+	i = -1;
+	j = -1;
+	k = -1;
+	while (++j < 5) // j < altura del map quan la tinguem a l'estructura amb la xifra ja parsejada
 	{
-		while (i < 32 * (j + 1))
+		while (++i < 32 * (j + 1))
 		{
-			while (grid[j][k])
+			while (grid[j][++k])
 			{
-//				printf("grid[j][k]: %c\n", grid[j][k]);
-				while (p < (32 * (k + 1) + (WIDTH * i))) //crec que es aqui el problema reure "* (k + 1)" no ha funcionat pq llavors no avanca el 2n quadradet de dal de tot
+				while (p < (32 * (k + 1) + (WIDTH * i)))
 				{
 					if (grid[j][k] == '1')
 						scr[p] = 0xffffff;
 					p++;
 				}
-				k++;
 			}
-			i++;
-//			l++;
-			p = WIDTH * i;
-			k = 0;
+			p = WIDTH * (i + 1);
+			k = -1;
 		}
-		printf("i: %i, j: %i, k: %i\n", i, j, k);
-		p = WIDTH * i;
-		j++;
-//		i = 0;
-		printf("p: %i\n", p);
 	}
 }
 
@@ -98,6 +85,6 @@ void	mini_map(t_data *info)
 	temp[4] = "111111";
 //	printf("info->map->floor: %i, ceiling: %i\n", info->map.floor, info->map.ceiling);
 	paint_ceil_floor(info->mlx->img.img_adr);
-	fill_map(info->mlx->img.img_adr, temp/*info->map.grid*/);
+	fill_map(info->mlx->img.img_adr, temp/*info->map.grid*/, 0);
 	mlx_put_image_to_window(info->mlx->mlx, info->mlx->win, info->mlx->img.img, 0, 0);
 }
