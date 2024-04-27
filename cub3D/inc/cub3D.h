@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/26 19:15:20 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/04/27 13:14:00 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,15 @@
 //# define HEIGHT 400
 //# define WIDTH 800
 # define SPEED 3
+
+typedef struct s_sq
+{
+	void	*sq_ptr;
+	int		width;
+	int		height;
+	int		x;
+	int		y;
+}	t_squ;
 
 typedef struct s_keys
 {
@@ -114,7 +123,7 @@ typedef struct s_player
 	int		p_dir_y_sin;
 }	t_player;
 
-typedef struct 		s_data
+typedef struct s_data
 {
 	char			**scene;
 	t_mlx			*mlx;
