@@ -10,19 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "cub3D.h"
 
-static void	draw_player(void *mlx, void *win, t_squ *player)
+static int	handle_key_press(int keycode, t_sq *player)
 {
-	int	x;
-	int	y;
-	int	sz;
+	int	mov;
 
-	x = player->x;
-	y = player->y;
-	sz = player->size;
-	mlx_rectangle(mlx, win, x, y, x + sz, y + sz, 0xFFFF00);
+	mov = 2;
+	if (keycode == KEY_W)
+		player->y -= mov;
+	else if (keycode == KEY_A)
+		player->x -= mov;
+	else if (keycode == KEY_S)
+		player->y += mov;
+	else if (keycode == KEY_D)
+		player->x += mov;
+	return (0);
 }
 
 static void	fill_map(int *scr, char **grid, int p, int i)
@@ -95,9 +98,9 @@ void	mini_map(t_data *info)
 	temp[0] = "11";
 	temp[1] = "1";*/
 	char	*temp[5];
-	t_squ	*player;
+	t_sq	*player;
 
-	player = ft_calloc(sizeof(t_squ), 1);
+	player = ft_calloc(sizeof(t_sq), 1);
 	if (!player)
 	{
 		ft_err("Error: Malloc\n");
@@ -109,13 +112,18 @@ void	mini_map(t_data *info)
 	temp[2] = "100101";
 	temp[3] = "1001P1";
 	temp[4] = "111111";
-	player->width = 4;
-	player->heigth = 4;
-	player->x = 4 * 32 + 32 / 2 - player->width / 2; //32 = mida passadissos d'una unitat (utilitzada a fill_map)
-	player->y = 3 * 32 + 32 / 2 - player->heigth / 2;
+	player->w = 4;
+	player->h = 4;
+	player->x = (4 * 32) + (32 / 2) - (player->w / 2); //32 = mida passadissos d'una unitat (utilitzada a fill_map)
+	player->y = (3 * 32) + (32 / 2) - (player->h / 2);
+	player->ptr = mlx_xpm_file_to_image(info->mlx->mlx, "img/sq.xpm", &player->w, &player->h);
+	if (!player->ptr)
+		printf("image could not be created\n");
 //	printf("info->map->floor: %i, ceiling: %i\n", info->map.floor, info->map.ceiling);
 	paint_ceil_floor(info->mlx->img.img_adr);
 	fill_map(info->mlx->img.img_adr, temp/*info->map.grid*/, 0, 0);
 	mlx_put_image_to_window(info->mlx->mlx, info->mlx->win, info->mlx->img.img, 0, 0);
-	draw_player(info->mlx->mlx, info->mlx->win, player);
+	mlx_put_image_to_window(info->mlx->mlx, info->mlx->win, player->ptr, player->x, player->y);
+	mlx_hook(info->mlx->win, 2, 1L<<0, handle_key_press, player);
+	mlx_do_sync(info->mlx->mlx);
 }

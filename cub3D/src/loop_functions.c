@@ -21,17 +21,17 @@ int	ft_press(int keycode, t_mlx *mlx)
 		exit(1);
 	}
 	if (keycode == KEY_W)
-		mlx->keys->W = 1;
+		mlx->keys->w = 1;
 	else if (keycode == KEY_A)
-		mlx->keys->A = 1;
+		mlx->keys->a = 1;
 	else if (keycode == KEY_S)
-		mlx->keys->S = 1;
+		mlx->keys->s = 1;
 	else if (keycode == KEY_D)
-		mlx->keys->D = 1;
+		mlx->keys->d = 1;
 	else if (keycode == KEY_LEFT)
-		mlx->keys->L_ARR = 1;
+		mlx->keys->left = 1;
 	else if (keycode == KEY_RIGHT)
-		mlx->keys->R_ARR = 1;
+		mlx->keys->right = 1;
 	return (0);
 }
 
@@ -43,17 +43,17 @@ int	ft_release(int keycode, t_mlx *mlx)
 		exit(1);
 	}
 	if (keycode == KEY_W)
-		mlx->keys->W = 0;
+		mlx->keys->w = 0;
 	else if (keycode == KEY_A)
-		mlx->keys->A = 0;
+		mlx->keys->a = 0;
 	else if (keycode == KEY_S)
-		mlx->keys->S = 0;
+		mlx->keys->s = 0;
 	else if (keycode == KEY_D)
-		mlx->keys->D = 0;
+		mlx->keys->d = 0;
 	else if (keycode == KEY_LEFT)
-		mlx->keys->L_ARR = 0;
+		mlx->keys->left = 0;
 	else if (keycode == KEY_RIGHT)
-		mlx->keys->R_ARR = 0;
+		mlx->keys->right = 0;
 	return (0);
 }
 

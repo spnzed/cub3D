@@ -51,21 +51,21 @@
 
 typedef struct s_sq
 {
-	void	*sq_ptr;
-	int		width;
-	int		height;
+	void	*ptr;
+	int		w;
+	int		h;
 	int		x;
 	int		y;
-}	t_squ;
+}	t_sq;
 
 typedef struct s_keys
 {
-	int	W;
-	int	A;
-	int	S;
-	int	D;
-	int	R_ARR;
-	int	L_ARR;
+	int	w;
+	int	a;
+	int	d;
+	int	s;
+	int	right;
+	int	left;
 }	t_keys;
 
 typedef struct s_img
