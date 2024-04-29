@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/25 17:53:03 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/26 15:57:47 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,8 @@ typedef struct s_player
 	float	x;
 	float	y;
 	int		p_dir;
-	int		p_dir_x_cos;
-	int		p_dir_y_sin;
+	int		p_dir_x;
+	int		p_dir_y;
 }	t_player;
 
 typedef struct 		s_data

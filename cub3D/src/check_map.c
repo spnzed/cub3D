@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:59:47 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/25 19:40:36 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/26 14:30:03 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ static int	we_at_border(char **grid, int x, int y, int size_x, int size_y)
 		{
 			if (y + i != 0 && x + j != 0)
 			{
-				if (x + i >= size_x || x + i < 0 ||
-					y + j >= size_y || y + j < 0 ||
-					grid[x + i][y + j] == ' ')
+				if (x + i >= size_x || x + i < 0
+					|| y + j >= size_y || y + j < 0
+					|| grid[x + i][y + j] == ' ')
 					return (1);
 			}
 			j++;
