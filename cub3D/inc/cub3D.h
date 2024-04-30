@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/26 15:57:47 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/04/30 17:29:22 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@
 # define KEY_RIGHT 124
 # define KEY_DOWN 125
 # define KEY_UP 126
+# define X 0
+# define Y 1
+# define START 0
+# define END 1
 
 # define RESET		"\033[0m"
 # define BLACK		"\033[0;30m"
@@ -49,12 +53,12 @@
 
 typedef struct s_keys
 {
-	int	W;
-	int	A;
-	int	S;
-	int	D;
-	int	R_ARR;
-	int	L_ARR;
+	int		w;
+	int		a;
+	int		s;
+	int		d;
+	int		r_arr;
+	int		l_arr;
 }	t_keys;
 
 typedef struct s_img
@@ -82,15 +86,15 @@ typedef struct s_mlx
 
 typedef struct s_map
 {
-	char		**grid;
-	int			grid_pos;
-	int			map_size;
-	int			scale;
-	int			size[2];
-	int			spawn[2];
-	int			player_dir;
-	int			floor;
-	int			ceiling;
+	char	**grid;
+	int		grid_pos;
+	int		map_size;
+	int		scale;
+	int		size[2];
+	int		spawn[2];
+	int		player_dir;
+	int		floor;
+	int		ceiling;
 }				t_map;
 
 typedef struct s_parameters
@@ -107,15 +111,34 @@ typedef struct s_player
 {
 	float	x;
 	float	y;
-	int		p_dir;
-	int		p_dir_x;
-	int		p_dir_y;
+	int		dir;
+	int		dir_cor[2];
+	int		p_plane_x;
+	int		p_plane_y;
 }	t_player;
+
+typedef struct s_rays
+{
+	double	camera;
+	double	plane[2];
+	double	pos[2];
+	double	dir[2];
+	double	rayDir[2];
+	double	deltaDist[2];
+	double	sideDist[2];
+	double	perpWallDist;
+	int		draw[2];
+	int		step[2];
+	int		side[2];
+	int		lineHeight;
+  	bool	hit;
+}	t_rays;
 
 typedef struct 		s_data
 {
 	char			**scene;
 	t_mlx			*mlx;
+	t_rays			ray;
 	t_parameters	parameters;
 	t_map			map;
 	t_player		player;
@@ -145,6 +168,7 @@ void	move_r_arrow(t_data *info);
 void	move_l_arrow(t_data *info);
 float	deg_to_rad(float d);
 float	angle_correction(float ang);
+void    init_texture(t_data *info);
 //		Utils
 int		ft_count_lines(int fd);
 int		open_file(char *file);
