@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-static int	handle_key_press(int keycode, t_sq *player)
+/*static int	handle_key_press(int keycode, t_sq *player)
 {
 	int	mov;
 
@@ -26,7 +26,7 @@ static int	handle_key_press(int keycode, t_sq *player)
 	else if (keycode == KEY_D)
 		player->x += mov;
 	return (0);
-}
+}*/
 
 static void	fill_map(int *scr, char **grid, int p, int i)
 {
@@ -57,40 +57,6 @@ static void	fill_map(int *scr, char **grid, int p, int i)
 	}
 }
 
-static void	paint_ceil_floor(int *p)
-{
-	int	y;
-	int	x;
-	int	floor;
-	int	ceiling;
-
-	x = 0;
-	y = 0;
-	floor = 0xd9a066;
-	ceiling = 0x5fcde4;
-	//color = 0x0000FF;
-	while (y < HEIGHT / 2)
-	{
-		while (x < WIDTH)
-		{
-			p[(y * WIDTH) + x] = ceiling;
-			x++;
-		}
-		x = 0;
-		y++;
-	}
-	while (y < HEIGHT)
-	{
-		while (x < WIDTH)
-		{
-			p[(y * WIDTH) + x] = floor;
-			x++;
-		}
-		x = 0;
-		y++;
-	}
-}
-
 void	mini_map(t_data *info)
 {
 	/*char *temp[2];
@@ -117,13 +83,10 @@ void	mini_map(t_data *info)
 	player->x = (4 * 32) + (32 / 2) - (player->w / 2); //32 = mida passadissos d'una unitat (utilitzada a fill_map)
 	player->y = (3 * 32) + (32 / 2) - (player->h / 2);
 	player->ptr = mlx_xpm_file_to_image(info->mlx->mlx, "img/sq.xpm", &player->w, &player->h);
-	if (!player->ptr)
-		printf("image could not be created\n");
 //	printf("info->map->floor: %i, ceiling: %i\n", info->map.floor, info->map.ceiling);
-	paint_ceil_floor(info->mlx->img.img_adr);
 	fill_map(info->mlx->img.img_adr, temp/*info->map.grid*/, 0, 0);
-	mlx_put_image_to_window(info->mlx->mlx, info->mlx->win, info->mlx->img.img, 0, 0);
-	mlx_put_image_to_window(info->mlx->mlx, info->mlx->win, player->ptr, player->x, player->y);
-	mlx_hook(info->mlx->win, 2, 1L<<0, handle_key_press, player);
-	mlx_do_sync(info->mlx->mlx);
+	//mlx_put_image_to_window(info->mlx->mlx, info->mlx->win, info->mlx->img.img, 0, 0);
+	info->minipl = player;
+//	mlx_hook(info->mlx->win, 2, 1L<<0, handle_key_press, player);
+//	mlx_do_sync(info->mlx->mlx);
 }

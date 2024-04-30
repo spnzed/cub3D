@@ -12,6 +12,39 @@
 
 #include "cub3D.h"
 
+static void	paint_ceil_floor(int *p)
+{
+	int	y;
+	int	x;
+	int	floor;
+	int	ceiling;
+
+	x = 0;
+	y = 0;
+	floor = 0xd9a066;
+	ceiling = 0x5fcde4;
+	//color = 0x0000FF;
+	while (y < HEIGHT / 2)
+	{
+		while (x < WIDTH)
+		{
+			p[(y * WIDTH) + x] = ceiling;
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+	while (y < HEIGHT)
+	{
+		while (x < WIDTH)
+		{
+			p[(y * WIDTH) + x] = floor;
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+}
 static void	init_image(t_img *img)
 {
 	img->str_len = WIDTH;
@@ -79,4 +112,8 @@ void	put_images(t_data *info)
 {
 	create_image(info);
 	create_textures(info);
+	printf("ceiling: %i, floor: %i\n", info->map.ceiling, info->map.floor);
+	paint_ceil_floor(info->mlx->img.img_adr);
+	//mlx_put_image_to_window(info->mlx->mlx, info->mlx->win, info->mlx->img.img, 0, 0);
+	mini_map(info);
 }

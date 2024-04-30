@@ -16,22 +16,11 @@ HEADER		=	inc/
 SRC_DIR		=	src/
 
 INC_DIR		=	inc
-SRC_FILES	=	arguments.c 		\
-				check_map.c			\
-				check_parameters.c	\
-				errors.c			\
-				get_color.c 		\
-				get_file.c 			\
-				image_2d.c			\
-				main.c 				\
-				utils.c				\
-				put_images.c		\
-				put_position.c		\
-				handle_map.c		\
-				map_to_file.c		\
-				loop_functions.c	\
-				move.c				\
-				move_arrows.c		\
+SRC_FILES	=	arguments.c			check_map.c		check_parameters.c		errors.c  		\
+				get_color.c			get_file.c		handle_map.c			image_2d.c		\
+				loop_functions.c	main.c			map_to_file.c			move_arrows.c	\
+				move.c				put_images.c	put_position.c			render.c		\
+				utils.c		\
 					
 OBJ_DIR		=	obj/
 OBJ_FILES	=	$(SRC_FILES:.c=.o)

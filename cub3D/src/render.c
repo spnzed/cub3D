@@ -19,24 +19,26 @@ void	handle_key(t_data *info)
 		printf(RED"Error: MLX\n"RESET);
 		exit(1);
 	}
-	if (info->mlx->keys->W)
+	if (info->mlx->keys->w)
 		move_front(info);
-	if (info->mlx->keys->A)
+	if (info->mlx->keys->a)
 		move_left(info);
-	if (info->mlx->keys->S)
+	if (info->mlx->keys->s)
 		move_back(info);
-	if (info->mlx->keys->D)
+	if (info->mlx->keys->d)
 		move_right(info);
-	if (info->mlx->keys->L_ARR)
+	if (info->mlx->keys->left)
 		move_l_arrow(info);
-	if (info->mlx->keys->R_ARR)
+	if (info->mlx->keys->right)
 		move_r_arrow(info);
 }
 
 int	render(t_data *info)
 {
-	handle_key(info);
 	// ray_casting(info);
 	mlx_put_image_to_window(info->mlx->mlx,
 		info->mlx->win, info->mlx->img.img, 0, 0);
+	mlx_put_image_to_window(info->mlx->mlx, info->mlx->win, info->minipl->ptr, info->minipl->x, info->minipl->y);
+	handle_key(info);
+	return (0);
 }
