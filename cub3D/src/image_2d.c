@@ -12,22 +12,6 @@
 
 #include "cub3D.h"
 
-/*static int	handle_key_press(int keycode, t_sq *player)
-{
-	int	mov;
-
-	mov = 2;
-	if (keycode == KEY_W)
-		player->y -= mov;
-	else if (keycode == KEY_A)
-		player->x -= mov;
-	else if (keycode == KEY_S)
-		player->y += mov;
-	else if (keycode == KEY_D)
-		player->x += mov;
-	return (0);
-}*/
-
 static void	fill_map(int *scr, char **grid, int p, int i)
 {
 	int	j;
@@ -53,7 +37,6 @@ static void	fill_map(int *scr, char **grid, int p, int i)
 			p = WIDTH * i;
 			k = 0;
 		}
-//		p = WIDTH * i;
 	}
 }
 

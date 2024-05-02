@@ -64,8 +64,8 @@ static int	init_window(t_data *info)
 
 static void	init_loop(t_data *info)
 {
-	mlx_hook(info->mlx->win, 2, 1L << 0, &ft_press, info->mlx);
-	mlx_hook(info->mlx->win, 3, 1L << 0, &ft_release, info->mlx);
+	mlx_hook(info->mlx->win, 2, 1L<<0, &ft_press, info->mlx);
+	mlx_hook(info->mlx->win, 3, 1L<<1, &ft_release, info->mlx);
 	mlx_key_hook(info->mlx->win, ft_esc, info->mlx);
 	mlx_hook(info->mlx->win, 17, 0, &ft_cross, info->mlx);
 	mlx_loop_hook(info->mlx->mlx, &render, info);

@@ -14,12 +14,12 @@
 
 int	ft_press(int keycode, t_mlx *mlx)
 {
-	mlx->keys = malloc(sizeof(t_keys *));
-	if (!mlx->mlx)
+	if (!mlx->keys)
 	{
-		printf(RED"Error: MLX\n"RESET);
+		ft_err("Error: key struct is not initialized\n");
 		exit(1);
 	}
+//	printf("ft_press\n");
 	if (keycode == KEY_W)
 		mlx->keys->w = 1;
 	else if (keycode == KEY_A)
@@ -37,9 +37,10 @@ int	ft_press(int keycode, t_mlx *mlx)
 
 int	ft_release(int keycode, t_mlx *mlx)
 {
-	if (!mlx->mlx)
+//	printf("ft_release\n");
+	if (!mlx->keys)
 	{
-		printf(RED"Error: MLX\n"RESET);
+		ft_err("Error: key struct is not initialized\n");
 		exit(1);
 	}
 	if (keycode == KEY_W)

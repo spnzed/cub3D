@@ -21,16 +21,18 @@ void	handle_key(t_data *info)
 	}
 	if (info->mlx->keys->w)
 		move_front(info);
-	if (info->mlx->keys->a)
+	else if (info->mlx->keys->a)
 		move_left(info);
-	if (info->mlx->keys->s)
+	else if (info->mlx->keys->s)
 		move_back(info);
-	if (info->mlx->keys->d)
+	else if (info->mlx->keys->d)
 		move_right(info);
-	if (info->mlx->keys->left)
+	else if (info->mlx->keys->left)
 		move_l_arrow(info);
-	if (info->mlx->keys->right)
+	else if (info->mlx->keys->right)
 		move_r_arrow(info);
+	else
+		return;
 }
 
 int	render(t_data *info)
@@ -38,7 +40,8 @@ int	render(t_data *info)
 	// ray_casting(info);
 	mlx_put_image_to_window(info->mlx->mlx,
 		info->mlx->win, info->mlx->img.img, 0, 0);
-	mlx_put_image_to_window(info->mlx->mlx, info->mlx->win, info->minipl->ptr, info->minipl->x, info->minipl->y);
+	mlx_put_image_to_window(info->mlx->mlx, info->mlx->win, info->minipl->ptr,
+		info->minipl->x, info->minipl->y);
 	handle_key(info);
 	return (0);
 }
