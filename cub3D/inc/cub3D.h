@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/02 19:11:22 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/02 20:39:06 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@
 //# define HEIGHT 400
 //# define WIDTH 800
 # define SPEED 3
+# define PI 3.1415926535
 
 typedef struct s_sq
 {
@@ -121,6 +122,7 @@ typedef struct s_player
 	int		p_dir;
 	int		p_dir_x_cos;
 	int		p_dir_y_sin;
+	void	*ptr; //nomes temporal x bigmap 2D
 }	t_player;
 
 typedef struct s_data

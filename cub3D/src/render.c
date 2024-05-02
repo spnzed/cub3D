@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:46:35 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/02 19:05:42 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/02 20:09:53 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	handle_key(t_data *info)
 int	render(t_data *info)
 {
 	// ray_casting(info);
+	get_bigmap2d(info);
 	mlx_put_image_to_window(info->mlx->mlx,
 		info->mlx->win, info->mlx->img.img, 0, 0);
 	mlx_put_image_to_window(info->mlx->mlx, info->mlx->win, info->minipl->ptr,
