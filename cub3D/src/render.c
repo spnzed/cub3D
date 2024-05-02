@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:46:35 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/24 18:35:58 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/05/02 19:05:42 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ void	handle_key(t_data *info)
 		move_l_arrow(info);
 	else if (info->mlx->keys->right)
 		move_r_arrow(info);
-	else
-		return;
 }
 
 int	render(t_data *info)

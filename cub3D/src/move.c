@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
+/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 16:31:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/25 02:05:39 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/05/02 19:04:39 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static int	check_collision(t_data *info, float x, float y)
+/*static int	check_collision(t_data *info, float x, float y)
 {
 	int	next_x;
 	int	next_y;
@@ -26,35 +26,35 @@ static int	check_collision(t_data *info, float x, float y)
 			&& info->map.grid[next_y][next_x] != '1'))
 		return (1);
 	return (0);
-}
+}*/
 
 void	move_front(t_data *info)
 {
-	if (check_collision(info,
+	/*if (check_collision(info,
 			info->player.x + info->player.p_dir_x_cos * SPEED,
 			info->player.y + info->player.p_dir_y_sin * SPEED))
 	{
 		info->player.x += info->player.p_dir_x_cos * SPEED;
-		info->player.y += info->player.p_dir_y_sin * SPEED;
+		info->player.y += info->player.p_dir_y_sin * SPEED;*/
 		info->minipl->y -= 2;
-	}
+	//}
 }
 
 void	move_back(t_data *info)
 {
-	if (check_collision(info,
+	/*if (check_collision(info,
 			info->player.x - info->player.p_dir_x_cos * SPEED,
 			info->player.y - info->player.p_dir_y_sin * SPEED))
 	{
 		info->player.x -= info->player.p_dir_x_cos * SPEED;
-		info->player.y -= info->player.p_dir_y_sin * SPEED;
+		info->player.y -= info->player.p_dir_y_sin * SPEED;*/
 		info->minipl->y += 2;
-	}
+	//}
 }
 
 void	move_right(t_data *info)
 {
-	int	new_p_dir;
+	/*int	new_p_dir;
 	int	new_p_dir_x_cos;
 	int	new_p_dir_y_sin;
 
@@ -66,14 +66,14 @@ void	move_right(t_data *info)
 			info->player.y + new_p_dir_y_sin * SPEED))
 	{
 		info->player.x += new_p_dir_x_cos * SPEED;
-		info->player.y += new_p_dir_y_sin * SPEED;
+		info->player.y += new_p_dir_y_sin * SPEED;*/
 		info->minipl->x += 2;
-	}
+	//}
 }
 
 void	move_left(t_data *info)
 {
-	int	new_p_dir;
+	/*int	new_p_dir;
 	int	new_p_dir_x_cos;
 	int	new_p_dir_y_sin;
 
@@ -85,7 +85,7 @@ void	move_left(t_data *info)
 			info->player.y - new_p_dir_y_sin * SPEED))
 	{
 		info->player.x -= new_p_dir_x_cos * SPEED;
-		info->player.y -= new_p_dir_y_sin * SPEED;
+		info->player.y -= new_p_dir_y_sin * SPEED;*/
 		info->minipl->x -= 2;
-	}
+	//}
 }

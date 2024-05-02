@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/27 13:14:00 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/02 19:11:22 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,6 @@ void	put_position(t_data *info);
 int		rgb_check(char *channel);
 int		ft_press(int keycode, t_mlx *mlx);
 int		ft_release(int keycode, t_mlx *mlx);
-int		ft_esc(int keycode, t_mlx *mlx);
 int		ft_cross(t_mlx *mlx);
 void	move_right(t_data *info);
 void	move_left(t_data *info);

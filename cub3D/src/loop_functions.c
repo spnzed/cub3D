@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   loop_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:43:39 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/24 15:33:43 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/05/02 19:02:49 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static int	ft_esc(t_mlx *mlx)
+{
+	mlx_destroy_image(mlx->mlx, mlx->img.img);
+	mlx_destroy_window(mlx->mlx, mlx->win);
+	free(mlx);
+	exit(1);
+}
 
 int	ft_press(int keycode, t_mlx *mlx)
 {
@@ -19,7 +27,6 @@ int	ft_press(int keycode, t_mlx *mlx)
 		ft_err("Error: key struct is not initialized\n");
 		exit(1);
 	}
-//	printf("ft_press\n");
 	if (keycode == KEY_W)
 		mlx->keys->w = 1;
 	else if (keycode == KEY_A)
@@ -32,12 +39,13 @@ int	ft_press(int keycode, t_mlx *mlx)
 		mlx->keys->left = 1;
 	else if (keycode == KEY_RIGHT)
 		mlx->keys->right = 1;
+	else if (keycode == KEY_ESC)
+		ft_esc(mlx);
 	return (0);
 }
 
 int	ft_release(int keycode, t_mlx *mlx)
 {
-//	printf("ft_release\n");
 	if (!mlx->keys)
 	{
 		ft_err("Error: key struct is not initialized\n");
@@ -55,18 +63,6 @@ int	ft_release(int keycode, t_mlx *mlx)
 		mlx->keys->left = 0;
 	else if (keycode == KEY_RIGHT)
 		mlx->keys->right = 0;
-	return (0);
-}
-
-int	ft_esc(int keycode, t_mlx *mlx)
-{
-	if (keycode == KEY_ESC)
-	{
-		mlx_destroy_image(mlx->mlx, mlx->img.img);
-		mlx_destroy_window(mlx->mlx, mlx->win);
-		free(mlx);
-		exit(1);
-	}
 	return (0);
 }
 
