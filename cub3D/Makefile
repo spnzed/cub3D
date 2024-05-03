@@ -6,7 +6,7 @@
 #    By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/04 17:25:20 by erosas-c          #+#    #+#              #
-#    Updated: 2024/04/26 20:57:06 by erosas-c         ###   ########.fr        #
+#    Updated: 2024/05/03 19:56:55 by erosas-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,11 @@ HEADER		=	inc/
 SRC_DIR		=	src/
 
 INC_DIR		=	inc
-SRC_FILES	=	arguments.c			check_map.c		check_parameters.c		errors.c  		\
-				get_color.c			get_file.c		handle_map.c			image_2d.c		\
-				loop_functions.c	main.c			map_to_file.c			move_arrows.c	\
-				move.c				put_images.c	put_position.c			render.c		\
-				utils.c		\
+SRC_FILES	=	arguments.c			big_map2d.c			check_map.c		check_parameters.c 	\
+				errors.c			get_color.c			get_file.c		handle_map.c 		\
+				image_2d.c			loop_functions.c	main.c			map_to_file.c 		\
+				move_arrows.c		move.c				put_images.c	put_position.c 		\
+				render.c			utils.c
 					
 OBJ_DIR		=	obj/
 OBJ_FILES	=	$(SRC_FILES:.c=.o)

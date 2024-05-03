@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/02 20:39:06 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/03 19:54:53 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,8 @@ typedef struct s_data
 	t_parameters	parameters;
 	t_map			map;
 	t_player		player;
-	t_sq			*minipl; // intentar integrar a info l'estructura del quadradet que representa en 2D el jugador al minimap i que amb movs a move.c i 
+	t_sq			*minipl; // intentar integrar a info l'estructura del quadradet que representa en 2D el jugador al minimap
+	t_sq			*bigpl;
 }					t_data;
 
 //		Program
@@ -160,6 +161,7 @@ float	deg_to_rad(float d);
 float	angle_correction(float ang);
 void	mini_map(t_data *info);
 int		render(t_data *info);
+void	get_bigmap2d(t_data *info);
 
 //		Utils
 int		ft_count_lines(int fd);
