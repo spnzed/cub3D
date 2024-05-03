@@ -27,7 +27,7 @@ static void	fill_bigmap(int *scr, char **grid, int p, int i)
 		{
 			while (grid[j][k])
 			{
-				while (p < p + (64 * (k + 1) + (WIDTH * i)))
+				while (p < po + (64 * (k + 1) + (WIDTH * i)))
 				{
 					if (grid[j][k] == '1')
 						scr[p] = 0xffffff;
@@ -62,8 +62,8 @@ void	get_bigmap2d(t_data *info)
 	temp[2] = "100101";
 	temp[3] = "1001E1";
 	temp[4] = "111111";
-	player->x = WIDTH / 2 - (64 * 3 / 2) - (8 / 2); //6 NOMBRE COLUMNES MAP, 64 = mida passadissos d'una unitat (utilitzada a fill_map)
-	player->y = HEIGHT / 2 - 64 - (8 / 2);
+	player->x = WIDTH / 2 + (64 * 3 / 2) - (8 / 2); //6 NOMBRE COLUMNES MAP, 64 = mida passadissos d'una unitat (utilitzada a fill_map)
+	player->y = HEIGHT / 2 + 64 - (8 / 2);
 	player->ptr = mlx_xpm_file_to_image(info->mlx->mlx, "img/bigmap_player.xpm", &w, &h);
 	fill_bigmap(info->mlx->img.img_adr, temp, p, 0);
 	info->bigpl = player;
