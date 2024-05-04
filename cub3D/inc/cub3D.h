@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/03 19:54:53 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/04 10:59:40 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ typedef struct s_sq
 	void	*ptr;
 	int		w;
 	int		h;
-	int		x;
-	int		y;
+	float	x;
+	float	y;
 }	t_sq;
 
 typedef struct s_keys
@@ -122,7 +122,6 @@ typedef struct s_player
 	int		p_dir;
 	int		p_dir_x_cos;
 	int		p_dir_y_sin;
-	void	*ptr; //nomes temporal x bigmap 2D
 }	t_player;
 
 typedef struct s_data
@@ -133,7 +132,7 @@ typedef struct s_data
 	t_map			map;
 	t_player		player;
 	t_sq			*minipl; // intentar integrar a info l'estructura del quadradet que representa en 2D el jugador al minimap
-	t_sq			*bigpl;
+	t_sq			*bigpl; //temp per a bigmap 2D
 }					t_data;
 
 //		Program
