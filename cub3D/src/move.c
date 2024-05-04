@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 16:31:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/04 10:51:23 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:06:51 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	move_front(t_data *info)
 		info->player.x += info->player.p_dir_x_cos * SPEED;
 		info->player.y += info->player.p_dir_y_sin * SPEED;*/
 		info->minipl->y -= 0.5;
-		info->bigpl->y -= 1;
+//		info->bigpl->y -= 1;
 	//}
 }
 
@@ -50,7 +50,7 @@ void	move_back(t_data *info)
 		info->player.x -= info->player.p_dir_x_cos * SPEED;
 		info->player.y -= info->player.p_dir_y_sin * SPEED;*/
 		info->minipl->y += 0.5;
-		info->bigpl->y += 1;
+//		info->bigpl->y += 1;
 	//}
 }
 
@@ -70,7 +70,7 @@ void	move_right(t_data *info)
 		info->player.x += new_p_dir_x_cos * SPEED;
 		info->player.y += new_p_dir_y_sin * SPEED;*/
 		info->minipl->x += 0.5;
-		info->bigpl->x += 1;
+//		info->bigpl->x += 1;
 	//}
 }
 
@@ -90,6 +90,6 @@ void	move_left(t_data *info)
 		info->player.x -= new_p_dir_x_cos * SPEED;
 		info->player.y -= new_p_dir_y_sin * SPEED;*/
 		info->minipl->x -= 0.5;
-		info->bigpl->x -= 1;
+//		info->bigpl->x -= 1;
 	//}
 }

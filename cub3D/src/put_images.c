@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:58:59 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/03 19:51:45 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:07:28 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,6 @@ void	put_images(t_data *info)
 	create_textures(info);
 	printf("ceiling: %i, floor: %i\n", info->map.ceiling, info->map.floor);
 	paint_ceil_floor(info->mlx->img.img_adr);
-	//mlx_put_image_to_window(info->mlx->mlx, info->mlx->win, info->mlx->img.img, 0, 0);
 	mini_map(info);
 	get_bigmap2d(info);
 }
