@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:11:18 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/04 19:18:15 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/06 19:28:47 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ static void	fill_player(int	*scr, t_player *pl)
 	{
 		pts[1].x = pts[0].x + cos(pl->ang) * pl->len;
 		pts[1].y = pts[0].y - sin(pl->ang) * pl->len;
-//		printf("000 pts[1].x: %i, pts[1].y: %i\n", pts[1].x, pts[1].y);
+		//printf("arctan(2.0943951024 radians): %f\n", atan(2.0943951024));
+		//printf("arctan(2.0943951024 radians): %f\n", -1 / tan(2.0943951024)); >> AQUESTA ES LA FORMULA BONA
+	//	printf("000 pts[1].x: %i, pts[1].y: %i\n", pts[1].x, pts[1].y);
 	}
 //	printf("111 pts[1].x: %i, pts[1].y: %i\n", pts[1].x, pts[1].y);
 	draw_line(scr, pts, 0xFFFF00);
