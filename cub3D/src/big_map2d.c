@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:11:18 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/06 19:28:47 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/07 21:05:59 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ static void	fill_player(int	*scr, t_player *pl)
 	pts[1].y = 0;
 //	printf("pts[0].x: %i, pts[0].y: %i\n", pts[0].x, pts[0].y);
 //	printf("angle: %f, sinus: %f, cos: %f, len: %f\n", pl->ang, sin(pl->ang), cos(pl->ang), pl->len);
-	if (pl->ang >= 0 && pl->ang <= (PI / 2) + tolerance)
+	if (pl->ang >= 0 && pl->ang <= (PI) + tolerance)
 	{
+		printf("cos(pl->an: %f\n", cos(pl->len));
 		pts[1].x = pts[0].x + cos(pl->ang) * pl->len;
 		pts[1].y = pts[0].y - sin(pl->ang) * pl->len;
 		//printf("arctan(2.0943951024 radians): %f\n", atan(2.0943951024));
@@ -75,13 +76,19 @@ void	get_bigmap2d(t_data *info)
 {
 	char		*temp[5];
 	t_player	*player;
-/*	t_sq		*player;
-	int	w = 32;
-	int	h = 24;*/
+	t_sq		*bigsq;
+	int	w = 8;
+	int	h = 8;
 	int	p = ((HEIGHT / 2 - 160) * WIDTH) + (WIDTH / 2 - 192);
 
 	player = ft_calloc(sizeof(t_player), 1);
 	if (!player)
+	{
+		ft_err("Error: Malloc\n");
+		exit (1);
+	}
+	bigsq = ft_calloc(sizeof(t_sq), 1);
+	if (!bigsq)
 	{
 		ft_err("Error: Malloc\n");
 		exit (1);
@@ -93,12 +100,12 @@ void	get_bigmap2d(t_data *info)
 	temp[4] = "111111";
 	player->x = WIDTH / 2 + (64 * 3 / 2); //64 = mida passadissos d'una unitat (utilitzada a fill_map) 3/2 per situar-se just enmig de la columna passadis 2a des del centre del mapa 2D (= WIDTH / 2)
 	player->y = HEIGHT / 2 + 64; // Li sumem 64 pq des del centre de les files (5 files), ens volem posar junt enmig de la 4a fila i la posicio del mig del mapa = HEIGHT / 2
-	player->ang = PI / 2;
-	player->len = 12;
-	/*player->x = WIDTH / 2 + (64 * 3 / 2) - (32 / 2); //6 NOMBRE COLUMNES MAP, 64 = mida passadissos d'una unitat (utilitzada a fill_map)
-	player->y = HEIGHT / 2 + 64 - (24 / 2);
-	player->ptr = mlx_xpm_file_to_image(info->mlx->mlx, "img/bigmap_player.xpm", &w, &h);*/
+	player->ang = 2.0943951024; //120 graus
+	player->len = 32;
+	bigsq->x = WIDTH / 2 + (64 * 3 / 2) - (8 / 2); //6 NOMBRE COLUMNES MAP, 64 = mida passadissos d'una unitat (utilitzada a fill_map)
+	bigsq->y = HEIGHT / 2 + 64 - (8 / 2);
+	bigsq->ptr = mlx_xpm_file_to_image(info->mlx->mlx, "img/bigmap_player.xpm", &w, &h);
 	fill_bigmap(info->mlx->img.img_adr, temp, p, 0);
 	fill_player(info->mlx->img.img_adr, player);
-	//info->bigpl = player;
+	info->bigpl = bigsq;
 }

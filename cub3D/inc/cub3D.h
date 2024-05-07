@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/06 19:15:53 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/07 20:24:29 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ typedef struct s_data
 	t_map			map;
 	t_player		player;
 	t_sq			*minipl; // intentar integrar a info l'estructura del quadradet que representa en 2D el jugador al minimap
-//	t_sq			*bigpl; //temp per a bigmap 2D
+	t_sq			*bigpl; //temp per a bigmap 2D
 }					t_data;
 
 //		Program

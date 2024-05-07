@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:46:35 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/04 17:06:14 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/07 20:26:42 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	render(t_data *info)
 		info->mlx->win, info->mlx->img.img, 0, 0);
 	mlx_put_image_to_window(info->mlx->mlx, info->mlx->win, info->minipl->ptr,
 		info->minipl->x, info->minipl->y);
-/*	mlx_put_image_to_window(info->mlx->mlx, info->mlx->win, info->bigpl->ptr,
-		info->bigpl->x, info->bigpl->y);*/
+	mlx_put_image_to_window(info->mlx->mlx, info->mlx->win, info->bigpl->ptr,
+		info->bigpl->x, info->bigpl->y);
 	handle_key(info);
 	return (0);
 }
