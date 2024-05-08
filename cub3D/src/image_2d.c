@@ -16,16 +16,19 @@ static void	fill_map(int *scr, char **grid, int p, int i)
 {
 	int	j;
 	int	k;
+	int	t;
 
+	t = 32;
+//	t = t / 2;  // MacBook erosas
 	j = -1;
 	k = 0;
 	while (++j < 5)// j < altura del map quan la tinguem a l'estructura amb la xifra ja parsejada
 	{
-		while (i < 32 * (j + 1))
+		while (i < t * (j + 1))
 		{
 			while (grid[j][k])
 			{
-				while (p < (32 * (k + 1) + (WIDTH * i)))
+				while (p < (t * (k + 1) + (WIDTH * i)))
 				{
 					if (grid[j][k] == '1')
 						scr[p] = 0xffffff;
@@ -50,7 +53,7 @@ static void	fill_player(int *scr, t_sq *pl, int p, int w)
 	i = 1;
 	po = p;
 	h = -1;
-	c = 0xffff000;
+	c = 0xffff00;
 	while (++h < pl->h)
 	{
 		while (++w < pl->w)
@@ -75,7 +78,6 @@ void	mini_map(t_data *info)
 	temp[2] = "100101";
 	temp[3] = "1001P1";
 	temp[4] = "111111";
-	
 	//player->ptr = mlx_xpm_file_to_image(info->mlx->mlx, "img/sq.xpm", &player->w, &player->h);
 	//player->ang = info->player->ang;  cadra igualar quan el tinguem del parseig pq sera el mateix, i a cada moviment amb qualsevol de les 6 tecles redefinir juntament amb el del jugadr gran/principal
 //	printf("info->map->floor: %i, ceiling: %i\n", info->map.floor, info->map.ceiling);

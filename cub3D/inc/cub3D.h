@@ -44,10 +44,10 @@
 # define WHITE		"\033[0;37m"
 
 # define SCALE 64
-# define HEIGHT 1080
-# define WIDTH 1920
-//# define HEIGHT 400
-//# define WIDTH 800
+//# define HEIGHT 1080
+//# define WIDTH 1920
+# define HEIGHT 810
+# define WIDTH 1380
 # define SPEED 3
 # define PI 3.1415926535
 
@@ -59,7 +59,7 @@ typedef struct s_point
 
 typedef struct s_sq
 {
-	void	*ptr;
+	//void	*ptr;
 	int		w;
 	int		h;
 	float	x;

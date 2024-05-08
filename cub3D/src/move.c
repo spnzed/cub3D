@@ -36,8 +36,8 @@ void	move_front(t_data *info)
 	{
 		info->player.x += info->player.p_dir_x_cos * SPEED;
 		info->player.y += info->player.p_dir_y_sin * SPEED;*/
-		info->minipl->y -= 0.5;
-		info->bigpl->y -= 1;
+		info->minipl->y -= 1;
+		info->bigpl->y -= 2;
 	//	new_scene(info);
 	//}
 }
@@ -50,8 +50,8 @@ void	move_back(t_data *info)
 	{
 		info->player.x -= info->player.p_dir_x_cos * SPEED;
 		info->player.y -= info->player.p_dir_y_sin * SPEED;*/
-		info->minipl->y += 0.5;
-		info->bigpl->y += 1;
+		info->minipl->y += 1;
+		info->bigpl->y += 2;
 	//}
 }
 
@@ -70,8 +70,8 @@ void	move_right(t_data *info)
 	{
 		info->player.x += new_p_dir_x_cos * SPEED;
 		info->player.y += new_p_dir_y_sin * SPEED;*/
-		info->minipl->x += 0.5;
-		info->bigpl->x += 1;
+		info->minipl->x += 1;
+		info->bigpl->x += 2;
 	//}
 }
 
@@ -90,7 +90,7 @@ void	move_left(t_data *info)
 	{
 		info->player.x -= new_p_dir_x_cos * SPEED;
 		info->player.y -= new_p_dir_y_sin * SPEED;*/
-		info->minipl->x -= 0.5;
-		info->bigpl->x -= 1;
+		info->minipl->x -= 1;
+		info->bigpl->x -= 2;
 	//}
 }

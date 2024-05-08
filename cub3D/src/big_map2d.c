@@ -68,16 +68,18 @@ static void	fill_bigmap(int *scr, char **grid, int p, int i)
 	int	j;
 	int	k;
 	int	po;
+	int	t = 64;
+	//t = t / 2;  // MacBook Ester
 	j = -1;
 	k = 0;
 	po = p;
 	while (++j < 5)// j < altura del map quan la tinguem a l'estructura amb la xifra ja parsejada
 	{
-		while (i < 64 * (j + 1))
+		while (i < t * (j + 1))
 		{
 			while (grid[j][k])
 			{
-				while (p < po + (64 * (k + 1) + (WIDTH * i)))
+				while (p < po + (t * (k + 1) + (WIDTH * i)))
 				{
 					if (grid[j][k] == '1')
 						scr[p] = 0xffffff;
@@ -95,15 +97,10 @@ static void	fill_bigmap(int *scr, char **grid, int p, int i)
 void	get_bigmap2d(t_data *info)
 {
 	char		*temp[5];
-	t_sq		*bigpl;
-	int	p = ((HEIGHT / 2 - 160) * WIDTH) + (WIDTH / 2 - 192);
+	int		t = 64;
+//	t = t / 2; //MacBook Ester
+	int	p = ((HEIGHT / 2 - t * 5 / 2) * WIDTH) + (WIDTH / 2 - t * 3);
 
-	bigpl = ft_calloc(sizeof(t_sq), 1);
-	if (!bigpl)
-	{
-		ft_err("Error: Malloc\n");
-		exit (1);
-	}
 	temp[0] = "111111";
 	temp[1] = "100001";
 	temp[2] = "100101";
@@ -111,14 +108,7 @@ void	get_bigmap2d(t_data *info)
 	temp[4] = "111111";
 //	bigpl->x = WIDTH / 2 + (64 * 3 / 2); //64 = mida passadissos d'una unitat (utilitzada a fill_map) 3/2 per situar-se just enmig de la columna passadis 2a des del centre del mapa 2D (= WIDTH / 2)
 //	bigpl->y = HEIGHT / 2 + 64; // Li sumem 64 pq des del centre de les files (5 files), ens volem posar junt enmig de la 4a fila i la posicio del mig del mapa = HEIGHT / 2
-	bigpl->ang = 2.0943951024; //120 graus
-	bigpl->len = 32;
-	bigpl->w = 8;
-	bigpl->h = 8;
-	bigpl->x = WIDTH / 2 + (64 * 3 / 2) - (8 / 2); //6 NOMBRE COLUMNES MAP, 64 = mida passadissos d'una unitat (utilitzada a fill_map)
-	bigpl->y = HEIGHT / 2 + 64 - (8 / 2);
 	fill_bigmap(info->mlx->img.img_adr, temp, p, 0);
-	fill_bigpl(info->mlx->img.img_adr, bigpl, (bigpl->y * WIDTH) + bigpl->x, -1);
-	fill_ray(info->mlx->img.img_adr, bigpl);
-	info->bigpl = bigpl;
+	fill_bigpl(info->mlx->img.img_adr, info->bigpl, (info->bigpl->y * WIDTH) + info->bigpl->x, -1);
+	fill_ray(info->mlx->img.img_adr, info->bigpl);
 }

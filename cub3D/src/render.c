@@ -80,7 +80,6 @@ void	new_scene(t_data *info)
 int	render(t_data *info)
 {
 	// ray_casting(info);
-	init_temp(info);
 	new_scene(info);
 	return (0);
 }

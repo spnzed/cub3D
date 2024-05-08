@@ -46,6 +46,7 @@ static t_data	*init_info(void)
 	info->parameters.east = NULL;
 	info->parameters.floor = -1;
 	info->parameters.ceiling = -1;
+	init_temp(info);
 	return (info);
 }
 
