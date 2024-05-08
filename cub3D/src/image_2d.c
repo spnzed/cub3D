@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:03:48 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/03 18:46:33 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/08 19:06:27 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,27 @@ static void	fill_map(int *scr, char **grid, int p, int i)
 	}
 }
 
+static void	fill_player(int *scr, t_sq *pl, int p, int w)
+{
+	int	c;
+	int	po;
+	int	h;
+	int	i;
+
+	i = 1;
+	po = p;
+	h = -1;
+	c = 0xffff000;
+	while (++h < pl->h)
+	{
+		while (++w < pl->w)
+			scr[p++] = c;
+		p = po + WIDTH * i;
+		w = -1;
+		i++;
+	}
+}
+
 void	mini_map(t_data *info)
 {
 	/*char *temp[2];
@@ -47,29 +68,17 @@ void	mini_map(t_data *info)
 	temp[0] = "11";
 	temp[1] = "1";*/
 	char	*temp[5];
-	t_sq	*player;
 
-	player = ft_calloc(sizeof(t_sq), 1);
-	if (!player)
-	{
-		ft_err("Error: Malloc\n");
-		exit (1);
-	}
 
 	temp[0] = "111111";
 	temp[1] = "100001";
 	temp[2] = "100101";
 	temp[3] = "1001P1";
 	temp[4] = "111111";
-	player->w = 4;
-	player->h = 4;
-	player->x = (4 * 32) + (32 / 2) - (player->w / 2); //32 = mida passadissos d'una unitat (utilitzada a fill_map)
-	player->y = (3 * 32) + (32 / 2) - (player->h / 2);
-	player->ptr = mlx_xpm_file_to_image(info->mlx->mlx, "img/sq.xpm", &player->w, &player->h);
+	
+	//player->ptr = mlx_xpm_file_to_image(info->mlx->mlx, "img/sq.xpm", &player->w, &player->h);
+	//player->ang = info->player->ang;  cadra igualar quan el tinguem del parseig pq sera el mateix, i a cada moviment amb qualsevol de les 6 tecles redefinir juntament amb el del jugadr gran/principal
 //	printf("info->map->floor: %i, ceiling: %i\n", info->map.floor, info->map.ceiling);
 	fill_map(info->mlx->img.img_adr, temp/*info->map.grid*/, 0, 0);
-	//mlx_put_image_to_window(info->mlx->mlx, info->mlx->win, info->mlx->img.img, 0, 0);
-	info->minipl = player;
-//	mlx_hook(info->mlx->win, 2, 1L<<0, handle_key_press, player);
-//	mlx_do_sync(info->mlx->mlx);
+	fill_player(info->mlx->img.img_adr, info->minipl, (info->minipl->y * WIDTH) + info->minipl->x, -1);
 }

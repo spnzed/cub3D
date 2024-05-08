@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 16:31:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/07 21:08:32 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/08 19:07:02 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	move_front(t_data *info)
 		info->player.y += info->player.p_dir_y_sin * SPEED;*/
 		info->minipl->y -= 0.5;
 		info->bigpl->y -= 1;
+	//	new_scene(info);
 	//}
 }
 

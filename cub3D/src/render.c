@@ -6,11 +6,45 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:46:35 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/07 20:26:42 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/08 19:12:57 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static void	paint_ceil_floor(int *p)
+{
+	int	y;
+	int	x;
+	int	floor;
+	int	ceiling;
+
+	x = 0;
+	y = 0;
+	floor = 0xd9a066;
+	ceiling = 0x5fcde4;
+	//color = 0x0000FF;
+	while (y < HEIGHT / 2)
+	{
+		while (x < WIDTH)
+		{
+			p[(y * WIDTH) + x] = ceiling;
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+	while (y < HEIGHT)
+	{
+		while (x < WIDTH)
+		{
+			p[(y * WIDTH) + x] = floor;
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+}
 
 void	handle_key(t_data *info)
 {
@@ -33,15 +67,20 @@ void	handle_key(t_data *info)
 		move_r_arrow(info);
 }
 
+void	new_scene(t_data *info)
+{
+	paint_ceil_floor(info->mlx->img.img_adr);
+	mini_map(info);
+	get_bigmap2d(info);
+	mlx_put_image_to_window(info->mlx->mlx,
+		info->mlx->win, info->mlx->img.img, 0, 0);
+	handle_key(info);
+}
+
 int	render(t_data *info)
 {
 	// ray_casting(info);
-	mlx_put_image_to_window(info->mlx->mlx,
-		info->mlx->win, info->mlx->img.img, 0, 0);
-	mlx_put_image_to_window(info->mlx->mlx, info->mlx->win, info->minipl->ptr,
-		info->minipl->x, info->minipl->y);
-	mlx_put_image_to_window(info->mlx->mlx, info->mlx->win, info->bigpl->ptr,
-		info->bigpl->x, info->bigpl->y);
-	handle_key(info);
+	init_temp(info);
+	new_scene(info);
 	return (0);
 }

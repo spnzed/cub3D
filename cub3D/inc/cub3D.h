@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/07 20:24:29 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/08 19:13:07 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ typedef struct s_sq
 	int		h;
 	float	x;
 	float	y;
+	float	ang;
+	int		len;  //temp per projectar rajos
 }	t_sq;
 
 typedef struct s_keys
@@ -173,6 +175,8 @@ void	mini_map(t_data *info);
 int		render(t_data *info);
 void	get_bigmap2d(t_data *info);
 void	draw_line(int *scr, t_point *pts, int color);
+void	init_temp(t_data *info);
+void	new_scene(t_data *info);
 
 //		Utils
 int		ft_count_lines(int fd);
