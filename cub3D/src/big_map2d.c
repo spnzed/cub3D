@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:11:18 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/08 18:46:38 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/09 19:07:15 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	fill_ray(int *scr, t_sq *pl)
 {
 	t_point	*pts;
-	//float	tolerance;
+	float	tolerance;
 
 	pts = ft_calloc(sizeof(pts), 2);
 	if (!pts)
@@ -23,14 +23,19 @@ static void	fill_ray(int *scr, t_sq *pl)
 		ft_err("Error: Malloc\n");
 		exit (1);
 	}
-	//tolerance = 0.00001;
+	tolerance = 0.00001;
 	pts[0].x = pl->x + pl->w / 2;
 	pts[0].y = pl->y + pl->h / 2;
 	pts[1].x = 0;
 	pts[1].y = 0;
 //	printf("pts[0].x: %i, pts[0].y: %i\n", pts[0].x, pts[0].y);
 //	printf("angle: %f, sinus: %f, cos: %f, len: %f\n", pl->ang, sin(pl->ang), cos(pl->ang), pl->len);
-	if (pl->ang > 0 && pl->ang < (PI))
+	if (pl->ang <= PI / 2 + tolerance && pl->ang >= PI / 2 - tolerance)
+	{
+		pts[1].x = pts[0].x;
+		pts[1].y = pts[0].y - pl->len;
+	}
+	else if (pl->ang > 0 && pl->ang < (PI))
 	{
 		pts[1].x = pts[0].x + cos(pl->ang) * pl->len;
 		pts[1].y = pts[0].y - sin(pl->ang) * pl->len;

@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:03:48 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/08 19:06:27 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/09 17:20:52 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,7 @@ static void	fill_player(int *scr, t_sq *pl, int p, int w)
 
 void	mini_map(t_data *info)
 {
-	/*char *temp[2];
 
-	temp[0] = "11";
-	temp[1] = "1";*/
 	char	*temp[5];
 
 

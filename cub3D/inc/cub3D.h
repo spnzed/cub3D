@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/08 19:13:07 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/09 17:35:20 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,10 @@ typedef struct s_sq
 	int		h;
 	float	x;
 	float	y;
+	float	dx; // x controlar dif. desplaçament segons angle, encada una de les 2 dimensions
+	float	dy; // x controlar dif. desplaçament segons angle, encada una de les 2 dimensions
 	float	ang;
-	int		len;  //temp per projectar rajos
+	float	len; //temp per projectar rajos i veure com rota la barra en 2D
 }	t_sq;
 
 typedef struct s_keys
@@ -128,10 +130,6 @@ typedef struct s_player
 {
 	float	x;
 	float	y;
-	float	ang; //afegit erosas x 2D barra
-	float	len; //temp per veure com rota la barra en 2D
-	float	dx; //afegit erosas x controlar dif. desplaçament segons angle, encada una de les 2 dimensions
-	float	dy; //afegit erosas x controlar dif. desplaçament segons angle, encada una de les 2 dimensions
 	int		p_dir;
 	int		p_dir_x_cos;
 	int		p_dir_y_sin;
