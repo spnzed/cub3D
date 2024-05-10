@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/09 17:35:20 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/10 13:37:15 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@
 # define HEIGHT 810
 # define WIDTH 1380
 # define SPEED 3
-# define PI 3.1415926535
 
 typedef struct s_point
 {
@@ -64,10 +63,10 @@ typedef struct s_sq
 	int		h;
 	float	x;
 	float	y;
-	float	dx; // x controlar dif. desplaçament segons angle, encada una de les 2 dimensions
-	float	dy; // x controlar dif. desplaçament segons angle, encada una de les 2 dimensions
-	float	ang;
-	float	len; //temp per projectar rajos i veure com rota la barra en 2D
+	//float	dx; // x controlar dif. desplaçament segons angle, encada una de les 2 dimensions
+	//float	dy; // x controlar dif. desplaçament segons angle, encada una de les 2 dimensions
+	int	ang;
+	int	len; //temp per projectar rajos i veure com rota la barra en 2D
 }	t_sq;
 
 typedef struct s_keys

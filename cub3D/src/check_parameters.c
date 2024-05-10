@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 14:04:46 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/10 11:51:47 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/10 12:19:52 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ static int	check_color_element(char *line, int color)
 		ret = ft_err("Error: Parameters: Incorrect Format\n");
 	else
 		ret = gen_color(ft_atoi(red), ft_atoi(green), ft_atoi(blue));
-	printf("red: %s, green: %s, blue: %s\n", red, green, blue);
 	return (ret);
 }
 
@@ -103,13 +102,13 @@ int	check_textures(char **scene, t_data *info)
 {
 	int	i;
 	int	count;
-	int	j;  //erosas check
+//	int	j;  //erosas check
 
 	i = -1;
 	count = 0;
-	j = -1;
+/*	j = -1;
 	while (scene[++j])
-		printf("scene[%i]: %s, len(s): %i\n", j, scene[j], ft_strlen(scene[j]));
+		printf("scene[%i]: %s, len(s): %i\n", j, scene[j], ft_strlen(scene[j]));*/
 	while (scene[++i])
 	{
 		if (ft_strlen(scene[i]) > 1)
@@ -119,8 +118,6 @@ int	check_textures(char **scene, t_data *info)
 			count++;
 		}
 	}
-	printf("after feeding scene params including ceiling and floor at \
-		check_textures check_param FILE info->parameters.ceiling: %i\n", info->parameters.ceiling);
 	if (open_textures(info))
 		return (1);
 	return (0);
