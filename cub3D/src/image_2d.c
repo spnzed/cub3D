@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:03:48 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/10 19:34:50 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/10 20:40:37 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	fill_map(int *scr, t_map *map, int p, int i)
 	int	j;
 	int	k;
 	int	t;
-	t = 32;
+	t = 16;
 //	t = t / 2;  // MacBook erosas
 	j = -1;
 	k = 0;
