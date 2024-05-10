@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:58:59 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/08 19:09:54 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/10 11:41:19 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,6 @@ void	put_images(t_data *info)
 {
 	create_image(info);
 	create_textures(info);
-	printf("ceiling: %i, floor: %i\n", info->map.ceiling, info->map.floor);
+	printf("ceiling: %i, floor: %i\n", info->parameters.ceiling, info->parameters.floor);
 	new_scene(info);
 }

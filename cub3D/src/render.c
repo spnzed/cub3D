@@ -6,24 +6,19 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:46:35 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/08 19:12:57 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/10 11:59:49 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	paint_ceil_floor(int *p)
+static void	paint_ceil_floor(int *p, int floor, int ceiling)
 {
 	int	y;
 	int	x;
-	int	floor;
-	int	ceiling;
 
 	x = 0;
 	y = 0;
-	floor = 0xd9a066;
-	ceiling = 0x5fcde4;
-	//color = 0x0000FF;
 	while (y < HEIGHT / 2)
 	{
 		while (x < WIDTH)
@@ -69,7 +64,8 @@ void	handle_key(t_data *info)
 
 void	new_scene(t_data *info)
 {
-	paint_ceil_floor(info->mlx->img.img_adr);
+	paint_ceil_floor(info->mlx->img.img_adr, info->parameters.floor,
+		info->parameters.ceiling);
 	mini_map(info);
 	get_bigmap2d(info);
 	mlx_put_image_to_window(info->mlx->mlx,
