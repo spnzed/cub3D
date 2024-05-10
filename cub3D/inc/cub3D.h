@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/10 13:37:15 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/10 20:05:06 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@
 # define WHITE		"\033[0;37m"
 
 # define SCALE 64
-//# define HEIGHT 1080
-//# define WIDTH 1920
-# define HEIGHT 810
-# define WIDTH 1380
+# define HEIGHT 1080
+# define WIDTH 1920
+//# define HEIGHT 810
+//# define WIDTH 1380
 # define SPEED 3
 
 typedef struct s_point
@@ -56,7 +56,7 @@ typedef struct s_point
 	int	y;
 }	t_point;
 
-typedef struct s_sq
+/*typedef struct s_sq
 {
 	//void	*ptr;
 	int		w;
@@ -67,7 +67,7 @@ typedef struct s_sq
 	//float	dy; // x controlar dif. desplaçament segons angle, encada una de les 2 dimensions
 	int	ang;
 	int	len; //temp per projectar rajos i veure com rota la barra en 2D
-}	t_sq;
+}	t_sq;*/
 
 typedef struct s_keys
 {
@@ -105,14 +105,15 @@ typedef struct s_mlx
 typedef struct s_map
 {
 	char		**grid;
-	int			grid_pos;
-	int			map_size;
-	int			scale;
+	int			grid_pos; //SI ES EL PUNT SUPERIOR ESQUERRE DEL MAPA aquest tpoc hauria de caldre gaire pq entenc que nomes s'ha de calcular 1 vegada, es posa la formula i llestos
+	//pero he vist que es fa servir per altres coses tb -- NO, HE VIST QUE ES LA LINIA ON COMENÇA EL MAPA DINTRE DE L'ESCENA
+	int			map_size; //JO AQUEST TB L'ESBORRARIA PQ NOMES CAL multiplicar ELS 2 PARAMETRES DE SIZE
+	int			scale; //tpoc no te sentit si l'unic que fa es igualar-la al define SCALE, per aix[o posem SCALE directament on calgui i llestos]
 	int			size[2];
 	int			spawn[2];
-	int			player_dir;
-	int			floor;
-	int			ceiling;
+//	int			player_dir; //en principi no cal tenir-ho 2 vegades - JA ES A PARAMETERS
+//	int			floor;  //en principi no cal tenir-ho 2 vegades - JA ES A PARAMETERS
+//	int			ceiling; //en principi no cal tenir-ho 2 vegades - JA ES A PARAMETERS
 }				t_map;
 
 typedef struct s_parameters
@@ -129,9 +130,14 @@ typedef struct s_player
 {
 	float	x;
 	float	y;
-	int		p_dir;
-	int		p_dir_x_cos;
-	int		p_dir_y_sin;
+	int		dir; //era p_dir pero crec que no te sentit, no cal la p i nomes alalrga els caracters que calen
+	float	p_dir_x_cos;  //seria dx suposo (el desplacament d'x)
+	float	p_dir_y_sin; //idem per a y
+	int		w;//temp per fer quadradet del jugador en 2D
+	int		h;//temp per fer quadradet del jugador en 2D
+	//float	dx; // x controlar dif. desplaçament segons angle, encada una de les 2 dimensions
+	//float	dy; // x controlar dif. desplaçament segons angle, encada una de les 2 dimensions
+	int		len; //temp per projectar rajos i veure com rota la barra en 2D
 }	t_player;
 
 typedef struct s_data
@@ -141,8 +147,8 @@ typedef struct s_data
 	t_parameters	parameters;
 	t_map			map;
 	t_player		player;
-	t_sq			*minipl; // intentar integrar a info l'estructura del quadradet que representa en 2D el jugador al minimap
-	t_sq			*bigpl; //temp per a bigmap 2D
+	//t_sq			*minipl; // intentar integrar a info l'estructura del quadradet que representa en 2D el jugador al minimap
+	//t_sq			*bigpl; //temp per a bigmap 2D
 }					t_data;
 
 //		Program

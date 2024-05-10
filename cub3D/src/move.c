@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 16:31:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/10 13:36:00 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/10 18:16:17 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	move_front(t_data *info)
 			info->player.x + info->player.p_dir_x_cos * SPEED,
 			info->player.y + info->player.p_dir_y_sin * SPEED))
 	{*/
-		printf("hola, info->player.p_dir_y_sin: %i\n", info->player.p_dir_y_sin);
+		printf("hola, info->player.p_dir_y_sin: %f\n", info->player.p_dir_y_sin);
 		info->player.x += info->player.p_dir_x_cos * SPEED;
 		info->player.y += info->player.p_dir_y_sin * SPEED;
 		/*info->minipl->y -= info->minipl->dy;
@@ -61,7 +61,7 @@ void	move_right(t_data *info)
 	int	new_p_dir_x_cos;
 	int	new_p_dir_y_sin;
 
-	new_p_dir = angle_correction(90 - info->player.p_dir);
+	new_p_dir = angle_correction(90 - info->player.dir);
 	new_p_dir_x_cos = cos(deg_to_rad(new_p_dir));
 	new_p_dir_y_sin = sin(deg_to_rad(new_p_dir));
 	/*if (check_collision(info,
@@ -81,7 +81,7 @@ void	move_left(t_data *info)
 	int	new_p_dir_x_cos;
 	int	new_p_dir_y_sin;
 
-	new_p_dir = angle_correction(90 - info->player.p_dir);
+	new_p_dir = angle_correction(90 - info->player.dir);
 	new_p_dir_x_cos = cos(deg_to_rad(new_p_dir));
 	new_p_dir_y_sin = sin(deg_to_rad(new_p_dir));
 	/*if (check_collision(info,

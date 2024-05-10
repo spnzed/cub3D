@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:59:47 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/25 18:27:51 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/10 20:28:35 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 static void	player_direction(char c, t_data *info)
 {
 	if (c == 'N')
-		info->map.player_dir = 90;
+		info->player.dir = 90;
 	if (c == 'S')
-		info->map.player_dir = 270;
+		info->player.dir = 270;
 	if (c == 'W')
-		info->map.player_dir = 180;
+		info->player.dir = 180;
 	if (c == 'E')
-		info->map.player_dir = 0;
+		info->player.dir = 0;
 }
 
 static int	check_grid(char *line, int y, t_data *info)
@@ -35,7 +35,7 @@ static int	check_grid(char *line, int y, t_data *info)
 		if (ft_strchr("10NSWE", line[x]))
 		{
 			if (info->map.grid_pos == -1)
-				info->map.grid_pos = y + 1;
+				info->map.grid_pos = y;
 		}
 		if (ft_strchr("NSWE", line[x]))
 		{
