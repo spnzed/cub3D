@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:03:48 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/11 19:15:51 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/11 21:12:51 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ static void	fill_player(int *scr, t_player *pl, int p, int w)
 	int	po;
 	int	h;
 	int	i;
+
 	i = 1;
 	po = p;
 	h = -1;
@@ -66,22 +67,18 @@ static void	fill_player(int *scr, t_player *pl, int p, int w)
 
 void	mini_map(t_data *info)
 {
-	t_player	*minipl;
 	int			cell_w;
 	int			p;
 
 	cell_w = 8;
 	p = WIDTH * cell_w + cell_w;
-	minipl = ft_calloc(sizeof(t_player), 1);
-	if (!minipl)
-	{
-		ft_err("Error: Malloc\n");
-		exit (1);
-	}
-	minipl->h = 4;
-	minipl->w = 4;
-	minipl->x = info->map.spawn[0] * cell_w + cell_w / 2;
-	minipl->y = info->map.spawn[1] * cell_w + cell_w / 2;
+	info->minipl.h = 4;
+	info->minipl.w = 4;
+	info->minipl.x = cell_w + info->map.spawn[0] * cell_w
+		+ cell_w / 2 - info->minipl.w / 2;
+	info->minipl.y = cell_w + info->map.spawn[1] * cell_w
+		+ cell_w / 2 - info->minipl.h / 2;
 	fill_map(info->mlx->img.img_adr, info, p, 0);
-	fill_player(info->mlx->img.img_adr, minipl, p + (minipl->y * WIDTH) + minipl->x, -1);
+	fill_player(info->mlx->img.img_adr, &info->minipl,
+		(info->minipl.y * WIDTH) + info->minipl.x, -1);
 }
