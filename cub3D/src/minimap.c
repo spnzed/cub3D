@@ -6,18 +6,26 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:03:48 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/11 21:12:51 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/11 21:29:27 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static void	ft_c(char c, int floor, int *pos)
+{
+	if (c == '1')
+		*pos = 0x743636;
+	else
+		*pos = floor;
+}
 
 static void	fill_map(int *scr, t_data *info, int p, int i)
 {
 	int	j;
 	int	k;
 	int	po;
-	//t = t / 2;  // MacBook Ester
+
 	j = -1;
 	k = 0;
 	po = p;
@@ -29,10 +37,7 @@ static void	fill_map(int *scr, t_data *info, int p, int i)
 			{
 				while (p < po + (SCALE / 8 * (k + 1) + (WIDTH * i)))
 				{
-					if (info->map.grid[j][k] == '1')
-						scr[p] = 0x743636;
-					else
-						scr[p] = info->parameters.floor;
+					ft_c(info->map.grid[j][k], info->parameters.floor, &scr[p]);
 					p++;
 				}
 				k++;
