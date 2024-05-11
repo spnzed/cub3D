@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 14:04:46 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/10 12:19:52 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/11 19:16:56 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static char	*check_texture_element(char *line, char *param)
 	return (param);
 }
 
-int		gen_color(int R, int G, int B)
+int	gen_color(int R, int G, int B)
 {
 	int	color;
 

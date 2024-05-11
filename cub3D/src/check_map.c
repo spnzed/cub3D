@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:59:47 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/10 20:28:35 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/11 19:11:44 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,10 @@ int	check_map_char(char **scene, t_data *info)
 {
 	int	i;
 	int	count;
+	int	j;
 
 	i = -1;
+	j = 0;
 	count = 0;
 	while (scene[++i])
 	{
@@ -135,8 +137,16 @@ int	check_map_char(char **scene, t_data *info)
 		{
 			if (count > 5)
 			{
-				if (check_grid(scene[i], i, info))
-					return (1);
+				if (info->map.grid_pos == -1)
+				{
+					if (check_grid(scene[i], i, info))
+						return (1);
+				}
+				else
+				{
+					if (check_grid(scene[i], ++j, info))
+						return (1);
+				}
 			}
 			count++;
 		}

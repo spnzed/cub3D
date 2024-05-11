@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 20:53:28 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/10 20:37:09 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/11 20:16:18 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static t_data	*init_info(void)
 	info->parameters.east = NULL;
 	info->parameters.floor = -1;
 	info->parameters.ceiling = -1;
-	init_temp(info);
+	//init_temp(info);
 	return (info);
 }
 

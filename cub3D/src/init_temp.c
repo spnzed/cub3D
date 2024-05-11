@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:00:01 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/10 19:02:32 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/11 20:09:24 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,17 @@
 
 static void	init_bigpl(t_data *info)
 {
-	int	t = 64;
+	int	t = SCALE;
 //	t = t / 2; //MacBook erosas
 	//pl->ang = info->player.dir; //PI / 2;//2.0943951024; //120 graus
 	info->player.len = t / 2;
 	info->player.w = t / 8;
 	info->player.h = t / 8;
-	info->player.x = WIDTH / 2 + (t * 3 / 2) - (info->player.w / 2); //6 NOMBRE COLUMNES MAP, 64 (t) = mida passadissos d'una unitat (utilitzada a fill_map)
-	info->player.y = HEIGHT / 2 + t - (info->player.h / 2);
+	info->player.x = WIDTH / 2 - info->map.size[0] * t / 2 + info->map.spawn[0] * t
+		- (info->player.w / 2); //6 NOMBRE COLUMNES MAP, 64 (t) = mida passadissos d'una unitat (utilitzada a fill_map)
+	info->player.y = HEIGHT / 2 - info->map.size[1] * t / 2 + info->map.spawn[1] * t
+		- (info->player.h / 2);
+	printf("init_bigpl x: %f, y: %f\n", info->player.x, info->player.y);
 	//init_offsets(bigpl, 2);
 }
 

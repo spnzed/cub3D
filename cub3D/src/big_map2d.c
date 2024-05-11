@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:11:18 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/11 14:26:04 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/11 20:48:41 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,18 +97,19 @@ void	get_bigmap2d(t_data *info)
 	int	mp_xp;
 	int	mp_yp;
 	int	p;
-
-	mp_xp = WIDTH / 2 - info->map.size[0] * SCALE / 2 / 2;
-	mp_yp = HEIGHT / 2 - info->map.size[1] * SCALE / 2 / 2;
+	int	col_w = SCALE / 2;
+//	printf("map size x: %i, y: %i\n", info->map.size[0], info->map.size[1]);
+	mp_xp = WIDTH / 2 - info->map.size[0] * col_w / 2;
+	mp_yp = HEIGHT / 2 - info->map.size[1] * col_w / 2;
 	p = mp_yp * WIDTH + mp_xp;
-/*	char	*temp[5];
-	temp[0] = "111111";
-	temp[1] = "100001";
-	temp[2] = "100101";
-	temp[3] = "1001E1";
-	temp[4] = "111111";
-	bigpl->x = WIDTH / 2 + (64 * 3 / 2); //64 = mida passadissos d'una unitat (utilitzada a fill_map) 3/2 per situar-se just enmig de la columna passadis 2a des del centre del mapa 2D (= WIDTH / 2)
-	bigpl->y = HEIGHT / 2 + 64; // Li sumem 64 pq des del centre de les files (5 files), ens volem posar junt enmig de la 4a fila i la posicio del mig del mapa = HEIGHT / 2*/
+	info->player.len = 32;
+	info->player.w = 8;
+	info->player.h = 8;
+	info->player.x = WIDTH / 2 - (info->map.size[0] * col_w) / 2
+		+ info->map.spawn[0] * col_w + col_w / 2 - info->player.w / 2;
+	info->player.y = HEIGHT / 2 - (info->map.size[1] * col_w) / 2
+		+ info->map.spawn[1] * col_w + col_w / 2 - info->player.h / 2;
+//	printf("bigmap2d x: %f, y: %f\n", info->player.x, info->player.y);
 	fill_bigmap(info->mlx->img.img_adr, &info->map, p, 0);
 	fill_bigpl(info->mlx->img.img_adr, &info->player, (info->player.y * WIDTH) + info->player.x, -1);
 	fill_ray(info->mlx->img.img_adr, &info->player, info);
