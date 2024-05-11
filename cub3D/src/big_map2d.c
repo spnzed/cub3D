@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:11:18 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/10 19:13:02 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/11 14:26:04 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,25 +62,24 @@ static void	fill_bigpl(int *scr, t_player *pl, int p, int w)
 	}
 }
 
-static void	fill_bigmap(int *scr, char **grid, int p, int i)
+static void	fill_bigmap(int *scr, t_map *map, int p, int i)
 {
 	int	j;
 	int	k;
 	int	po;
-	int	t = 64;
 	//t = t / 2;  // MacBook Ester
 	j = -1;
 	k = 0;
 	po = p;
-	while (++j < 5)// j < altura del map quan la tinguem a l'estructura amb la xifra ja parsejada
+	while (++j < map->size[1])
 	{
-		while (i < t * (j + 1))
+		while (i < SCALE / 2 * (j + 1))
 		{
-			while (grid[j][k])
+			while (map->grid[j][k])
 			{
-				while (p < po + (t * (k + 1) + (WIDTH * i)))
+				while (p < po + (SCALE / 2 * (k + 1) + (WIDTH * i)))
 				{
-					if (grid[j][k] == '1')
+					if (map->grid[j][k] == '1')
 						scr[p] = 0xffffff;
 					p++;
 				}
@@ -95,18 +94,22 @@ static void	fill_bigmap(int *scr, char **grid, int p, int i)
 
 void	get_bigmap2d(t_data *info)
 {
-	char	*temp[5];
-//	t = t / 2; //MacBook Ester
-	int	p = ((HEIGHT / 2 - SCALE * 5 / 2) * WIDTH) + (WIDTH / 2 - SCALE * 3);
+	int	mp_xp;
+	int	mp_yp;
+	int	p;
 
+	mp_xp = WIDTH / 2 - info->map.size[0] * SCALE / 2 / 2;
+	mp_yp = HEIGHT / 2 - info->map.size[1] * SCALE / 2 / 2;
+	p = mp_yp * WIDTH + mp_xp;
+/*	char	*temp[5];
 	temp[0] = "111111";
 	temp[1] = "100001";
 	temp[2] = "100101";
 	temp[3] = "1001E1";
 	temp[4] = "111111";
-//	bigpl->x = WIDTH / 2 + (64 * 3 / 2); //64 = mida passadissos d'una unitat (utilitzada a fill_map) 3/2 per situar-se just enmig de la columna passadis 2a des del centre del mapa 2D (= WIDTH / 2)
-//	bigpl->y = HEIGHT / 2 + 64; // Li sumem 64 pq des del centre de les files (5 files), ens volem posar junt enmig de la 4a fila i la posicio del mig del mapa = HEIGHT / 2
-	fill_bigmap(info->mlx->img.img_adr, temp, p, 0);
+	bigpl->x = WIDTH / 2 + (64 * 3 / 2); //64 = mida passadissos d'una unitat (utilitzada a fill_map) 3/2 per situar-se just enmig de la columna passadis 2a des del centre del mapa 2D (= WIDTH / 2)
+	bigpl->y = HEIGHT / 2 + 64; // Li sumem 64 pq des del centre de les files (5 files), ens volem posar junt enmig de la 4a fila i la posicio del mig del mapa = HEIGHT / 2*/
+	fill_bigmap(info->mlx->img.img_adr, &info->map, p, 0);
 	fill_bigpl(info->mlx->img.img_adr, &info->player, (info->player.y * WIDTH) + info->player.x, -1);
 	fill_ray(info->mlx->img.img_adr, &info->player, info);
 }
