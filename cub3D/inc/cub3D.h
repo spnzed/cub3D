@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/11 18:20:34 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/11 22:02:00 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,7 @@ void	get_bigmap2d(t_data *info);
 void	draw_line(int *scr, t_point *pts, int color);
 void	init_temp(t_data *info);
 void	new_scene(t_data *info);
+void	init_players(t_data *info);
 
 //		Utils
 int		ft_count_lines(int fd);
