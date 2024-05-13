@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 16:34:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/13 17:02:08 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/13 21:06:37 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,30 @@
 
 void	move_r_arrow(t_data *info)
 {
-	info->player.dir = angle_correction(info->player.dir + SPEED);
+	/*info->player.dir = angle_correction(info->player.dir + SPEED);
 	info->player.dx = cos(deg_to_rad(info->player.dir));
-	info->player.dy = -sin(deg_to_rad(info->player.dir));
-	/*info->bigpl->ang -= 0.1;
-	if (info->bigpl->ang < 0)
-		info->bigpl->ang += 2 * PI;
-	info->bigpl->dx = cos(info->bigpl->ang) * 2;
-	info->bigpl->dy = sin(info->bigpl->ang) * 2;
-	printf("info->bigpl->dy: %f, info->bigpl->dx: %f\n", info->bigpl->dy, info->bigpl->dx);
-	info->minipl->ang = info->bigpl->ang;
-	info->minipl->dx = info->bigpl->dx / 2;
-	info->minipl->dy = info->bigpl->dy / 2;*/
+	info->player.dy = -sin(deg_to_rad(info->player.dir));*/
+	info->player.dir -= 1;
+	if (info->player.dir < 0)
+		info->player.dir += 360;
+	info->minipl.dx = cos(deg_to_rad(info->player.dir));
+	info->minipl.dy = -sin(deg_to_rad(info->player.dir));
+	//printf("info->bigpl->dy: %f, info->bigpl->dx: %f\n", info->bigpl->dy, info->bigpl->dx);
+	info->player.dx = info->minipl.dx * 6;
+	info->player.dy = info->minipl.dy * 6;
 }
 
 void	move_l_arrow(t_data *info)
 {
-	info->player.dir = angle_correction(info->player.dir - SPEED);
+	/*info->player.dir = angle_correction(info->player.dir - SPEED);
 	info->player.dx = cos(deg_to_rad(info->player.dir));
-	info->player.dy = -sin(deg_to_rad(info->player.dir));
+	info->player.dy = -sin(deg_to_rad(info->player.dir));*/
+	info->player.dir += 1;
+	if (info->player.dir > 360)
+		info->player.dir -= 360;
+	info->minipl.dx = cos(deg_to_rad(info->player.dir));
+	info->minipl.dy = -sin(deg_to_rad(info->player.dir));
+	//printf("info->bigpl->dy: %f, info->bigpl->dx: %f\n", info->bigpl->dy, info->bigpl->dx);
+	info->player.dx = info->minipl.dx * 6;
+	info->player.dy = info->minipl.dy * 6;
 }

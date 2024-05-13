@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/13 17:15:50 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:04:19 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,6 @@ typedef struct s_point
 	int	y;
 }	t_point;
 
-/*typedef struct s_sq
-{
-	//void	*ptr;
-	int		w;
-	int		h;
-	float	x;
-	float	y;
-	//float	dx; // x controlar dif. desplaçament segons angle, encada una de les 2 dimensions
-	//float	dy; // x controlar dif. desplaçament segons angle, encada una de les 2 dimensions
-	int	ang;
-	int	len; //temp per projectar rajos i veure com rota la barra en 2D
-}	t_sq;*/
-
 typedef struct s_keys
 {
 	int	w;
@@ -105,8 +92,7 @@ typedef struct s_mlx
 typedef struct s_map
 {
 	char		**grid;
-	int			grid_pos; //SI ES EL PUNT SUPERIOR ESQUERRE DEL MAPA aquest tpoc hauria de caldre gaire pq entenc que nomes s'ha de calcular 1 vegada, es posa la formula i llestos
-	//pero he vist que es fa servir per altres coses tb -- NO, HE VIST QUE ES LA LINIA ON COMENÇA EL MAPA DINTRE DE L'ESCENA
+	int			grid_pos; //ES LA LINIA ON COMENÇA EL MAPA DINTRE DE L'ESCENA
 	int			map_size; //JO AQUEST TB L'ESBORRARIA PQ NOMES CAL multiplicar ELS 2 PARAMETRES DE SIZE
 	int			scale; //tpoc no te sentit si l'unic que fa es igualar-la al define SCALE, per aix[o posem SCALE directament on calgui i llestos]
 	int			size[2];

@@ -6,13 +6,13 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:11:18 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/13 17:24:44 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/13 21:06:09 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	fill_ray(int *scr, t_player *pl, t_data *info)
+static void	fill_ray(int *scr, t_player *pl)
 {
 	t_point	*pts;
 
@@ -31,10 +31,25 @@ static void	fill_ray(int *scr, t_player *pl, t_data *info)
 		pts[1].x = pts[0].x;
 		pts[1].y = pts[0].y - pl->len;
 	}
-	else if (info->player.dir > 0 && pl->dir < (M_PI))
+	else if (pl->dir == 270)
 	{
-		pts[1].x = pts[0].x + cos(pl->dir) * pl->len;
-		pts[1].y = pts[0].y - sin(pl->dir) * pl->len;
+		pts[1].x = pts[0].x;
+		pts[1].y = pts[0].y + pl->len;
+	}
+	else if (pl->dir == 0)
+	{
+		pts[1].x = pts[0].x + pl->len;
+		pts[1].y = pts[0].y;
+	}
+	else if (pl->dir == 180)
+	{
+		pts[1].x = pts[0].x - pl->len;
+		pts[1].y = pts[0].y;
+	}
+	else
+	{
+		pts[1].x = pts[0].x + cos(deg_to_rad(pl->dir)) * pl->len;
+		pts[1].y = pts[0].y - sin(deg_to_rad(pl->dir)) * pl->len;
 	}
 	draw_line(scr, pts, 0xFFFF00);
 }
@@ -90,7 +105,7 @@ static void	fill_bigmap(int *scr, t_map *map, int p, int i)
 				}
 				k++;
 			}
-			ft_updvalues(&i, &p, po, &k); 
+			ft_updvalues(&i, &p, po, &k);
 		}
 	}
 }
@@ -106,8 +121,8 @@ void	get_bigmap2d(t_data *info)
 	mp_xp = WIDTH / 2 - info->map.size[0] * col_w / 2;
 	mp_yp = HEIGHT / 2 - info->map.size[1] * col_w / 2;
 	p = mp_yp * WIDTH + mp_xp;
-	
 	fill_bigmap(info->mlx->img.img_adr, &info->map, p, 0);
-	fill_bigpl(info->mlx->img.img_adr, &info->player, (info->player.y * WIDTH) + info->player.x, -1);
-	fill_ray(info->mlx->img.img_adr, &info->player, info);
+	fill_bigpl(info->mlx->img.img_adr, &info->player,
+		(info->player.y * WIDTH) + info->player.x, -1);
+	fill_ray(info->mlx->img.img_adr, &info->player);
 }
