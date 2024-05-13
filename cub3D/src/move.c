@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 16:31:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/11 21:54:12 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:49:57 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,27 +31,26 @@
 void	move_front(t_data *info)
 {
 	/*if (check_collision(info,
-			info->player.x + info->player.p_dir_x_cos * SPEED,
-			info->player.y + info->player.p_dir_y_sin * SPEED))
+			info->player.x + info->player.dx * SPEED,
+			info->player.y + info->player.dy * SPEED))
 	{*/
-//		printf("hola, info->player.p_dir_y_sin: %f\n", info->player.p_dir_y_sin);
-		info->player.x += info->player.p_dir_x_cos * SPEED;
-		printf("BEFORE info->player.y: %f\n", info->player.y);
-		info->player.y += info->player.p_dir_y_sin * SPEED;
-		printf("AFTER info->player.y: %f\n", info->player.y);
-		/*info->minipl->y -= info->minipl->dy;
-		info->bigpl->y -= info->bigpl->dy;
-	}*/
+		//printf("hola, info->player.p_dir_y_sin: %f\n", info->player.p_dir_y_sin);
+		info->player.x += info->player.dx * SPEED * 2;
+//		printf("BEFORE info->player.y: %f, x: %f\n", info->player.y, info->player.x);
+		info->player.y += info->player.dy * SPEED * 2;
+//		printf("AFTER info->player.y: %f, x: %f\n", info->player.y, info->player.x);
+		info->minipl.y += info->minipl.dy * SPEED;
+//	}
 }
 
 void	move_back(t_data *info)
 {
 	/*if (check_collision(info,
-			info->player.x - info->player.p_dir_x_cos * SPEED,
-			info->player.y - info->player.p_dir_y_sin * SPEED))
+			info->player.x - info->player.dx * SPEED,
+			info->player.y - info->player.dy * SPEED))
 	{*/
-		info->player.x -= info->player.p_dir_x_cos * SPEED;
-		info->player.y -= info->player.p_dir_y_sin * SPEED;
+		info->player.x -= info->player.dx * SPEED;
+		info->player.y -= info->player.dy * SPEED;
 	//	info->minipl->y += info->minipl->dy;
 	//	info->bigpl->y += info->bigpl->dy;
 	//}

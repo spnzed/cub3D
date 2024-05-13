@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/11 22:02:00 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:15:50 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,8 +131,8 @@ typedef struct s_player
 	float	x;
 	float	y;
 	int		dir; //era p_dir pero crec que no te sentit, no cal la p i nomes alalrga els caracters que calen
-	float	p_dir_x_cos;  //seria dx suposo (el desplacament d'x)
-	float	p_dir_y_sin; //idem per a y
+	float	dx; //p_dir_x_cos;  //seria dx suposo (el desplacament d'x)
+	float	dy; //p_dir_y_sin; //idem per a y
 	int		w;//temp per fer quadradet del jugador en 2D
 	int		h;//temp per fer quadradet del jugador en 2D
 	//float	dx; // x controlar dif. desplaçament segons angle, encada una de les 2 dimensions
@@ -146,6 +146,7 @@ typedef struct s_data
 	t_mlx			*mlx;
 	t_parameters	parameters;
 	t_map			map;
+//	t_map			minimap;
 	t_player		player;
 	t_player		minipl;
 	//t_sq			*minipl; // intentar integrar a info l'estructura del quadradet que representa en 2D el jugador al minimap

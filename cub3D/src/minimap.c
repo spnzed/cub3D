@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:03:48 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/11 22:14:19 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:15:41 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,7 @@ void	mini_map(t_data *info)
 
 	cell_w = 8;
 	p = WIDTH * cell_w + cell_w;
-	/*info->minipl.h = 4;
-	info->minipl.w = 4;
-	info->minipl.x = cell_w + info->map.spawn[0] * cell_w
-		+ cell_w / 2 - info->minipl.w / 2;
-	info->minipl.y = cell_w + info->map.spawn[1] * cell_w
-		+ cell_w / 2 - info->minipl.h / 2;*/
-	fill_map(info->mlx->img.img_adr, info, p, 0);
+		fill_map(info->mlx->img.img_adr, info, p, 0);
 	fill_player(info->mlx->img.img_adr, &info->minipl,
 		(info->minipl.y * WIDTH) + info->minipl.x, -1);
 }

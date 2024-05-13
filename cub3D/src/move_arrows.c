@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 16:34:15 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/10 18:05:23 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:02:08 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	move_r_arrow(t_data *info)
 {
 	info->player.dir = angle_correction(info->player.dir + SPEED);
-	info->player.p_dir_x_cos = cos(deg_to_rad(info->player.dir));
-	info->player.p_dir_y_sin = -sin(deg_to_rad(info->player.dir));
+	info->player.dx = cos(deg_to_rad(info->player.dir));
+	info->player.dy = -sin(deg_to_rad(info->player.dir));
 	/*info->bigpl->ang -= 0.1;
 	if (info->bigpl->ang < 0)
 		info->bigpl->ang += 2 * PI;
@@ -31,6 +31,6 @@ void	move_r_arrow(t_data *info)
 void	move_l_arrow(t_data *info)
 {
 	info->player.dir = angle_correction(info->player.dir - SPEED);
-	info->player.p_dir_x_cos = cos(deg_to_rad(info->player.dir));
-	info->player.p_dir_y_sin = -sin(deg_to_rad(info->player.dir));
+	info->player.dx = cos(deg_to_rad(info->player.dir));
+	info->player.dy = -sin(deg_to_rad(info->player.dir));
 }

@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 17:02:21 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/11 22:12:10 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:51:56 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,29 @@
 
 void	put_position(t_data *info)
 {
-	int	t;
-	int	cell_w;
-	
-	t = 64;
+	int		cell_w;
+	int		col_w;
+
+	col_w = SCALE / 8 * 6;
 	cell_w = 8;
-	info->player.x = (info->map.spawn[0] * SCALE) + SCALE / 2;
-	info->player.y = (info->map.spawn[1] * SCALE) + SCALE / 2;
-	//info->player.p_dir = info->map.player_dir; //no ens hauria de caldre, ens quedem nomes amb la del player
-//	printf("info->player.dir: %i\n", info->player.dir);
-//	printf("deg_to_rad(info->player.dir): %f\n", deg_to_rad(info->player.dir));
-//	printf("sin(deg_to_rad(info->player.dir)): %f\n", -sin(deg_to_rad(info->player.dir)));
-	info->player.p_dir_x_cos = cos(deg_to_rad(info->player.dir));
-	info->player.p_dir_y_sin = -sin(deg_to_rad(info->player.dir));
+	info->player.len = SCALE / 2;
+	info->player.w = SCALE / 8;
+	info->player.h = SCALE / 8;
+	info->player.x = WIDTH / 2 - (info->map.size[0] * col_w) / 2
+		+ info->map.spawn[0] * col_w + col_w / 2 - info->player.w / 2;
+	info->player.y = HEIGHT / 2 - (info->map.size[1] * col_w) / 2
+		+ info->map.spawn[1] * col_w + col_w / 2 - info->player.h / 2;
+	info->player.dx = cos(deg_to_rad(info->player.dir));
+	info->player.dy = -sin(deg_to_rad(info->player.dir));
 	info->map.map_size = info->map.size[0] * info->map.size[1];
-	info->player.len = t / 2;
-	info->player.w = t / 8;
-	info->player.h = t / 8;
 	info->minipl.h = 4;
 	info->minipl.w = 4;
+//	printf("INI PL POS x: %f, y: %f\n", info->player.x, info->player.y);
 	info->minipl.x = cell_w + info->map.spawn[0] * cell_w
 		+ cell_w / 2 - info->minipl.w / 2;
 	info->minipl.y = cell_w + info->map.spawn[1] * cell_w
 		+ cell_w / 2 - info->minipl.h / 2;
-//	info->player.x = WIDTH / 2 + (t * 3 / 2) - (info->player.w / 2); //6 NOMBRE COLUMNES MAP, 64 (t) = mida passadissos d'una unitat (utilitzada a fill_map)
-//	info->player.y = HEIGHT / 2 + t - (info->player.h / 2);
-	//info->map.scale = SCALE;
-	//info->map.floor = info->parameters.floor;
-	//info->map.ceiling = info->parameters.ceiling;
+//	printf("INI MINIPL POS x: %f, y: %f\n", info->minipl.x, info->minipl.y);
+	info->minipl.dx = info->player.dx / 3;
+	info->minipl.dy = info->player.dy / 3;
 }
