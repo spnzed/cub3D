@@ -6,23 +6,11 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:59:47 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/11 19:11:44 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:20:53 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-static void	player_direction(char c, t_data *info)
-{
-	if (c == 'N')
-		info->player.dir = 90;
-	if (c == 'S')
-		info->player.dir = 270;
-	if (c == 'W')
-		info->player.dir = 180;
-	if (c == 'E')
-		info->player.dir = 0;
-}
 
 static int	check_grid(char *line, int y, t_data *info)
 {
@@ -52,7 +40,7 @@ static int	check_grid(char *line, int y, t_data *info)
 	return (0);
 }
 
-static int	weatborder(char **grid, int x, int y, int size_x, int size_y)
+static int	weatborder(char **grid, int x, int y)
 {
 	int	i;
 	int	j;
@@ -65,8 +53,8 @@ static int	weatborder(char **grid, int x, int y, int size_x, int size_y)
 		{
 			if (y + i != 0 && x + j != 0)
 			{
-				if (x + i >= size_x || x + i < 0
-					|| y + j >= size_y || y + j < 0
+				if (x + i >= ft_arrlen(grid) || x + i < 0
+					|| y + j >= ft_strlen(grid[x]) || y + j < 0
 					|| grid[x + i][y + j] == ' ')
 					return (1);
 			}
@@ -86,7 +74,7 @@ static int	check_border(char **scene, int i)
 		j = 0;
 		while (scene[i][j])
 		{
-			if (weatborder(scene, i, j, ft_arrlen(scene), ft_strlen(scene[i])))
+			if (weatborder(scene, i, j))
 			{
 				if (scene[i][j] == '0')
 					return (ft_err("Error: Map: Not Surrounded by Walls\n"), 1);
@@ -142,11 +130,8 @@ int	check_map_char(char **scene, t_data *info)
 					if (check_grid(scene[i], i, info))
 						return (1);
 				}
-				else
-				{
-					if (check_grid(scene[i], ++j, info))
-						return (1);
-				}
+				else if (check_grid(scene[i], ++j, info))
+					return (1);
 			}
 			count++;
 		}

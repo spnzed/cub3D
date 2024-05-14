@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/13 18:04:19 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:21:25 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,8 +135,6 @@ typedef struct s_data
 //	t_map			minimap;
 	t_player		player;
 	t_player		minipl;
-	//t_sq			*minipl; // intentar integrar a info l'estructura del quadradet que representa en 2D el jugador al minimap
-	//t_sq			*bigpl; //temp per a bigmap 2D
 }					t_data;
 
 //		Program
@@ -169,6 +167,8 @@ void	draw_line(int *scr, t_point *pts, int color);
 void	init_temp(t_data *info);
 void	new_scene(t_data *info);
 void	init_players(t_data *info);
+void	fill_ray(int *scr, t_player *pl);
+void	create_image(t_data *info);
 
 //		Utils
 int		ft_count_lines(int fd);
@@ -176,5 +176,9 @@ int		open_file(char *file);
 void	close_file(int fd, char **scene, bool arr);
 int		valid_file(char *file);
 int		ft_err(char *str);
+int		gen_color(int R, int G, int B);
+float	angle_correction(float ang);
+float	deg_to_rad(float d);
+void	player_direction(char c, t_data *info);
 
 #endif

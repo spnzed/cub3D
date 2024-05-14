@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 14:04:46 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/11 19:16:56 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:47:21 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,6 @@ static char	*check_texture_element(char *line, char *param)
 	}
 	param = ft_strdup(line);
 	return (param);
-}
-
-int	gen_color(int R, int G, int B)
-{
-	int	color;
-
-	color = (R << 16) | (G << 8) | B;
-	return (color);
 }
 
 static int	check_color_element(char *line, int color)
@@ -102,13 +94,9 @@ int	check_textures(char **scene, t_data *info)
 {
 	int	i;
 	int	count;
-//	int	j;  //erosas check
 
 	i = -1;
 	count = 0;
-/*	j = -1;
-	while (scene[++j])
-		printf("scene[%i]: %s, len(s): %i\n", j, scene[j], ft_strlen(scene[j]));*/
 	while (scene[++i])
 	{
 		if (ft_strlen(scene[i]) > 1)

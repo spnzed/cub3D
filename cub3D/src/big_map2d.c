@@ -6,53 +6,11 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:11:18 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/13 21:06:09 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:09:57 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-static void	fill_ray(int *scr, t_player *pl)
-{
-	t_point	*pts;
-
-	pts = ft_calloc(sizeof(pts), 2);
-	if (!pts)
-	{
-		ft_err("Error: Malloc\n");
-		exit (1);
-	}
-	pts[0].x = pl->x + pl->w / 2;
-	pts[0].y = pl->y + pl->h / 2;
-	pts[1].x = 0;
-	pts[1].y = 0;
-	if (pl->dir == 90)
-	{
-		pts[1].x = pts[0].x;
-		pts[1].y = pts[0].y - pl->len;
-	}
-	else if (pl->dir == 270)
-	{
-		pts[1].x = pts[0].x;
-		pts[1].y = pts[0].y + pl->len;
-	}
-	else if (pl->dir == 0)
-	{
-		pts[1].x = pts[0].x + pl->len;
-		pts[1].y = pts[0].y;
-	}
-	else if (pl->dir == 180)
-	{
-		pts[1].x = pts[0].x - pl->len;
-		pts[1].y = pts[0].y;
-	}
-	else
-	{
-		pts[1].x = pts[0].x + cos(deg_to_rad(pl->dir)) * pl->len;
-		pts[1].y = pts[0].y - sin(deg_to_rad(pl->dir)) * pl->len;
-	}
-	draw_line(scr, pts, 0xFFFF00);
-}
 
 static void	fill_bigpl(int *scr, t_player *pl, int p, int w)
 {
