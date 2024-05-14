@@ -3,14 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   loop_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:43:39 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/24 15:33:43 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/30 15:50:46 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+void	handle_key(t_data *info)
+{
+	if (!info->mlx->mlx)
+	{
+		printf(RED"Error: MLX\n"RESET);
+		exit(1);
+	}
+	if (info->mlx->keys->w)
+		move_front(info);
+	if (info->mlx->keys->a)
+		move_left(info);
+	if (info->mlx->keys->s)
+		move_back(info);
+	if (info->mlx->keys->d)
+		move_right(info);
+	if (info->mlx->keys->l_arr)
+		move_l_arrow(info);
+	if (info->mlx->keys->r_arr)
+		move_r_arrow(info);
+}
 
 int	ft_press(int keycode, t_mlx *mlx)
 {
@@ -21,17 +42,17 @@ int	ft_press(int keycode, t_mlx *mlx)
 		exit(1);
 	}
 	if (keycode == KEY_W)
-		mlx->keys->W = 1;
+		mlx->keys->w = 1;
 	else if (keycode == KEY_A)
-		mlx->keys->A = 1;
+		mlx->keys->a = 1;
 	else if (keycode == KEY_S)
-		mlx->keys->S = 1;
+		mlx->keys->s = 1;
 	else if (keycode == KEY_D)
-		mlx->keys->D = 1;
+		mlx->keys->d = 1;
 	else if (keycode == KEY_LEFT)
-		mlx->keys->L_ARR = 1;
+		mlx->keys->l_arr = 1;
 	else if (keycode == KEY_RIGHT)
-		mlx->keys->R_ARR = 1;
+		mlx->keys->r_arr = 1;
 	return (0);
 }
 
@@ -43,17 +64,17 @@ int	ft_release(int keycode, t_mlx *mlx)
 		exit(1);
 	}
 	if (keycode == KEY_W)
-		mlx->keys->W = 0;
+		mlx->keys->w = 0;
 	else if (keycode == KEY_A)
-		mlx->keys->A = 0;
+		mlx->keys->a = 0;
 	else if (keycode == KEY_S)
-		mlx->keys->S = 0;
+		mlx->keys->s = 0;
 	else if (keycode == KEY_D)
-		mlx->keys->D = 0;
+		mlx->keys->d = 0;
 	else if (keycode == KEY_LEFT)
-		mlx->keys->L_ARR = 0;
+		mlx->keys->l_arr = 0;
 	else if (keycode == KEY_RIGHT)
-		mlx->keys->R_ARR = 0;
+		mlx->keys->r_arr = 0;
 	return (0);
 }
 

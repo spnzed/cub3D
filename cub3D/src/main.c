@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 20:53:28 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/04/25 18:39:25 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:08:43 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,15 @@ static int		init_window(t_data *info)
 	info->mlx->win = mlx_new_window(info->mlx->mlx, WIDTH, HEIGHT, "cub3D");
 	put_images(info);
 	put_position(info);
+	return (0);
+}
+
+static int	render(t_data *info)
+{
+	handle_key(info);
+	ray_casting(info);
+	mlx_put_image_to_window(info->mlx->mlx,
+		info->mlx->win, info->mlx->img.img, 0, 0);
 	return (0);
 }
 

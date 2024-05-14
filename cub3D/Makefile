@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+         #
+#    By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/04 17:25:20 by erosas-c          #+#    #+#              #
-#    Updated: 2024/04/24 17:04:43 by aaespino         ###   ########.fr        #
+#    Updated: 2024/04/30 17:10:16 by aaronespino      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,9 @@ SRC_FILES	=	arguments.c 		\
 				loop_functions.c	\
 				move.c				\
 				move_arrows.c		\
-					
+				texture.c			\
+				ray_casting.c		\
+
 OBJ_DIR		=	obj/
 OBJ_FILES	=	$(SRC_FILES:.c=.o)
 OBJS		=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
