@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/14 18:56:36 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/14 19:51:51 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,18 +136,18 @@ typedef struct s_rays
 	double	plane[2];
 	double	pos[2];
 	double	dir[2];
-	double	rayDir[2];
-	double	deltaDist[2];
-	double	sideDist[2];
-	double	perpWallDist;
+	double	raydir[2];
+	double	deltadist[2];
+	double	sidedist[2];
+	double	perpwalldist;
 	int		draw[2];
 	int		step[2];
 	int		side[2];
-	int		lineHeight;
-  	bool	hit;
+	int		lineh;
+	bool	hit;
 }	t_rays;
 
-typedef struct 		s_data
+typedef struct s_data
 {
 	char			**scene;
 	t_mlx			*mlx;
@@ -157,11 +157,11 @@ typedef struct 		s_data
 //	t_map			minimap;
 	t_player		player;
 	t_player		minipl;
-	int		dir;
-	int		dir_cor[2];
-	int		p_plane_x;
-	int		p_plane_y;
-}					t_data;
+	int				dir;
+	int				dir_cor[2];
+	int				p_plane_x;
+	int				p_plane_y;
+}	t_data;
 
 //		Program
 int		check_args(int argc, char **argv, t_data *info);

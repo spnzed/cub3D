@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:58:37 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/05/14 18:58:04 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/14 19:54:24 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,52 +15,54 @@
 void	calc_positions(t_data *info, int i)
 {
 	info->ray.camera = 2 * i / (double)WIDTH - 1;
-	info->ray.rayDir[X] = info->ray.dir[X] + \
+	info->ray.raydir[X] = info->ray.dir[X] + \
 		info->ray.plane[X] * info->ray.camera;
-	info->ray.rayDir[Y] = info->ray.dir[Y] + \
+	info->ray.raydir[Y] = info->ray.dir[Y] + \
 		info->ray.plane[Y] * info->ray.camera;
-	info->ray.deltaDist[X] = sqrt(1 + (info->ray.rayDir[Y] \
-		 * info->ray.rayDir[Y]) / (info->ray.rayDir[X] * info->ray.rayDir[X]));
-	info->ray.deltaDist[Y] = sqrt(1 + (info->ray.rayDir[X] \
-		 * info->ray.rayDir[X]) / (info->ray.rayDir[Y] * info->ray.rayDir[Y]));
+	info->ray.deltadist[X] = sqrt(1 + (info->ray.raydir[Y] \
+		* info->ray.raydir[Y]) / (info->ray.raydir[X] * info->ray.raydir[X]));
+	info->ray.deltadist[Y] = sqrt(1 + (info->ray.raydir[X] \
+		* info->ray.raydir[X]) / (info->ray.raydir[Y] * info->ray.raydir[Y]));
 }
 
 void	calc_step(t_data *info)
 {
-	if (info->ray.rayDir[X] < 0)
+	if (info->ray.raydir[X] < 0)
 	{
 		info->ray.step[X] = -1;
-		info->ray.sideDist[X] = (info->player.x - info->ray.pos[X]) \
-			* info->ray.deltaDist[X];
+		info->ray.sidedist[X] = (info->player.x - info->ray.pos[X]) \
+			* info->ray.deltadist[X];
 	}
 	else
 	{
 		info->ray.step[X] = 1;
-		info->ray.sideDist[X] = (info->ray.pos[X] + 1.0 - info->player.x) \
-			* info->ray.deltaDist[X];
+		info->ray.sidedist[X] = (info->ray.pos[X] + 1.0 - info->player.x) \
+			* info->ray.deltadist[X];
 	}
-	if (info->ray.rayDir[Y] < 0)
+	if (info->ray.raydir[Y] < 0)
 	{
 		info->ray.step[Y] = -1;
-		info->ray.sideDist[Y] = (info->player.y - info->ray.pos[Y]) \
-			* info->ray.deltaDist[Y];
+		info->ray.sidedist[Y] = (info->player.y - info->ray.pos[Y]) \
+			* info->ray.deltadist[Y];
 	}
 	else
 	{
 		info->ray.step[Y] = 1;
-		info->ray.sideDist[Y] = (info->ray.pos[Y] + 1.0 - info->player.y) \
-			* info->ray.deltaDist[Y];
+		info->ray.sidedist[Y] = (info->ray.pos[Y] + 1.0 - info->player.y) \
+			* info->ray.deltadist[Y];
 	}
 }
 
 void	calc_hit(t_data *info)
 {
-	int hit = 0;
+	int	hit;
+
+	hit = 0;
 	while (!hit)
 	{
-		if (info->ray.sideDist[X] < info->ray.sideDist[Y])
+		if (info->ray.sidedist[X] < info->ray.sidedist[Y])
 		{
-			info->ray.sideDist[X] += info->ray.deltaDist[X];
+			info->ray.sidedist[X] += info->ray.deltadist[X];
 			info->ray.pos[X] += info->ray.step[X];
 			info->ray.side[X] = 1;
 			info->ray.side[Y] = 0;
@@ -69,7 +71,7 @@ void	calc_hit(t_data *info)
 		}
 		else
 		{
-			info->ray.sideDist[Y] += info->ray.deltaDist[Y];
+			info->ray.sidedist[Y] += info->ray.deltadist[Y];
 			info->ray.pos[Y] += info->ray.step[Y];
 			info->ray.side[X] = 0;
 			info->ray.side[Y] = 1;

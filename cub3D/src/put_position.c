@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 17:02:21 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/14 18:36:39 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/14 19:46:34 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,10 @@ void	put_position(t_data *info)
 	info->map.map_size = info->map.size[0] * info->map.size[1];
 	info->minipl.h = 4;
 	info->minipl.w = 4;
-//	printf("INI PL POS x: %f, y: %f\n", info->player.x, info->player.y);
 	info->minipl.x = cell_w + info->map.spawn[0] * cell_w
 		+ cell_w / 2 - info->minipl.w / 2;
 	info->minipl.y = cell_w + info->map.spawn[1] * cell_w
 		+ cell_w / 2 - info->minipl.h / 2;
-//	printf("INI MINIPL POS x: %f, y: %f\n", info->minipl.x, info->minipl.y);
 	info->player.dx = info->minipl.dx * 6;
 	info->player.dy = info->minipl.dy * 6;
 /*	info->player.x = (info->map.spawn[0] * SCALE) + SCALE / 2;
