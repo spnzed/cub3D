@@ -6,18 +6,22 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:43:39 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/14 18:23:41 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/14 19:23:50 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static int	ft_esc(t_mlx *mlx)
+int	ft_esc(int keycode, t_mlx *mlx)
 {
-	mlx_destroy_image(mlx->mlx, mlx->img.img);
-	mlx_destroy_window(mlx->mlx, mlx->win);
-	free(mlx);
-	exit(1);
+	if (keycode == KEY_ESC)
+	{
+		mlx_destroy_image(mlx->mlx, mlx->img.img);
+		mlx_destroy_window(mlx->mlx, mlx->win);
+		free(mlx);
+		exit(1);
+	}
+	return (0);
 }
 
 int	ft_press(int keycode, t_mlx *mlx)
@@ -36,11 +40,11 @@ int	ft_press(int keycode, t_mlx *mlx)
 	else if (keycode == KEY_D)
 		mlx->keys->d = 1;
 	else if (keycode == KEY_LEFT)
-		mlx->keys->left = 1;
+		mlx->keys->l_arr = 1;
 	else if (keycode == KEY_RIGHT)
-		mlx->keys->right = 1;
+		mlx->keys->r_arr = 1;
 	else if (keycode == KEY_ESC)
-		ft_esc(mlx);
+		ft_esc(keycode, mlx);
 	return (0);
 }
 
@@ -60,9 +64,9 @@ int	ft_release(int keycode, t_mlx *mlx)
 	else if (keycode == KEY_D)
 		mlx->keys->d = 0;
 	else if (keycode == KEY_LEFT)
-		mlx->keys->left = 0;
+		mlx->keys->l_arr = 0;
 	else if (keycode == KEY_RIGHT)
-		mlx->keys->right = 0;
+		mlx->keys->r_arr = 0;
 	return (0);
 }
 
