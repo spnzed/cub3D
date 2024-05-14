@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:59:47 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/22 19:24:37 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/26 14:30:03 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ static int	check_grid(char *line, int y, t_data *info)
 	x = -1;
 	while (line[++x])
 	{
+		if (ft_strchr("10NSWE", line[x]))
+		{
+			if (info->map.grid_pos == -1)
+				info->map.grid_pos = y + 1;
+		}
 		if (ft_strchr("NSWE", line[x]))
 		{
 			if (spawn > 0)
@@ -60,9 +65,9 @@ static int	we_at_border(char **grid, int x, int y, int size_x, int size_y)
 		{
 			if (y + i != 0 && x + j != 0)
 			{
-				if (x + i >= size_x || x + i < 0 ||
-					y + j >= size_y || y + j < 0 ||
-					grid[x + i][y + j] == ' ')
+				if (x + i >= size_x || x + i < 0
+					|| y + j >= size_y || y + j < 0
+					|| grid[x + i][y + j] == ' ')
 					return (1);
 			}
 			j++;
@@ -81,6 +86,7 @@ static int	check_border(char **scene, int i)
 		j = 0;
 		while (scene[i][j])
 		{
+			//					SIZE 0 
 			if (we_at_border(scene, i, j, ft_arrlen(scene), ft_strlen(scene[i])))
 			{
 				if (scene[i][j] == '0')

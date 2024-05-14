@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   arguments.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:46:42 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/23 18:41:32 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/04/25 00:30:23 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static int comprove_extension(char *file)
+static int	comprove_extension(char *file)
 {
 	int	i;
 
@@ -41,5 +41,5 @@ int	check_args(int argc, char **argv, t_data *info)
 		exit(1);
 	else
 		handle_map(argv[1], info);
-	return 0;
+	return (0);
 }

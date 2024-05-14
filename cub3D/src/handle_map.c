@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:43:32 by aaespino          #+#    #+#             */
-/*   Updated: 2024/04/22 19:10:13 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:40:53 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	check_map (t_data *info)
 
 void	parse_map (t_data *info, char **grid)
 {
-	info->map.grid = map_to_file(&info->map, grid);
+	info->map.grid = map_to_file(info, &info->map, grid);
 	if (check_map_border(info->map.grid))
 		exit(1);
 }
