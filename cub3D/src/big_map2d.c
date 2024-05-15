@@ -12,6 +12,21 @@
 
 #include "cub3D.h"
 
+static void	draw_player(int *scr, int xpl, int ypl, int color)
+{
+	int x;
+	int	y;
+
+	x = xpl - 4;
+	y = ypl - 4;
+	while (++y <= ypl + 3)
+	{
+		while (++x <= xpl + 3)
+			scr[y * WIDTH + x] = color;
+		x = xpl - 4;
+	}
+}
+
 static void	ft_updvalues(int *i, int *p, int po, int *k)
 {
 	(*i)++;
@@ -60,4 +75,5 @@ void	get_bigmap2d(t_data *info)
 	p = mp_yp * WIDTH + mp_xp;
 	fill_bigmap(info->mlx->img.img_adr, &info->map, p, 0);
 	fill_ray(info->mlx->img.img_adr, &info->player);
+	draw_player(info->mlx->img.img_adr, info->player.x, info->player.y, 0xFFFF00);
 }
