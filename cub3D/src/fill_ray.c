@@ -12,9 +12,29 @@
 
 #include "cub3D.h"
 
+static void	draw_player(int *scr, int xpl, int ypl, int color)
+{
+	int x;
+	int	y;
+
+	x = xpl - 4;
+	y = ypl - 4;
+	while (++y <= ypl + 3)
+	{
+		while (++x <= xpl + 3)
+			scr[y * WIDTH + x] = color;
+		x = xpl - 4;
+	}
+}
+
 void	other_angles(t_point *pts, t_player *pl)
 {
-	if (pl->dir == 0)
+	if (pl->dir == 270)
+	{
+		pts[1].x = pts[0].x;
+		pts[1].y = pts[0].y + pl->len;
+	}
+	else if (pl->dir == 0)
 	{
 		pts[1].x = pts[0].x + pl->len;
 		pts[1].y = pts[0].y;
@@ -41,8 +61,8 @@ void	fill_ray(int *scr, t_player *pl)
 		ft_err("Error: Malloc\n");
 		exit (1);
 	}
-	pts[0].x = pl->x + pl->w / 2;
-	pts[0].y = pl->y + pl->h / 2;
+	pts[0].x = pl->x/* + pl->w / 2*/;
+	pts[0].y = pl->y/* + pl->h / 2*/;
 	pts[1].x = 0;
 	pts[1].y = 0;
 	if (pl->dir == 90)
@@ -50,12 +70,8 @@ void	fill_ray(int *scr, t_player *pl)
 		pts[1].x = pts[0].x;
 		pts[1].y = pts[0].y - pl->len;
 	}
-	else if (pl->dir == 270)
-	{
-		pts[1].x = pts[0].x;
-		pts[1].y = pts[0].y + pl->len;
-	}
 	else
 		other_angles(pts, pl);
 	draw_line(scr, pts, 0xFFFF00);
+	draw_player(scr, pl->x, pl->y, 0xFFFF00);
 }

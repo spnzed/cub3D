@@ -12,27 +12,6 @@
 
 #include "cub3D.h"
 
-static void	fill_bigpl(int *scr, t_player *pl, int p, int w)
-{
-	int	c;
-	int	po;
-	int	h;
-	int	i;
-
-	i = 1;
-	po = p;
-	h = -1;
-	c = 0xffff000;
-	while (++h < pl->h)
-	{
-		while (++w < pl->w)
-			scr[p++] = c;
-		p = po + WIDTH * i;
-		w = -1;
-		i++;
-	}
-}
-
 static void	ft_updvalues(int *i, int *p, int po, int *k)
 {
 	(*i)++;
@@ -80,7 +59,5 @@ void	get_bigmap2d(t_data *info)
 	mp_yp = HEIGHT / 2 - info->map.size[1] * col_w / 2;
 	p = mp_yp * WIDTH + mp_xp;
 	fill_bigmap(info->mlx->img.img_adr, &info->map, p, 0);
-	fill_bigpl(info->mlx->img.img_adr, &info->player,
-		(info->player.y * WIDTH) + info->player.x, -1);
 	fill_ray(info->mlx->img.img_adr, &info->player);
 }

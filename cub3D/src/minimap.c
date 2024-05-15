@@ -49,7 +49,7 @@ static void	fill_map(int *scr, t_data *info, int p, int i)
 	}
 }
 
-static void	fill_player(int *scr, t_player *pl, int p, int w)
+/*static void	fill_player(int *scr, t_player *pl, int p, int w)
 {
 	int	c;
 	int	po;
@@ -68,16 +68,36 @@ static void	fill_player(int *scr, t_player *pl, int p, int w)
 		w = -1;
 		i++;
 	}
+}*/
+
+static void	draw_minipl(int *scr, int xpl, int ypl, int color)
+{
+	int x;
+	int	y;
+
+	x = xpl - 2;
+	y = ypl - 2;
+	while (++y <= ypl + 1)
+	{
+		while (++x <= xpl + 1)
+			scr[y * WIDTH + x] = color;
+		x = xpl - 2;
+	}
 }
 
 void	mini_map(t_data *info)
 {
-	int			cell_w;
-	int			p;
+	int	cell_w;
+	int	p;
+	int	plx;
+	int ply;	
 
 	cell_w = 8;
 	p = WIDTH * cell_w + cell_w;
+	plx = info->player.x / 6 - 8;
+	ply = info->player.y / 6;
 	fill_map(info->mlx->img.img_adr, info, p, 0);
-	fill_player(info->mlx->img.img_adr, &info->minipl,
-		(info->minipl.y * WIDTH) + info->minipl.x, -1);
+	draw_minipl(info->mlx->img.img_adr, plx, ply, 0xFFFF00);
+/*	fill_player(info->mlx->img.img_adr, &info->minipl,
+		((info->minipl.y - info->minipl.h / 2) * WIDTH) + (info->minipl.x - info->minipl.w / 2), -1);*/
 }
