@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:58:59 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/15 13:24:04 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:23:46 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ static void	paint_walls(t_data *info, char *file, t_img *img)
 
 static void	create_textures(t_data *info)
 {
-	paint_walls(info, info->parameters.north, info->mlx->north);
-	paint_walls(info, info->parameters.south, info->mlx->south);
-	paint_walls(info, info->parameters.east, info->mlx->east);
-	paint_walls(info, info->parameters.west, info->mlx->west);
+	paint_walls(info, info->parameters.north, &info->mlx->north);
+	paint_walls(info, info->parameters.south, &info->mlx->south);
+	paint_walls(info, info->parameters.east, &info->mlx->east);
+	paint_walls(info, info->parameters.west, &info->mlx->west);
 }
 
 void	put_images(t_data *info)

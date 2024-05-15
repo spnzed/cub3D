@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:58:37 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/05/15 13:17:45 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:38:33 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,7 @@ void	calc_step(t_data *info)
 
 void	calc_hit(t_data *info)
 {
-	int	hit;
-
-	hit = 0;
-	while (!hit)
+	while (1)
 	{
 		if (info->ray.sidedist[X] < info->ray.sidedist[Y])
 		{
@@ -78,8 +75,8 @@ void	calc_hit(t_data *info)
 			if (info->ray.step[Y] < 0)
 				info->ray.side[Y] = -1;
 		}
-		if (info->map.grid[(int)info->ray.pos[X]][(int)info->ray.pos[Y]] > 0)
-			hit = 1;
+		if (info->map.grid[info->ray.pos[X]][info->ray.pos[Y]] > 0)
+			break ;
 	}
 }
 

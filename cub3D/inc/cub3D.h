@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/15 13:22:53 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:32:53 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,10 @@ typedef struct s_mlx
 	void	*win;
 	t_keys	*keys;
 	t_img	img;
-	t_img	*north;
-	t_img	*south;
-	t_img	*east;
-	t_img	*west;
+	t_img	north;
+	t_img	south;
+	t_img	east;
+	t_img	west;
 }	t_mlx;
 
 typedef struct s_map
@@ -133,7 +133,7 @@ typedef struct s_rays
 {
 	double	camera;
 	double	plane[2];
-	double	pos[2];
+	int		pos[2];
 	double	dir[2];
 	double	raydir[2];
 	double	deltadist[2];
