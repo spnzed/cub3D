@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_position.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 17:02:21 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/14 19:46:34 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/15 13:02:03 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	put_position(t_data *info)
 		+ info->map.spawn[0] * col_w + col_w / 2 - info->player.w / 2;
 	info->player.y = HEIGHT / 2 - (info->map.size[1] * col_w) / 2
 		+ info->map.spawn[1] * col_w + col_w / 2 - info->player.h / 2;
-	info->minipl.dx = cos(deg_to_rad(info->player.dir));
-	info->minipl.dy = -sin(deg_to_rad(info->player.dir));
+	info->minipl.dir[X] = cos(deg_to_rad(info->player.p_dir));
+	info->minipl.dir[Y] = -sin(deg_to_rad(info->player.p_dir));
 	info->map.map_size = info->map.size[0] * info->map.size[1];
 	info->minipl.h = 4;
 	info->minipl.w = 4;
@@ -35,13 +35,13 @@ void	put_position(t_data *info)
 		+ cell_w / 2 - info->minipl.w / 2;
 	info->minipl.y = cell_w + info->map.spawn[1] * cell_w
 		+ cell_w / 2 - info->minipl.h / 2;
-	info->player.dx = info->minipl.dx * 6;
-	info->player.dy = info->minipl.dy * 6;
+	info->player.dir[X] = info->minipl.dir[X] * 6;
+	info->player.dir[Y] = info->minipl.dir[Y] * 6;
 /*	info->player.x = (info->map.spawn[0] * SCALE) + SCALE / 2;
 	info->player.y = (info->map.spawn[1] * SCALE) + SCALE / 2;
-	info->player.dir= info->map.player_dir;
-	info->player.dir_cor[X] = cos(deg_to_rad(info->map.player_dir));
-	info->player.dir_cor[Y] = -sin(deg_to_rad(info->map.player_dir));
+	info->player.p_dir= info->map.player_dir;
+	info->player.p_dir_cor[X] = cos(deg_to_rad(info->map.player_dir));
+	info->player.p_dir_cor[Y] = -sin(deg_to_rad(info->map.player_dir));
 	info->map.map_size = info->map.size[X] * info->map.size[Y];
 	info->map.scale = SCALE;
 	info->map.floor = info->parameters.floor;

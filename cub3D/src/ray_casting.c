@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:58:37 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/05/14 19:54:24 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/15 13:17:45 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,16 @@ void	calc_hit(t_data *info)
 	}
 }
 
-/*void	calc_perp(t_data *info)
+void	calc_perp(t_data *info)
 {
-	if (info->ray.side == 0)
-		info->ray.perpWallDist = fabs((info->ray.pos[X] - info->ray.pos[X] + \
-			(1 - info->ray.step[X]) / 2) / info->ray.rayDir[X]);
+	if (info->ray.side[X] != 0)
+		info->ray.perpwalldist = fabs((info->ray.pos[X] - info->ray.pos[X] + \
+			(1 - info->ray.step[X]) / 2) / info->ray.dir[X]);
 	else
-		info->ray.perpWallDist = fabs((info->ray.pos[Y] - info->ray.pos[Y] + \
-			(1 - info->ray.step[Y]) / 2) / info->ray.rayDir[Y]);
-	info->ray.lineHeight = abs((int)(HEIGHT / info->ray.perpWallDist));
-}*/
+		info->ray.perpwalldist = fabs((info->ray.pos[Y] - info->ray.pos[Y] + \
+			(1 - info->ray.step[Y]) / 2) / info->ray.dir[Y]);
+	info->ray.lineh = abs((int)(HEIGHT / info->ray.perpwalldist));
+}
 
 /*
 
@@ -129,7 +129,7 @@ verLine();
 	if (info->ray.draw[END] >= HEIGHT)
 		info->ray.draw[END] = HEIGHT - 1;
 */
-/*void ray_casting(t_data *info)
+void ray_casting(t_data *info)
 {
 	int		 i;
 
@@ -138,8 +138,8 @@ verLine();
 	info->ray.plane[Y] = 0.66;
 	info->ray.pos[X] = info->player.x;
 	info->ray.pos[Y] = info->player.y;
-	info->ray.dir[X] = info->player.dir_cor[X];
-	info->ray.dir[Y] = info->player.dir_cor[Y];
+	info->ray.dir[X] = info->player.dir[X];
+	info->ray.dir[Y] = info->player.dir[Y];
 	while (i < WIDTH)
 	{
 		calc_positions(info, i);
@@ -148,4 +148,4 @@ verLine();
 		calc_perp(info);
 		init_texture(info);
 	}
-}*/
+}

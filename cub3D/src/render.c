@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:46:35 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/14 18:57:38 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/15 13:31:18 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	new_scene(t_data *info)
 int	render(t_data *info)
 {
 	handle_key(info);
-//	ray_casting(info);
+	//ray_casting(info);
 	new_scene(info);
 	mlx_put_image_to_window(info->mlx->mlx,
 		info->mlx->win, info->mlx->img.img, 0, 0);

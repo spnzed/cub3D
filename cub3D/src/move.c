@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 16:31:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/14 19:45:33 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/15 13:01:41 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,26 +31,26 @@
 void	move_front(t_data *info)
 {
 	/*if (check_collision(info,
-			info->player.x + info->player.dx * SPEED,
-			info->player.y + info->player.dy * SPEED))
+			info->player.x + info->player.p_dir[X] * SPEED,
+			info->player.y + info->player.p_dir[Y] * SPEED))
 	{*/
-		info->player.x += info->player.dx;
-		info->player.y += info->player.dy;
-		info->minipl.x += info->minipl.dx;
-		info->minipl.y += info->minipl.dy;
+		info->player.x += info->player.dir[X];
+		info->player.y += info->player.dir[Y];
+		info->minipl.x += info->minipl.dir[X];
+		info->minipl.y += info->minipl.dir[Y];
 //	}
 }
 
 void	move_back(t_data *info)
 {
 	/*if (check_collision(info,
-			info->player.x - info->player.dx * SPEED,
-			info->player.y - info->player.dy * SPEED))
+			info->player.x - info->player.p_dir[X] * SPEED,
+			info->player.y - info->player.p_dir[Y] * SPEED))
 	{*/
-	info->player.x -= info->player.dx;
-	info->player.y -= info->player.dy;
-	info->minipl.x -= info->minipl.dx;
-	info->minipl.y -= info->minipl.dy;
+	info->player.x -= info->player.dir[X];
+	info->player.y -= info->player.dir[Y];
+	info->minipl.x -= info->minipl.dir[X];
+	info->minipl.y -= info->minipl.dir[Y];
 	//}
 }
 
@@ -60,7 +60,7 @@ void	move_right(t_data *info)
 	float	new_dx;
 	float	new_dy;
 
-	new_dir = angle_correction(90 - info->player.dir);
+	new_dir = angle_correction(90 - info->player.p_dir);
 	new_dx = cos(deg_to_rad(new_dir));
 	new_dy = sin(deg_to_rad(new_dir));
 	/*if (check_collision(info,
@@ -78,7 +78,7 @@ void	move_right(t_data *info)
 	/*int	new_dir;
 	int	new_dir_cor[2];
 
-	new_dir = angle_correction(90 - info->player.dir);
+	new_dir = angle_correction(90 - info->player.p_dir);
 	new_dir_cor[X] = cos(deg_to_rad(new_dir));
 	new_dir_cor[Y] = sin(deg_to_rad(new_dir));*/
 }
@@ -89,7 +89,7 @@ void	move_left(t_data *info)
 	float	new_dx;
 	float	new_dy;
 
-	new_dir = angle_correction(90 - info->player.dir);
+	new_dir = angle_correction(90 - info->player.p_dir);
 	new_dx = cos(deg_to_rad(new_dir));
 	new_dy = sin(deg_to_rad(new_dir));
 	/*if (check_collision(info,
@@ -104,7 +104,7 @@ void	move_left(t_data *info)
 	/*int	new_dir;
 	int	new_dir_cor[2];
 
-	new_dir = angle_correction(90 - info->player.dir);
+	new_dir = angle_correction(90 - info->player.p_dir);
 	new_dir_cor[X] = cos(deg_to_rad(new_dir));
 	new_dir_cor[Y] = sin(deg_to_rad(new_dir));
 	if (check_collision(info,
