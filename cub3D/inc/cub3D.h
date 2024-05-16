@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/15 14:32:53 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/05/15 19:27:55 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ typedef struct s_player
 {
 	float	x;
 	float	y;
-	int		p_dir; //era p_dir pero crec que no te sentit, no cal la p i nomes alalrga els caracters que calen
+	int		angle;
 	float	dir[2];
 	int		w;//temp per fer quadradet del jugador en 2D
 	int		h;//temp per fer quadradet del jugador en 2D
@@ -133,7 +133,7 @@ typedef struct s_rays
 {
 	double	camera;
 	double	plane[2];
-	int		pos[2];
+	float	pos[2];
 	double	dir[2];
 	double	raydir[2];
 	double	deltadist[2];
@@ -151,8 +151,8 @@ typedef struct s_data
 	char			**scene;
 	t_mlx			*mlx;
 	t_rays			ray;
-	t_parameters	parameters;
 	t_map			map;
+	t_parameters	parameters;
 //	t_map			minimap;
 	t_player		player;
 	t_player		minipl;
@@ -194,8 +194,12 @@ void	new_scene(t_data *info);
 void	init_players(t_data *info);
 void	fill_ray(int *scr, t_player *pl);
 void	create_image(t_data *info);
-void	init_texture(t_data *info);
+void	init_texture(t_data *info, int i);
 void	ray_casting(t_data *info);
+void	calc_positions(t_data *info, int i);
+void	calc_step(t_data *info);
+void	calc_hit(t_data *info);
+void	calc_perp(t_data *info);
 
 //		Utils
 int		ft_count_lines(int fd);

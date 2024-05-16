@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:58:59 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/15 14:23:46 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:29:50 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,5 @@ void	put_images(t_data *info)
 {
 	create_image(info);
 	create_textures(info);
-	new_scene(info);
+	// new_scene(info);
 }

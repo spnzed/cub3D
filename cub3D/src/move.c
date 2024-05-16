@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 16:31:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/15 13:01:41 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:38:43 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
 void	move_front(t_data *info)
 {
 	/*if (check_collision(info,
-			info->player.x + info->player.p_dir[X] * SPEED,
-			info->player.y + info->player.p_dir[Y] * SPEED))
+			info->player.x + info->player.angle[X] * SPEED,
+			info->player.y + info->player.angle[Y] * SPEED))
 	{*/
 		info->player.x += info->player.dir[X];
 		info->player.y += info->player.dir[Y];
@@ -44,8 +44,8 @@ void	move_front(t_data *info)
 void	move_back(t_data *info)
 {
 	/*if (check_collision(info,
-			info->player.x - info->player.p_dir[X] * SPEED,
-			info->player.y - info->player.p_dir[Y] * SPEED))
+			info->player.x - info->player.angle[X] * SPEED,
+			info->player.y - info->player.angle[Y] * SPEED))
 	{*/
 	info->player.x -= info->player.dir[X];
 	info->player.y -= info->player.dir[Y];
@@ -60,7 +60,7 @@ void	move_right(t_data *info)
 	float	new_dx;
 	float	new_dy;
 
-	new_dir = angle_correction(90 - info->player.p_dir);
+	new_dir = angle_correction(90 - info->player.angle);
 	new_dx = cos(deg_to_rad(new_dir));
 	new_dy = sin(deg_to_rad(new_dir));
 	/*if (check_collision(info,
@@ -78,7 +78,7 @@ void	move_right(t_data *info)
 	/*int	new_dir;
 	int	new_dir_cor[2];
 
-	new_dir = angle_correction(90 - info->player.p_dir);
+	new_dir = angle_correction(90 - info->player.angle);
 	new_dir_cor[X] = cos(deg_to_rad(new_dir));
 	new_dir_cor[Y] = sin(deg_to_rad(new_dir));*/
 }
@@ -89,12 +89,12 @@ void	move_left(t_data *info)
 	float	new_dx;
 	float	new_dy;
 
-	new_dir = angle_correction(90 - info->player.p_dir);
+	new_dir = angle_correction(90 - info->player.angle);
 	new_dx = cos(deg_to_rad(new_dir));
 	new_dy = sin(deg_to_rad(new_dir));
 	/*if (check_collision(info,
-			info->player.x - new_p_dir_x_cos * SPEED,
-			info->player.y - new_p_dir_y_sin * SPEED))
+			info->player.x - new_angle_x_cos * SPEED,
+			info->player.y - new_angle_y_sin * SPEED))
 	{*/
 	info->player.x -= new_dx * 6;
 	info->player.y -= new_dy * 6;
@@ -104,7 +104,7 @@ void	move_left(t_data *info)
 	/*int	new_dir;
 	int	new_dir_cor[2];
 
-	new_dir = angle_correction(90 - info->player.p_dir);
+	new_dir = angle_correction(90 - info->player.angle);
 	new_dir_cor[X] = cos(deg_to_rad(new_dir));
 	new_dir_cor[Y] = sin(deg_to_rad(new_dir));
 	if (check_collision(info,

@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:46:35 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/15 14:42:00 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/05/15 19:46:02 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	new_scene(t_data *info)
 int	render(t_data *info)
 {
 	handle_key(info);
-	//ray_casting(info);
+	// ray_casting(info);
 	new_scene(info);
 	mlx_put_image_to_window(info->mlx->mlx,
 		info->mlx->win, info->mlx->img.img, 0, 0);

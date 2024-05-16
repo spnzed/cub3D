@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:46:42 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/15 12:59:36 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:38:43 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ static int	check_extension(char *file)
 // 	info->ray.plane[Y] = 0.66;
 // 	info->ray.pos[X] = info->player.x;
 // 	info->ray.pos[Y] = info->player.y;
-// 	info->ray.dir[X] = info->player.p_dir_cor[X];
-// 	info->ray.dir[Y] = info->player.p_dir_cor[Y];
+// 	info->ray.dir[X] = info->player.angle_cor[X];
+// 	info->ray.dir[Y] = info->player.angle_cor[Y];
 
 // 	info->player.x = info->map.spawn[Y] + 0.5;
 // 	info->player.y = info->map.spawn[X] + 0.5;
-// 	info->player.p_plane_x = fabs(info->player.p_dir_cor[Y]) * 0.66;
-// 	info->player.p_plane_y = fabs(info->player.p_dir_cor[X]) * 0.66;
-// 	if (info->player.p_dir_cor[X] == -1 || info->map.player_dir[Y] == 1)
+// 	info->player.p_plane_x = fabs(info->player.angle_cor[Y]) * 0.66;
+// 	info->player.p_plane_y = fabs(info->player.angle_cor[X]) * 0.66;
+// 	if (info->player.angle_cor[X] == -1 || info->map.player_dir[Y] == 1)
 // 	{
 // 		info->player.plane[X] *= -1;
 // 		info->player.plane[Y] *= -1;

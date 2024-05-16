@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:03:48 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/14 17:53:40 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/15 19:04:33 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	fill_map(int *scr, t_data *info, int p, int i)
 	}
 }
 
-static void	fill_player(int *scr, t_player *pl, int p, int w)
+static void	 fill_player(int *scr, t_player *pl, int p, int w)
 {
 	int	c;
 	int	po;
