@@ -12,6 +12,19 @@
 
 #include "cub3D.h"
 
+static int	wall_found(int *scr, t_player *player)
+{
+	int	next_x;
+	int	next_y;
+	int pos;
+
+	next_x = player->x + player->dx;
+	next_y = player->y + player->dy;
+	pos = next_y * WIDTH + next_x;
+	if (scr[pos] == 0xFFFFFF)
+		return (1);
+	return (0);
+}
 /*static int	check_collision(t_data *info, float x, float y)
 {
 	int	next_x;
@@ -30,28 +43,30 @@
 
 void	move_front(t_data *info)
 {
+	if (!wall_found(info->mlx->img.img_adr, &info->player))
 	/*if (check_collision(info,
 			info->player.x + info->player.dx * SPEED,
-			info->player.y + info->player.dy * SPEED))
-	{*/
+			info->player.y + info->player.dy * SPEED))*/
+	{
 		info->player.x += info->player.dx;
 		info->player.y += info->player.dy;
 		info->minipl.x += info->minipl.dx;
 		info->minipl.y += info->minipl.dy;
-//	}
+	}
 }
 
 void	move_back(t_data *info)
 {
+	if (!wall_found(info->mlx->img.img_adr, &info->player))
 	/*if (check_collision(info,
 			info->player.x - info->player.dx * SPEED,
-			info->player.y - info->player.dy * SPEED))
-	{*/
+			info->player.y - info->player.dy * SPEED))*/
+	{
 	info->player.x -= info->player.dx;
 	info->player.y -= info->player.dy;
 	info->minipl.x -= info->minipl.dx;
 	info->minipl.y -= info->minipl.dy;
-	//}
+	}
 }
 
 void	move_right(t_data *info)
@@ -63,6 +78,7 @@ void	move_right(t_data *info)
 	new_dir = angle_correction(90 - info->player.dir);
 	new_dx = cos(deg_to_rad(new_dir));
 	new_dy = sin(deg_to_rad(new_dir));
+	if (!wall_found(info->mlx->img.img_adr, &info->player))
 	/*if (check_collision(info,
 			info->player.x + new_dir_cor[X] * SPEED,
 			info->player.y + new_dir_cor[Y] * SPEED))
@@ -70,10 +86,12 @@ void	move_right(t_data *info)
 		info->player.x += new_dir_cor[X] * SPEED;
 		info->player.y += new_dir_cor[Y] * SPEED;
 	}*/
-	info->player.x += new_dx * 6;
-	info->player.y += new_dy * 6;
-	info->minipl.x += new_dx;
-	info->minipl.y += new_dy;
+	{
+		info->player.x += new_dx * 6;
+		info->player.y += new_dy * 6;
+		info->minipl.x += new_dx;
+		info->minipl.y += new_dy;
+	}
 	//CHECKTHIS
 	/*int	new_dir;
 	int	new_dir_cor[2];
@@ -96,10 +114,13 @@ void	move_left(t_data *info)
 			info->player.x - new_p_dir_x_cos * SPEED,
 			info->player.y - new_p_dir_y_sin * SPEED))
 	{*/
-	info->player.x -= new_dx * 6;
-	info->player.y -= new_dy * 6;
-	info->minipl.x -= new_dx;
-	info->minipl.y -= new_dy;
+	if (!wall_found(info->mlx->img.img_adr, &info->player))
+	{
+		info->player.x -= new_dx * 6;
+		info->player.y -= new_dy * 6;
+		info->minipl.x -= new_dx;
+		info->minipl.y -= new_dy;
+	}
 	//CHECKTHIS
 	/*int	new_dir;
 	int	new_dir_cor[2];
