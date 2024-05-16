@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/14 19:51:51 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:45:01 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,7 @@ typedef struct s_player
 	float	x;
 	float	y;
 	int		dir; //era p_dir pero crec que no te sentit, no cal la p i nomes alalrga els caracters que calen
-	float	dx; //p_dir_x_cos;  //seria dx suposo (el desplacament d'x)
-	float	dy; //p_dir_y_sin; //idem per a y
+	float	dir_cor[2];
 	int		w;//temp per fer quadradet del jugador en 2D
 	int		h;//temp per fer quadradet del jugador en 2D
 	//float	dx; // x controlar dif. desplaçament segons angle, encada una de les 2 dimensions

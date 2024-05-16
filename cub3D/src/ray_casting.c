@@ -3,149 +3,133 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:58:37 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/05/14 19:54:24 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:49:51 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	calc_positions(t_data *info, int i)
+void	init_ray(t_data *info)
 {
-	info->ray.camera = 2 * i / (double)WIDTH - 1;
-	info->ray.raydir[X] = info->ray.dir[X] + \
-		info->ray.plane[X] * info->ray.camera;
-	info->ray.raydir[Y] = info->ray.dir[Y] + \
-		info->ray.plane[Y] * info->ray.camera;
-	info->ray.deltadist[X] = sqrt(1 + (info->ray.raydir[Y] \
-		* info->ray.raydir[Y]) / (info->ray.raydir[X] * info->ray.raydir[X]));
-	info->ray.deltadist[Y] = sqrt(1 + (info->ray.raydir[X] \
-		* info->ray.raydir[X]) / (info->ray.raydir[Y] * info->ray.raydir[Y]));
+	info->ray.pos[X] = info->player.x;
+	info->ray.pos[Y] = info->player.y;
+	info->ray.dir[X] = info->player.dir_cor[X];
+	info->ray.dir[Y] = info->player.dir_cor[Y];
 }
 
-void	calc_step(t_data *info)
+static void	horiz_ray(int *scr, t_point *pts, t_player *pl)
 {
-	if (info->ray.raydir[X] < 0)
+	if (pl->dir == 0)
 	{
-		info->ray.step[X] = -1;
-		info->ray.sidedist[X] = (info->player.x - info->ray.pos[X]) \
-			* info->ray.deltadist[X];
+		pts[1].x = pts[0].x + 1;
+		pts[1].y = pts[0].y;
+		while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
+			&& WIDTH * pts[1].y + pts[1].y >= 0
+			&& WIDTH * pts[1].y + pts[1].y < WIDTH * HEIGHT)
+				pts[1].x++;
+		if (scr[WIDTH * pts[1].y + pts[1].y] != 0xFFFFFF)
+			pts[1].x--;
 	}
-	else
+	else if (pl->dir == 180)
 	{
-		info->ray.step[X] = 1;
-		info->ray.sidedist[X] = (info->ray.pos[X] + 1.0 - info->player.x) \
-			* info->ray.deltadist[X];
+		pts[1].x = pts[0].x - 1;
+		pts[1].y = pts[0].y;
+		while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
+			&& WIDTH * pts[1].y + pts[1].y >= 0
+			&& WIDTH * pts[1].y + pts[1].y < WIDTH * HEIGHT)
+				pts[1].x--;
+		if (scr[WIDTH * pts[1].y + pts[1].y] != 0xFFFFFF)
+			pts[1].x++;
 	}
-	if (info->ray.raydir[Y] < 0)
+
+}
+
+static void	vert_ray(int *scr, t_point *pts, t_player *pl)
+{
+	if (pl->dir == 90)
 	{
-		info->ray.step[Y] = -1;
-		info->ray.sidedist[Y] = (info->player.y - info->ray.pos[Y]) \
-			* info->ray.deltadist[Y];
+		pts[1].x = pts[0].x;
+		pts[1].y = pts[0].y - 1;
+		while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
+			&& WIDTH * pts[1].y + pts[1].y >= 0
+			&& WIDTH * pts[1].y + pts[1].y < WIDTH * HEIGHT)
+				pts[1].y--;
+		if (scr[WIDTH * pts[1].y + pts[1].y] != 0xFFFFFF)
+			pts[1].y++;
 	}
-	else
+	else if (pl->dir == 270)
 	{
-		info->ray.step[Y] = 1;
-		info->ray.sidedist[Y] = (info->ray.pos[Y] + 1.0 - info->player.y) \
-			* info->ray.deltadist[Y];
+		pts[1].x = pts[0].x;
+		pts[1].y = pts[0].y + 1;
+		while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
+			&& WIDTH * pts[1].y + pts[1].y >= 0
+			&& WIDTH * pts[1].y + pts[1].y < WIDTH * HEIGHT)
+				pts[1].y++;
+		if (scr[WIDTH * pts[1].y + pts[1].y] != 0xFFFFFF)
+			pts[1].y--;
+	}
+
+}
+
+static void	other_angles(int *scr, t_point *pts, t_player *pl)
+{
+	int	i;
+
+	i = 0;
+	pts[1].x = pts[0].x + cos(deg_to_rad(pl->dir)) * i;
+	pts[1].y = pts[0].y - sin(deg_to_rad(pl->dir)) * i;
+	while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
+		&& WIDTH * pts[1].y + pts[1].y >= 0
+		&& WIDTH * pts[1].y + pts[1].y < WIDTH * HEIGHT)
+	{
+		i++;
+		pts[1].x = pts[0].x + cos(deg_to_rad(pl->dir)) * i;
+		pts[1].y = pts[0].y - sin(deg_to_rad(pl->dir)) * i;
+	}
+	if (scr[WIDTH * pts[1].y + pts[1].y] != 0xFFFFFF)
+	{
+		i--;
+		pts[1].x = pts[0].x + cos(deg_to_rad(pl->dir)) * i;
+		pts[1].y = pts[0].y - sin(deg_to_rad(pl->dir)) * i;
 	}
 }
 
-void	calc_hit(t_data *info)
+static void	check_lines(int *scr, t_player *pl)
 {
-	int	hit;
+	t_point	*pts;
 
-	hit = 0;
-	while (!hit)
+	pts = ft_calloc(sizeof(pts), 2);
+	if (!pts)
 	{
-		if (info->ray.sidedist[X] < info->ray.sidedist[Y])
-		{
-			info->ray.sidedist[X] += info->ray.deltadist[X];
-			info->ray.pos[X] += info->ray.step[X];
-			info->ray.side[X] = 1;
-			info->ray.side[Y] = 0;
-			if (info->ray.step[X] < 0)
-				info->ray.side[X] = -1;
-		}
-		else
-		{
-			info->ray.sidedist[Y] += info->ray.deltadist[Y];
-			info->ray.pos[Y] += info->ray.step[Y];
-			info->ray.side[X] = 0;
-			info->ray.side[Y] = 1;
-			if (info->ray.step[Y] < 0)
-				info->ray.side[Y] = -1;
-		}
-		if (info->map.grid[(int)info->ray.pos[X]][(int)info->ray.pos[Y]] > 0)
-			hit = 1;
+		ft_err("Error: Malloc\n");
+		exit (1);
 	}
+	pts[0].x = pl->x;
+	pts[0].y = pl->y;
+	pts[1].x = 0;
+	pts[1].y = 0;
+	if (pl->dir == 90 || pl->dir == 270)
+		vert_ray(scr, pts, pl);
+	else if (pl->dir == 0 || pl->dir == 180)
+		horiz_ray(scr, pts, pl);
+	else
+		other_angles(scr, pts, pl);
 }
 
-/*void	calc_perp(t_data *info)
-{
-	if (info->ray.side == 0)
-		info->ray.perpWallDist = fabs((info->ray.pos[X] - info->ray.pos[X] + \
-			(1 - info->ray.step[X]) / 2) / info->ray.rayDir[X]);
-	else
-		info->ray.perpWallDist = fabs((info->ray.pos[Y] - info->ray.pos[Y] + \
-			(1 - info->ray.step[Y]) / 2) / info->ray.rayDir[Y]);
-	info->ray.lineHeight = abs((int)(HEIGHT / info->ray.perpWallDist));
-}*/
-
-/*
-
-calc_positions();
-
-	Calculamos la posición de la cámara en el plano de la proyección (-1 a 1)
-	Inicializamos la posición y dirección del rayo
-	Calculamos la posición de la celda del mapa en la que se encuentra el jugador
-	Longitudes de los rayos en X e Y hasta la próxima celda del mapa
-
-step();
-
-	Detección de la dirección del rayo en X
-
-calc_hit();
-
-	Bucle para lanzar el rayo y determinar la intersección con el mapa
-
-calc_perp(info, i);		
-
-	Calculamos: 
-	- Distancia perpendicular al muro y la altura de la línea a dibujar
-	- Altura de la línea a dibujar en función de la distancia perpendicular al muro
-	- Coordenadas de inicio y fin de la línea a dibujar en la pantalla
-
-verLine();
-
-	Dibujamos la línea vertical correspondiente al rayo en la pantalla
-
-	info->ray.draw[START] = -info->ray.lineHeight / 2 + HEIGHT / 2;
-	if (info->ray.draw[START] < 0)
-		info->ray.draw[START] = 0;
-	info->ray.draw[END] = info->ray.lineHeight / 2 + HEIGHT / 2;
-	if (info->ray.draw[END] >= HEIGHT)
-		info->ray.draw[END] = HEIGHT - 1;
-*/
-/*void ray_casting(t_data *info)
+void	ray_casting(t_data *info)
 {
 	int		 i;
 
 	i = 0;
 	info->ray.plane[X] = 0;
 	info->ray.plane[Y] = 0.66;
-	info->ray.pos[X] = info->player.x;
-	info->ray.pos[Y] = info->player.y;
-	info->ray.dir[X] = info->player.dir_cor[X];
-	info->ray.dir[Y] = info->player.dir_cor[Y];
 	while (i < WIDTH)
 	{
-		calc_positions(info, i);
-		calc_step(info);
-		calc_hit(info);
-		calc_perp(info);
-		init_texture(info);
+		init_ray(info);
+		check_lines(info->mlx->img.img_adr, &info->player);
+		draw_walls(info, i);
 	}
-}*/
+}
