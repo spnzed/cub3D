@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-void	calc_positions(t_data *info, int i)
+/*void	calc_positions(t_data *info, int i)
 {
 	info->ray.camera = 2 * i / (double)WIDTH - 1;
 	info->ray.raydir[X] = info->ray.dir[X] + \
@@ -81,7 +81,7 @@ void	calc_hit(t_data *info)
 		if (info->map.grid[(int)info->ray.pos[X]][(int)info->ray.pos[Y]] > 0)
 			hit = 1;
 	}
-}
+}*/
 
 /*void	calc_perp(t_data *info)
 {

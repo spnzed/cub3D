@@ -12,62 +12,9 @@
 
 #include "cub3D.h"
 
-static void	horiz_ray(int *scr, t_point *pts, t_player *pl)
+t_point	*other_angles(int *scr, t_point *pts, t_player *pl, t_point *wall)
 {
-	if (pl->dir == 0)
-	{
-		pts[1].x = pts[0].x + 1;
-		pts[1].y = pts[0].y;
-		while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
-			&& WIDTH * pts[1].y + pts[1].y >= 0
-			&& WIDTH * pts[1].y + pts[1].y < WIDTH * HEIGHT)
-				pts[1].x++;
-		if (scr[WIDTH * pts[1].y + pts[1].y] != 0xFFFFFF)
-			pts[1].x--;
-	}
-	else if (pl->dir == 180)
-	{
-		pts[1].x = pts[0].x - 1;
-		pts[1].y = pts[0].y;
-		while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
-			&& WIDTH * pts[1].y + pts[1].y >= 0
-			&& WIDTH * pts[1].y + pts[1].y < WIDTH * HEIGHT)
-				pts[1].x--;
-		if (scr[WIDTH * pts[1].y + pts[1].y] != 0xFFFFFF)
-			pts[1].x++;
-	}
-
-}
-
-static void	vert_ray(int *scr, t_point *pts, t_player *pl)
-{
-	if (pl->dir == 90)
-	{
-		pts[1].x = pts[0].x;
-		pts[1].y = pts[0].y - 1;
-		while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
-			&& WIDTH * pts[1].y + pts[1].y >= 0
-			&& WIDTH * pts[1].y + pts[1].y < WIDTH * HEIGHT)
-				pts[1].y--;
-		if (scr[WIDTH * pts[1].y + pts[1].y] != 0xFFFFFF)
-			pts[1].y++;
-	}
-	else if (pl->dir == 270)
-	{
-		pts[1].x = pts[0].x;
-		pts[1].y = pts[0].y + 1;
-		while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
-			&& WIDTH * pts[1].y + pts[1].y >= 0
-			&& WIDTH * pts[1].y + pts[1].y < WIDTH * HEIGHT)
-				pts[1].y++;
-		if (scr[WIDTH * pts[1].y + pts[1].y] != 0xFFFFFF)
-			pts[1].y--;
-	}
-
-}
-static void	other_angles(int *scr, t_point *pts, t_player *pl)
-{
-	int	i;
+	int		i;
 
 	i = 0;
 	pts[1].x = pts[0].x + cos(deg_to_rad(pl->dir)) * i;
@@ -82,28 +29,28 @@ static void	other_angles(int *scr, t_point *pts, t_player *pl)
 	}
 	if (scr[WIDTH * pts[1].y + pts[1].y] != 0xFFFFFF)
 	{
+		wall->x = pts[1].x;
+		wall->y = pts[1].y;
 		i--;
 		pts[1].x = pts[0].x + cos(deg_to_rad(pl->dir)) * i;
 		pts[1].y = pts[0].y - sin(deg_to_rad(pl->dir)) * i;
 	}
+	return (wall);
 }
 
-static void	ray_end(int *scr, t_point *pts, t_player *pl)
-{
-	if (pl->dir == 90 || pl->dir == 270)
-		vert_ray(scr, pts, pl);
-	else if (pl->dir == 0 || pl->dir == 180)
-		horiz_ray(scr, pts, pl);
-	else
-		other_angles(scr, pts, pl);
-}
-
-void	fill_ray(int *scr, t_player *pl)
+void	fill_ray(int *scr, t_player *pl/*, t_data *info*/)
 {
 	t_point	*pts;
+	t_point	*wall;
 
 	pts = ft_calloc(sizeof(pts), 2);
 	if (!pts)
+	{
+		ft_err("Error: Malloc\n");
+		exit (1);
+	}
+	wall = ft_calloc(sizeof(pts), 1);
+	if (!wall)
 	{
 		ft_err("Error: Malloc\n");
 		exit (1);
@@ -112,7 +59,7 @@ void	fill_ray(int *scr, t_player *pl)
 	pts[0].y = pl->y;
 	pts[1].x = 0;
 	pts[1].y = 0;
-	ray_end(scr, pts, pl);
+	wall = ray_end(scr, pts, pl, wall);
 	draw_line(scr, pts, 0xFFFF00);
-	
+	//draw_rays(info);
 }

@@ -97,10 +97,11 @@ typedef struct s_map
 {
 	char		**grid;
 	int			grid_pos; //ES LA LINIA ON COMENÇA EL MAPA DINTRE DE L'ESCENA
-	int			map_size; //JO AQUEST TB L'ESBORRARIA PQ NOMES CAL multiplicar ELS 2 PARAMETRES DE SIZE
+	int			map_size;
 	int			scale; //tpoc no te sentit si l'unic que fa es igualar-la al define SCALE, per aix[o posem SCALE directament on calgui i llestos]
 	int			size[2];
 	int			spawn[2];
+	int			*arr;  // l'hem dínicialitzar!!
 //	int			player_dir; //en principi no cal tenir-ho 2 vegades - JA ES A PARAMETERS
 //	int			floor;  //en principi no cal tenir-ho 2 vegades - JA ES A PARAMETERS
 //	int			ceiling; //en principi no cal tenir-ho 2 vegades - JA ES A PARAMETERS
@@ -130,7 +131,22 @@ typedef struct s_player
 	int		len; //temp per projectar rajos i veure com rota la barra en 2D
 }	t_player;
 
-typedef struct s_rays
+typedef struct s_ray
+{
+	char	wall_or; // N, S, E, W
+	/*float	p[2];  //ray position p[X] , p[Y] (when it gets crossing "map virtual" horizontal/vertical lines of the grid)
+	float	off[2]; //ray offset off[X], off[Y], example: Y offset when crossing horizontal lines will be 48 if there are 48 pixels per map row
+	int		num; // order/position in the array of t_rays structures. One membre/number per ray, starting from 0, as being an array.
+	int		dir;*/
+	/*double	perpwalldist;
+	int		draw[2];
+	int		step[2];
+	int		side[2];
+	int		lineh;
+	bool	hit;*/
+}	t_ray;
+
+/*typedef struct s_rays
 {
 	double	camera;
 	double	plane[2];
@@ -145,13 +161,13 @@ typedef struct s_rays
 	int		side[2];
 	int		lineh;
 	bool	hit;
-}	t_rays;
+}	t_rays;*/
 
 typedef struct s_data
 {
 	char			**scene;
 	t_mlx			*mlx;
-	t_rays			ray;
+	t_ray			*ray;
 	t_parameters	parameters;
 	t_map			map;
 //	t_map			minimap;
@@ -193,10 +209,13 @@ void	draw_line(int *scr, t_point *pts, int color);
 void	init_temp(t_data *info);
 void	new_scene(t_data *info);
 void	init_players(t_data *info);
-void	fill_ray(int *scr, t_player *pl);
+void	fill_ray(int *scr, t_player *pl/*, t_data *info*/);
 void	create_image(t_data *info);
 void	init_texture(t_data *info);
 void	ray_casting(t_data *info);
+//void	draw_rays(t_data *info);
+t_point	*other_angles(int *scr, t_point *pts, t_player *pl, t_point *wall);
+t_point	*ray_end(int *scr, t_point *pts, t_player *pl, t_point *wall);
 
 //		Utils
 int		ft_count_lines(int fd);
