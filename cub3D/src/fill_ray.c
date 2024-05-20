@@ -12,7 +12,43 @@
 
 #include "cub3D.h"
 
-t_point	*other_angles(int *scr, t_point *pts, t_player *pl, t_point *wall)
+static char	get_wall_or(int *scr, t_point r_end)
+{
+	int	pos;
+	
+	pos = r_end.y * WIDTH + r_end.x;
+	if (scr[pos - WIDTH] == 0xFFFFFF && scr[pos - WIDTH + 5] == 0xFFFFFF
+		&& scr[pos - WIDTH - 5] == 0xFFFFFF)
+		return ('S');
+	else if (scr[pos + WIDTH] == 0xFFFFFF && scr[pos + WIDTH + 5] == 0xFFFFFF
+		&& scr[pos + WIDTH - 5] == 0xFFFFFF)
+		return ('N');
+	else if (scr[pos + 1] == 0xFFFFFF)
+		return ('W');
+	else if (scr[pos - 1] == 0xFFFFFF)
+		return ('E');
+	return ('r');
+}
+
+static void	feed_ray(t_data *info, t_point *ends)
+{
+	int	a;
+	int	b;
+
+	a = abs(ends[0].x - ends[1].x);
+	b = abs(ends[0].y - ends[1].y);
+	info->ray = ft_calloc(sizeof(t_ray), 1);//  1 = nombre de rajos que projectarem
+	if (!info->ray)
+	{
+		ft_err("Error: Calloc");
+		exit (1);
+	}
+	info->ray->len = sqrt((a * a + b * b));
+	info->ray->wall_or = get_wall_or(info->mlx->img.img_adr, ends[1]);
+	printf("wall orient: %c, ray->len: %f\n", info->ray->wall_or, info->ray->len);
+}
+
+void other_angles(int *scr, t_point *pts, t_player *pl)
 {
 	int		i;
 
@@ -20,37 +56,27 @@ t_point	*other_angles(int *scr, t_point *pts, t_player *pl, t_point *wall)
 	pts[1].x = pts[0].x + cos(deg_to_rad(pl->dir)) * i;
 	pts[1].y = pts[0].y - sin(deg_to_rad(pl->dir)) * i;
 	while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
-		&& WIDTH * pts[1].y + pts[1].y >= 0
-		&& WIDTH * pts[1].y + pts[1].y < WIDTH * HEIGHT)
+		&& WIDTH * pts[1].y + pts[1].x >= 0
+		&& WIDTH * pts[1].y + pts[1].x < WIDTH * HEIGHT)
 	{
 		i++;
 		pts[1].x = pts[0].x + cos(deg_to_rad(pl->dir)) * i;
 		pts[1].y = pts[0].y - sin(deg_to_rad(pl->dir)) * i;
 	}
-	if (scr[WIDTH * pts[1].y + pts[1].y] != 0xFFFFFF)
+	if (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF)
 	{
-		wall->x = pts[1].x;
-		wall->y = pts[1].y;
 		i--;
 		pts[1].x = pts[0].x + cos(deg_to_rad(pl->dir)) * i;
 		pts[1].y = pts[0].y - sin(deg_to_rad(pl->dir)) * i;
 	}
-	return (wall);
 }
 
-void	fill_ray(int *scr, t_player *pl/*, t_data *info*/)
+void	fill_ray(int *scr, t_player *pl, t_data *info)
 {
 	t_point	*pts;
-	t_point	*wall;
 
 	pts = ft_calloc(sizeof(pts), 2);
 	if (!pts)
-	{
-		ft_err("Error: Malloc\n");
-		exit (1);
-	}
-	wall = ft_calloc(sizeof(pts), 1);
-	if (!wall)
 	{
 		ft_err("Error: Malloc\n");
 		exit (1);
@@ -59,7 +85,7 @@ void	fill_ray(int *scr, t_player *pl/*, t_data *info*/)
 	pts[0].y = pl->y;
 	pts[1].x = 0;
 	pts[1].y = 0;
-	wall = ray_end(scr, pts, pl, wall);
+	ray_end(scr, pts, pl);
 	draw_line(scr, pts, 0xFFFF00);
-	//draw_rays(info);
+	feed_ray(info, pts);
 }

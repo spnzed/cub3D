@@ -134,6 +134,7 @@ typedef struct s_player
 typedef struct s_ray
 {
 	char	wall_or; // N, S, E, W
+	double	len;
 	/*float	p[2];  //ray position p[X] , p[Y] (when it gets crossing "map virtual" horizontal/vertical lines of the grid)
 	float	off[2]; //ray offset off[X], off[Y], example: Y offset when crossing horizontal lines will be 48 if there are 48 pixels per map row
 	int		num; // order/position in the array of t_rays structures. One membre/number per ray, starting from 0, as being an array.
@@ -209,13 +210,13 @@ void	draw_line(int *scr, t_point *pts, int color);
 void	init_temp(t_data *info);
 void	new_scene(t_data *info);
 void	init_players(t_data *info);
-void	fill_ray(int *scr, t_player *pl/*, t_data *info*/);
+void	fill_ray(int *scr, t_player *pl, t_data *info);
 void	create_image(t_data *info);
 void	init_texture(t_data *info);
 void	ray_casting(t_data *info);
 //void	draw_rays(t_data *info);
-t_point	*other_angles(int *scr, t_point *pts, t_player *pl, t_point *wall);
-t_point	*ray_end(int *scr, t_point *pts, t_player *pl, t_point *wall);
+void	other_angles(int *scr, t_point *pts, t_player *pl);
+void	ray_end(int *scr, t_point *pts, t_player *pl);
 
 //		Utils
 int		ft_count_lines(int fd);

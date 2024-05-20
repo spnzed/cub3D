@@ -94,6 +94,6 @@ void	get_bigmap2d(t_data *info)
 	mp_yp = HEIGHT / 2 - info->map.size[1] * col_w / 2;
 	p = mp_yp * WIDTH + mp_xp;
 	fill_bigmap(info->mlx->img.img_adr, &info->map, p, 0);
-	fill_ray(info->mlx->img.img_adr, &info->player/*, info*/);
+	fill_ray(info->mlx->img.img_adr, &info->player, info);
 	draw_player(info->mlx->img.img_adr, info->player.x, info->player.y, 0xFFFF00);
 }

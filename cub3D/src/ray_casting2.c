@@ -12,85 +12,65 @@
 
 #include "cub3D.h"
 
-static t_point	*deg0(int *scr, t_point *pts, t_point *wall)
+static void deg0(int *scr, t_point *pts)
 {
 	pts[1].x = pts[0].x + 1;
 	pts[1].y = pts[0].y;
 	while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
-		&& WIDTH * pts[1].y + pts[1].y >= 0
-		&& WIDTH * pts[1].y + pts[1].y < WIDTH * HEIGHT)
+		&& WIDTH * pts[1].y + pts[1].x >= 0
+		&& WIDTH * pts[1].y + pts[1].x < WIDTH * HEIGHT)
 			pts[1].x++;
-	if (scr[WIDTH * pts[1].y + pts[1].y] != 0xFFFFFF)
-	{
-		wall->x = pts[1].x;
-		wall->y = pts[1].y;
+	if (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF)
 		pts[1].x--;
-	}
-    return (wall);
 }
-static t_point	*deg180(int *scr, t_point *pts, t_point *wall)
+static void deg180(int *scr, t_point *pts)
 {
 	pts[1].x = pts[0].x - 1;
 	pts[1].y = pts[0].y;
 	while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
-		&& WIDTH * pts[1].y + pts[1].y >= 0
-		&& WIDTH * pts[1].y + pts[1].y < WIDTH * HEIGHT)
+		&& WIDTH * pts[1].y + pts[1].x >= 0
+		&& WIDTH * pts[1].y + pts[1].x < WIDTH * HEIGHT)
 			pts[1].x--;
-	if (scr[WIDTH * pts[1].y + pts[1].y] != 0xFFFFFF)
-	{
-		wall->x = pts[1].x;
-		wall->y = pts[1].y;
+	if (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF)
 		pts[1].x++;
-	}
-    return (wall);
 }
 
-static t_point	*deg90(int *scr, t_point *pts, t_point *wall)
+static void deg90(int *scr, t_point *pts)
 {
 	pts[1].x = pts[0].x;
 	pts[1].y = pts[0].y - 1;
 	while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
-		&& WIDTH * pts[1].y + pts[1].y >= 0
-		&& WIDTH * pts[1].y + pts[1].y < WIDTH * HEIGHT)
+		&& WIDTH * pts[1].y + pts[1].x >= 0
+		&& WIDTH * pts[1].y + pts[1].x < WIDTH * HEIGHT)
 			pts[1].y--;
-	if (scr[WIDTH * pts[1].y + pts[1].y] != 0xFFFFFF)
-	{
-		wall->x = pts[1].x;
-		wall->y = pts[1].y;
+	if (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF)
 		pts[1].y++;
-	}
-    return (wall);
 }
 
-static t_point	*deg270(int *scr, t_point *pts, t_point *wall)
+static void deg270(int *scr, t_point *pts)
 {
 	pts[1].x = pts[0].x;
 	pts[1].y = pts[0].y + 1;
 	while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
-		&& WIDTH * pts[1].y + pts[1].y >= 0
-		&& WIDTH * pts[1].y + pts[1].y < WIDTH * HEIGHT)
+		&& WIDTH * pts[1].y + pts[1].x >= 0
+		&& WIDTH * pts[1].y + pts[1].x < WIDTH * HEIGHT)
 			pts[1].y++;
-	if (scr[WIDTH * pts[1].y + pts[1].y] != 0xFFFFFF)
-	{
-		wall->x = pts[1].x;
-		wall->y = pts[1].y;
+	if (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF)
 		pts[1].y--;
-	}
-    return (wall);
 }
 
-t_point	*ray_end(int *scr, t_point *pts, t_player *pl, t_point *wall)
+void    ray_end(int *scr, t_point *pts, t_player *pl)
 {
 	if (pl->dir == 90)
-		return (deg90(scr, pts, wall));
+		deg90(scr, pts);
     else if (pl->dir == 270)
-		return (deg270(scr, pts, wall));
+		deg270(scr, pts);
 	else if (pl->dir == 0)
-		return (deg0(scr, pts, wall));
+		deg0(scr, pts);
     else if (pl->dir == 180)
-		return (deg180(scr, pts, wall));
+		deg180(scr, pts);
 	else
-		return (other_angles(scr, pts, pl, wall));
+		other_angles(scr, pts, pl);
 }
 
 /*void cross_map_rows(t_data *info, int *row)
