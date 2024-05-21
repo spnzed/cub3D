@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:11:18 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/21 18:24:55 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/21 20:02:37 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void	get_bigmap2d(t_data *info)
 	p = mp_yp * WIDTH + mp_xp;
 	fill_bigmap(info->mlx->img.img_adr, &info->map, p, 0);
 	fill_ray(info->mlx->img.img_adr, &info->player, info);
+	
 /*	draw_player(info->mlx->img.img_adr, info->player.x,
 		info->player.y, 0xFFFF00);*/
 }

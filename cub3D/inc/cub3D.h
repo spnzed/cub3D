@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/21 18:16:19 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/21 20:10:32 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,8 +215,8 @@ void	create_image(t_data *info);
 void	init_texture(t_data *info);
 void	ray_casting(t_data *info);
 //void	draw_rays(t_data *info);
-void	other_angles(int *scr, t_point *pts, t_player *pl);
-void	ray_end(int *scr, t_point *pts, t_player *pl);
+void	other_angles(int *scr, t_point *pts, int ang);
+void	ray_end(int *scr, t_point *pts, int ang);
 
 //		Utils
 int		ft_count_lines(int fd);

@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:34:09 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/21 17:04:44 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/21 20:09:04 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,16 @@ static void	deg270(int *scr, t_point *pts)
 		pts[1].y--;
 }
 
-void	ray_end(int *scr, t_point *pts, t_player *pl)
+void	ray_end(int *scr, t_point *pts, int ang)
 {
-	if (pl->dir == 90)
+	if (ang == 90)
 		deg90(scr, pts);
-	else if (pl->dir == 270)
+	else if (ang == 270)
 		deg270(scr, pts);
-	else if (pl->dir == 0)
+	else if (ang == 0)
 		deg0(scr, pts);
-	else if (pl->dir == 180)
+	else if (ang == 180)
 		deg180(scr, pts);
 	else
-		other_angles(scr, pts, pl);
+		other_angles(scr, pts, ang);
 }
