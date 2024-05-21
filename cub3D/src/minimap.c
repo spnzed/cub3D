@@ -6,13 +6,13 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:03:48 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/21 19:50:32 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/21 20:50:44 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	ft_c(char c, int floor, int *pos)
+/*static void	ft_c(char c, int floor, int *pos)
 {
 	if (c == '1')
 		*pos = 0x743636;
@@ -47,7 +47,7 @@ static void	fill_map(int *scr, t_data *info, int p, int i)
 			k = 0;
 		}
 	}
-}
+}*/
 
 /*static void	fill_player(int *scr, t_player *pl, int p, int w)
 {
@@ -70,7 +70,7 @@ static void	fill_map(int *scr, t_data *info, int p, int i)
 	}
 }*/
 
-static void	draw_minipl(int *scr, int xpl, int ypl, int color)
+/*static void	draw_minipl(int *scr, int xpl, int ypl, int color)
 {
 	int	x;
 	int	y;
@@ -93,7 +93,7 @@ void	mini_map(t_data *info)
 	cell_w = 8; //pixels amplada cada cel.la del minimap == marge esquerre i superior mapa respecte límits de la finestra/imatge
 	p = WIDTH * cell_w + cell_w; //posisió a la pantalla punt superior esquerre del minimap
 	fill_map(info->mlx->img.img_adr, info, p, 0);
-	draw_minipl(info->mlx->img.img_adr, info->minipl.x, info->minipl.y, 0xFFFF00);
+	draw_minipl(info->mlx->img.img_adr, info->minipl.x, info->minipl.y, 0xFFFF00);*/
 /*	fill_player(info->mlx->img.img_adr, &info->minipl,
 		((info->minipl.y - info->minipl.h / 2) * WIDTH) + (info->minipl.x - info->minipl.w / 2), -1);*/
-}
+//}

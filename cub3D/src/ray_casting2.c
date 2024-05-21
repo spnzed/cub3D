@@ -5,71 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/17 19:34:09 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/21 20:09:04 by erosas-c         ###   ########.fr       */
+/*   Created: 2024/05/21 20:21:29 by erosas-c          #+#    #+#             */
+/*   Updated: 2024/05/21 21:01:41 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	deg0(int *scr, t_point *pts)
+static void	init_arr(t_data *info)
 {
-	pts[1].x = pts[0].x + 1;
-	pts[1].y = pts[0].y;
-	while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
-		&& WIDTH * pts[1].y + pts[1].x >= 0
-		&& WIDTH * pts[1].y + pts[1].x < WIDTH * HEIGHT)
-		pts[1].x++;
-	if (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF)
-		pts[1].x--;
+	info->ray = ft_calloc(sizeof(t_ray), 61);
+	if (!info->ray)
+	{
+		ft_err("Error: Malloc\n");
+		exit (1);
+	}
 }
 
-static void	deg180(int *scr, t_point *pts)
+void	cast_rays(t_data *info)
 {
-	pts[1].x = pts[0].x - 1;
-	pts[1].y = pts[0].y;
-	while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
-		&& WIDTH * pts[1].y + pts[1].x >= 0
-		&& WIDTH * pts[1].y + pts[1].x < WIDTH * HEIGHT)
-		pts[1].x--;
-	if (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF)
-		pts[1].x++;
-}
+	int	ang;
+	int	i;
 
-static void	deg90(int *scr, t_point *pts)
-{
-	pts[1].x = pts[0].x;
-	pts[1].y = pts[0].y - 1;
-	while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
-		&& WIDTH * pts[1].y + pts[1].x >= 0
-		&& WIDTH * pts[1].y + pts[1].x < WIDTH * HEIGHT)
-		pts[1].y--;
-	if (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF)
-		pts[1].y++;
-}
-
-static void	deg270(int *scr, t_point *pts)
-{
-	pts[1].x = pts[0].x;
-	pts[1].y = pts[0].y + 1;
-	while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
-		&& WIDTH * pts[1].y + pts[1].x >= 0
-		&& WIDTH * pts[1].y + pts[1].x < WIDTH * HEIGHT)
-		pts[1].y++;
-	if (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF)
-		pts[1].y--;
-}
-
-void	ray_end(int *scr, t_point *pts, int ang)
-{
-	if (ang == 90)
-		deg90(scr, pts);
-	else if (ang == 270)
-		deg270(scr, pts);
-	else if (ang == 0)
-		deg0(scr, pts);
-	else if (ang == 180)
-		deg180(scr, pts);
-	else
-		other_angles(scr, pts, ang);
+	i = 0;
+	ang = info->player.dir - 30;
+	init_arr(info);
+//	printf("info->player.dir: %i, info->player.dir + 30: %i info->player.dir - 30: %i\n", info->player.dir, info->player.dir + 30, info->player.dir - 30);
+	while (ang <= info->player.dir + 30)
+	{
+		fill_ray(info->mlx->img.img_adr, info, angle_correction(ang), i);
+		i++;
+		ang++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/21 20:10:32 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/21 20:42:58 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,13 +210,14 @@ void	draw_line(int *scr, t_point *pts, int color);
 void	init_temp(t_data *info);
 void	new_scene(t_data *info);
 void	init_players(t_data *info);
-void	fill_ray(int *scr, t_player *pl, t_data *info);
+void	fill_ray(int *scr, t_data *info, int ang, int i);
 void	create_image(t_data *info);
 void	init_texture(t_data *info);
 void	ray_casting(t_data *info);
 //void	draw_rays(t_data *info);
 void	other_angles(int *scr, t_point *pts, int ang);
 void	ray_end(int *scr, t_point *pts, int ang);
+void	cast_rays(t_data *info);
 
 //		Utils
 int		ft_count_lines(int fd);
