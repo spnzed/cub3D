@@ -6,7 +6,7 @@
 #    By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/04 17:25:20 by erosas-c          #+#    #+#              #
-#    Updated: 2024/05/21 20:47:46 by erosas-c         ###   ########.fr        #
+#    Updated: 2024/05/21 21:12:35 by erosas-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ INCLUDE		=	-I $(INC_DIR) -I $(LIBFT_DIR)/inc -I $(MLX_DIR)
 FRAMES 		= 	-framework OpenGL -framework AppKit 
 
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror -MMD -fsanitize='address' -g
+CFLAGS		=	-Wall -Wextra -Werror -MMD #-fsanitize='address' -g
 CLEAN_CAR	=	\033[2K\r
 
 RM			=	rm -rf

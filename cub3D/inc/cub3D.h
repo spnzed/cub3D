@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/21 20:42:58 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/21 21:10:41 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@
 # define MAGENTA	"\033[0;35m"
 # define CYAN		"\033[0;36m"
 # define WHITE		"\033[0;37m"
+
+# define WALL		0xFFFFFF
 
 # define SCALE 64
 # define HEIGHT 1080
@@ -124,6 +126,7 @@ typedef struct s_player
 	int		dir; //era p_dir pero crec que no te sentit, no cal la p i nomes alalrga els caracters que calen
 	float	dx; //p_dir_x_cos;  //seria dx suposo (el desplacament d'x)
 	float	dy; //p_dir_y_sin; //idem per a y
+	float	n[2];
 	int		w;//temp per fer quadradet del jugador en 2D
 	int		h;//temp per fer quadradet del jugador en 2D
 	//float	dx; // x controlar dif. desplaçament segons angle, encada una de les 2 dimensions
