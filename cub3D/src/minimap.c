@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:03:48 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/14 17:53:40 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:13:59 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	fill_map(int *scr, t_data *info, int p, int i)
 
 static void	draw_minipl(int *scr, int xpl, int ypl, int color)
 {
-	int x;
+	int	x;
 	int	y;
 
 	x = xpl - 2;
@@ -90,10 +90,10 @@ void	mini_map(t_data *info)
 	int	cell_w;
 	int	p;
 	int	plx;
-	int ply;	
+	int	ply;	
 
-	cell_w = 8;
-	p = WIDTH * cell_w + cell_w;
+	cell_w = 8; //pixels amplada cada cel.la del minimap == marge esquerre i superior mapa respecte límits de la finestra/imatge
+	p = WIDTH * cell_w + cell_w; //posisió a la pantalla punt superior esquerre del minimap
 	plx = info->player.x / 6 - 8;
 	ply = info->player.y / 6;
 	fill_map(info->mlx->img.img_adr, info, p, 0);

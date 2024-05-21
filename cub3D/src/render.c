@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:46:35 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/14 18:57:38 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:53:27 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,33 +50,32 @@ void	handle_key(t_data *info)
 	}
 	if (info->mlx->keys->w)
 		move_front(info);
-	else if (info->mlx->keys->a)
+	if (info->mlx->keys->a)
 		move_left(info);
-	else if (info->mlx->keys->s)
+	if (info->mlx->keys->s)
 		move_back(info);
-	else if (info->mlx->keys->d)
+	if (info->mlx->keys->d)
 		move_right(info);
-	else if (info->mlx->keys->l_arr)
+	if (info->mlx->keys->l_arr)
 		move_l_arrow(info);
-	else if (info->mlx->keys->r_arr)
+	if (info->mlx->keys->r_arr)
 		move_r_arrow(info);
 }
 
 void	new_scene(t_data *info)
 {
-	paint_ceil_floor(info->mlx->img.img_adr, info->parameters.floor,
-		info->parameters.ceiling);
 	get_bigmap2d(info);
 	mini_map(info);
 	mlx_put_image_to_window(info->mlx->mlx,
 		info->mlx->win, info->mlx->img.img, 0, 0);
-	handle_key(info);
 }
 
 int	render(t_data *info)
 {
 	handle_key(info);
 //	ray_casting(info);
+	paint_ceil_floor(info->mlx->img.img_adr, info->parameters.floor,
+		info->parameters.ceiling);
 	new_scene(info);
 	mlx_put_image_to_window(info->mlx->mlx,
 		info->mlx->win, info->mlx->img.img, 0, 0);

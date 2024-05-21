@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:43:39 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/14 19:23:50 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:48:37 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,17 @@ int	ft_press(int keycode, t_mlx *mlx)
 	}
 	if (keycode == KEY_W)
 		mlx->keys->w = 1;
-	else if (keycode == KEY_A)
+	if (keycode == KEY_A)
 		mlx->keys->a = 1;
-	else if (keycode == KEY_S)
+	if (keycode == KEY_S)
 		mlx->keys->s = 1;
-	else if (keycode == KEY_D)
+	if (keycode == KEY_D)
 		mlx->keys->d = 1;
-	else if (keycode == KEY_LEFT)
+	if (keycode == KEY_LEFT)
 		mlx->keys->l_arr = 1;
-	else if (keycode == KEY_RIGHT)
+	if (keycode == KEY_RIGHT)
 		mlx->keys->r_arr = 1;
-	else if (keycode == KEY_ESC)
+	if (keycode == KEY_ESC)
 		ft_esc(keycode, mlx);
 	return (0);
 }
@@ -57,15 +57,15 @@ int	ft_release(int keycode, t_mlx *mlx)
 	}
 	if (keycode == KEY_W)
 		mlx->keys->w = 0;
-	else if (keycode == KEY_A)
+	if (keycode == KEY_A)
 		mlx->keys->a = 0;
-	else if (keycode == KEY_S)
+	if (keycode == KEY_S)
 		mlx->keys->s = 0;
-	else if (keycode == KEY_D)
+	if (keycode == KEY_D)
 		mlx->keys->d = 0;
-	else if (keycode == KEY_LEFT)
+	if (keycode == KEY_LEFT)
 		mlx->keys->l_arr = 0;
-	else if (keycode == KEY_RIGHT)
+	if (keycode == KEY_RIGHT)
 		mlx->keys->r_arr = 0;
 	return (0);
 }

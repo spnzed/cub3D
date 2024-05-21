@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:11:18 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/14 17:09:57 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/21 18:24:55 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ static void	paint_black(int *scr, t_map *map, int p)
 	}
 }
 
-static void	draw_player(int *scr, int xpl, int ypl, int color)
+/*static void	draw_player(int *scr, int xpl, int ypl, int color)
 {
-	int x;
+	int	x;
 	int	y;
 
 	x = xpl - 4;
@@ -44,7 +44,7 @@ static void	draw_player(int *scr, int xpl, int ypl, int color)
 			scr[y * WIDTH + x] = color;
 		x = xpl - 4;
 	}
-}
+}*/
 
 static void	ft_updvalues(int *i, int *p, int po, int *k)
 {
@@ -90,10 +90,11 @@ void	get_bigmap2d(t_data *info)
 	int	col_w;
 
 	col_w = SCALE / 8 * 6;
-	mp_xp = WIDTH / 2 - info->map.size[0] * col_w / 2;
-	mp_yp = HEIGHT / 2 - info->map.size[1] * col_w / 2;
+	mp_xp = WIDTH / 2 - info->map.size[X] * col_w / 2;
+	mp_yp = HEIGHT / 2 - info->map.size[Y] * col_w / 2;
 	p = mp_yp * WIDTH + mp_xp;
 	fill_bigmap(info->mlx->img.img_adr, &info->map, p, 0);
 	fill_ray(info->mlx->img.img_adr, &info->player, info);
-	draw_player(info->mlx->img.img_adr, info->player.x, info->player.y, 0xFFFF00);
+/*	draw_player(info->mlx->img.img_adr, info->player.x,
+		info->player.y, 0xFFFF00);*/
 }

@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 16:31:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/14 19:45:33 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/21 18:30:34 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	wall_found(int *scr, t_player *player)
 {
 	int	next_x;
 	int	next_y;
-	int pos;
+	int	pos;
 
 	next_x = player->x + player->dx;
 	next_y = player->y + player->dy;
@@ -93,7 +93,7 @@ void	move_right(t_data *info)
 		info->minipl.y += new_dy;
 	}
 	//CHECKTHIS
-	/*int	new_dir;
+	/*int	new_dir; 
 	int	new_dir_cor[2];
 	new_dir = angle_correction(90 - info->player.dir);
 	new_dir_cor[X] = cos(deg_to_rad(new_dir));

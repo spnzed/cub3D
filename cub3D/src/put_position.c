@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 17:02:21 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/14 19:46:34 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/21 18:21:46 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	put_position(t_data *info)
 
 	col_w = SCALE / 8 * 6; //amplada cel.la/columna mapa gros
 	cell_w = 8; //amplada cel.la/columna minimap
-	info->player.len = SCALE / 2;
+//	info->player.len = SCALE / 2;
 	info->player.w = SCALE / 8;
 	info->player.h = SCALE / 8;
 	info->player.x = WIDTH / 2 - (info->map.size[0] * col_w) / 2

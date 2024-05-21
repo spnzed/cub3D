@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/14 19:51:51 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/21 18:16:19 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@
 # define WHITE		"\033[0;37m"
 
 # define SCALE 64
-//# define HEIGHT 1080
-//# define WIDTH 1920
-# define HEIGHT 810
-# define WIDTH 1380
+# define HEIGHT 1080
+# define WIDTH 1920
+//# define HEIGHT 810
+//# define WIDTH 1380
 # define SPEED 3
 
 typedef struct s_point
@@ -128,7 +128,7 @@ typedef struct s_player
 	int		h;//temp per fer quadradet del jugador en 2D
 	//float	dx; // x controlar dif. desplaçament segons angle, encada una de les 2 dimensions
 	//float	dy; // x controlar dif. desplaçament segons angle, encada una de les 2 dimensions
-	int		len; //temp per projectar rajos i veure com rota la barra en 2D
+	//int		len; //temp per projectar rajos i veure com rota la barra en 2D
 }	t_player;
 
 typedef struct s_ray
