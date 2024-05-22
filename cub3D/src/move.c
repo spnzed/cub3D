@@ -22,6 +22,7 @@ static int	wall_found(int *scr, float x, float y)
 	pos_y = (int)(y);
 	pos = pos_y * WIDTH + pos_x;
 	if ((pos_x >= 0 && pos_y >= 0) && (pos_x < WIDTH && pos_y < HEIGHT)
+		//&& scr[pos] != 0x000000 && scr[pos] != 0xFFFF00)
 		&& scr[pos] == WALL)
 		return (1);
 	return (0);
