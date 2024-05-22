@@ -6,7 +6,7 @@
 #    By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/04 17:25:20 by erosas-c          #+#    #+#              #
-#    Updated: 2024/05/21 21:12:35 by erosas-c         ###   ########.fr        #
+#    Updated: 2024/05/22 17:47:44 by erosas-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,9 @@ SRC_FILES	=	arguments.c			big_map2d.c			check_map.c			check_parameters.c 	\
 				create_image.c		draw_line.c			errors.c			fill_ray.c 			\
 				get_color.c			get_file.c			handle_map.c 		loop_functions.c	\
 				main.c				map_to_file.c 		minimap.c			move_arrows.c		\
-				move.c				put_images.c		put_position.c 		ray_casting1.c		\
-				ray_casting2.c		render.c 			utils.c				utils2.c			\
+				move.c				other_angles.c		put_images.c		put_position.c 		\
+				ray_casting1.c		ray_casting2.c		render.c 			utils.c				\
+				utils2.c			\
 					
 OBJ_DIR		=	obj/
 OBJ_FILES	=	$(SRC_FILES:.c=.o)

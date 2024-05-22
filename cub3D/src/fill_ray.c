@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:09:09 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/22 16:44:46 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:43:25 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,34 +38,7 @@ static void	feed_ray(t_data *info, t_point *ends, int i)
 	a = abs(ends[0].x - ends[1].x);
 	b = abs(ends[0].y - ends[1].y);
 	(info->ray)[i].len = sqrt((a * a + b * b));
-//	if (ang == info->player.dir)
-		(info->ray)[i].wall_or = get_wall_or(info->mlx->img.img_adr, ends[1]);
-/*	else
-		(info->ray)[i].wall_or = 'r';
-	printf("wall orient: %c, ray->len: %f\n", info->ray->wall_or, info->ray->len);*/
-}
-
-void	other_angles(int *scr, t_point *pts, int ang)
-{
-	int		i;
-
-	i = 0;
-	pts[1].x = pts[0].x + cos(deg_to_rad(ang)) * i;
-	pts[1].y = pts[0].y - sin(deg_to_rad(ang)) * i;
-	while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
-		&& WIDTH * pts[1].y + pts[1].x >= 0
-		&& WIDTH * pts[1].y + pts[1].x < WIDTH * HEIGHT)
-	{
-		i++;
-		pts[1].x = pts[0].x + cos(deg_to_rad(ang)) * i;
-		pts[1].y = pts[0].y - sin(deg_to_rad(ang)) * i;
-	}
-	if (scr[WIDTH * pts[1].y + pts[1].x] == 0xFFFFFF)
-	{
-		i--;
-		pts[1].x = pts[0].x + cos(deg_to_rad(ang)) * i;
-		pts[1].y = pts[0].y - sin(deg_to_rad(ang)) * i;
-	}
+	(info->ray)[i].wall_or = get_wall_or(info->mlx->img.img_adr, ends[1]);
 }
 
 void	fill_ray(int *scr, t_data *info, int ang, int i)
