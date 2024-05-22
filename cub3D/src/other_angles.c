@@ -20,8 +20,8 @@ static void	fourth_quadr(int *scr, t_point *pts, int ang)
 	pts[1].x = pts[0].x + cos(deg_to_rad(ang)) * i;
 	pts[1].y = pts[0].y - sin(deg_to_rad(ang)) * i;
 	while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
-		&& WIDTH * pts[1].y + pts[1].x >= 0
-		&& WIDTH * pts[1].y + pts[1].x < WIDTH * HEIGHT
+		&& pts[1].y >= 0 && pts[1].x >= 0
+		&& pts[1].x < WIDTH && pts[1].y < HEIGHT
 		&& scr[WIDTH * pts[1].y + pts[1].x - 1] != 0xFFFFFF
 		&& scr[WIDTH * pts[1].y + pts[1].x - WIDTH] != 0xFFFFFF)
 	{
@@ -47,8 +47,8 @@ static void	third_quadr(int *scr, t_point *pts, int ang)
 	pts[1].x = pts[0].x + cos(deg_to_rad(ang)) * i;
 	pts[1].y = pts[0].y - sin(deg_to_rad(ang)) * i;
 	while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
-		&& WIDTH * pts[1].y + pts[1].x >= 0
-		&& WIDTH * pts[1].y + pts[1].x < WIDTH * HEIGHT
+		&& pts[1].y >= 0 && pts[1].x >= 0
+		&& pts[1].x < WIDTH && pts[1].y < HEIGHT
 		&& scr[WIDTH * pts[1].y + pts[1].x + 1] != 0xFFFFFF
 		&& scr[WIDTH * pts[1].y + pts[1].x - WIDTH] != 0xFFFFFF)
 	{
@@ -74,8 +74,8 @@ static void	second_quadr(int *scr, t_point *pts, float ang)
 	pts[1].x = pts[0].x + cos(deg_to_rad(ang)) * i;
 	pts[1].y = pts[0].y - sin(deg_to_rad(ang)) * i;
 	while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
-		&& WIDTH * pts[1].y + pts[1].x >= 0
-		&& WIDTH * pts[1].y + pts[1].x < WIDTH * HEIGHT
+		&& pts[1].y >= 0 && pts[1].x >= 0
+		&& pts[1].x < WIDTH && pts[1].y < HEIGHT
 		&& scr[WIDTH * pts[1].y + pts[1].x + 1] != 0xFFFFFF
 		&& scr[WIDTH * pts[1].y + pts[1].x + WIDTH] != 0xFFFFFF)
 	{
@@ -101,8 +101,8 @@ static void	first_quadr(int *scr, t_point *pts, int ang)
 	pts[1].x = pts[0].x + cos(deg_to_rad(ang)) * i;
 	pts[1].y = pts[0].y - sin(deg_to_rad(ang)) * i;
 	while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
-		&& WIDTH * pts[1].y + pts[1].x >= 0
-		&& WIDTH * pts[1].y + pts[1].x < WIDTH * HEIGHT
+		&& pts[1].y >= 0 && pts[1].x >= 0
+		&& pts[1].x < WIDTH && pts[1].y < HEIGHT
 		&& scr[WIDTH * pts[1].y + pts[1].x - 1] != 0xFFFFFF
 		&& scr[WIDTH * pts[1].y + pts[1].x + WIDTH] != 0xFFFFFF)
 	{

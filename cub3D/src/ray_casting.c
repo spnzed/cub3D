@@ -44,8 +44,8 @@ void	cast_rays(t_data *info)
 
 	i = 0;
 	incr = (float)60 / (float)WIDTH;
-//	printf("incr: %f\n", incr);
-	ang = info->player.dir - 30;
+	printf("incr: %f\n", incr);
+	ang = (float)info->player.dir - 30.0;
 	init_arr(info);
 //	printf("info->player.dir: %i, info->player.dir + 30: %i info->player.dir - 30: %i\n", info->player.dir, info->player.dir + 30, info->player.dir - 30);
 	while (i < WIDTH)
