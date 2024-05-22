@@ -21,7 +21,7 @@ SRC_FILES	=	arguments.c			big_map2d.c			check_map.c			check_parameters.c 	\
 				get_color.c			get_file.c			handle_map.c 		loop_functions.c	\
 				main.c				map_to_file.c 		minimap.c			move_arrows.c		\
 				move.c				other_angles.c		put_images.c		put_position.c 		\
-				ray_casting1.c		ray_casting2.c		render.c 			utils.c				\
+				ray_casting.c		ray_end.c			render.c 			utils.c				\
 				utils2.c			\
 					
 OBJ_DIR		=	obj/
@@ -41,7 +41,7 @@ INCLUDE		=	-I $(INC_DIR) -I $(LIBFT_DIR)/inc -I $(MLX_DIR)
 FRAMES 		= 	-framework OpenGL -framework AppKit 
 
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror -MMD -fsanitize='address' -g
+CFLAGS		=	-Wall -Wextra -Werror -MMD #-fsanitize='address' -g
 CLEAN_CAR	=	\033[2K\r
 
 RM			=	rm -rf

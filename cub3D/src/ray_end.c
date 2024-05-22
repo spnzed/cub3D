@@ -60,7 +60,7 @@ static void	deg270(int *scr, t_point *pts)
 		pts[1].y--;
 }
 
-void	ray_end(int *scr, t_point *pts, int ang)
+void	ray_end(int *scr, t_point *pts, float ang)
 {
 	if (ang == 90)
 		deg90(scr, pts);

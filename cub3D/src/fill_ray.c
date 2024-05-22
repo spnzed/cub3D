@@ -41,7 +41,7 @@ static void	feed_ray(t_data *info, t_point *ends, int i)
 	(info->ray)[i].wall_or = get_wall_or(info->mlx->img.img_adr, ends[1]);
 }
 
-void	fill_ray(int *scr, t_data *info, int ang, int i)
+void	fill_ray(int *scr, t_data *info, float ang, int i)
 {
 	t_point	*pts;
 
@@ -57,6 +57,7 @@ void	fill_ray(int *scr, t_data *info, int ang, int i)
 	pts[1].x = 0;
 	pts[1].y = 0;
 	ray_end(scr, pts, ang);
+//	printf("i: %i, pts[1].pos: %i\n", i, pts[1].y * WIDTH + pts[1].x);
 	draw_line(scr, pts, 0xFFFF00);
 	feed_ray(info, pts, i);
 }

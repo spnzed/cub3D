@@ -14,7 +14,7 @@
 
 static void	fourth_quadr(int *scr, t_point *pts, int ang)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	pts[1].x = pts[0].x + cos(deg_to_rad(ang)) * i;
@@ -41,7 +41,7 @@ static void	fourth_quadr(int *scr, t_point *pts, int ang)
 
 static void	third_quadr(int *scr, t_point *pts, int ang)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	pts[1].x = pts[0].x + cos(deg_to_rad(ang)) * i;
@@ -66,9 +66,9 @@ static void	third_quadr(int *scr, t_point *pts, int ang)
 	}
 }
 
-static void	second_quadr(int *scr, t_point *pts, int ang)
+static void	second_quadr(int *scr, t_point *pts, float ang)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	pts[1].x = pts[0].x + cos(deg_to_rad(ang)) * i;
@@ -95,7 +95,7 @@ static void	second_quadr(int *scr, t_point *pts, int ang)
 
 static void	first_quadr(int *scr, t_point *pts, int ang)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	pts[1].x = pts[0].x + cos(deg_to_rad(ang)) * i;
@@ -120,7 +120,7 @@ static void	first_quadr(int *scr, t_point *pts, int ang)
 	}
 }
 
-void	other_angles(int *scr, t_point *pts, int ang)
+void	other_angles(int *scr, t_point *pts, float ang)
 {
 	if (ang > 0 && ang < 90)
 		first_quadr(scr, pts, ang);

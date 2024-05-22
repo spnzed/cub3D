@@ -27,7 +27,7 @@
 
 static void	init_arr(t_data *info)
 {
-	info->ray = ft_calloc(sizeof(t_ray), 1920);
+	info->ray = ft_calloc(sizeof(t_ray), WIDTH);
 	if (!info->ray)
 	{
 		ft_err("Error: Malloc\n");
@@ -43,11 +43,12 @@ void	cast_rays(t_data *info)
 //	int	or_miss;
 
 	i = 0;
-	incr = 60 / WIDTH;
+	incr = (float)60 / (float)WIDTH;
+//	printf("incr: %f\n", incr);
 	ang = info->player.dir - 30;
 	init_arr(info);
 //	printf("info->player.dir: %i, info->player.dir + 30: %i info->player.dir - 30: %i\n", info->player.dir, info->player.dir + 30, info->player.dir - 30);
-	while (i < 1920)
+	while (i < WIDTH)
 	{
 		fill_ray(info->mlx->img.img_adr, info, angle_correction(ang), i);
 		i++;
