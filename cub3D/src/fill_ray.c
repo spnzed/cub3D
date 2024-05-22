@@ -6,13 +6,13 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:09:09 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/21 20:59:56 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:44:46 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-/*static char	get_wall_or(int *scr, t_point r_end)
+static char	get_wall_or(int *scr, t_point r_end)
 {
 	int	pos;
 
@@ -28,7 +28,7 @@
 	else if (scr[pos - 1] == 0xFFFFFF)
 		return ('E');
 	return (0);
-}*/
+}
 
 static void	feed_ray(t_data *info, t_point *ends, int i)
 {
@@ -38,9 +38,9 @@ static void	feed_ray(t_data *info, t_point *ends, int i)
 	a = abs(ends[0].x - ends[1].x);
 	b = abs(ends[0].y - ends[1].y);
 	(info->ray)[i].len = sqrt((a * a + b * b));
-	/*if (ang == info->player.dir)
+//	if (ang == info->player.dir)
 		(info->ray)[i].wall_or = get_wall_or(info->mlx->img.img_adr, ends[1]);
-	else
+/*	else
 		(info->ray)[i].wall_or = 'r';
 	printf("wall orient: %c, ray->len: %f\n", info->ray->wall_or, info->ray->len);*/
 }

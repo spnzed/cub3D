@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:21:29 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/21 21:01:41 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:01:46 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,7 @@ void	cast_rays(t_data *info)
 		i++;
 		ang++;
 	}
+/*	i = -1;
+	while(++i < 61)
+		printf("ray[%i].len: %f, ray[%i].wall_or: %c\n", i, (info->ray)[i].len, i, (info->ray)[i].wall_or);*/
 }
