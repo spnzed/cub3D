@@ -60,7 +60,7 @@ void	other_angles(int *scr, t_point *pts, int ang)
 		pts[1].x = pts[0].x + cos(deg_to_rad(ang)) * i;
 		pts[1].y = pts[0].y - sin(deg_to_rad(ang)) * i;
 	}
-	if (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF)
+	if (scr[WIDTH * pts[1].y + pts[1].x] == 0xFFFFFF)
 	{
 		i--;
 		pts[1].x = pts[0].x + cos(deg_to_rad(ang)) * i;
@@ -71,7 +71,6 @@ void	other_angles(int *scr, t_point *pts, int ang)
 void	fill_ray(int *scr, t_data *info, int ang, int i)
 {
 	t_point	*pts;
-//	int ang = pl->dir;
 
 	(void)i;
 	pts = ft_calloc(sizeof(pts), 2);
@@ -86,5 +85,4 @@ void	fill_ray(int *scr, t_data *info, int ang, int i)
 	pts[1].y = 0;
 	ray_end(scr, pts, ang);
 	draw_line(scr, pts, 0xFFFF00);
-//	feed_ray(info, pts, i, ang);
 }

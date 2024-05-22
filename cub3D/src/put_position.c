@@ -18,21 +18,21 @@ void	put_position(t_data *info)
 	int		col_w;
 
 	col_w = SCALE / 8 * 6; //amplada cel.la/columna mapa gros
-	cell_w = 8; //amplada cel.la/columna minimap
+	cell_w = SCALE / 4; //amplada cel.la/columna minimap
 //	info->player.len = SCALE / 2;
 	info->player.w = SCALE / 8;
 	info->player.h = SCALE / 8;
 	info->player.x = WIDTH / 2 - (info->map.size[0] * col_w) / 2
-		+ info->map.spawn[0] * col_w + col_w / 2/* - info->player.w / 2*/;
+		+ info->map.spawn[0] * col_w + col_w / 2;
 	info->player.y = HEIGHT / 2 - (info->map.size[1] * col_w) / 2
-		+ info->map.spawn[1] * col_w + col_w / 2/* - info->player.h / 2*/;
+		+ info->map.spawn[1] * col_w + col_w / 2;
 	info->minipl.dx = cos(deg_to_rad(info->player.dir));
 	info->minipl.dy = -sin(deg_to_rad(info->player.dir));
 	info->map.map_size = info->map.size[0] * info->map.size[1];
-	info->minipl.x = 8 + info->map.spawn[X] * cell_w + cell_w / 2; //primer 8 es offset (marge/separacio amb el limit de la pantalla)
-	info->minipl.y = 8 + info->map.spawn[Y] * cell_w + cell_w / 2; //els altres 2 8 son l'amplada de cel.la del minimap
-	info->player.dx = info->minipl.dx * 6;
-	info->player.dy = info->minipl.dy * 6;
+	info->minipl.x = 16 + info->map.spawn[X] * cell_w + cell_w / 2; //primer 8 es offset (marge/separacio amb el limit de la pantalla)
+	info->minipl.y = 16 + info->map.spawn[Y] * cell_w + cell_w / 2; //els altres 2 8 son l'amplada de cel.la del minimap
+	info->player.dx = info->minipl.dx * 3;
+	info->player.dy = info->minipl.dy * 3;
 /*	info->player.x = (info->map.spawn[0] * SCALE) + SCALE / 2;
 	info->player.y = (info->map.spawn[1] * SCALE) + SCALE / 2;
 	info->player.dir= info->map.player_dir;

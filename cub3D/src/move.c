@@ -23,7 +23,7 @@ static int	wall_found(int *scr, float x, float y)
 	pos = pos_y * WIDTH + pos_x;
 	if ((pos_x >= 0 && pos_y >= 0) 
 		&& (pos_x < WIDTH && pos_y < HEIGHT) 
-		&& scr[pos] == WALL)
+		&& scr[pos] != 0x000000 && scr[pos] != 0xFFFF00)
 		return (1);
 	return (0);
 }
@@ -65,10 +65,10 @@ void	move_right(t_data *info)
 	new_dx = cos(deg_to_rad(new_dir));
 	new_dy = sin(deg_to_rad(new_dir));
 	if (!wall_found(info->mlx->img.img_adr, info->player.x + 
-		new_dx * 6, info->player.y + new_dy * 6))
+		new_dx * 3, info->player.y + new_dy * 3))
 	{
-		info->player.x += new_dx * 6;
-		info->player.y += new_dy * 6;
+		info->player.x += new_dx * 3;
+		info->player.y += new_dy * 3;
 		info->minipl.x += new_dx;
 		info->minipl.y += new_dy;
 	}
@@ -90,10 +90,10 @@ void	move_left(t_data *info)
 	new_dx = cos(deg_to_rad(new_dir));
 	new_dy = sin(deg_to_rad(new_dir));
 	if (!wall_found(info->mlx->img.img_adr, info->player.x - 
-		new_dx * 6, info->player.y - new_dy * 6))
+		new_dx * 3, info->player.y - new_dy * 3))
 	{
-		info->player.x -= new_dx * 6;
-		info->player.y -= new_dy * 6;
+		info->player.x -= new_dx * 3;
+		info->player.y -= new_dy * 3;
 		info->minipl.x -= new_dx;
 		info->minipl.y -= new_dy;
 	}

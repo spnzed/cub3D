@@ -65,16 +65,13 @@ void	handle_key(t_data *info)
 void	new_scene(t_data *info)
 {
 	get_bigmap2d(info);
-//	mini_map(info);
+	mini_map(info);
 	cast_rays(info);
-	/*mlx_put_image_to_window(info->mlx->mlx,
-		info->mlx->win, info->mlx->img.img, 0, 0);*/
 }
 
 int	render(t_data *info)
 {
 	handle_key(info);
-//	ray_casting(info);
 	paint_ceil_floor(info->mlx->img.img_adr, info->parameters.floor,
 		info->parameters.ceiling);
 	new_scene(info);
