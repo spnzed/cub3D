@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:03:48 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/21 20:50:44 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:10:46 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 static void	ft_c(char c, int floor, int *pos)
 {
 	if (c == '1')
-		*pos = 0x743636;
+		*pos = 0xFFFFFF;
+		//*pos = 0x743636;
 	else
 		*pos = floor;
 }
@@ -70,7 +71,7 @@ void	mini_map(t_data *info)
 	int	cell_w;
 
 	cell_w = 16; //pixels amplada cada cel.la del minimap == marge esquerre i superior mapa respecte límits de la finestra/imatge
-	p = WIDTH * cell_w + cell_w; //posisió a la pantalla punt superior esquerre del minimap
+	p = WIDTH * cell_w / 2 + cell_w / 2; //posisió a la pantalla punt superior esquerre del minimap
 	fill_map(info->mlx->img.img_adr, info, p, 0);
 	draw_minipl(info->mlx->img.img_adr, info->minipl.x, info->minipl.y, 0xFFFF00);
 }

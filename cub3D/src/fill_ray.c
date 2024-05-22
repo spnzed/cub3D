@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:09:09 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/22 17:43:25 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:13:03 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ static char	get_wall_or(int *scr, t_point r_end)
 	int	pos;
 
 	pos = r_end.y * WIDTH + r_end.x;
-	if (scr[pos - WIDTH] == 0xFFFFFF && scr[pos - WIDTH + 5] == 0xFFFFFF
-		&& scr[pos - WIDTH - 5] == 0xFFFFFF)
+	if (scr[pos - WIDTH] == 0xFFFFFF)/* && scr[pos - WIDTH * 5] == 0xFFFFFF
+		&& scr[pos - WIDTH - 5] == 0xFFFFFF*/
 		return ('S');
-	else if (scr[pos + WIDTH] == 0xFFFFFF && scr[pos + WIDTH + 5] == 0xFFFFFF
-		&& scr[pos + WIDTH - 5] == 0xFFFFFF)
+	else if (scr[pos + WIDTH] == 0xFFFFFF)/* && scr[pos + WIDTH * 5] == 0xFFFFFF
+		&& scr[pos + WIDTH - 5] == 0xFFFFFF*/
 		return ('N');
 	else if (scr[pos + 1] == 0xFFFFFF)
 		return ('W');

@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 17:02:21 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/21 19:51:18 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:12:03 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	put_position(t_data *info)
 	info->minipl.dx = cos(deg_to_rad(info->player.dir));
 	info->minipl.dy = -sin(deg_to_rad(info->player.dir));
 	info->map.map_size = info->map.size[0] * info->map.size[1];
-	info->minipl.x = 16 + info->map.spawn[X] * cell_w + cell_w / 2; //primer 8 es offset (marge/separacio amb el limit de la pantalla)
-	info->minipl.y = 16 + info->map.spawn[Y] * cell_w + cell_w / 2; //els altres 2 8 son l'amplada de cel.la del minimap
+	info->minipl.x = 8 + info->map.spawn[X] * cell_w + cell_w / 2; //primer 8 es offset (marge/separacio amb el limit de la pantalla)
+	info->minipl.y = 8 + info->map.spawn[Y] * cell_w + cell_w / 2; //els altres 2 8 son l'amplada de cel.la del minimap
 	info->player.dx = info->minipl.dx * 3;
 	info->player.dy = info->minipl.dy * 3;
 /*	info->player.x = (info->map.spawn[0] * SCALE) + SCALE / 2;
