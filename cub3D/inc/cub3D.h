@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/23 17:44:39 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/23 19:53:43 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,10 @@ typedef struct s_ray
 {
 	char	wall_or; // N, S, E, W
 	double	len;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	int		tex;
 	/*float	p[2];  //ray position p[X] , p[Y] (when it gets crossing "map virtual" horizontal/vertical lines of the grid)
 	float	off[2]; //ray offset off[X], off[Y], example: Y offset when crossing horizontal lines will be 48 if there are 48 pixels per map row
 	int		num; // order/position in the array of t_rays structures. One membre/number per ray, starting from 0, as being an array.
@@ -146,7 +150,6 @@ typedef struct s_ray
 	int		draw[2];
 	int		step[2];
 	int		side[2];
-	int		lineh;
 	bool	hit;*/
 }	t_ray;
 
@@ -185,6 +188,7 @@ typedef struct s_data
 
 //		Program
 int		check_args(int argc, char **argv, t_data *info);
+void	draw_wall(t_data *info, int *scr, int ang, int i);
 void	get_file(char *file, t_data *info);
 int		handle_map(char *file, t_data *info);
 int		check_map_char(char **scene, t_data *info);
@@ -209,7 +213,7 @@ float	angle_correction(float ang);
 void	mini_map(t_data *info);
 int		render(t_data *info);
 void	get_bigmap2d(t_data *info);
-void	draw_line(int *scr, t_point *pts, int color);
+void	draw_line(int *scr, t_point *pts, int color, int thickness);
 void	init_temp(t_data *info);
 void	new_scene(t_data *info);
 void	init_players(t_data *info);
