@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:09:09 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/22 19:04:21 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/05/23 17:57:43 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	fill_ray(int *scr, t_data *info, int ang, int i)
 	pts[1].x = 0;
 	pts[1].y = 0;
 	ray_end(scr, pts, ang);
-	draw_line(scr, pts, 0xFFFF00);
+	draw_line(scr, pts, 0xFFFF00, 1);
 	feed_ray(info, pts, i);
 	draw_wall(info, scr, ang, i);
 }

@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/23 15:50:11 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/05/23 17:57:17 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,7 +213,7 @@ float	angle_correction(float ang);
 void	mini_map(t_data *info);
 int		render(t_data *info);
 void	get_bigmap2d(t_data *info);
-void	draw_line(int *scr, t_point *pts, int color);
+void	draw_line(int *scr, t_point *pts, int color, int thickness);
 void	init_temp(t_data *info);
 void	new_scene(t_data *info);
 void	init_players(t_data *info);
