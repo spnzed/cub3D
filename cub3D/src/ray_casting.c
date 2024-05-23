@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_casting2.c                                     :+:      :+:    :+:   */
+/*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:21:29 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/22 19:14:17 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/23 17:44:15 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	cast_rays(t_data *info)
 
 	i = 0;
 	incr = (float)60 / (float)WIDTH;
-	printf("incr: %f\n", incr);
+	//printf("incr: %f\n", incr);
 	ang = (float)info->player.dir - 30.0;
 	init_arr(info);
 //	printf("info->player.dir: %i, info->player.dir + 30: %i info->player.dir - 30: %i\n", info->player.dir, info->player.dir + 30, info->player.dir - 30);

@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:46:33 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/14 18:21:07 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/23 17:43:48 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ float	angle_correction(float ang)
 {
 	if (ang > 359)
 		ang -= 360;
-	else if (ang < 0)
+	if (ang < 0)
 		ang += 360;
 	return (ang);
 }

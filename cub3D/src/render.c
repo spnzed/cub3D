@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:46:35 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/21 20:50:11 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/23 17:44:27 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	handle_key(t_data *info)
 void	new_scene(t_data *info)
 {
 	get_bigmap2d(info);
-//	mini_map(info);
+	mini_map(info);
 	cast_rays(info);
 }
 
