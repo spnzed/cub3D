@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:21:29 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/23 17:44:15 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/23 18:40:49 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,10 @@ void	cast_rays(t_data *info)
 //	printf("info->player.dir: %i, info->player.dir + 30: %i info->player.dir - 30: %i\n", info->player.dir, info->player.dir + 30, info->player.dir - 30);
 	while (i < WIDTH)
 	{
+	//	printf("ang: %f, i: %i\n", ang, i);
 		fill_ray(info->mlx->img.img_adr, info, angle_correction(ang), i);
 		i++;
-		ang += incr;
+		ang = ang + incr;
 	}
 	/*or_miss = orient_missing(info->ray);
 	while (or_miss)
