@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:09:09 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/22 17:43:25 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:04:21 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,5 @@ void	fill_ray(int *scr, t_data *info, int ang, int i)
 	ray_end(scr, pts, ang);
 	draw_line(scr, pts, 0xFFFF00);
 	feed_ray(info, pts, i);
+	draw_wall(info, scr, ang, i);
 }
