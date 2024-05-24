@@ -50,10 +50,10 @@
 # define WALL		0xFFFFFF
 
 # define SCALE 64
-# define HEIGHT 1080
-# define WIDTH 1920
-//# define HEIGHT 810
-//# define WIDTH 1380
+//# define HEIGHT 1080
+//# define WIDTH 1920
+# define HEIGHT 810
+# define WIDTH 1380
 # define SPEED 3
 
 typedef struct s_point
@@ -98,12 +98,13 @@ typedef struct s_mlx
 typedef struct s_map
 {
 	char		**grid;
-	int			grid_pos; //ES LA LINIA ON COMENÇA EL MAPA DINTRE DE L'ESCENA
+	int			grid_pos; //ES LA LINIA ON COMENÇA EL MAPA DINTRE DE L'ESCENA (fitxer .cub)
 	int			map_size;
-	int			scale; //tpoc no te sentit si l'unic que fa es igualar-la al define SCALE, per aix[o posem SCALE directament on calgui i llestos]
+	int			scale; //tpoc no te sentit si l'unic que fa es igualar-la al define SCALE, per això posem SCALE directament on calgui i llestos]
 	int			size[2];
 	int			spawn[2];
-	int			*arr;  // l'hem dínicialitzar!!
+	int			cell_w;
+	int			*arr;  // crec que no l'estem fent servir
 //	int			player_dir; //en principi no cal tenir-ho 2 vegades - JA ES A PARAMETERS
 //	int			floor;  //en principi no cal tenir-ho 2 vegades - JA ES A PARAMETERS
 //	int			ceiling; //en principi no cal tenir-ho 2 vegades - JA ES A PARAMETERS
@@ -138,10 +139,10 @@ typedef struct s_ray
 {
 	char	wall_or; // N, S, E, W
 	double	len;
+	int		map_p;
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
-	int		tex;
 	/*float	p[2];  //ray position p[X] , p[Y] (when it gets crossing "map virtual" horizontal/vertical lines of the grid)
 	float	off[2]; //ray offset off[X], off[Y], example: Y offset when crossing horizontal lines will be 48 if there are 48 pixels per map row
 	int		num; // order/position in the array of t_rays structures. One membre/number per ray, starting from 0, as being an array.

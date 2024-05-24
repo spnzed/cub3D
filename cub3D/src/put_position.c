@@ -18,6 +18,7 @@ void	put_position(t_data *info)
 	int		col_w;
 
 	col_w = SCALE / 8 * 6; //amplada cel.la/columna mapa gros
+	info->map.cell_w = col_w;
 	cell_w = SCALE / 4; //amplada cel.la/columna minimap
 //	info->player.len = SCALE / 2;
 	info->player.w = SCALE / 8;

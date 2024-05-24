@@ -45,7 +45,7 @@ void	cast_rays(t_data *info)
 	i = 0;
 	incr = (float)60 / (float)(WIDTH / 2);
 	//printf("incr: %f\n", incr);
-	ang = (float)info->player.dir - 30.0;
+	ang = (float)info->player.dir + 30.0;
 	init_arr(info);
 //	printf("info->player.dir: %i, info->player.dir + 30: %i info->player.dir - 30: %i\n", info->player.dir, info->player.dir + 30, info->player.dir - 30);
 	while (i < WIDTH / 2)
@@ -53,7 +53,7 @@ void	cast_rays(t_data *info)
 	//	printf("ang: %f, i: %i\n", ang, i);
 		fill_ray(info->mlx->img.img_adr, info, angle_correction(ang), i);
 		i++;
-		ang = ang + incr;
+		ang = ang - incr;
 	}
 	/*or_miss = orient_missing(info->ray);
 	while (or_miss)
