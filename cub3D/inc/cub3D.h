@@ -237,5 +237,6 @@ int		gen_color(int R, int G, int B);
 float	angle_correction(float ang);
 float	deg_to_rad(float d);
 void	player_direction(char c, t_data *info);
+int		is_corner(int *scr, int pos);
 
 #endif

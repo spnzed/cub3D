@@ -37,3 +37,16 @@ void	player_direction(char c, t_data *info)
 	if (c == 'E')
 		info->player.dir = 0;
 }
+
+int	is_corner(int *scr, int pos)
+{
+	if (scr[pos + WIDTH] == WALL && scr[pos - 1] == WALL)
+		return (1);
+	else if (scr[pos + WIDTH] == WALL && scr[pos + 1] == WALL)
+		return (1);
+	else if (scr[pos - WIDTH] == WALL && scr[pos - 1] == WALL)
+		return (1);
+	else if (scr[pos - WIDTH] == WALL && scr[pos + 1] == WALL)
+		return (1);
+	return (0);
+}
