@@ -55,6 +55,9 @@ void	cast_rays(t_data *info)
 		i++;
 		ang = ang - incr;
 	}
+/*	i = -1;
+	while (++i < 100)
+		printf("info->ray[%i].wall_or: %c\n", i, info->ray[i].wall_or);*/
 	/*or_miss = orient_missing(info->ray);
 	while (or_miss)
 	{

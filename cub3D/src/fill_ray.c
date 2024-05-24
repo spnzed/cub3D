@@ -32,15 +32,15 @@ static char	get_wall_or(int *scr, t_point r_end)
 	int	pos;
 
 	pos = r_end.y * WIDTH + r_end.x;
-	if (scr[pos - WIDTH] == 0xFFFFFF)/* && scr[pos - WIDTH * 5] == 0xFFFFFF
+	if (scr[pos - WIDTH * 2] == 0xFFFFFF)/* && scr[pos - WIDTH * 5] == 0xFFFFFF
 		&& scr[pos - WIDTH - 5] == 0xFFFFFF*/
 		return ('S');
-	else if (scr[pos + WIDTH] == 0xFFFFFF)/* && scr[pos + WIDTH * 5] == 0xFFFFFF
+	else if (scr[pos + WIDTH * 2] == 0xFFFFFF)/* && scr[pos + WIDTH * 5] == 0xFFFFFF
 		&& scr[pos + WIDTH - 5] == 0xFFFFFF*/
 		return ('N');
-	else if (scr[pos + 1] == 0xFFFFFF)
+	else if (scr[pos + 2] == 0xFFFFFF)
 		return ('W');
-	else if (scr[pos - 1] == 0xFFFFFF)
+	else if (scr[pos - 2] == 0xFFFFFF)
 		return ('E');
 	return (0);
 }
