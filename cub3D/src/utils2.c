@@ -40,13 +40,13 @@ void	player_direction(char c, t_data *info)
 
 int	is_corner(int *scr, int pos)
 {
-	if (scr[pos + WIDTH] == WALL && scr[pos - 1] == WALL)
+	if (scr[pos + WIDTH * 2] == WALL && scr[pos - 2] == WALL)
 		return (1);
-	else if (scr[pos + WIDTH] == WALL && scr[pos + 1] == WALL)
+	else if (scr[pos + WIDTH * 2] == WALL && scr[pos + 2] == WALL)
 		return (1);
-	else if (scr[pos - WIDTH] == WALL && scr[pos - 1] == WALL)
+	else if (scr[pos - WIDTH * 2] == WALL && scr[pos - 2] == WALL)
 		return (1);
-	else if (scr[pos - WIDTH] == WALL && scr[pos + 1] == WALL)
+	else if (scr[pos - WIDTH * 2] == WALL && scr[pos + 2] == WALL)
 		return (1);
 	return (0);
 }
