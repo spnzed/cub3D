@@ -31,6 +31,15 @@ static void	paint_black(int *scr, t_map *map, int p)
 	}
 }
 
+/*static void	paint_black(int *scr)
+{
+	int	p;
+
+	p = -1;
+	while (++p < HEIGHT * WIDTH)
+		scr[p] = 0x000000;
+}*/
+
 /*static void	draw_player(int *scr, int xpl, int ypl, int color)
 {
 	int	x;

@@ -22,8 +22,8 @@ static void	fourth_quadr(int *scr, t_point *pts, float ang)
 	while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
 		&& pts[1].y >= 0 && pts[1].x >= 0
 		&& pts[1].x < WIDTH && pts[1].y < HEIGHT
-		&& scr[WIDTH * pts[1].y + pts[1].x + 2] != 0xFFFFFF
-		&& scr[WIDTH * pts[1].y + pts[1].x + WIDTH * 2]  != 0xFFFFFF)
+		&& scr[WIDTH * pts[1].y + pts[1].x + 1] != 0xFFFFFF
+		&& scr[WIDTH * pts[1].y + pts[1].x + WIDTH]  != 0xFFFFFF)
 	{
 		i++;
 		pts[1].x = pts[0].x + cos(deg_to_rad(ang)) * i;
@@ -49,8 +49,8 @@ static void	third_quadr(int *scr, t_point *pts, float ang)
 	while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
 		&& pts[1].y >= 0 && pts[1].x >= 0
 		&& pts[1].x < WIDTH && pts[1].y < HEIGHT
-		&& scr[WIDTH * pts[1].y + pts[1].x - 2] != 0xFFFFFF
-		&& scr[WIDTH * pts[1].y + pts[1].x + WIDTH * 2] != 0xFFFFFF)
+		&& scr[WIDTH * pts[1].y + pts[1].x - 1] != 0xFFFFFF
+		&& scr[WIDTH * pts[1].y + pts[1].x + WIDTH] != 0xFFFFFF)
 	{
 		i++;
 		pts[1].x = pts[0].x + cos(deg_to_rad(ang)) * i;
@@ -76,8 +76,8 @@ static void	second_quadr(int *scr, t_point *pts, float ang)
 	while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
 		&& pts[1].y >= 0 && pts[1].x >= 0
 		&& pts[1].x < WIDTH && pts[1].y < HEIGHT
-		&& scr[WIDTH * pts[1].y + pts[1].x - 2] != 0xFFFFFF
-		&& scr[WIDTH * pts[1].y + pts[1].x - WIDTH * 2] != 0xFFFFFF)
+		&& scr[WIDTH * pts[1].y + pts[1].x - 1] != 0xFFFFFF
+		&& scr[WIDTH * pts[1].y + pts[1].x - WIDTH] != 0xFFFFFF)
 	{
 		i++;
 		pts[1].x = pts[0].x + cos(deg_to_rad(ang)) * i;
@@ -103,8 +103,8 @@ static void	first_quadr(int *scr, t_point *pts, float ang)
 	while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
 		&& pts[1].y >= 0 && pts[1].x >= 0
 		&& pts[1].x < WIDTH && pts[1].y < HEIGHT
-		&& scr[WIDTH * pts[1].y + pts[1].x + 2] != 0xFFFFFF
-		&& scr[WIDTH * pts[1].y + pts[1].x - WIDTH * 2] != 0xFFFFFF)
+		&& scr[WIDTH * pts[1].y + pts[1].x + 1] != 0xFFFFFF
+		&& scr[WIDTH * pts[1].y + pts[1].x - WIDTH] != 0xFFFFFF)
 	{
 		i++;
 		pts[1].x = pts[0].x + cos(deg_to_rad(ang)) * i;

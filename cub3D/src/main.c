@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-static void	init_keys(t_mlx *mlx)
+void	init_keys(t_mlx *mlx)
 {
 	t_keys	*keys;
 
@@ -78,6 +78,8 @@ int	main(int argc, char **argv)
 	info = init_info();
 	check_args(argc, argv, info);
 	init_window(info);
+	//init_window2(info);
 	init_loop(info);
+	//init_loop2(info);
 	return (0);
 }

@@ -226,6 +226,10 @@ void	ray_casting(t_data *info);
 void	other_angles(int *scr, t_point *pts, float ang);
 void	ray_end(int *scr, t_point *pts, float ang);
 void	cast_rays(t_data *info);
+int		init_window2(t_data *info);
+void	init_loop2(t_data *info);
+void	init_keys(t_mlx *mlx);
+void	handle_key(t_data *info);
 
 //		Utils
 int		ft_count_lines(int fd);

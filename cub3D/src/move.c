@@ -33,8 +33,8 @@ static int	wall_found(int *scr, float x, float y)
 
 void	move_front(t_data *info)
 {
-	if (!wall_found(info->mlx->img.img_adr, info->player.x + info->player.dx * 3,
-		info->player.y + info->player.dy * 3))
+	if (!wall_found(info->mlx->img.img_adr, info->player.x + info->player.dx,
+		info->player.y + info->player.dy))
 	/*if (check_collision(info,
 			info->player.x + info->player.dx * SPEED,
 			info->player.y + info->player.dy * SPEED))*/
@@ -48,7 +48,7 @@ void	move_front(t_data *info)
 
 void	move_back(t_data *info)
 {
-	if (!wall_found(info->mlx->img.img_adr, info->player.x - info->player.dx ,
+	if (!wall_found(info->mlx->img.img_adr, info->player.x - info->player.dx,
 		info->player.y - info->player.dy))
 	{
 		info->player.x -= info->player.dx;

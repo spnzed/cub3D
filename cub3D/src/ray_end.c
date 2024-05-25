@@ -19,7 +19,7 @@ static void	deg0(int *scr, t_point *pts)
 	while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
 		&& pts[1].y >= 0 && pts[1].x >= 0
 		&& pts[1].x < WIDTH && pts[1].y < HEIGHT
-		&& scr[WIDTH * pts[1].y + pts[1].x + 2] != 0xFFFFFF)
+		&& scr[WIDTH * pts[1].y + pts[1].x + 1] != 0xFFFFFF)
 		pts[1].x++;
 /*	if (scr[WIDTH * pts[1].y + pts[1].x] == 0xFFFFFF)
 		pts[1].x -= 1;*/
@@ -33,7 +33,7 @@ static void	deg180(int *scr, t_point *pts)
 	while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
 		&& pts[1].y >= 0 && pts[1].x >= 0
 		&& pts[1].x < WIDTH && pts[1].y < HEIGHT
-		&& scr[WIDTH * pts[1].y + pts[1].x - 2] != 0xFFFFFF)
+		&& scr[WIDTH * pts[1].y + pts[1].x - 1] != 0xFFFFFF)
 		pts[1].x--;
 	/*if (scr[WIDTH * pts[1].y + pts[1].x] == 0xFFFFFF)
 		pts[1].x += 1;*/
@@ -46,7 +46,7 @@ static void	deg90(int *scr, t_point *pts)
 	while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
 		&& pts[1].y >= 0 && pts[1].x >= 0
 		&& pts[1].x < WIDTH && pts[1].y < HEIGHT
-		&& scr[WIDTH * pts[1].y + pts[1].x - WIDTH * 2] != 0xFFFFFF)
+		&& scr[WIDTH * pts[1].y + pts[1].x - WIDTH] != 0xFFFFFF)
 		pts[1].y--;
 /*	if (scr[WIDTH * pts[1].y + pts[1].x] == 0xFFFFFF)
 		pts[1].y += 1;*/
@@ -59,7 +59,7 @@ static void	deg270(int *scr, t_point *pts)
 	while (scr[WIDTH * pts[1].y + pts[1].x] != 0xFFFFFF
 		&& pts[1].y >= 0 && pts[1].x >= 0
 		&& pts[1].x < WIDTH && pts[1].y < HEIGHT
-		&& scr[WIDTH * pts[1].y + pts[1].x + WIDTH * 2] != 0xFFFFFF)
+		&& scr[WIDTH * pts[1].y + pts[1].x + WIDTH] != 0xFFFFFF)
 		pts[1].y++;
 /*	if (scr[WIDTH * pts[1].y + pts[1].x] == 0xFFFFFF)
 		pts[1].y -= 1;*/
