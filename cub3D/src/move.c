@@ -33,7 +33,7 @@ static int	wall_found(int *scr, float x, float y)
 
 void	move_front(t_data *info)
 {
-	if (!wall_found(info->mlx->img.img_adr, info->player.x + info->player.dx,
+	if (!wall_found(info->map2d, info->player.x + info->player.dx,
 		info->player.y + info->player.dy))
 	/*if (check_collision(info,
 			info->player.x + info->player.dx * SPEED,
@@ -48,7 +48,7 @@ void	move_front(t_data *info)
 
 void	move_back(t_data *info)
 {
-	if (!wall_found(info->mlx->img.img_adr, info->player.x - info->player.dx,
+	if (!wall_found(info->map2d, info->player.x - info->player.dx,
 		info->player.y - info->player.dy))
 	{
 		info->player.x -= info->player.dx;
@@ -67,7 +67,7 @@ void	move_right(t_data *info)
 	new_dir = angle_correction(90 - info->player.dir);
 	new_dx = cos(deg_to_rad(new_dir));
 	new_dy = sin(deg_to_rad(new_dir));
-	if (!wall_found(info->mlx->img.img_adr, info->player.x + new_dx * 3,
+	if (!wall_found(info->map2d, info->player.x + new_dx * 3,
 		info->player.y + new_dy * 3))
 	{
 		info->player.x += new_dx * 3;
@@ -92,7 +92,7 @@ void	move_left(t_data *info)
 	new_dir = angle_correction(90 - info->player.dir);
 	new_dx = cos(deg_to_rad(new_dir));
 	new_dy = sin(deg_to_rad(new_dir));
-	if (!wall_found(info->mlx->img.img_adr, info->player.x - new_dx * 3,
+	if (!wall_found(info->map2d, info->player.x - new_dx * 3,
 		info->player.y - new_dy * 3))
 	{
 		info->player.x -= new_dx * 3;
