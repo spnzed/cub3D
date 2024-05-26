@@ -53,7 +53,7 @@ static void	feed_ray(t_data *info, t_point *ends, int i)
 	a = abs(ends[0].x - ends[1].x);
 	b = abs(ends[0].y - ends[1].y);
 	(info->ray)[i].len = sqrt((a * a + b * b));
-	(info->ray)[i].wall_or = get_wall_or(info->mlx->img.img_adr, ends[1]);
+	(info->ray)[i].wall_or = get_wall_or(info->map2d, ends[1]);
 	(info->ray)[i].map_p = rayend_mappos(ends[1], (info->ray)[i].wall_or,
 		info->map.cell_w, info->map.size);
 }

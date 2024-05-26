@@ -78,8 +78,6 @@ int	main(int argc, char **argv)
 	info = init_info();
 	check_args(argc, argv, info);
 	init_window(info);
-	//init_window2(info);
 	init_loop(info);
-	//init_loop2(info);
 	return (0);
 }

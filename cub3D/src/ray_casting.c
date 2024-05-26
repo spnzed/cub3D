@@ -51,7 +51,7 @@ void	cast_rays(t_data *info)
 	while (i < WIDTH / 2)
 	{
 	//	printf("ang: %f, i: %i\n", ang, i);
-		fill_ray(info->mlx->img.img_adr, info, angle_correction(ang), i);
+		fill_ray(info->map2d, info, angle_correction(ang), i);
 		i++;
 		ang = ang - incr;
 	}

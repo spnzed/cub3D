@@ -178,13 +178,13 @@ typedef struct s_data
 	t_ray			*ray;
 	t_parameters	parameters;
 	t_map			map;
-//	t_map			minimap;
 	t_player		player;
 	t_player		minipl;
 	int				dir;
 	int				dir_cor[2];
 	int				p_plane_x;
 	int				p_plane_y;
+	int				*map2d; //creat erosas x emmagatzemar map2d i raycasting en 2d que no es projecten en pantalla
 }	t_data;
 
 //		Program
@@ -213,7 +213,7 @@ float	deg_to_rad(float d);
 float	angle_correction(float ang);
 void	mini_map(t_data *info);
 int		render(t_data *info);
-void	get_bigmap2d(t_data *info);
+int		get_bigmap2d(t_data *info);
 void	draw_line(int *scr, t_point *pts, int color, int thickness);
 void	init_temp(t_data *info);
 void	new_scene(t_data *info);
