@@ -28,12 +28,12 @@ static int	rayend_mappos(t_point hit, char wll_or, int cell_w, int *m_sz)
 	return (res);
 }
 
-static char	get_wall_or(int *scr, t_point r_end, t_ray *ray, int i)
+static char	get_wall_or(int *scr, t_point r_end)//, t_ray *ray, int i)
 {
 	int	pos;
 
 	pos = r_end.y * WIDTH + r_end.x;
-	if (i > 0)
+	/*if (i > 0)
 	{
 		if ((ray[i - 1].wall_or == 'N' || ray[i - 1].wall_or == 'S')
 			&& ray[i].end[Y] == ray[i - 1].end[Y])
@@ -41,7 +41,7 @@ static char	get_wall_or(int *scr, t_point r_end, t_ray *ray, int i)
 		else if ((ray[i - 1].wall_or == 'E' || ray[i - 1].wall_or == 'W')
 			&& ray[i].end[X] == ray[i - 1].end[X])
 			return (ray[i - 1].wall_or);
-	}
+	}*/
 	if (scr[pos - WIDTH] == 0xFFFFFF)/* && scr[pos - WIDTH * 5] == 0xFFFFFF
 		&& scr[pos - WIDTH - 5] == 0xFFFFFF*/
 		return ('S');
@@ -64,15 +64,15 @@ static void	feed_ray(t_data *info, t_point *ends, int i)
 	b = abs(ends[0].y - ends[1].y);
 	(info->ray)[i].len = sqrt((a * a + b * b));
 	//(info->ray)[i].wall_or = get_wall_or(info->map2d, ends[1]);
-	(info->ray)[i].wall_or = get_wall_or(info->mlx->img.img_adr, ends[1],
-		info->ray, i);
+	(info->ray)[i].wall_or = get_wall_or(info->mlx->img.img_adr, ends[1]);
+		//, info->ray, i);
 	(info->ray)[i].map_p = rayend_mappos(ends[1], (info->ray)[i].wall_or,
 		info->map.cell_w, info->map.size);
 	(info->ray)[i].end[X] = ends[1].x;
 	(info->ray)[i].end[Y] = ends[1].y;
 }
 
-static void	horiz_maplines(t_data *info, float ang)
+/*static void	horiz_maplines(t_data *info, float ang)
 {
 	float	rpos[2];
 	float	rd[2];
@@ -108,11 +108,10 @@ static void	horiz_maplines(t_data *info, float ang)
 		mpos[X] = (int)rpos[X] / 48;
 		mpos[Y] = (int)rpos[Y] / 48;
 		mp = mpos[Y] * info->map.size[Y] + mpos[X];
-		if (mp < info->map.size[X] * info->map.size[Y] && map[mp] == 1) // cal que alimenti aquesta variable array del mapa!!! que ja surt al .h: "int			*arr;"
-		
-	}
+	//	if (mp < info->map.size[X] * info->map.size[Y] && (info->map->arr)[mp] == 1) // cal que alimenti aquesta variable array del mapa!!! que ja surt al .h: "int			*arr;"
 	
-}
+	}
+}*/
 
 void	fill_ray(int *scr, t_data *info, float ang, int i)
 {
@@ -132,7 +131,7 @@ void	fill_ray(int *scr, t_data *info, float ang, int i)
 	ray_end(scr, pts, ang);
 //	printf("i: %i, pts[1].pos: %i\n", i, pts[1].y * WIDTH + pts[1].x);
 	draw_line(scr, pts, 0xFFFF00, 1);
-	horiz_maplines(info, ang, pts[0]);
+//	horiz_maplines(info, ang, pts[0]);
 	//vert_maplines(info, ang);
 	feed_ray(info, pts, i);
 	draw_wall(info, scr, ang, i);

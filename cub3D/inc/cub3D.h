@@ -50,10 +50,10 @@
 # define WALL		0xFFFFFF
 
 # define SCALE 64
-# define HEIGHT 1080
-# define WIDTH 1920
-//# define HEIGHT 810
-//# define WIDTH 1380
+//# define HEIGHT 1080
+//# define WIDTH 1920
+# define HEIGHT 810
+# define WIDTH 1380
 # define SPEED 3
 
 typedef struct s_point
@@ -98,13 +98,13 @@ typedef struct s_mlx
 typedef struct s_map
 {
 	char		**grid;
-	int			grid_pos; //ES LA LINIA ON COMENÇA EL MAPA DINTRE DE L'ESCENA (fitxer .cub)
+	int			grid_pos;
 	int			map_size;
 	int			scale; //tpoc no te sentit si l'unic que fa es igualar-la al define SCALE, per això posem SCALE directament on calgui i llestos]
 	int			size[2];
 	int			spawn[2];
 	int			cell_w;
-	int			*arr;  // crec que no l'estem fent servir
+	int			*arr;
 //	int			player_dir; //en principi no cal tenir-ho 2 vegades - JA ES A PARAMETERS
 //	int			floor;  //en principi no cal tenir-ho 2 vegades - JA ES A PARAMETERS
 //	int			ceiling; //en principi no cal tenir-ho 2 vegades - JA ES A PARAMETERS
@@ -127,11 +127,11 @@ typedef struct s_player
 	float	dir; //era p_dir pero crec que no te sentit, no cal la p i nomes alalrga els caracters que calen
 	float	dx; //p_dir_x_cos;  //seria dx suposo (el desplacament d'x)
 	float	dy; //p_dir_y_sin; //idem per a y
-	float	n[2];
-	int		w;//temp per fer quadradet del jugador en 2D
-	int		h;//temp per fer quadradet del jugador en 2D
-	//float	dx; // x controlar dif. desplaçament segons angle, encada una de les 2 dimensions
-	//float	dy; // x controlar dif. desplaçament segons angle, encada una de les 2 dimensions
+	float	n[2]; // AIXO Q ES???
+	//int		w;//temp per fer quadradet del jugador en 2D
+	//int		h;//temp per fer quadradet del jugador en 2D
+	//float	dx; // x controlar dif. desplaçament segons angle, en cada una de les 2 dimensions
+	//float	dy; // x controlar dif. desplaçament segons angle, en cada una de les 2 dimensions
 	//int		len; //temp per projectar rajos i veure com rota la barra en 2D
 }	t_player;
 

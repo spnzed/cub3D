@@ -21,8 +21,8 @@ void	put_position(t_data *info)
 	info->map.cell_w = col_w;
 	cell_w = SCALE / 4; //amplada cel.la/columna minimap
 //	info->player.len = SCALE / 2;
-	info->player.w = SCALE / 8;
-	info->player.h = SCALE / 8;
+	//info->player.w = SCALE / 8;
+	//info->player.h = SCALE / 8;
 	info->player.x = WIDTH / 2 - (info->map.size[0] * col_w) / 2
 		+ info->map.spawn[0] * col_w + col_w / 2;
 	info->player.y = HEIGHT / 2 - (info->map.size[1] * col_w) / 2
