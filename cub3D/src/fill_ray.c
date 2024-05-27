@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:09:09 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/27 17:37:57 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/27 18:07:38 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ static void	feed_ray(t_data *info, t_point *ends, int i)
 	a = abs(ends[0].x - ends[1].x);
 	b = abs(ends[0].y - ends[1].y);
 	(info->ray)[i].len = sqrt((a * a + b * b));
-	(info->ray)[i].wall_or = get_wall_or(info->map2d, ends[1]);
+	//(info->ray)[i].wall_or = get_wall_or(info->map2d, ends[1]);
+	(info->ray)[i].wall_or = get_wall_or(info->mlx->img.img_adr, ends[1]);
 	(info->ray)[i].map_p = rayend_mappos(ends[1], (info->ray)[i].wall_or,
 		info->map.cell_w, info->map.size);
 }
@@ -78,5 +79,5 @@ void	fill_ray(int *scr, t_data *info, float ang, int i)
 //	printf("i: %i, pts[1].pos: %i\n", i, pts[1].y * WIDTH + pts[1].x);
 	draw_line(scr, pts, 0xFFFF00, 1);
 	feed_ray(info, pts, i);
-	//draw_wall(info, scr, ang, i);
+	draw_wall(info, scr, ang, i);
 }

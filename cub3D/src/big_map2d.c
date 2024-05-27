@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:11:18 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/21 20:42:06 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/27 18:06:05 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,8 @@ int	get_bigmap2d(t_data *info)
 	mp_xp = WIDTH / 2 - info->map.size[X] * col_w / 2;
 	mp_yp = HEIGHT / 2 - info->map.size[Y] * col_w / 2;
 	p = mp_yp * WIDTH + mp_xp;
-	fill_bigmap(info->map2d, &info->map, p, 0);
+	//fill_bigmap(info->map2d, &info->map, p, 0);
+	fill_bigmap(info->mlx->img.img_adr, &info->map, p, 0);
 	//fill_bigmap(info->mlx->img.img_adr, &info->map, p, 0);
 //	fill_ray(info->mlx->img.img_adr, &info->player, info);
 	

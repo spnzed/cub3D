@@ -6,17 +6,15 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 17:45:33 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/25 17:46:48 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/27 18:11:09 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static int	render2(t_data *info)
+/*static int	render2(t_data *info)
 {
 	handle_key(info);
-	/*paint_ceil_floor(info->mlx->img.img_adr, info->parameters.floor,
-		info->parameters.ceiling);*/
     get_bigmap2d(info);
 	cast_rays(info);
 	mlx_put_image_to_window(info->mlx->mlx,
@@ -44,4 +42,4 @@ void	init_loop2(t_data *info)
 	mlx_hook(info->mlx->win, 17, 0, &ft_cross, info->mlx);
 	mlx_loop_hook(info->mlx->mlx, &render2, info);
 	mlx_loop(info->mlx->mlx);
-}
+}*/
