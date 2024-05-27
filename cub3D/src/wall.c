@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 19:04:07 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/23 20:07:11 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/27 17:57:49 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	draw_wall(t_data *info, int *scr, int ang, int i)
 	int height;
 	int offset;
 
+	(void)scr;
 	distance = remove_fish(info->player.dir, ang, info->ray[i].len);
 	height = (SCALE * 320) / (distance); // Calcula la altura de la línea
 	if (height > 320) 
@@ -37,9 +38,16 @@ void	draw_wall(t_data *info, int *scr, int ang, int i)
 	offset = 160 - (height / 2); // Calcula el offset de la línea
 
 	t_point wall_pts[2] = {{i * 1 + 530, offset}, {i * 1 + 530, offset + height}};
-    draw_line(scr, wall_pts, 0xff0000, 1); // Blanco para las paredes  
 
-	// // Calcula las coordenadas de textura
+	if (info->ray[i].wall_or == 'N')
+    	draw_line(info->mlx->img.img_adr, wall_pts, 0xff0000, 1); // Red
+	else if (info->ray[i].wall_or == 'S')
+    	draw_line(info->mlx->img.img_adr, wall_pts, 0x00ff00, 1); // Green  
+	else if (info->ray[i].wall_or == 'W')
+    	draw_line(info->mlx->img.img_adr, wall_pts, 0x0000ff, 1); // Blue	  
+	else if (info->ray[i].wall_or == 'E')
+    	draw_line(info->mlx->img.img_adr, wall_pts, 0xffff00, 1); // Yellow  
+	// Calcula las coordenadas de textura
 	// float tex_x = (float)i / (float)WIDTH * info->mlx->north.width;
 	// int tex_y = 0; // Puedes calcular la coordenada y de textura basándote en el ángulo o la distancia si es necesario
 
