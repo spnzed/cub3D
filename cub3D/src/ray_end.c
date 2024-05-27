@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:34:09 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/23 19:32:42 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/27 20:21:15 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static void	deg0(int *scr, t_point *pts)
 		&& pts[1].x < WIDTH && pts[1].y < HEIGHT
 		&& scr[WIDTH * pts[1].y + pts[1].x + 1] != 0xFFFFFF)
 		pts[1].x++;
-/*	if (scr[WIDTH * pts[1].y + pts[1].x] == 0xFFFFFF)
-		pts[1].x -= 1;*/
+	if (scr[WIDTH * pts[1].y + pts[1].x] == 0xFFFFFF)
+		pts[1].x -= 1;
 	//printf("p1.x: %i, pt1.y: %i\n", pts[1].x, pts[1].y);
 }
 
@@ -35,8 +35,8 @@ static void	deg180(int *scr, t_point *pts)
 		&& pts[1].x < WIDTH && pts[1].y < HEIGHT
 		&& scr[WIDTH * pts[1].y + pts[1].x - 1] != 0xFFFFFF)
 		pts[1].x--;
-	/*if (scr[WIDTH * pts[1].y + pts[1].x] == 0xFFFFFF)
-		pts[1].x += 1;*/
+	if (scr[WIDTH * pts[1].y + pts[1].x] == 0xFFFFFF)
+		pts[1].x += 1;
 }
 
 static void	deg90(int *scr, t_point *pts)
@@ -48,8 +48,8 @@ static void	deg90(int *scr, t_point *pts)
 		&& pts[1].x < WIDTH && pts[1].y < HEIGHT
 		&& scr[WIDTH * pts[1].y + pts[1].x - WIDTH] != 0xFFFFFF)
 		pts[1].y--;
-/*	if (scr[WIDTH * pts[1].y + pts[1].x] == 0xFFFFFF)
-		pts[1].y += 1;*/
+	if (scr[WIDTH * pts[1].y + pts[1].x] == 0xFFFFFF)
+		pts[1].y += 1;
 }
 
 static void	deg270(int *scr, t_point *pts)
@@ -61,8 +61,8 @@ static void	deg270(int *scr, t_point *pts)
 		&& pts[1].x < WIDTH && pts[1].y < HEIGHT
 		&& scr[WIDTH * pts[1].y + pts[1].x + WIDTH] != 0xFFFFFF)
 		pts[1].y++;
-/*	if (scr[WIDTH * pts[1].y + pts[1].x] == 0xFFFFFF)
-		pts[1].y -= 1;*/
+	if (scr[WIDTH * pts[1].y + pts[1].x] == 0xFFFFFF)
+		pts[1].y -= 1;
 }
 
 void	ray_end(int *scr, t_point *pts, float ang)

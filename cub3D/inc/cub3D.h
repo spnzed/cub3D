@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/27 17:23:49 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/27 19:40:20 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,9 +140,10 @@ typedef struct s_ray
 	char	wall_or; // N, S, E, W
 	double	len;
 	int		map_p;
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
+	int		end[2]; //posició (x, y) de l'extrem final del raig (oposat a la posició del jugador)
+//	int		line_height;
+//	int		draw_start;
+//	int		draw_end;
 	/*float	p[2];  //ray position p[X] , p[Y] (when it gets crossing "map virtual" horizontal/vertical lines of the grid)
 	float	off[2]; //ray offset off[X], off[Y], example: Y offset when crossing horizontal lines will be 48 if there are 48 pixels per map row
 	int		num; // order/position in the array of t_rays structures. One membre/number per ray, starting from 0, as being an array.

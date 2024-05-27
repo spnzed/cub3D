@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:43:13 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/23 19:27:24 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/27 20:22:28 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ static void	fourth_quadr(int *scr, t_point *pts, float ang)
 		pts[1].x = pts[0].x + cos(deg_to_rad(ang)) * i;
 		pts[1].y = pts[0].y - sin(deg_to_rad(ang)) * i;
 	}
-	/*if (scr[WIDTH * pts[1].y + pts[1].x] == 0xFFFFFF
+	if (scr[WIDTH * pts[1].y + pts[1].x] == 0xFFFFFF
 		|| (scr[WIDTH * pts[1].y + pts[1].x - 1] == 0xFFFFFF
 			&& scr[WIDTH * pts[1].y + pts[1].x - WIDTH] == 0xFFFFFF))
 	{
 		i -= 1;
 		pts[1].x = pts[0].x + cos(deg_to_rad(ang)) * i;
 		pts[1].y = pts[0].y - sin(deg_to_rad(ang)) * i;
-	}*/
+	}
 }
 
 static void	third_quadr(int *scr, t_point *pts, float ang)
@@ -56,14 +56,14 @@ static void	third_quadr(int *scr, t_point *pts, float ang)
 		pts[1].x = pts[0].x + cos(deg_to_rad(ang)) * i;
 		pts[1].y = pts[0].y - sin(deg_to_rad(ang)) * i;
 	}
-	/*if (scr[WIDTH * pts[1].y + pts[1].x] == 0xFFFFFF
+	if (scr[WIDTH * pts[1].y + pts[1].x] == 0xFFFFFF
 		|| (scr[WIDTH * pts[1].y + pts[1].x + 1] == 0xFFFFFF
 			&& scr[WIDTH * pts[1].y + pts[1].x - WIDTH] == 0xFFFFFF))
 	{
 		i -= 1;
 		pts[1].x = pts[0].x + cos(deg_to_rad(ang)) * i;
 		pts[1].y = pts[0].y - sin(deg_to_rad(ang)) * i;
-	}*/
+	}
 }
 
 static void	second_quadr(int *scr, t_point *pts, float ang)
@@ -83,14 +83,14 @@ static void	second_quadr(int *scr, t_point *pts, float ang)
 		pts[1].x = pts[0].x + cos(deg_to_rad(ang)) * i;
 		pts[1].y = pts[0].y - sin(deg_to_rad(ang)) * i;
 	}
-	/*if (scr[WIDTH * pts[1].y + pts[1].x] == 0xFFFFFF
+	if (scr[WIDTH * pts[1].y + pts[1].x] == 0xFFFFFF
 		|| (scr[WIDTH * pts[1].y + pts[1].x + 1] == 0xFFFFFF
 			&& scr[WIDTH * pts[1].y + pts[1].x + WIDTH] == 0xFFFFFF))
 	{
 		i -= 1;
 		pts[1].x = pts[0].x + cos(deg_to_rad(ang)) * i;
 		pts[1].y = pts[0].y - sin(deg_to_rad(ang)) * i;
-	}*/
+	}
 }
 
 static void	first_quadr(int *scr, t_point *pts, float ang)
@@ -110,14 +110,14 @@ static void	first_quadr(int *scr, t_point *pts, float ang)
 		pts[1].x = pts[0].x + cos(deg_to_rad(ang)) * i;
 		pts[1].y = pts[0].y - sin(deg_to_rad(ang)) * i;
 	}
-	/*if (scr[WIDTH * pts[1].y + pts[1].x] == 0xFFFFFF
+	if (scr[WIDTH * pts[1].y + pts[1].x] == 0xFFFFFF
 		|| (scr[WIDTH * pts[1].y + pts[1].x - 1] == 0xFFFFFF
 			&& scr[WIDTH * pts[1].y + pts[1].x + WIDTH] == 0xFFFFFF))
 	{
 		i -= 1;
 		pts[1].x = pts[0].x + cos(deg_to_rad(ang)) * i;
 		pts[1].y = pts[0].y - sin(deg_to_rad(ang)) * i;
-	}*/
+	}
 }
 
 void	other_angles(int *scr, t_point *pts, float ang)
