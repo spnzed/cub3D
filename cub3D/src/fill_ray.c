@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:09:09 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/23 19:53:26 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/27 17:37:57 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ static int	rayend_mappos(t_point hit, char wll_or, int cell_w, int *m_sz)
 	int	y_off;
 	int	x_off;
 
+	res = 0;
 	x_off = WIDTH / 2 - m_sz[X] * cell_w / 2;
 	y_off = HEIGHT / 2 - m_sz[Y] * cell_w / 2;
 	if (wll_or == 'E' || wll_or == 'W')
 		res = (hit.y + y_off) / cell_w;
-	else
+	if (wll_or == 'N' || wll_or == 'S')
 		res = (hit.x + x_off) / cell_w;
 	return (res);
 }
