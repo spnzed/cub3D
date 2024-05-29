@@ -28,10 +28,12 @@ static int	rayend_mappos(t_point hit, char wll_or, int cell_w, int *m_sz)
 	return (res);
 }
 
-static char	get_wall_or(int *scr, t_point r_end)//, t_ray *ray, int i)
+static char	get_wall_or(int *scr, t_point r_end, t_ray *ray, int i)
 {
-	int	pos;
+	int		pos;
+	char	res;
 
+	res = 0;
 	pos = r_end.y * WIDTH + r_end.x;
 	/*if (i > 0)
 	{
@@ -42,20 +44,43 @@ static char	get_wall_or(int *scr, t_point r_end)//, t_ray *ray, int i)
 			&& ray[i].end[X] == ray[i - 1].end[X])
 			return (ray[i - 1].wall_or);
 	}*/
-	if (scr[pos - WIDTH] == 0xFFFFFF)/* && scr[pos - WIDTH * 5] == 0xFFFFFF
-		&& scr[pos - WIDTH - 5] == 0xFFFFFF*/
-		return ('S');
-	else if (scr[pos + WIDTH] == 0xFFFFFF)/* && scr[pos + WIDTH * 5] == 0xFFFFFF
-		&& scr[pos + WIDTH - 5] == 0xFFFFFF*/
-		return ('N');
-	else if (scr[pos + 1] == 0xFFFFFF)
-		return ('W');
-	else if (scr[pos - 1] == 0xFFFFFF)
-		return ('E');
-	return (0);
+	if (ray[i].ang < 90 && scr[pos - WIDTH * 40] == 0xFFFFFF && scr[pos + 1] != 0xFFFFFF) // && ray[i].ang > 0 
+		res = 'S';
+	else if (ray[i].ang < 90)
+		res = 'W';
+	else if (ray[i].ang < 180 && scr[pos - WIDTH * 40] == 0xFFFFFF && scr[pos - 1] != 0xFFFFFF)
+		res = 'S';
+	else if (ray[i].ang < 180)
+		res = 'E';
+	else if (ray[i].ang < 270 && scr[pos + WIDTH * 40] == 0xFFFFFF && scr[pos - 1] != 0xFFFFFF)
+		res = 'N';
+	else if (ray[i].ang < 270)
+		res = 'E';
+	else if (scr[pos + WIDTH * 40] == 0xFFFFFF && scr[pos + 1] != 0xFFFFFF)
+		res = 'N';
+	else
+		res = 'W';
+	return (res);
+}
+static char check_orientation(int *scr, t_point r_end, t_ray *ray, int i)
+{
+	int	or;
+
+	or = 0;
+	if (ray[i].ang == 0)
+		or = 'W';
+	else if (ray[i].ang == 90)
+		or = 'S';
+	else if (ray[i].ang == 180)
+		or = 'E';
+	else if (ray[i].ang == 270)
+		or = 'N';
+	else
+		or = get_wall_or(scr,r_end, ray, i);
+	return (or);
 }
 
-static void	feed_ray(t_data *info, t_point *ends, int i)
+static void	feed_ray(t_data *info, t_point *ends, int i, float ang)
 {
 	int	a;
 	int	b;
@@ -63,61 +88,21 @@ static void	feed_ray(t_data *info, t_point *ends, int i)
 	a = abs(ends[0].x - ends[1].x);
 	b = abs(ends[0].y - ends[1].y);
 	(info->ray)[i].len = sqrt((a * a + b * b));
+//	printf("ang: %f\n", ang);
+	(info->ray)[i].ang = ang;
+//	printf("(info->ray)[%i].ang: %f\n", i, (info->ray)[i].ang);
 	//(info->ray)[i].wall_or = get_wall_or(info->map2d, ends[1]);
-	(info->ray)[i].wall_or = get_wall_or(info->mlx->img.img_adr, ends[1]);
-		//, info->ray, i);
+	(info->ray)[i].wall_or = check_orientation(info->mlx->img.img_adr, ends[1], info->ray, i);
 	(info->ray)[i].map_p = rayend_mappos(ends[1], (info->ray)[i].wall_or,
 		info->map.cell_w, info->map.size);
-	(info->ray)[i].end[X] = ends[1].x;
-	(info->ray)[i].end[Y] = ends[1].y;
+	//(info->ray)[i].end[X] = ends[1].x;
+	//(info->ray)[i].end[Y] = ends[1].y;
 }
-
-/*static void	horiz_maplines(t_data *info, float ang)
-{
-	float	rpos[2];
-	float	rd[2];
-	float	atan;
-	int		dof;
-	int		mpos[2];
-	int		mp;
-
-	atan = -1 / tan(ang);
-	dof = 0;
-	if (ang == 0 || ang == 180)
-	{
-		rpos[X] = info->player.x;
-		rpos[Y] = info->player.y;
-		dof = info->map.size[Y];
-	}
-	if (ang < 180)
-	{
-		rpos[Y] = (((int)info->player.y / 48) * 48) - 0.0001;
-		rpos[X] = (info->player.y - rpos[Y] * atan + info->player.x);
-		rd[Y] = -48;
-		rd[X] = -rd[Y] * atan;
-	}
-	else
-	{
-		rpos[Y] = (((int)info->player.y / 48) * 48) + 48.0;
-		rpos[X] = (info->player.y - rpos[Y] * atan + info->player.x);
-		rd[Y] = -48;
-		rd[X] = -rd[Y] * atan;
-	}
-	while (dof < info->map.size[Y])
-	{
-		mpos[X] = (int)rpos[X] / 48;
-		mpos[Y] = (int)rpos[Y] / 48;
-		mp = mpos[Y] * info->map.size[Y] + mpos[X];
-	//	if (mp < info->map.size[X] * info->map.size[Y] && (info->map->arr)[mp] == 1) // cal que alimenti aquesta variable array del mapa!!! que ja surt al .h: "int			*arr;"
-	
-	}
-}*/
 
 void	fill_ray(int *scr, t_data *info, float ang, int i)
 {
 	t_point	*pts;
 
-	//(void)i;
 	pts = ft_calloc(sizeof(pts), 2);
 	if (!pts)
 	{
@@ -129,10 +114,7 @@ void	fill_ray(int *scr, t_data *info, float ang, int i)
 	pts[1].x = 0;
 	pts[1].y = 0;
 	ray_end(scr, pts, ang);
-//	printf("i: %i, pts[1].pos: %i\n", i, pts[1].y * WIDTH + pts[1].x);
 	draw_line(scr, pts, 0xFFFF00, 1);
-//	horiz_maplines(info, ang, pts[0]);
-	//vert_maplines(info, ang);
-	feed_ray(info, pts, i);
+	feed_ray(info, pts, i, ang);
 	draw_wall(info, scr, ang, i);
 }
