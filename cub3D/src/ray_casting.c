@@ -43,7 +43,7 @@ void	cast_rays(t_data *info)
 
 	i = 0;
 	incr = (float)60 / (float)(WIDTH);
-	ang = (float)info->player.dir;// + 30.0;
+	ang = (float)info->player.dir + 30.0;
 	init_arr(info);
 	while (i < WIDTH)
 	{
@@ -52,7 +52,7 @@ void	cast_rays(t_data *info)
 		i++;
 		ang = ang - incr;
 	}
-/*	i = -1;
+	/*i = -1;
 	while(++i < WIDTH)
 		printf("ray[%i].wall_or: %c\n", i, (info->ray)[i].wall_or);*/
 }

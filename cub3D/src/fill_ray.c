@@ -44,19 +44,19 @@ static char	get_wall_or(int *scr, t_point r_end, t_ray *ray, int i)
 			&& ray[i].end[X] == ray[i - 1].end[X])
 			return (ray[i - 1].wall_or);
 	}*/
-	if (ray[i].ang < 90 && scr[pos - WIDTH * 40] == 0xFFFFFF && scr[pos + 1] != 0xFFFFFF) // && ray[i].ang > 0 
+	if (ray[i].ang < 90 && scr[pos - WIDTH] == 0xFFFFFF)// && scr[pos + 1] != 0xFFFFFF) && ray[i].ang > 0 
 		res = 'S';
 	else if (ray[i].ang < 90)
 		res = 'W';
-	else if (ray[i].ang < 180 && scr[pos - WIDTH * 40] == 0xFFFFFF && scr[pos - 1] != 0xFFFFFF)
+	else if (ray[i].ang < 180 && scr[pos - WIDTH] == 0xFFFFFF)// && scr[pos - 1] != 0xFFFFFF)
 		res = 'S';
 	else if (ray[i].ang < 180)
 		res = 'E';
-	else if (ray[i].ang < 270 && scr[pos + WIDTH * 40] == 0xFFFFFF && scr[pos - 1] != 0xFFFFFF)
+	else if (ray[i].ang < 270 && scr[pos + WIDTH] == 0xFFFFFF)// && scr[pos - 1] != 0xFFFFFF)
 		res = 'N';
 	else if (ray[i].ang < 270)
 		res = 'E';
-	else if (scr[pos + WIDTH * 40] == 0xFFFFFF && scr[pos + 1] != 0xFFFFFF)
+	else if (scr[pos + WIDTH] == 0xFFFFFF)// && scr[pos + 1] != 0xFFFFFF)
 		res = 'N';
 	else
 		res = 'W';
