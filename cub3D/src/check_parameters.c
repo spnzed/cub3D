@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_parameters.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 14:04:46 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/14 17:47:21 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/29 19:43:18 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,19 @@ static int	check_color_element(char *line, int color)
 
 	ret = 0;
 	if (color > 0)
-		ret = ft_err("Error: Parameters: Repeated Element Found\n");
+	{
+		ft_err("Error: Parameters: Repeated Element Found\n");
+		exit (1);
+	}
 	line = ft_strnchr(line + 1, ' ');
 	red = get_color(line, 'R');
 	green = get_color(line, 'G');
 	blue = get_color(line, 'B');
 	if (rgb_check(red) || rgb_check(green) || rgb_check(blue))
-		ret = ft_err("Error: Parameters: Incorrect Format\n");
+	{
+		ft_err("Error: Parameters: Incorrect RGB Format\n");
+		exit (1);
+	}
 	else
 		ret = gen_color(ft_atoi(red), ft_atoi(green), ft_atoi(blue));
 	return (ret);

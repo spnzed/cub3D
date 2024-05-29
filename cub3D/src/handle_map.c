@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:43:32 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/14 19:21:06 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/29 19:29:32 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ static void	check_map(t_data *info)
 		exit(1);
 	if (check_map_char(info->scene, info))
 		exit(1);
+	if (info->map.spawn[0] == -1 && info->map.spawn[1] == -1)
+	{
+		ft_err("Error: Map: No Player Found\n");
+		exit(1);
+	}
 }
 
 void	parse_map(t_data *info, char **grid)

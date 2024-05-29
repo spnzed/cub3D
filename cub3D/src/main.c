@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 20:53:28 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/14 18:54:34 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/29 19:22:49 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ static t_data	*init_info(void)
 	info->parameters.east = NULL;
 	info->parameters.floor = -1;
 	info->parameters.ceiling = -1;
+	info->map.spawn[0] = -1;
+	info->map.spawn[1] = -1;
 	return (info);
 }
 
