@@ -52,7 +52,7 @@ static char	get_wall_or(int *scr, t_point r_end, t_ray *ray, int i)
 		res = 'S';
 	else if (ray[i].ang < 180)
 		res = 'E';
-	else if (ray[i].ang < 270 && scr[pos + WIDTH] == 0xFFFFFF)// && scr[pos - 1] != 0xFFFFFF)
+	else if (ray[i].ang < 270 && scr[pos + WIDTH] == 0xFFFFFF)// || (scr[pos + WIDTH - 40] != 0xFFFFFF && scr[pos - WIDTH - 40] != 0xFFFFFF)))
 		res = 'N';
 	else if (ray[i].ang < 270)
 		res = 'E';
