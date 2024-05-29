@@ -28,43 +28,13 @@ static int	rayend_mappos(t_point hit, char wll_or, int cell_w, int *m_sz)
 	return (res);
 }
 
-static char	get_wall_or(int *scr, t_point r_end, t_ray *ray, int i)
-{
-	int		pos;
-	char	res;
 
-	res = 0;
-	pos = r_end.y * WIDTH + r_end.x;
-	/*if (i > 0)
-	{
-		if ((ray[i - 1].wall_or == 'N' || ray[i - 1].wall_or == 'S')
-			&& ray[i].end[Y] == ray[i - 1].end[Y])
-			return (ray[i - 1].wall_or);
-		else if ((ray[i - 1].wall_or == 'E' || ray[i - 1].wall_or == 'W')
-			&& ray[i].end[X] == ray[i - 1].end[X])
-			return (ray[i - 1].wall_or);
-	}*/
-	if (ray[i].ang < 90 && scr[pos - WIDTH] == 0xFFFFFF)// && scr[pos + 1] != 0xFFFFFF) && ray[i].ang > 0 
-		res = 'S';
-	else if (ray[i].ang < 90)
-		res = 'W';
-	else if (ray[i].ang < 180 && scr[pos - WIDTH] == 0xFFFFFF)// && scr[pos - 1] != 0xFFFFFF)
-		res = 'S';
-	else if (ray[i].ang < 180)
-		res = 'E';
-	else if (ray[i].ang < 270 && scr[pos + WIDTH] == 0xFFFFFF)// || (scr[pos + WIDTH - 40] != 0xFFFFFF && scr[pos - WIDTH - 40] != 0xFFFFFF)))
-		res = 'N';
-	else if (ray[i].ang < 270)
-		res = 'E';
-	else if (scr[pos + WIDTH] == 0xFFFFFF)// && scr[pos + 1] != 0xFFFFFF)
-		res = 'N';
-	else
-		res = 'W';
-	return (res);
-}
+
 static char check_orientation(int *scr, t_point r_end, t_ray *ray, int i)
 {
 	int	or;
+	(void)scr;
+	(void)r_end;
 
 	or = 0;
 	if (ray[i].ang == 0)
@@ -75,8 +45,8 @@ static char check_orientation(int *scr, t_point r_end, t_ray *ray, int i)
 		or = 'E';
 	else if (ray[i].ang == 270)
 		or = 'N';
-	else
-		or = get_wall_or(scr,r_end, ray, i);
+	/*else
+		or = get_wall_or(scr, r_end, ray, i);*/
 	return (or);
 }
 
@@ -95,6 +65,8 @@ static void	feed_ray(t_data *info, t_point *ends, int i, float ang)
 	(info->ray)[i].wall_or = check_orientation(info->mlx->img.img_adr, ends[1], info->ray, i);
 	(info->ray)[i].map_p = rayend_mappos(ends[1], (info->ray)[i].wall_or,
 		info->map.cell_w, info->map.size);
+	(info->ray)[i].end[X] = ends[1].x;
+	(info->ray)[i].end[Y] = ends[1].y;
 	//(info->ray)[i].end[X] = ends[1].x;
 	//(info->ray)[i].end[Y] = ends[1].y;
 }
@@ -116,5 +88,5 @@ void	fill_ray(int *scr, t_data *info, float ang, int i)
 	ray_end(scr, pts, ang);
 	draw_line(scr, pts, 0xFFFF00, 1);
 	feed_ray(info, pts, i, ang);
-	draw_wall(info, scr, ang, i);
+//	draw_wall(info, scr, ang, i);
 }

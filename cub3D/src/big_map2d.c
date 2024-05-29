@@ -105,8 +105,10 @@ int	get_bigmap2d(t_data *info)
 		return (1);
 	}
 	col_w = SCALE / 8 * 6;
-	mp_xp = WIDTH / 2 - info->map.size[X] * col_w / 2;
-	mp_yp = HEIGHT / 2 - info->map.size[Y] * col_w / 2;
+	//mp_xp = WIDTH / 2 - info->map.size[X] * col_w / 2;
+	//mp_yp = HEIGHT / 2 - info->map.size[Y] * col_w / 2;
+	mp_xp = 0;
+	mp_yp = HEIGHT - info->map.size[Y] * col_w;
 	p = mp_yp * WIDTH + mp_xp;
 	//fill_bigmap(info->map2d, &info->map, p, 0);
 	fill_bigmap(info->mlx->img.img_adr, &info->map, p, 0);
