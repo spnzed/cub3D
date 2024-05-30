@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_ray.c                                         :+:      :+:    :+:   */
+/*   fill_ray_OLD_.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:09:09 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/27 21:04:15 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/30 21:16:03 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,8 @@ static void	horiz_maplines(int *scr, t_data *info, float ang)
 	}
 	while (++dof < info->map.size[Y])
 	{
-		mpos[X] = (int)(rpos[X] - (WIDTH - info->map.size[X]) / 2) / 48;
-		mpos[Y] = (int)(rpos[Y] - (HEIGHT - info->map.size[Y]) / 2) / 48;
+		mpos[X] = (int)(rpos[X]) / 48;
+		mpos[Y] = (int)(rpos[Y] - (HEIGHT - info->map.size[Y])) / 48;
 		mp = mpos[Y] * info->map.size[Y] + mpos[X];
 		if (mp < info->map.size[X] * info->map.size[Y] && (info->map.arr)[mp] == 1) //we hit a wall
 			dof = info->map.size[Y]; //finish the loop

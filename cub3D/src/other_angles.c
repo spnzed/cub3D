@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:43:13 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/27 20:22:28 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/30 18:04:03 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	fourth_quadr(int *scr, t_point *pts, float ang)
 		&& pts[1].y >= 0 && pts[1].x >= 0
 		&& pts[1].x < WIDTH && pts[1].y < HEIGHT
 		&& scr[WIDTH * pts[1].y + pts[1].x + 1] != 0xFFFFFF
-		&& scr[WIDTH * pts[1].y + pts[1].x + WIDTH]  != 0xFFFFFF)
+		&& scr[WIDTH * pts[1].y + pts[1].x + WIDTH] != 0xFFFFFF)
 	{
 		i++;
 		pts[1].x = pts[0].x + cos(deg_to_rad(ang)) * i;

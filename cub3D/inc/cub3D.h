@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/27 19:40:20 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/30 18:10:02 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@
 # define WALL		0xFFFFFF
 
 # define SCALE 64
-//# define HEIGHT 1080
-//# define WIDTH 1920
-# define HEIGHT 810
-# define WIDTH 1380
+# define HEIGHT 1080
+# define WIDTH 1920
+//# define HEIGHT 810
+//# define WIDTH 1380
 # define SPEED 3
 
 typedef struct s_point

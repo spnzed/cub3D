@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:11:18 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/27 18:06:05 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/30 19:34:14 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ int	get_bigmap2d(t_data *info)
 	int	mp_xp;
 	int	mp_yp;
 	int	p;
-	int	col_w;
 
 	info->map2d = ft_calloc(sizeof(int), WIDTH * HEIGHT);
 	if (!info->map2d)
@@ -104,11 +103,11 @@ int	get_bigmap2d(t_data *info)
 		ft_err("Error: Malloc\n");
 		return (1);
 	}
-	col_w = SCALE / 8 * 6;
+	info->map.cell_w = SCALE / 8 * 6;
 	//mp_xp = WIDTH / 2 - info->map.size[X] * col_w / 2;
 	//mp_yp = HEIGHT / 2 - info->map.size[Y] * col_w / 2;
 	mp_xp = 0;
-	mp_yp = HEIGHT - info->map.size[Y] * col_w;
+	mp_yp = HEIGHT - info->map.size[Y] * info->map.cell_w;
 	p = mp_yp * WIDTH + mp_xp;
 	//fill_bigmap(info->map2d, &info->map, p, 0);
 	fill_bigmap(info->mlx->img.img_adr, &info->map, p, 0);
