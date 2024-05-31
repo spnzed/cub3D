@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:21:29 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/31 18:15:07 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/31 20:48:17 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 static void	init_arr(t_data *info)
 {
-	info->ray = ft_calloc(sizeof(t_ray), WIDTH);
+	info->ray = ft_calloc(sizeof(t_ray), 1); //1 > WIDTH
 	if (!info->ray)
 	{
 		ft_err("Error: Malloc\n");
@@ -42,10 +42,10 @@ void	cast_rays(t_data *info)
 	float	incr;
 
 	i = 0;
-	incr = (float)60 / (float)(WIDTH);
+	incr = (float)60 / (float)(1); //1 > WIDTH
 	ang = (float)info->player.dir + 30.0;
 	init_arr(info);
-	while (i < WIDTH)
+	while (i < 1) //1 > WIDTH
 	{
 		//fill_ray(info->map2d, info, angle_correction(ang), i);
 		fill_ray(info->mlx->img.img_adr, info, angle_correction(ang), i);

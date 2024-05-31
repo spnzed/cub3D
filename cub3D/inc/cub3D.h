@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/27 19:40:20 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/31 20:09:31 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@
 # define WALL		0xFFFFFF
 
 # define SCALE 64
-//# define HEIGHT 1080
-//# define WIDTH 1920
-# define HEIGHT 810
-# define WIDTH 1380
+# define HEIGHT 1080
+# define WIDTH 1920
+//# define HEIGHT 810
+//# define WIDTH 1380
 # define SPEED 3
 
 typedef struct s_point
@@ -140,7 +140,7 @@ typedef struct s_ray
 	char	wall_or; // N, S, E, W
 	double	len;
 	int		map_p;
-	int		end[2]; //posició (x, y) de l'extrem final del raig (oposat a la posició del jugador)
+	float	end[2]; //posició (x, y) de l'extrem final del raig (oposat a la posició del jugador)
 	float	ang;
 //	int		line_height;
 //	int		draw_start;
@@ -232,6 +232,7 @@ int		init_window2(t_data *info);
 void	init_loop2(t_data *info);
 void	init_keys(t_mlx *mlx);
 void	handle_key(t_data *info);
+void	ray_end_or(t_map *map, t_player *pl, float ang, t_ray *ray);
 
 //		Utils
 int		ft_count_lines(int fd);

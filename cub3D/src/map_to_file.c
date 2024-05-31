@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:15:19 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/14 19:44:47 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/31 20:39:51 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ char	**map_to_file(t_data *info, t_map *map, char **file)
 		exit(1);
 	}
 	get_grid(grid, file, map->size, map->grid_pos);
+	info->map.cell_w = 48;
 	return (grid);
 }
