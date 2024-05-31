@@ -20,7 +20,7 @@ SRC_FILES	=	arguments.c			big_map2d.c			check_map.c			check_parameters.c 	\
 				create_image.c		draw_line.c			errors.c			fill_ray.c 			\
 				get_color.c			get_file.c			handle_map.c 		loop_functions.c	\
 				main.c				map_to_file.c 		minimap.c			move_arrows.c		\
-				move.c				other_angles.c		put_images.c		put_position.c 		\
+				move.c				orientation.c		put_images.c		put_position.c 		\
 				ray_casting.c		ray_end.c			render.c 			utils.c				\
 				utils2.c			wall.c				window2.c								\
 					

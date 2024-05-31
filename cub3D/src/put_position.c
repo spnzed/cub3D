@@ -26,6 +26,7 @@ void	put_position(t_data *info)
 		+ info->map.spawn[0] * col_w + col_w / 2;
 	info->player.y = HEIGHT / 2 - (info->map.size[1] * col_w) / 2
 		+ info->map.spawn[1] * col_w + col_w / 2;
+	printf("put position player X: %f, player Y: %f\n", info->player.x, info->player.y);
 	info->minipl.dx = cos(deg_to_rad(info->player.dir));
 	info->minipl.dy = -sin(deg_to_rad(info->player.dir));
 	info->map.map_size = info->map.size[0] * info->map.size[1];

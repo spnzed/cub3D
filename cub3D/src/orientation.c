@@ -140,11 +140,13 @@ static void	horiz_maplines(t_map *m, t_player *p, float ang, t_ray *r)
 	}
 	else if (ang < 180)
 	{
+		printf("orientation p->y: %f\n", p->y);
 		r->end[Y] = (((int)(p->y) / m->cell_w) * m->cell_w) - 0.0001;
 		r->end[X] = (p->y - r->end[Y]) * atan + p->x;
 		rd[Y] = -(m->cell_w);
 		rd[X] = rd[Y] * atan;
-		printf("rd[Y]: %f, rd[X]: %f\n", rd[Y], rd[X]);
+		printf("000 r->end[X]: %f, r->end[Y]: %f\n", r->end[X], r->end[Y]);
+	//	printf("rd[Y]: %f, rd[X]: %f\n", rd[Y], rd[X]);
 	}
 	else
 	{
@@ -155,9 +157,10 @@ static void	horiz_maplines(t_map *m, t_player *p, float ang, t_ray *r)
 	}
 	while (++dof < m->size[Y])
 	{
-		mpos[X] = (int)(r->end[X] - (WIDTH - m->size[X]) / 2) / m->cell_w;
-		mpos[Y] = (int)(r->end[Y] - (HEIGHT - m->size[Y]) / 2) / m->cell_w;
-		printf("mpos[X]: %i, mpos[Y]: %i\n", mpos[X], mpos[Y]);
+	//	printf("111 r->end[X]: %f, r->end[Y]: %f\n", r->end[X], r->end[Y]);
+		mpos[X] = ((int)r->end[X] - (WIDTH - m->size[X] * m->cell_w) / 2) / m->cell_w;
+		mpos[Y] = ((int)r->end[Y] - (HEIGHT - m->size[Y] * m->cell_w) / 2) / m->cell_w;
+	//	printf("mpos[X]: %i, mpos[Y]: %i\n", mpos[X], mpos[Y]);
 		mp = mpos[Y] * m->size[Y] + mpos[X];
 		if (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 1) //we hit a wall
 			dof = m->size[Y]; //finish the loop

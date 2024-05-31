@@ -118,11 +118,13 @@ void	fill_ray(int *scr, t_data *info, float ang, int i)
 		ft_err("Error: Malloc\n");
 		exit (1);
 	}
+	printf("fill_ray player X: %f, player Y: %f\n", info->player.x, info->player.y);
 	pts[0].x = info->player.x;
 	pts[0].y = info->player.y;
 	pts[1].x = 0;
 	pts[1].y = 0;
 	//ray_end(scr, pts, ang);
+	//printf("fill_ray player X: %f, player Y: %f\n", info->player.x, info->player.y);
 	ray_end_or(&(info->map), &(info->player), ang, &(info->ray)[i]);
 	pts[1].x = info->ray->end[X];
 	pts[1].y = info->ray->end[Y];
