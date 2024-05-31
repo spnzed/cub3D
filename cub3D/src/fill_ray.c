@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:09:09 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/27 21:04:15 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/31 18:14:23 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,24 @@ static int	rayend_mappos(t_point hit, char wll_or, int cell_w, int *m_sz)
 {
 	int	res;
 	int	y_off;
-	int	x_off;
+	//int	x_off;
 
 	res = 0;
-	x_off = WIDTH / 2 - m_sz[X] * cell_w / 2;
-	y_off = HEIGHT / 2 - m_sz[Y] * cell_w / 2;
+	//x_off = WIDTH / 2 - m_sz[X] * cell_w / 2;
+	y_off = HEIGHT - (m_sz[Y] * cell_w);
+	//printf("y_off: %i, m_sz[Y]: %i, cell_w: %i\n", y_off, m_sz[Y], cell_w);
 	if (wll_or == 'E' || wll_or == 'W')
 		res = (hit.y + y_off) / cell_w;
 	if (wll_or == 'N' || wll_or == 'S')
-		res = (hit.x + x_off) / cell_w;
+		res = hit.x / cell_w;
+	//	res = (hit.x + x_off) / cell_w;
+	// if (wll_or == 'S')
+	// {
+	// 	printf("wall_or: %c\n", wll_or);
+	// 	printf("wall_or: %i\n", wll_or);
+	// 	printf("hit_x: %i, hit_y: %i, y_off: %i, m_sz[Y]: %i, cell_w: %i\n", hit.x, hit.y, y_off, m_sz[Y], cell_w);
+	// 	printf("res: %i\n", res);
+	// }
 	return (res);
 }
 
@@ -92,9 +101,9 @@ static void	feed_ray(t_data *info, t_point *ends, int i, float ang)
 	(info->ray)[i].ang = ang;
 //	printf("(info->ray)[%i].ang: %f\n", i, (info->ray)[i].ang);
 	//(info->ray)[i].wall_or = get_wall_or(info->map2d, ends[1]);
-	(info->ray)[i].wall_or = check_orientation(info->mlx->img.img_adr, ends[1], info->ray, i);
 	(info->ray)[i].map_p = rayend_mappos(ends[1], (info->ray)[i].wall_or,
 		info->map.cell_w, info->map.size);
+	(info->ray)[i].wall_or = check_orientation(info->mlx->img.img_adr, ends[1], info->ray, i);
 	//(info->ray)[i].end[X] = ends[1].x;
 	//(info->ray)[i].end[Y] = ends[1].y;
 }
