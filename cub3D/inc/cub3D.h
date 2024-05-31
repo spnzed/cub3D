@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/29 19:06:14 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/05/31 17:43:00 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,9 @@
 # define WALL		0xFFFFFF
 
 # define SCALE 64
-# define HEIGHT 1020
-# define WIDTH 1920
-//# define HEIGHT 810
-//# define WIDTH 1380
-# define SPEED 3
+# define HEIGHT 1395
+# define WIDTH 2560
+# define SPEED 12
 
 typedef struct s_point
 {

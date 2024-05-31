@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:46:35 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/27 18:18:05 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:59:47 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	new_scene(t_data *info)
 {
 	get_bigmap2d(info);
 	cast_rays(info);
-	mini_map(info);
+	// mini_map(info);
 }
 
 int	render(t_data *info)

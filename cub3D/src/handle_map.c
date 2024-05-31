@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:43:32 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/29 20:38:44 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/05/31 17:33:47 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ void	parse_map(t_data *info, char **grid)
 	if (check_map_border(grid))
 		exit(1);
 	//				BORRAR
-	int i = 0;
-	while (info->map.grid[i])
-	{
-		printf("X[%d] Y[%d]\t%s\n", ft_strlen(info->map.grid[i]), i, info->map.grid[i]);
-		i++;
-	}
-	printf ("ANCHO\t[%d]\n", info->map.size[X]);
-	printf ("ALTO\t[%d]\n", info->map.size[Y]);
+	// int i = 0;
+	// while (info->map.grid[i])
+	// {
+	// 	printf("X[%d] Y[%d]\t%s\n", ft_strlen(info->map.grid[i]), i, info->map.grid[i]);
+	// 	i++;
+	// }
+	// printf ("ANCHO\t[%d]\n", info->map.size[X]);
+	// printf ("ALTO\t[%d]\n", info->map.size[Y]);
 }
 
 int	handle_map(char *file, t_data *info)

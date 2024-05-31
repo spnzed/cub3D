@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arguments.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:46:42 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/14 18:48:43 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/31 17:33:34 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,6 @@ static int	check_extension(char *file)
 	else
 		return (1);
 }
-
-// static void	upd_vars(t_data *info)
-// {
-
-// 	info->ray.plane[X] = 0;
-// 	info->ray.plane[Y] = 0.66;
-// 	info->ray.pos[X] = info->player.x;
-// 	info->ray.pos[Y] = info->player.y;
-// 	info->ray.dir[X] = info->player.dir_cor[X];
-// 	info->ray.dir[Y] = info->player.dir_cor[Y];
-
-// 	info->player.x = info->map.spawn[Y] + 0.5;
-// 	info->player.y = info->map.spawn[X] + 0.5;
-// 	info->player.p_plane_x = fabs(info->player.dir_cor[Y]) * 0.66;
-// 	info->player.p_plane_y = fabs(info->player.dir_cor[X]) * 0.66;
-// 	if (info->player.dir_cor[X] == -1 || info->map.player_dir[Y] == 1)
-// 	{
-// 		info->player.plane[X] *= -1;
-// 		info->player.plane[Y] *= -1;
-// 	}
-// }
 
 int	check_args(int argc, char **argv, t_data *info)
 {
@@ -62,6 +41,5 @@ int	check_args(int argc, char **argv, t_data *info)
 		exit(1);
 	else
 		handle_map(argv[1], info);
-	// upd_vars(info);
 	return (0);
 }
