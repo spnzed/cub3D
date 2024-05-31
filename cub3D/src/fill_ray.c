@@ -6,35 +6,62 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:09:09 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/30 21:00:34 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/05/31 17:43:08 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static char	get_wall_or(t_data *info, t_ray *ray)
+static char	get_wall_or(int *scr, int *r_end)//, t_ray *ray, int i)
 {
-	(void)info;
-	if (ray->ang > 0 && ray->ang < 90 && ray->end[X] % 48 == 0)
-		return ('W');
-	else if (ray->ang > 0 && ray->ang < 90 && (HEIGHT - ray->end[Y]) % 48 == 0)
+	int	pos;
+
+	pos = r_end[Y] * WIDTH + r_end[X];
+	/*if (i > 0)
+	{
+		if ((ray[i - 1].wall_or == 'N' || ray[i - 1].wall_or == 'S')
+			&& ray[i].end[Y] == ray[i - 1].end[Y])
+			return (ray[i - 1].wall_or);
+		else if ((ray[i - 1].wall_or == 'E' || ray[i - 1].wall_or == 'W')
+			&& ray[i].end[X] == ray[i - 1].end[X])
+			return (ray[i - 1].wall_or);
+	}*/
+	if (scr[pos - WIDTH] == 0xFFFFFF) /* && scr[pos - WIDTH * 5] == 0xFFFFFF
+		&& scr[pos - WIDTH - 5] == 0xFFFFFF*/
 		return ('S');
-	else if (ray->ang > 90 && ray->ang < 180 && ray->end[X] % 48 == 0)
-		return ('E');
-	else if (ray->ang > 90 && ray->ang < 180 && (HEIGHT - ray->end[Y]) % 48 == 0)
-		return ('S');
-	else if (ray->ang > 180 && ray->ang < 270 && (ray->end[X] % 48) == 0)
-		return ('E');
-	else if (ray->ang > 180 && ray->ang < 270 && (HEIGHT - ray->end[Y] % 48) == 0)
+	else if (scr[pos + WIDTH] == 0xFFFFFF) /* && scr[pos + WIDTH * 5] == 0xFFFFFF
+		&& scr[pos + WIDTH - 5] == 0xFFFFFF*/
 		return ('N');
-	else if (ray->ang > 270 && ray->end[X] % 48 == 0)
+	else if (scr[pos + 1] == 0xFFFFFF)
 		return ('W');
-	else if (ray->ang > 270 && (HEIGHT - ray->end[Y] % 48) == 0)
-		return ('N');
-	/*else
-		return(non_exact(info, ray));*/
+	else if (scr[pos - 1] == 0xFFFFFF)
+		return ('E');
 	return (0);
 }
+
+// static char	get_wall_or(t_data *info, t_ray *ray)
+// {
+// 	(void)info;
+// 	if (ray->ang > 0 && ray->ang < 90 && ray->end[X] % 48 == 0)
+// 		return ('W');
+// 	else if (ray->ang > 0 && ray->ang < 90 && (HEIGHT - ray->end[Y]) % 48 == 0)
+// 		return ('S');
+// 	else if (ray->ang > 90 && ray->ang < 180 && ray->end[X] % 48 == 0)
+// 		return ('E');
+// 	else if (ray->ang > 90 && ray->ang < 180 && (HEIGHT - ray->end[Y]) % 48 == 0)
+// 		return ('S');
+// 	else if (ray->ang > 180 && ray->ang < 270 && (ray->end[X] % 48) == 0)
+// 		return ('E');
+// 	else if (ray->ang > 180 && ray->ang < 270 && (HEIGHT - ray->end[Y] % 48) == 0)
+// 		return ('N');
+// 	else if (ray->ang > 270 && ray->end[X] % 48 == 0)
+// 		return ('W');
+// 	else if (ray->ang > 270 && (HEIGHT - ray->end[Y] % 48) == 0)
+// 		return ('N');
+// 	/*else
+// 		return(non_exact(info, ray));*/
+// 	return (0);
+// }
 
 static int	rayend_mappos(t_point hit, char wll_or, int cell_w, int *m_sz)
 {
@@ -61,7 +88,7 @@ static int	rayend_mappos(t_point hit, char wll_or, int cell_w, int *m_sz)
 	return (res);
 }
 
-static char	check_orientation(t_data *info, t_ray *ray)
+static char	check_orientation(int *scr, t_ray *ray)
 {
 	char	or;
 
@@ -75,7 +102,7 @@ static char	check_orientation(t_data *info, t_ray *ray)
 	else if (ray->ang == 270)
 		or = 'N';
 	else
-		or = get_wall_or(info, ray);
+		or = get_wall_or(scr, ray->end);
 	return (or);
 }
 
@@ -92,7 +119,7 @@ static void	feed_ray(t_data *info, t_point *ends, int i, float ang)
 	(info->ray)[i].end[X] = ends[1].x;
 	(info->ray)[i].end[Y] = ends[1].y;
 	//(info->ray)[i].wall_or = get_wall_or(info->map2d, ends[1]);
-	(info->ray)[i].wall_or = check_orientation(info, &(info->ray)[i]);
+	(info->ray)[i].wall_or = check_orientation(info->mlx->img.img_adr, &(info->ray)[i]);
 	(info->ray)[i].map_p = rayend_mappos(ends[1], (info->ray)[i].wall_or,
 	 	info->map.cell_w, info->map.size);
 //	printf("(info->ray)[i].map_p: %i\n", (info->ray)[i].map_p);
