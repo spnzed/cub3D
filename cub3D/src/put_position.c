@@ -22,18 +22,19 @@ void	put_position(t_data *info)
 //	info->player.len = SCALE / 2;
 	//info->player.w = SCALE / 8;
 	//info->player.h = SCALE / 8;
-	info->player.x = WIDTH / 2 - (info->map.size[0] * col_w) / 2
-		+ info->map.spawn[0] * col_w + col_w / 2;
-	info->player.y = HEIGHT / 2 - (info->map.size[1] * col_w) / 2
-		+ info->map.spawn[1] * col_w + col_w / 2;
-	printf("put position player X: %f, player Y: %f\n", info->player.x, info->player.y);
+	// info->player.x = WIDTH / 2 - (info->map.size[0] * col_w) / 2
+	// 	+ info->map.spawn[0] * col_w + col_w / 2;
+	info->player.x = info->map.spawn[X] * col_w + col_w / 2;
+	info->player.y = info->map.spawn[Y] * col_w + col_w / 2;
+	// info->player.y = HEIGHT - (info->map.size[1] * col_w)
+	// 	+ info->map.spawn[Y] * col_w + col_w / 2;
 	info->minipl.dx = cos(deg_to_rad(info->player.dir));
 	info->minipl.dy = -sin(deg_to_rad(info->player.dir));
 	info->map.map_size = info->map.size[0] * info->map.size[1];
 	info->minipl.x = 8 + info->map.spawn[X] * cell_w + cell_w / 2; //primer 8 es offset (marge/separacio amb el limit de la pantalla)
 	info->minipl.y = 8 + info->map.spawn[Y] * cell_w + cell_w / 2; //els altres 2 8 son l'amplada de cel.la del minimap
-	info->player.dx = info->minipl.dx * 3;
-	info->player.dy = info->minipl.dy * 3;
+	info->player.dx = info->minipl.dx * 6;
+	info->player.dy = info->minipl.dy * 6;
 /*	info->player.x = (info->map.spawn[0] * SCALE) + SCALE / 2;
 	info->player.y = (info->map.spawn[1] * SCALE) + SCALE / 2;
 	info->player.dir= info->map.player_dir;
