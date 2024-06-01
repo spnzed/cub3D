@@ -43,7 +43,7 @@ void	cast_rays(t_data *info)
 
 	i = 0;
 	incr = (float)60 / (float)(1); //1 > WIDTH
-	ang = (float)info->player.dir + 10.0;
+	ang = (float)info->player.dir;// + 30.0;
 	init_arr(info);
 	while (i < 1) //1 > WIDTH
 	{

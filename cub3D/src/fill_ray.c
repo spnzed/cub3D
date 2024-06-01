@@ -130,5 +130,5 @@ void	fill_ray(int *scr, t_data *info, float ang, int i)
 //	printf("ang: %f, pts[0].x: %i, pts[0].y: %i, pts[1].x: %i, pts[1].y: %i\n", ang, pts[0].x, pts[0].y, pts[1].x, pts[1].y);
 	draw_line(scr, pts, 0x00FFFF, 1);
 	//feed_ray(info, pts, i, ang);
-	draw_wall(info, scr, ang, i);
+//	draw_wall(info, scr, ang, i);
 }

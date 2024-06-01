@@ -35,16 +35,16 @@ void	move_front(t_data *info)
 {
 	/*if (!wall_found(info->map2d, info->player.x + info->player.dx * 2,
 		info->player.y + info->player.dy * 2))*/
-	if (!wall_found(info->mlx->img.img_adr, info->player.x + info->player.dx * 2,
-		info->player.y + info->player.dy * 2))
+	if (!wall_found(info->mlx->img.img_adr, info->player.x + info->player.dx,
+		info->player.y + info->player.dy))
 	/*if (check_collision(info,
 			info->player.x + info->player.dx * SPEED,
 			info->player.y + info->player.dy * SPEED))*/
 	{
 		info->player.x += info->player.dx;
 		info->player.y += info->player.dy;
-		info->minipl.x += info->minipl.dx;
-		info->minipl.y += info->minipl.dy;
+		//info->minipl.x += info->minipl.dx;
+		//info->minipl.y += info->minipl.dy;
 	}
 }
 
@@ -52,13 +52,13 @@ void	move_back(t_data *info)
 {
 	/*if (!wall_found(info->map2d, info->player.x - info->player.dx * 2,
 		info->player.y - info->player.dy * 2))*/
-	if (!wall_found(info->mlx->img.img_adr, info->player.x - info->player.dx * 2,
-		info->player.y - info->player.dy * 2))
+	if (!wall_found(info->mlx->img.img_adr, info->player.x - info->player.dx,
+		info->player.y - info->player.dy))
 	{
 		info->player.x -= info->player.dx;
 		info->player.y -= info->player.dy;
-		info->minipl.x -= info->minipl.dx;
-		info->minipl.y -= info->minipl.dy;
+		//info->minipl.x -= info->minipl.dx;
+		//info->minipl.y -= info->minipl.dy;
 	}
 }
 
@@ -73,13 +73,13 @@ void	move_right(t_data *info)
 	new_dy = sin(deg_to_rad(new_dir));
 	/*if (!wall_found(info->map2d, info->player.x + new_dx * 3 * 2,
 		info->player.y + new_dy * 3 * 2))*/
-	if (!wall_found(info->mlx->img.img_adr, info->player.x + new_dx * 3 * 2,
-		info->player.y + new_dy * 3 * 2))
+	if (!wall_found(info->mlx->img.img_adr, info->player.x + new_dx,
+		info->player.y + new_dy))
 	{
-		info->player.x += new_dx * 3;
-		info->player.y += new_dy * 3;
-		info->minipl.x += new_dx;
-		info->minipl.y += new_dy;
+		info->player.x += new_dx;
+		info->player.y += new_dy;
+		//info->minipl.x += new_dx;
+		//info->minipl.y += new_dy;
 	}
 }
 
@@ -100,13 +100,13 @@ void	move_left(t_data *info)
 	new_dy = sin(deg_to_rad(new_dir));
 	/*if (!wall_found(info->map2d, info->player.x - new_dx * 3 * 2,
 		info->player.y - new_dy * 3 * 2))*/
-	if (!wall_found(info->mlx->img.img_adr, info->player.x - new_dx * 3 * 2,
-		info->player.y - new_dy * 3 * 2))
+	if (!wall_found(info->mlx->img.img_adr, info->player.x - new_dx,
+		info->player.y - new_dy))
 	{
-		info->player.x -= new_dx * 3;
-		info->player.y -= new_dy * 3;
-		info->minipl.x -= new_dx;
-		info->minipl.y -= new_dy;
+		info->player.x -= new_dx;
+		info->player.y -= new_dy;
+	//	info->minipl.x -= new_dx;
+	//	info->minipl.y -= new_dy;
 	}
 }
 
