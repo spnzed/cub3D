@@ -125,8 +125,8 @@ void	fill_ray(int *scr, t_data *info, float ang, int i)
 	//ray_end(scr, pts, ang);
 	//printf("fill_ray player X: %f, player Y: %f\n", info->player.x, info->player.y);
 	ray_end_or(&(info->map), &(info->player), ang, &(info->ray)[i]);
-	pts[1].x = info->ray->end[X];
-	pts[1].y = info->ray->end[Y];
+	pts[1].x = (int)(info->ray)[i].end[X];
+	pts[1].y = (int)(info->ray)[i].end[Y];
 //	printf("ang: %f, pts[0].x: %i, pts[0].y: %i, pts[1].x: %i, pts[1].y: %i\n", ang, pts[0].x, pts[0].y, pts[1].x, pts[1].y);
 	draw_line(scr, pts, 0x00FFFF, 1);
 	//feed_ray(info, pts, i, ang);

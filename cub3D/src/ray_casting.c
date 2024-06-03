@@ -43,11 +43,12 @@ void	cast_rays(t_data *info)
 
 	i = 0;
 	incr = (float)60 / (float)(1); //1 > WIDTH
-	ang = (float)info->player.dir;// + 30.0;
+	ang = (float)info->player.dir - 30.0;
 	init_arr(info);
 	while (i < 1) //1 > WIDTH
 	{
 		//fill_ray(info->map2d, info, angle_correction(ang), i);
+		//printf("i: %i, ang: %f\n", i, ang);
 		fill_ray(info->mlx->img.img_adr, info, angle_correction(ang), i);
 		i++;
 		ang = ang - incr;

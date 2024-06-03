@@ -23,7 +23,7 @@ static void	paint_black(int *scr, t_map *map, int p)
 	{
 		while (p < po + SCALE / 8 * 6 * map->size[X] + (WIDTH * i))
 		{
-			scr[p] = 0x000000;
+			scr[p] = 0x808080;
 			++p;
 		}
 		i++;
@@ -40,7 +40,7 @@ static void	paint_black(int *scr, t_map *map, int p)
 		scr[p] = 0x000000;
 }*/
 
-/*static void	draw_player(int *scr, int xpl, int ypl, int color)
+static void	draw_player(int *scr, int xpl, int ypl, int color)
 {
 	int	x;
 	int	y;
@@ -53,7 +53,7 @@ static void	paint_black(int *scr, t_map *map, int p)
 			scr[y * WIDTH + x] = color;
 		x = xpl - 4;
 	}
-}*/
+}
 
 static void	ft_updvalues(int *i, int *p, int po, int *k)
 {
@@ -72,7 +72,7 @@ static void	fill_bigmap(int *scr, t_map *map, int p, int i)
 	k = 0;
 	po = p;
 	paint_black(scr, map, p);
-	while (++j < map->size[1])
+	while (++j < map->size[Y])
 	{
 		while (i < SCALE / 8 * 6 * (j + 1))
 		{
@@ -80,8 +80,10 @@ static void	fill_bigmap(int *scr, t_map *map, int p, int i)
 			{
 				while (p < po + (SCALE / 8 * 6 * (k + 1) + (WIDTH * i)))
 				{
-					if (map->grid[j][k] == '1')
+					if (map->grid[j][k] == '1' && i % 48 != 0 && (p - WIDTH * i) % 48 != 0) 
 						scr[p] = 0xffffff;
+					else if (map->grid[j][k] != '1' && i % 48 != 0 && (p - WIDTH * i) % 48 != 0)
+						scr[p] = 0x000000;
 					p++;
 				}
 				k++;
@@ -113,7 +115,7 @@ int	get_bigmap2d(t_data *info)
 	//fill_bigmap(info->mlx->img.img_adr, &info->map, p, 0);
 //	fill_ray(info->mlx->img.img_adr, &info->player, info);
 	
-/*	draw_player(info->mlx->img.img_adr, info->player.x,
-		info->player.y, 0xFFFF00);*/
+	draw_player(info->mlx->img.img_adr, info->player.x,
+		info->player.y, 0xFFFF00);
 	return (0);
 }
