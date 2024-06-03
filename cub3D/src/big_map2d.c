@@ -12,22 +12,20 @@
 
 #include "cub3D.h"
 
-static void	paint_black(int *scr, t_map *map, int p)
+static void	paint_gray(int *scr, t_map *map, int p)
 {
-	int	po;
 	int	i;
 
-	po = p;
 	i = 0;
 	while (i < SCALE / 8 * 6 * map->size[Y])
 	{
-		while (p < po + SCALE / 8 * 6 * map->size[X] + (WIDTH * i))
+		while (p < SCALE / 8 * 6 * map->size[X] + (WIDTH * i))
 		{
 			scr[p] = 0x808080;
 			++p;
 		}
 		i++;
-		p = po + WIDTH * i;
+		p = WIDTH * i;
 	}
 }
 
@@ -55,10 +53,10 @@ static void	draw_player(int *scr, int xpl, int ypl, int color)
 	}
 }
 
-static void	ft_updvalues(int *i, int *p, int po, int *k)
+static void	ft_updvalues(int *i, int *p, int *k)
 {
 	(*i)++;
-	*p = po + WIDTH * (*i);
+	*p = WIDTH * (*i);
 	*k = 0;
 }
 
@@ -66,29 +64,27 @@ static void	fill_bigmap(int *scr, t_map *map, int p, int i)
 {
 	int	j;
 	int	k;
-	int	po;
 
 	j = -1;
 	k = 0;
-	po = p;
-	paint_black(scr, map, p);
 	while (++j < map->size[Y])
 	{
 		while (i < SCALE / 8 * 6 * (j + 1))
 		{
 			while (map->grid[j][k])
 			{
-				while (p < po + (SCALE / 8 * 6 * (k + 1) + (WIDTH * i)))
+				while (++p < (SCALE / 8 * 6 * (k + 1) + (WIDTH * i)))
 				{
-					if (map->grid[j][k] == '1' && i % 48 != 0 && (p - WIDTH * i) % 48 != 0) 
+					if (map->grid[j][k] == '1' && i % 48 != 0
+						&& (p - WIDTH * i) % 48 != 0) 
 						scr[p] = 0xffffff;
-					else if (map->grid[j][k] != '1' && i % 48 != 0 && (p - WIDTH * i) % 48 != 0)
+					else if (map->grid[j][k] != '1' && i % 48 != 0
+						&& (p - WIDTH * i) % 48 != 0)
 						scr[p] = 0x000000;
-					p++;
 				}
 				k++;
 			}
-			ft_updvalues(&i, &p, po, &k);
+			ft_updvalues(&i, &p, &k);
 		}
 	}
 }
@@ -111,7 +107,8 @@ int	get_bigmap2d(t_data *info)
 	// mp_yp = 0;
 	// p = mp_yp * WIDTH + mp_xp;
 	//fill_bigmap(info->map2d, &info->map, p, 0);
-	fill_bigmap(info->mlx->img.img_adr, &info->map, 0, 0);
+	paint_gray(info->mlx->img.img_adr, &info->map, 0);
+	fill_bigmap(info->mlx->img.img_adr, &info->map, -1, 0);
 	//fill_bigmap(info->mlx->img.img_adr, &info->map, p, 0);
 //	fill_ray(info->mlx->img.img_adr, &info->player, info);
 	
