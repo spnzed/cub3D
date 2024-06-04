@@ -26,6 +26,7 @@ void	move_r_arrow(t_data *info)
 	
 }
 
+
 void	move_l_arrow(t_data *info)
 {
 	info->player.dir += 1;

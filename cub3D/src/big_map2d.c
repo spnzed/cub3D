@@ -43,13 +43,13 @@ static void	draw_player(int *scr, int xpl, int ypl, int color)
 	int	x;
 	int	y;
 
-	x = xpl - 4;
-	y = ypl - 4;
-	while (++y <= ypl + 3)
+	x = xpl - 3;
+	y = ypl - 3;
+	while (++y < ypl + 3)
 	{
-		while (++x <= xpl + 3)
+		while (++x < xpl + 3)
 			scr[y * WIDTH + x] = color;
-		x = xpl - 4;
+		x = xpl - 3;
 	}
 }
 
@@ -95,7 +95,20 @@ int	get_bigmap2d(t_data *info)
 	// int	mp_yp;
 	// int	p;
 	//int	col_w;
-
+//	float	endx;
+//	float	endy;
+	t_point *pts;
+	
+	pts = ft_calloc(sizeof(pts), 2);
+	if (!pts)
+	{
+		ft_err("Error: Malloc\n");
+		return (1);
+	}
+	pts[0].x = (int)(info->player.x);
+	pts[0].y = (int)(info->player.y);
+	pts[1].x = (int)(info->player.x + info->player.dx * 15);
+	pts[1].y = (int)(info->player.y + info->player.dy * 15);
 	info->map2d = ft_calloc(sizeof(int), WIDTH * HEIGHT);
 	if (!info->map2d)
 	{
@@ -111,8 +124,8 @@ int	get_bigmap2d(t_data *info)
 	fill_bigmap(info->mlx->img.img_adr, &info->map, -1, 0);
 	//fill_bigmap(info->mlx->img.img_adr, &info->map, p, 0);
 //	fill_ray(info->mlx->img.img_adr, &info->player, info);
-	
 	draw_player(info->mlx->img.img_adr, info->player.x,
-		info->player.y, 0xFFFF00);
+		info->player.y, 0xFF0000);
+	draw_line(info->mlx->img.img_adr, pts, 0xFF0000, 1);
 	return (0);
 }

@@ -97,18 +97,18 @@ typedef struct s_mlx
 
 typedef struct s_map
 {
-	char		**grid;
-	int			grid_pos;
-	int			map_size;
-	int			scale; //tpoc no te sentit si l'unic que fa es igualar-la al define SCALE, per això posem SCALE directament on calgui i llestos]
-	int			size[2];
-	int			spawn[2];
-	int			cell_w;
-	int			*arr;
-//	int			player_dir; //en principi no cal tenir-ho 2 vegades - JA ES A PARAMETERS
-//	int			floor;  //en principi no cal tenir-ho 2 vegades - JA ES A PARAMETERS
-//	int			ceiling; //en principi no cal tenir-ho 2 vegades - JA ES A PARAMETERS
-}				t_map;
+	char	**grid;
+	int		grid_pos;
+	int		map_size;
+	int		scale; //tpoc no te sentit si l'unic que fa es igualar-la al define SCALE, per això posem SCALE directament on calgui i llestos]
+	int		size[2];
+	int		spawn[2];
+	int		cell_w;
+	int		*arr;
+//	int		player_dir; //en principi no cal tenir-ho 2 vegades - JA ES A PARAMETERS
+//	int		floor;  //en principi no cal tenir-ho 2 vegades - JA ES A PARAMETERS
+//	int		ceiling; //en principi no cal tenir-ho 2 vegades - JA ES A PARAMETERS
+}			t_map;
 
 typedef struct s_parameters
 {
