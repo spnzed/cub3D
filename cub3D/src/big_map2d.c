@@ -123,9 +123,8 @@ int	get_bigmap2d(t_data *info)
 	paint_gray(info->mlx->img.img_adr, &info->map, 0);
 	fill_bigmap(info->mlx->img.img_adr, &info->map, -1, 0);
 	//fill_bigmap(info->mlx->img.img_adr, &info->map, p, 0);
-//	fill_ray(info->mlx->img.img_adr, &info->player, info);
 	draw_player(info->mlx->img.img_adr, info->player.x,
-		info->player.y, 0xFF0000);
-	draw_line(info->mlx->img.img_adr, pts, 0xFF0000, 1);
+		info->player.y, 0x00FFFF);
+	draw_line(info->mlx->img.img_adr, pts, 0x00FFFF, 1);
 	return (0);
 }

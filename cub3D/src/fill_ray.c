@@ -112,23 +112,23 @@ void	fill_ray(int *scr, t_data *info, float ang, int i)
 {
 	t_point	*pts;
 
-	pts = ft_calloc(sizeof(pts), 2);
+	pts = ft_calloc(sizeof(t_point), 2);
 	if (!pts)
 	{
 		ft_err("Error: Malloc\n");
 		exit (1);
 	}
-	pts[0].x = info->player.x;
-	pts[0].y = info->player.y;
+	pts[0].x = (int)(info->player.x);
+	pts[0].y = (int)(info->player.y);
 	pts[1].x = 0;
 	pts[1].y = 0;
 	//ray_end(scr, pts, ang);
 	//printf("fill_ray player X: %f, player Y: %f\n", info->player.x, info->player.y);
-	ray_end_or(&(info->map), &(info->player), ang, &(info->ray)[i]);
-	pts[1].x = (int)(info->ray)[i].end[X];
-	pts[1].y = (int)(info->ray)[i].end[Y];
+	ray_end_or(&(info->map), &(info->player), ang, &((info->ray)[i]));
+	pts[1].x = (int)((info->ray)[i].end[X]);
+	pts[1].y = (int)((info->ray)[i].end[Y]);
 //	printf("ang: %f, pts[0].x: %i, pts[0].y: %i, pts[1].x: %i, pts[1].y: %i\n", ang, pts[0].x, pts[0].y, pts[1].x, pts[1].y);
-	draw_line(scr, pts, 0x00FFFF, 1);
+	draw_line(scr, pts, 0xFF0000, 1);
 	//feed_ray(info, pts, i, ang);
 //	draw_wall(info, scr, ang, i);
 }

@@ -118,7 +118,7 @@ typedef struct s_parameters
 	char	*east;
 	int		floor;
 	int		ceiling;
-}				t_parameters;
+}			t_parameters;
 
 typedef struct s_player
 {
