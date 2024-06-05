@@ -20,7 +20,7 @@ static void	vertic_maplines(t_map *m, t_player *p, float ang, float *end)
 	int		mpos[2];
 	int		mp;
 
-	ntan = tan(deg_to_rad(angle_correction(ang)));
+	ntan = tan(deg_to_rad(ang));
 	//printf("ang: %f\n", ang);
 	dof = 0;
 	if (ang > 90 && ang < 270) // looking left
@@ -81,7 +81,7 @@ static void	horiz_maplines(t_map *m, t_player *p, float ang, float *end)
 	dof = 0;
 	if (ang < 180 && ang > 0)
 	{
-		atan = - 1 / tan(deg_to_rad(angle_correction(ang)));
+		atan = - 1 / tan(deg_to_rad(ang));
 		end[Y] = (((int)(p->y) / m->cell_w) * m->cell_w) - 0.0001;
 		//printf("tan(ang): %f, atan: %f\n", tan(ang), atan);
 		end[X] = (p->y - end[Y]) * -atan + p->x;
@@ -92,7 +92,7 @@ static void	horiz_maplines(t_map *m, t_player *p, float ang, float *end)
 	}
 	if (ang > 180 && ang < 360)
 	{
-		atan = - 1 / tan(deg_to_rad(angle_correction(ang)));
+		atan = - 1 / tan(deg_to_rad(ang));
 		//printf("tan(ang): %f, atan: %f\n", tan(ang), atan);
 		end[Y] = (((int)(p->y) / m->cell_w) * m->cell_w) + m->cell_w;
 		end[X] = (p->y - end[Y]) * -atan + p->x;
@@ -162,4 +162,6 @@ void	ray_end_or(t_map *map, t_player *pl, float ang, t_ray *ray)
 		ray->end[X] = vend[X];
 		ray->end[Y] = vend[Y];
 	}
+	free(hend);
+	free(vend);
 }
