@@ -16,13 +16,13 @@ static void	horiz_maplines(t_map *m, t_player *p, float ang, float *end)
 {
 	float	rd[2];
 	float	atan;
-	// int		dof;
-	// int		mpos[2];
-	// int		mp;
+	int		dof;
+	int		mpos[2];
+	int		mp;
 
 	atan = 0;
 	//printf("ang: %f\n", ang);
-	// dof = 0;
+	dof = 0;
 	if (ang < 180 && ang > 0)
 	{
 		atan = - 1 / tan(deg_to_rad(angle_correction(ang)));
@@ -37,13 +37,20 @@ static void	horiz_maplines(t_map *m, t_player *p, float ang, float *end)
 	if (ang > 180 && ang < 360)
 	{
 		atan = - 1 / tan(deg_to_rad(angle_correction(ang)));
+		//printf("tan(ang): %f, atan: %f\n", tan(ang), atan);
 		end[Y] = (((int)(p->y) / m->cell_w) * m->cell_w) + m->cell_w;
 		end[X] = (p->y - end[Y]) * -atan + p->x;
+		//printf("p->x: %f, p->y: %f, end[X]: %f. end[Y]: %f\n", p->x, p->y, end[X], end[Y]);
 		rd[Y] = m->cell_w;
-		rd[X] = -rd[Y] * atan;
+		rd[X] = rd[Y] * atan;
+		//printf("rd[Y]: %f, rd[X]: %f\n", rd[Y], rd[X]);
 	}
-	/*if (ang == 0 || ang == 180)
+	if (ang == 0 || ang == 180)
+	{
+		end[Y] = p->y;
+		end[X] = p->x;
 		dof = m->size[Y];
+	}
 	while (dof < m->size[Y])
 	{
 	//	printf("111 r->end[X]: %f, r->end[Y]: %f\n", r->end[X], r->end[Y]);
@@ -60,7 +67,7 @@ static void	horiz_maplines(t_map *m, t_player *p, float ang, float *end)
 			end[Y] += rd[Y];
 		}
 		++dof;
-	}*/
+	}
 }
 
 void	ray_end_or(t_map *map, t_player *pl, float ang, t_ray *ray)
