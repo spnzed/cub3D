@@ -157,7 +157,7 @@ void	ray_end_or(t_map *map, t_player *pl, float ang, t_ray *ray)
 	vertic_maplines(map, pl, ang, vend);
 	v_len = sqrt((vend[X] - pl->x) * (vend[X] - pl->x)
 		+ (vend[Y] - pl->y) * (vend[Y] - pl->y));
-	if (v_len < h_len)
+	if ((v_len < h_len && ang != 90 && ang != 270) || ang == 0 || ang == 180)
 	{
 		ray->end[X] = vend[X];
 		ray->end[Y] = vend[Y];
