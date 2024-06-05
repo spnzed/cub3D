@@ -49,7 +49,7 @@ void	cast_rays(t_data *info)
 	{
 		//fill_ray(info->map2d, info, angle_correction(ang), i);
 		//printf("i: %i, ang: %f\n", i, ang);
-		fill_ray(info->mlx->img.img_adr, info, deg_to_rad(angle_correction(ang)), i);
+		fill_ray(info->mlx->img.img_adr, info, ang, i);
 		i++;
 		ang = ang - incr;
 	}

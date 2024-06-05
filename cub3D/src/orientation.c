@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   other_angles.c                                     :+:      :+:    :+:   */
+/*   orientation.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -16,30 +16,33 @@ static void	horiz_maplines(t_map *m, t_player *p, float ang, float *end)
 {
 	float	rd[2];
 	float	atan;
-	int		dof;
-	int		mpos[2];
-	int		mp;
+	// int		dof;
+	// int		mpos[2];
+	// int		mp;
 
-	atan = -1 / tan(ang);
+	atan = 0;
 	//printf("ang: %f\n", ang);
-	dof = 0;
-	if (ang < 180)
+	// dof = 0;
+	if (ang < 180 && ang > 0)
 	{
+		atan = - 1 / tan(deg_to_rad(angle_correction(ang)));
 		end[Y] = (((int)(p->y) / m->cell_w) * m->cell_w) - 0.0001;
-	//	printf("py: %f, r end Y: %f\n", p->y, r->end[Y]);
-		end[X] = (p->y - end[Y]) * atan + p->x;
+		//printf("tan(ang): %f, atan: %f\n", tan(ang), atan);
+		end[X] = (p->y - end[Y]) * -atan + p->x;
+		//printf("p->x: %f, p->y: %f, end[X]: %f. end[Y]: %f\n", p->x, p->y, end[X], end[Y]);
 		rd[Y] = -(m->cell_w);
 		rd[X] = rd[Y] * atan;
-	//	printf("rd[Y]: %f, rd[X]: %f\n", rd[Y], rd[X]);
+		//printf("rd[Y]: %f, rd[X]: %f\n", rd[Y], rd[X]);
 	}
-	if (ang > 180)
+	if (ang > 180 && ang < 360)
 	{
+		atan = - 1 / tan(deg_to_rad(angle_correction(ang)));
 		end[Y] = (((int)(p->y) / m->cell_w) * m->cell_w) + m->cell_w;
-		end[X] = (p->y - end[Y]) * atan + p->x;
+		end[X] = (p->y - end[Y]) * -atan + p->x;
 		rd[Y] = m->cell_w;
 		rd[X] = -rd[Y] * atan;
 	}
-	if (ang == 0 || ang == 180)
+	/*if (ang == 0 || ang == 180)
 		dof = m->size[Y];
 	while (dof < m->size[Y])
 	{
@@ -57,7 +60,7 @@ static void	horiz_maplines(t_map *m, t_player *p, float ang, float *end)
 			end[Y] += rd[Y];
 		}
 		++dof;
-	}
+	}*/
 }
 
 void	ray_end_or(t_map *map, t_player *pl, float ang, t_ray *ray)
