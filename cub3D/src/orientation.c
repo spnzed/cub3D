@@ -161,7 +161,8 @@ void	ray_end_or(t_map *map, t_player *pl, float ang, t_ray *ray)
 	{
 		ray->end[X] = vend[X];
 		ray->end[Y] = vend[Y];
+		free(hend);
 	}
-	free(hend);
-	free(vend);
+	else
+		free(vend);
 }
