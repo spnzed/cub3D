@@ -38,20 +38,20 @@ static void	paint_gray(int *scr, t_map *map, int p)
 		scr[p] = 0x000000;
 }*/
 
-static void	draw_player(int *scr, int xpl, int ypl, int color)
-{
-	int	x;
-	int	y;
+// static void	draw_player(int *scr, int xpl, int ypl, int color)
+// {
+// 	int	x;
+// 	int	y;
 
-	x = xpl - 3;
-	y = ypl - 3;
-	while (++y < ypl + 3)
-	{
-		while (++x < xpl + 3)
-			scr[y * WIDTH + x] = color;
-		x = xpl - 3;
-	}
-}
+// 	x = xpl - 3;
+// 	y = ypl - 3;
+// 	while (++y < ypl + 3)
+// 	{
+// 		while (++x < xpl + 3)
+// 			scr[y * WIDTH + x] = color;
+// 		x = xpl - 3;
+// 	}
+// }
 
 static void	ft_updvalues(int *i, int *p, int *k)
 {
@@ -123,8 +123,8 @@ int	get_bigmap2d(t_data *info)
 	paint_gray(info->mlx->img.img_adr, &info->map, 0);
 	fill_bigmap(info->mlx->img.img_adr, &info->map, -1, 0);
 	//fill_bigmap(info->mlx->img.img_adr, &info->map, p, 0);
-	draw_player(info->mlx->img.img_adr, info->player.x,
-		info->player.y, 0x00FFFF);
+	// draw_player(info->mlx->img.img_adr, info->player.x,
+	// 	info->player.y, 0x00FFFF);
 	draw_line(info->mlx->img.img_adr, pts, 0x00FFFF, 1);
 	return (0);
 }
