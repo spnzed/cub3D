@@ -27,7 +27,7 @@
 
 static void	init_arr(t_data *info)
 {
-	info->ray = ft_calloc(sizeof(t_ray), 60); //1 > WIDTH
+	info->ray = ft_calloc(sizeof(t_ray), 240); //1 > WIDTH
 	if (!info->ray)
 	{
 		ft_err("Error: Malloc\n");
@@ -42,10 +42,10 @@ void	cast_rays(t_data *info)
 	float	incr;
 
 	i = 0;
-	incr = 1; //(float)60 / (float)(1); //1 > WIDTH
+	incr = 0.25; //(float)60 / (float)(1); //1 > WIDTH
 	ang = info->player.dir + 30.0;
 	init_arr(info);
-	while (i < 60) //1 > WIDTH
+	while (i < 240) //1 > WIDTH
 	{
 		//fill_ray(info->map2d, info, angle_correction(ang), i);
 		//printf("i: %i, ang: %f\n", i, ang);
