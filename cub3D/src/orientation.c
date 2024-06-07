@@ -169,6 +169,7 @@ void	ray_end_or(t_map *map, t_player *pl, float ang, t_ray *ray)
 	vertic_maplines(map, pl, ang, vend);
 	v_len = sqrt((vend[X] - pl->x) * (vend[X] - pl->x)
 		+ (vend[Y] - pl->y) * (vend[Y] - pl->y));
+
 	if ((v_len < h_len && ang != 90 && ang != 270) || ang == 0 || ang == 180)
 	{
 		free(hend);
@@ -181,6 +182,11 @@ void	ray_end_or(t_map *map, t_player *pl, float ang, t_ray *ray)
 	}
 	// else if (ang == 0 || ang == 90 || ang == 180 || ang == 270)
 	// 	exact_angle(ray);
+	// else if (v_len == h_len)
+	// {
+	// 	printf("same length, v_len: %f, h_len: %f\n", v_len, h_len);
+	// 	ray->wall_or = 0;
+	// }	
 	else
 	{
 		free(vend);
@@ -189,4 +195,6 @@ void	ray_end_or(t_map *map, t_player *pl, float ang, t_ray *ray)
 		if (ang > 180 && ang < 360)
 			ray->wall_or = 'N';
 	}
+	// if (ray->wall_or == 'E')
+	// 	printf("ang: %f, v_len: %f, h_len: %f\n", ang, v_len, h_len);
 }
