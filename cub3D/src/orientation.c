@@ -12,6 +12,18 @@
 
 #include "cub3D.h"
 
+// static void	exact_angle(t_ray *r)
+// {
+// 	if (r->ang == 0)
+// 		r->wall_or = 'W';
+// 	if (r->ang == 90)
+// 		r->wall_or = 'S';
+// 	if (r->ang == 180)
+// 		r->wall_or = 'E';
+// 	if (r->ang == 270)
+// 		r->wall_or = 'N';
+// }
+
 static void	vertic_maplines(t_map *m, t_player *p, float ang, float *end)
 {
 	float	rd[2];
@@ -159,10 +171,22 @@ void	ray_end_or(t_map *map, t_player *pl, float ang, t_ray *ray)
 		+ (vend[Y] - pl->y) * (vend[Y] - pl->y));
 	if ((v_len < h_len && ang != 90 && ang != 270) || ang == 0 || ang == 180)
 	{
+		free(hend);
 		ray->end[X] = vend[X];
 		ray->end[Y] = vend[Y];
-		free(hend);
+		if (ang > 90 && ang < 270)
+			ray->wall_or = 'E';
+		if (ang < 90 || ang > 270)
+			ray->wall_or = 'W';
 	}
+	// else if (ang == 0 || ang == 90 || ang == 180 || ang == 270)
+	// 	exact_angle(ray);
 	else
+	{
 		free(vend);
+		if (ang < 180 && ang > 0)
+			ray->wall_or = 'S';
+		if (ang > 180 && ang < 360)
+			ray->wall_or = 'N';
+	}
 }
