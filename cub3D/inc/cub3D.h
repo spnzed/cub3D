@@ -233,6 +233,7 @@ void	init_loop2(t_data *info);
 void	init_keys(t_mlx *mlx);
 void	handle_key(t_data *info);
 void	ray_end_or(t_map *map, t_player *pl, float ang, t_ray *ray);
+float	*alloc_floatarr(t_player *p);
 
 //		Utils
 int		ft_count_lines(int fd);

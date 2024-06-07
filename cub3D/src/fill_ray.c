@@ -17,7 +17,7 @@ static void fix_or(t_ray *r)
 	int	i;
 
 	i = 1;
-	while (i < 239) // haura de ser WIDTH
+	while (i < 479) // haura de ser WIDTH - 1
 	{
 		if ((int)r[i].ang % 45 == 0 && (int)r[i].ang % 90 != 0
 			&& r[i].wall_or != r[i - 1].wall_or
