@@ -75,7 +75,7 @@ static void	horiz_maplines(t_map *m, t_player *p, float ang, float *end)
 
 	atan = 0;
 	dof = 0;
-	if (ang < 180 && ang > 0)
+	if (ang > 0 && ang < 180)
 	{
 		atan = - 1 / tan(deg_to_rad(ang));
 		end[Y] = (((int)(p->y) / m->cell_w) * m->cell_w) - 0.0001;
@@ -100,18 +100,22 @@ static void	horiz_maplines(t_map *m, t_player *p, float ang, float *end)
 		mp = mpos[Y] * m->size[X] + mpos[X];
 		if (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 1) //we hit a wall
 			dof = m->size[Y]; //finish the loop
-		// else if ((int)ang % 45 == 0 && (int)ang % 90 != 0)
-		// {
-		// 	if (((int)ang == 45 && (m->arr)[mp - 1] == 1 && (m->arr)[mp + m->size[X]] == 1)
-		// 		|| ((int)ang == 135 && (m->arr)[mp + 1] == 1 && (m->arr)[mp + m->size[X]] == 1)
-		// 		|| ((int)ang == 225 && (m->arr)[mp + 1] == 1 && (m->arr)[mp - m->size[X]] == 1)
-		// 		|| ((int)ang == 135 && (m->arr)[mp - 1] == 1 && (m->arr)[mp - m->size[X]] == 1))
-		// 		dof = m->size[Y];
-		// }
 		else
 		{
 			end[X] += rd[X];
 			end[Y] += rd[Y];
+		}
+		if ((m->arr)[mp] == 0 && (int)ang % 45 == 0 && (int)ang % 90 != 0)
+		{
+			if (((int)ang == 45 && (m->arr)[mp - 1] == 1 && (m->arr)[mp + m->size[X]] == 1)
+				|| ((int)ang == 135 && (m->arr)[mp + 1] == 1 && (m->arr)[mp + m->size[X]] == 1)
+				|| ((int)ang == 225 && (m->arr)[mp + 1] == 1 && (m->arr)[mp - m->size[X]] == 1)
+				|| ((int)ang == 315 && (m->arr)[mp - 1] == 1 && (m->arr)[mp - m->size[X]] == 1))
+			{
+				end[X] -= rd[X];
+				end[Y] -= rd[Y];
+				dof = m->size[Y];
+			}
 		}
 		++dof;
 	}
