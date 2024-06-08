@@ -100,6 +100,14 @@ static void	horiz_maplines(t_map *m, t_player *p, float ang, float *end)
 		mp = mpos[Y] * m->size[X] + mpos[X];
 		if (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 1) //we hit a wall
 			dof = m->size[Y]; //finish the loop
+		// else if ((int)ang % 45 == 0 && (int)ang % 90 != 0)
+		// {
+		// 	if (((int)ang == 45 && (m->arr)[mp - 1] == 1 && (m->arr)[mp + m->size[X]] == 1)
+		// 		|| ((int)ang == 135 && (m->arr)[mp + 1] == 1 && (m->arr)[mp + m->size[X]] == 1)
+		// 		|| ((int)ang == 225 && (m->arr)[mp + 1] == 1 && (m->arr)[mp - m->size[X]] == 1)
+		// 		|| ((int)ang == 135 && (m->arr)[mp - 1] == 1 && (m->arr)[mp - m->size[X]] == 1))
+		// 		dof = m->size[Y];
+		// }
 		else
 		{
 			end[X] += rd[X];
