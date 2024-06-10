@@ -98,7 +98,7 @@ void	cast_rays(t_data *info)
 		ang = ang - incr;
 	}
 	fix_or(info->ray);
-	/*i = -1;
-	while(++i < WIDTH)
-		printf("ray[%i].wall_or: %c\n", i, (info->ray)[i].wall_or);*/
+	// i = -1;
+	// while(++i < 100)
+	// 	printf("ray[%i].wall_or: %c, ray[%i].map_p: %i\n", i, (info->ray)[i].wall_or, i, (info->ray)[i].map_p);
 }

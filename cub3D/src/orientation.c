@@ -23,7 +23,17 @@ static void v_shorter(float *hend, float *vend, t_ray *ray, float ang)
 		ray->wall_or = 'W';
 }
 
-static void	vertic_maplines(t_map *m, t_player *p, float ang, float *end)
+static void h_shorter(float *vend, t_ray *ray, float ang, int h_mpos)
+{
+		free(vend);
+		ray->map_p = h_mpos;
+		if (ang < 180 && ang > 0)
+			ray->wall_or = 'S';
+		if (ang > 180 && ang < 360)
+			ray->wall_or = 'N';
+}
+
+static int	vertic_maplines(t_map *m, t_player *p, float ang, float *end)
 {
 	float	rd[2];
 	float	ntan;
@@ -63,9 +73,10 @@ static void	vertic_maplines(t_map *m, t_player *p, float ang, float *end)
 		}
 		++dof;
 	}
+	return (mp);
 }
 
-static void	horiz_maplines(t_map *m, t_player *p, float ang, float *end)
+static int	horiz_maplines(t_map *m, t_player *p, float ang, float *end)
 {
 	float	rd[2];
 	float	atan;
@@ -119,6 +130,7 @@ static void	horiz_maplines(t_map *m, t_player *p, float ang, float *end)
 		}
 		++dof;
 	}
+	return (mp);
 }
 
 void	ray_end_or(t_map *map, t_player *pl, float ang, t_ray *ray)
@@ -127,25 +139,20 @@ void	ray_end_or(t_map *map, t_player *pl, float ang, t_ray *ray)
 	float	*vend;
 	float	h_len;
 	float	v_len;
+	int		h_mpos;
 
 	hend = alloc_floatarr(pl);
 	vend = alloc_floatarr(pl);
-	horiz_maplines(map, pl, ang, hend);
+	h_mpos = horiz_maplines(map, pl, ang, hend);
 	ray->end[X] = hend[X];
 	ray->end[Y] = hend[Y];
 	h_len = sqrt((hend[X] - pl->x) * (hend[X] - pl->x)
 		+ (hend[Y] - pl->y) * (hend[Y] - pl->y));
-	vertic_maplines(map, pl, ang, vend);
+	ray->map_p = vertic_maplines(map, pl, ang, vend);
 	v_len = sqrt((vend[X] - pl->x) * (vend[X] - pl->x)
 		+ (vend[Y] - pl->y) * (vend[Y] - pl->y));
 	if ((v_len < h_len && ang != 90 && ang != 270) || ang == 0 || ang == 180)
 		v_shorter(hend, vend, ray, ang);
 	else
-	{
-		free(vend);
-		if (ang < 180 && ang > 0)
-			ray->wall_or = 'S';
-		if (ang > 180 && ang < 360)
-			ray->wall_or = 'N';
-	}
+		h_shorter(vend, ray, ang, h_mpos);
 }
