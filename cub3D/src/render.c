@@ -67,6 +67,7 @@ void	new_scene(t_data *info)
 	get_bigmap2d(info);
 	//mini_map(info);
 	cast_rays(info);
+	draw_walls(info);
 }
 
 int	render(t_data *info)

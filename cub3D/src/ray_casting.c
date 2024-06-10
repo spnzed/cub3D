@@ -22,7 +22,12 @@ static void fix_or(t_ray *r)
 		if ((int)r[i].ang % 45 == 0 && (int)r[i].ang % 90 != 0
 			&& r[i].wall_or != r[i - 1].wall_or
 			&& r[i].wall_or != r[i + 1].wall_or)
+		{
+			// printf("BEFORE r[i + 1].or: %c, r[%i].ang: %f, r[%i].wall_or: %c\n", r[i + 1].wall_or, i, r[i].ang, i, r[i].wall_or);
+			// printf("r[%i].ang (i - 1): %f, r[%i].wall_or (i - 1): %c\n", i - 1, r[i - 1].ang, i - 1, r[i].wall_or);
 			r[i].wall_or = r[i - 1].wall_or;
+			//printf("AFTER r[%i].ang: %f, r[%i].wall_or: %c\n", i, r[i].ang, i, r[i].wall_or);
+		}
 		i++;
 	}
 }
@@ -60,8 +65,8 @@ static void	fill_ray(int *scr, t_data *info, float ang, int i)
 //	printf("ang: %f, pts[0].x: %i, pts[0].y: %i, pts[1].x: %i, pts[1].y: %i\n", ang, pts[0].x, pts[0].y, pts[1].x, pts[1].y);
 	draw_line(scr, pts, 0xFF0000, 1);
 	feed_ray(info, pts, i, ang);
-	fix_or(info->ray);
-	draw_wall(info, scr, ang, i);
+	//fix_or(info->ray);
+	//draw_wall(info, scr, ang, i);
 }
 
 static void	init_arr(t_data *info)
@@ -92,6 +97,7 @@ void	cast_rays(t_data *info)
 		i++;
 		ang = ang - incr;
 	}
+	fix_or(info->ray);
 	/*i = -1;
 	while(++i < WIDTH)
 		printf("ray[%i].wall_or: %c\n", i, (info->ray)[i].wall_or);*/
