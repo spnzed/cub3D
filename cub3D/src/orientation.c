@@ -137,7 +137,6 @@ void	ray_end_or(t_map *map, t_player *pl, float ang, t_ray *ray)
 {
 	float	*hend;
 	float	*vend;
-	float	h_len;
 	float	v_len;
 	int		h_mpos;
 
@@ -146,13 +145,17 @@ void	ray_end_or(t_map *map, t_player *pl, float ang, t_ray *ray)
 	h_mpos = horiz_maplines(map, pl, ang, hend);
 	ray->end[X] = hend[X];
 	ray->end[Y] = hend[Y];
-	h_len = sqrt((hend[X] - pl->x) * (hend[X] - pl->x)
+	ray->len = sqrt((hend[X] - pl->x) * (hend[X] - pl->x)
 		+ (hend[Y] - pl->y) * (hend[Y] - pl->y));
+
 	ray->map_p = vertic_maplines(map, pl, ang, vend);
 	v_len = sqrt((vend[X] - pl->x) * (vend[X] - pl->x)
 		+ (vend[Y] - pl->y) * (vend[Y] - pl->y));
-	if ((v_len < h_len && ang != 90 && ang != 270) || ang == 0 || ang == 180)
+	if ((v_len < ray->len && ang != 90 && ang != 270) || ang == 0 || ang == 180)
+	{
 		v_shorter(hend, vend, ray, ang);
+		ray->len = v_len;
+	}
 	else
 		h_shorter(vend, ray, ang, h_mpos);
 }

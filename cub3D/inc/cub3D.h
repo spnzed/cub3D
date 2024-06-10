@@ -138,7 +138,7 @@ typedef struct s_player
 typedef struct s_ray
 {
 	char	wall_or; // N, S, E, W
-	double	len;
+	float	len;
 	int		map_p;
 	float	end[2]; //posició (x, y) de l'extrem final del raig (oposat a la posició del jugador)
 	float	ang;
