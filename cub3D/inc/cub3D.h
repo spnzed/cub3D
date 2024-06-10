@@ -236,6 +236,7 @@ void	ray_end_or(t_map *map, t_player *pl, float ang, t_ray *ray);
 void	draw_walls(t_data *info);
 int		horiz_maplines(t_map *m, t_player *p, float ang, float *end);
 void	h_shorter(float *vend, t_ray *ray, float ang, int h_mpos);
+void	upd_end(float *end, float *rd);
 
 //		Utils
 int		ft_count_lines(int fd);

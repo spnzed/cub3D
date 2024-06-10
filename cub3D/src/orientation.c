@@ -23,7 +23,7 @@ static void v_shorter(float *hend, float *vend, t_ray *ray, float ang)
 		ray->wall_or = 'W';
 }
 
-static float	*most_hangles(t_map *m, t_player *p, float ang, float *end)
+static float	*most_vangles(t_map *m, t_player *p, float ang, float *end)
 {
 	float	ntan;
 	float	*rd;
@@ -47,7 +47,7 @@ static float	*most_hangles(t_map *m, t_player *p, float ang, float *end)
 	return (rd);
 }
 
-static void	upd_end(float *end, float *rd)
+void	upd_end(float *end, float *rd)
 {
 	end[X] += rd[X];
 	end[Y] += rd[Y];
@@ -63,7 +63,7 @@ static int	vertic_maplines(t_map *m, t_player *p, float ang, float *end)
 	rd = NULL;
 	dof = 0;
 	if ((ang > 90 && ang < 270) || (ang < 90 || ang > 270))
-		rd = most_hangles(m, p, ang, end);
+		rd = most_vangles(m, p, ang, end);
 	if (ang == 90 || ang == 270)
 		dof = m->size[X];
 	while (dof < m->size[X])

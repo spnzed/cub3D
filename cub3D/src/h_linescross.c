@@ -22,16 +22,13 @@ void  h_shorter(float *vend, t_ray *ray, float ang, int h_mpos)
 		ray->wall_or = 'N';
 }
 
-int	horiz_maplines(t_map *m, t_player *p, float ang, float *end)
+static float	*most_hangles(t_map *m, t_player *p, float ang, float *end)
 {
-	float	rd[2];
 	float	atan;
-	int		dof;
-	int		mpos[2];
-	int		mp;
+	float	*rd;
 
+	rd = ft_all_floatarr();
 	atan = - 1 / tan(deg_to_rad(ang));
-	dof = 0;
 	if (ang > 0 && ang < 180)
 	{
 		end[Y] = (((int)(p->y) / m->cell_w) * m->cell_w) - 0.0001;
@@ -46,6 +43,20 @@ int	horiz_maplines(t_map *m, t_player *p, float ang, float *end)
 		rd[Y] = m->cell_w;
 		rd[X] = rd[Y] * atan;
 	}
+	return (rd);
+}
+
+int	horiz_maplines(t_map *m, t_player *p, float ang, float *end)
+{
+	float	*rd;
+	int		dof;
+	int		mpos[2];
+	int		mp;
+
+	rd = NULL;
+	dof = 0;
+	if ((ang > 0 && ang < 180) || (ang > 180 && ang < 360))
+		rd = most_hangles(m, p, ang, end);
 	if (ang == 0 || ang == 180)
 		dof = m->size[Y];
 	while (dof < m->size[Y])
@@ -56,10 +67,7 @@ int	horiz_maplines(t_map *m, t_player *p, float ang, float *end)
 		if (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 1) //we hit a wall
 			dof = m->size[Y]; //finish the loop
 		else
-		{
-			end[X] += rd[X];
-			end[Y] += rd[Y];
-		}
+			upd_end(end, rd);
 		if ((m->arr)[mp] == 0 && (int)ang % 45 == 0 && (int)ang % 90 != 0)  // map, ang, end, rd, mp > massa variables
 		{
 			if (((int)ang == 45 && (m->arr)[mp - 1] == 1 && (m->arr)[mp + m->size[X]] == 1)
