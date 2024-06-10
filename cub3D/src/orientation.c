@@ -23,26 +23,13 @@ static void v_shorter(float *hend, float *vend, t_ray *ray, float ang)
 		ray->wall_or = 'W';
 }
 
-static void h_shorter(float *vend, t_ray *ray, float ang, int h_mpos)
+static float	*most_hangles(t_map *m, t_player *p, float ang, float *end)
 {
-		free(vend);
-		ray->map_p = h_mpos;
-		if (ang < 180 && ang > 0)
-			ray->wall_or = 'S';
-		if (ang > 180 && ang < 360)
-			ray->wall_or = 'N';
-}
-
-static int	vertic_maplines(t_map *m, t_player *p, float ang, float *end)
-{
-	float	rd[2];
 	float	ntan;
-	int		dof;
-	int		mpos[2];
-	int		mp;
+	float	*rd;
 
+	rd = ft_all_floatarr();
 	ntan = tan(deg_to_rad(ang));
-	dof = 0;
 	if (ang > 90 && ang < 270) // looking left
 	{
 		end[X] = (((int)(p->x) / m->cell_w) * m->cell_w) - 0.0001;
@@ -57,6 +44,26 @@ static int	vertic_maplines(t_map *m, t_player *p, float ang, float *end)
 		rd[X] = m->cell_w;
 		rd[Y] = rd[X] * -ntan;
 	}
+	return (rd);
+}
+
+static void	upd_end(float *end, float *rd)
+{
+	end[X] += rd[X];
+	end[Y] += rd[Y];
+}
+
+static int	vertic_maplines(t_map *m, t_player *p, float ang, float *end)
+{
+	float	*rd;
+	int		dof;
+	int		mpos[2];
+	int		mp;
+
+	rd = NULL;
+	dof = 0;
+	if ((ang > 90 && ang < 270) || (ang < 90 || ang > 270))
+		rd = most_hangles(m, p, ang, end);
 	if (ang == 90 || ang == 270)
 		dof = m->size[X];
 	while (dof < m->size[X])
@@ -67,67 +74,7 @@ static int	vertic_maplines(t_map *m, t_player *p, float ang, float *end)
 		if (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 1) //we hit a wall
 			dof = m->size[X]; //finish the loop
 		else
-		{
-			end[X] += rd[X];
-			end[Y] += rd[Y];
-		}
-		++dof;
-	}
-	return (mp);
-}
-
-static int	horiz_maplines(t_map *m, t_player *p, float ang, float *end)
-{
-	float	rd[2];
-	float	atan;
-	int		dof;
-	int		mpos[2];
-	int		mp;
-
-	atan = 0;
-	dof = 0;
-	if (ang > 0 && ang < 180)
-	{
-		atan = - 1 / tan(deg_to_rad(ang));
-		end[Y] = (((int)(p->y) / m->cell_w) * m->cell_w) - 0.0001;
-		end[X] = (p->y - end[Y]) * -atan + p->x;
-		rd[Y] = -(m->cell_w);
-		rd[X] = rd[Y] * atan;
-	}
-	if (ang > 180 && ang < 360)
-	{
-		atan = - 1 / tan(deg_to_rad(ang));
-		end[Y] = (((int)(p->y) / m->cell_w) * m->cell_w) + m->cell_w;
-		end[X] = (p->y - end[Y]) * -atan + p->x;
-		rd[Y] = m->cell_w;
-		rd[X] = rd[Y] * atan;
-	}
-	if (ang == 0 || ang == 180)
-		dof = m->size[Y];
-	while (dof < m->size[Y])
-	{
-		mpos[X] = (int)(end[X]) / m->cell_w;
-		mpos[Y] = (int)(end[Y]) / m->cell_w;
-		mp = mpos[Y] * m->size[X] + mpos[X];
-		if (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 1) //we hit a wall
-			dof = m->size[Y]; //finish the loop
-		else
-		{
-			end[X] += rd[X];
-			end[Y] += rd[Y];
-		}
-		if ((m->arr)[mp] == 0 && (int)ang % 45 == 0 && (int)ang % 90 != 0)
-		{
-			if (((int)ang == 45 && (m->arr)[mp - 1] == 1 && (m->arr)[mp + m->size[X]] == 1)
-				|| ((int)ang == 135 && (m->arr)[mp + 1] == 1 && (m->arr)[mp + m->size[X]] == 1)
-				|| ((int)ang == 225 && (m->arr)[mp + 1] == 1 && (m->arr)[mp - m->size[X]] == 1)
-				|| ((int)ang == 315 && (m->arr)[mp - 1] == 1 && (m->arr)[mp - m->size[X]] == 1))
-			{
-				end[X] -= rd[X];
-				end[Y] -= rd[Y];
-				dof = m->size[Y];
-			}
-		}
+			upd_end(end, rd);
 		++dof;
 	}
 	return (mp);
@@ -147,7 +94,6 @@ void	ray_end_or(t_map *map, t_player *pl, float ang, t_ray *ray)
 	ray->end[Y] = hend[Y];
 	ray->len = sqrt((hend[X] - pl->x) * (hend[X] - pl->x)
 		+ (hend[Y] - pl->y) * (hend[Y] - pl->y));
-
 	ray->map_p = vertic_maplines(map, pl, ang, vend);
 	v_len = sqrt((vend[X] - pl->x) * (vend[X] - pl->x)
 		+ (vend[Y] - pl->y) * (vend[Y] - pl->y));

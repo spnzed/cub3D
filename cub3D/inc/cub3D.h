@@ -234,6 +234,8 @@ void	init_keys(t_mlx *mlx);
 void	handle_key(t_data *info);
 void	ray_end_or(t_map *map, t_player *pl, float ang, t_ray *ray);
 void	draw_walls(t_data *info);
+int		horiz_maplines(t_map *m, t_player *p, float ang, float *end);
+void	h_shorter(float *vend, t_ray *ray, float ang, int h_mpos);
 
 //		Utils
 int		ft_count_lines(int fd);
@@ -247,5 +249,6 @@ float	deg_to_rad(float d);
 void	player_direction(char c, t_data *info);
 int		is_corner(int *scr, int pos);
 float	*alloc_floatarr(t_player *p);
+float	*ft_all_floatarr(void);
 
 #endif
