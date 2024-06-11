@@ -68,7 +68,7 @@ int	horiz_maplines(t_map *m, t_player *p, float ang, float *end)
 			dof = m->size[Y]; //finish the loop
 		else
 			upd_end(end, rd);
-		if ((m->arr)[mp] == 0 && (int)ang % 45 == 0 && (int)ang % 90 != 0)  // map, ang, end, rd, mp > massa variables
+		if ((m->arr)[mp] == 0 && (int)ang % 45 == 0 && (int)ang % 90 != 0) // map, ang-mp, end, rd, dof > massa variables
 		{
 			if (((int)ang == 45 && (m->arr)[mp - 1] == 1 && (m->arr)[mp + m->size[X]] == 1)
 				|| ((int)ang == 135 && (m->arr)[mp + 1] == 1 && (m->arr)[mp + m->size[X]] == 1)
