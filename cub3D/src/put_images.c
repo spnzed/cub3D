@@ -12,6 +12,18 @@
 
 #include "cub3D.h"
 
+void	put_position(t_data *info)
+{
+	int		col_w;
+
+	col_w = SCALE / 8 * 6; //amplada cel.la/columna mapa gros
+	info->player.x = info->map.spawn[X] * col_w + col_w / 2;
+	info->player.y = info->map.spawn[Y] * col_w + col_w / 2;
+	info->map.map_size = info->map.size[X] * info->map.size[Y];
+	info->player.dx = cos(deg_to_rad(info->player.dir));
+	info->player.dy = -sin(deg_to_rad(info->player.dir));
+}
+
 static void	check_img_scale(t_img *img)
 {
 	if (img->width == SCALE && img->height == SCALE)

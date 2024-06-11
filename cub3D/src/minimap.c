@@ -16,7 +16,6 @@ static void	ft_c(char c, int floor, int *pos)
 {
 	if (c == '1')
 		*pos = 0xFFFFFF;
-		//*pos = 0x743636;
 	else
 		*pos = floor;
 }
