@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:46:35 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/23 17:44:27 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/06/07 20:44:12 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ void	handle_key(t_data *info)
 
 void	new_scene(t_data *info)
 {
-	get_bigmap2d(info);
-	//mini_map(info);
+	// get_bigmap2d(info);
 	cast_rays(info);
+	mini_map(info);
 }
 
 int	render(t_data *info)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 19:04:07 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/27 17:57:49 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/06/07 20:18:36 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,14 @@ void	draw_wall(t_data *info, int *scr, int ang, int i)
 
 	(void)scr;
 	distance = remove_fish(info->player.dir, ang, info->ray[i].len);
-	height = (SCALE * 320) / (distance); // Calcula la altura de la línea
-	if (height > 320) 
-    	height = 320;
-	offset = 160 - (height / 2); // Calcula el offset de la línea
+	height = (SCALE * HEIGHT) / (distance); // Calcula la altura de la línea
+    if (height > HEIGHT)
+        height = HEIGHT;
+    offset = (HEIGHT / 2) - (height / 2); // Calcula el offset de la línea
 
-	t_point wall_pts[2] = {{i * 1 + 530, offset}, {i * 1 + 530, offset + height}};
+	int x_position = (i * WIDTH) / 240; // NUM_RAYS es el número total de rayos
+
+	t_point wall_pts[2] = {{x_position, offset}, {x_position, offset + height}};
 
 	if (info->ray[i].wall_or == 'N')
     	draw_line(info->mlx->img.img_adr, wall_pts, 0xff0000, 1); // Red
