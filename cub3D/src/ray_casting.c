@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:21:29 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/06/07 20:46:15 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/06/11 20:43:38 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,34 +65,33 @@ static void	fill_ray(int *scr, t_data *info, float ang, int i)
 	feed_ray(info, pts, i);
 }
 
-static void	init_arr(t_data *info)
+static void init_arr(t_data *info)
 {
-	info->ray = ft_calloc(sizeof(t_ray), 480); //1 > WIDTH
-	if (!info->ray)
-	{
-		ft_err("Error: Malloc\n");
-		exit (1);
-	}
+    info->ray = ft_calloc(sizeof(t_ray), WIDTH); // WIDTH en lugar de 480
+    if (!info->ray)
+    {
+        ft_err("Error: Malloc\n");
+        exit(1);
+    }
 }
 
-void	cast_rays(t_data *info)
+void cast_rays(t_data *info)
 {
-	float	ang;
-	int		i;
-	float	incr;
+    float ang;
+    int i;
+    float incr;
 
-	i = 0;
-	incr = 0.125; //(float)60 / (float)(1); //1 > WIDTH
-	ang = info->player.dir + 30.0;
-	init_arr(info);
-	while (i < 480) //1 > WIDTH
-	{
-		fill_ray(info->mlx->img.img_adr, info, angle_correction(ang), i);
-		i++;
-		ang = ang - incr;
-	}
-	fix_or(info->ray);
-// 	i = -1;
-// 	while(++i < 100)
-// 		printf("ray[%i].wall_or: %c, ray[%i].map_p: %i, ray->len: %f\n", i, (info->ray)[i].wall_or, i, (info->ray)[i].map_p, (info->ray)[i].len);
+	printf("Hola\n");
+    i = 0;
+    incr = 60.0 / WIDTH; // Calcula el incremento angular
+    ang = info->player.dir + 30.0;
+    init_arr(info);
+    while (i < WIDTH)
+    {
+        fill_ray(info->mlx->img.img_adr, info, angle_correction(ang), i);
+        i++;
+        ang = ang - incr;
+		printf("Adios, %d\n", i);
+    }
+    fix_or(info->ray);
 }

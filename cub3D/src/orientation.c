@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   orientation.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:43:13 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/31 21:02:31 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/06/11 20:45:30 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ static int	vertic_maplines(t_map *m, t_player *p, float ang, float *end)
 			upd_end(end, rd);
 		++dof;
 	}
+	printf("Como estas\n");
 	return (mp);
 }
 
