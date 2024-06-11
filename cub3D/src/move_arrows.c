@@ -17,13 +17,8 @@ void	move_r_arrow(t_data *info)
 	info->player.dir -= 1;
 	if (info->player.dir < 0)
 		info->player.dir += 360;
-	// info->minipl.dx = cos(deg_to_rad(info->player.dir));
-	// info->minipl.dy = -sin(deg_to_rad(info->player.dir));
 	info->player.dx = cos(deg_to_rad(info->player.dir));
 	info->player.dy = -sin(deg_to_rad(info->player.dir));
-	// info->player.dx = info->minipl.dx * 3;
-	// info->player.dy = info->minipl.dy * 3;
-	
 }
 
 
@@ -34,8 +29,4 @@ void	move_l_arrow(t_data *info)
 		info->player.dir -= 360;
 	info->player.dx = cos(deg_to_rad(info->player.dir));
 	info->player.dy = -sin(deg_to_rad(info->player.dir));
-// 	info->minipl.dx = cos(deg_to_rad(info->player.dir));
-// 	info->minipl.dy = -sin(deg_to_rad(info->player.dir));
-// 	info->player.dx = info->minipl.dx * 3;
-// 	info->player.dy = info->minipl.dy * 3;
 }

@@ -12,6 +12,34 @@
 
 #include "cub3D.h"
 
+float	*ft_all_floatarr(void)
+{
+	float	*arr;
+
+	arr = ft_calloc(sizeof(float), 2);
+	if (!arr)
+	{
+		ft_err("Error: Malloc\n");
+		exit (1);
+	}
+	return (arr);
+}
+
+float	*alloc_floatarr(t_player *pl)
+{
+	float	*arr;
+
+	arr = ft_calloc(sizeof(float), 2);
+	if (!arr)
+	{
+		ft_err("Error: Malloc\n");
+		exit (1);
+	}
+	arr[X] = pl->x;
+	arr[Y] = pl->y;
+	return (arr);
+}
+
 float	angle_correction(float ang)
 {
 	if (ang > 359)
@@ -36,17 +64,4 @@ void	player_direction(char c, t_data *info)
 		info->player.dir = 180;
 	if (c == 'E')
 		info->player.dir = 0;
-}
-
-int	is_corner(int *scr, int pos)
-{
-	if (scr[pos + WIDTH * 2] == WALL && scr[pos - 2] == WALL)
-		return (1);
-	else if (scr[pos + WIDTH * 2] == WALL && scr[pos + 2] == WALL)
-		return (1);
-	else if (scr[pos - WIDTH * 2] == WALL && scr[pos - 2] == WALL)
-		return (1);
-	else if (scr[pos - WIDTH * 2] == WALL && scr[pos + 2] == WALL)
-		return (1);
-	return (0);
 }

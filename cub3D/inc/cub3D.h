@@ -143,7 +143,7 @@ typedef struct s_player
 typedef struct s_ray
 {
 	char	wall_or; // N, S, E, W
-	double	len;
+	float	len;
 	int		map_p;
 	float	end[2]; //posició (x, y) de l'extrem final del raig (oposat a la posició del jugador)
 	float	ang;
@@ -225,19 +225,23 @@ void	draw_line(int *scr, t_point *pts, int color, int thickness);
 void	init_temp(t_data *info);
 void	new_scene(t_data *info);
 void	init_players(t_data *info);
-void	fill_ray(int *scr, t_data *info, float ang, int i);
+//void	fill_ray(int *scr, t_data *info, float ang, int i);
 void	create_image(t_data *info);
 void	init_texture(t_data *info);
 void	ray_casting(t_data *info);
 //void	draw_rays(t_data *info);
 void	other_angles(int *scr, t_point *pts, float ang);
-void	ray_end(int *scr, t_point *pts, float ang);
+//void	ray_end(int *scr, t_point *pts, float ang);
 void	cast_rays(t_data *info);
 int		init_window2(t_data *info);
 void	init_loop2(t_data *info);
 void	init_keys(t_mlx *mlx);
 void	handle_key(t_data *info);
 void	ray_end_or(t_map *map, t_player *pl, float ang, t_ray *ray);
+void	draw_walls(t_data *info);
+int		horiz_maplines(t_map *m, t_player *p, float ang, float *end);
+void	h_shorter(float *vend, t_ray *ray, float ang, int h_mpos);
+void	upd_end(float *end, float *rd);
 
 //		Utils
 int		ft_count_lines(int fd);
@@ -250,5 +254,7 @@ float	angle_correction(float ang);
 float	deg_to_rad(float d);
 void	player_direction(char c, t_data *info);
 int		is_corner(int *scr, int pos);
+float	*alloc_floatarr(t_player *p);
+float	*ft_all_floatarr(void);
 
 #endif

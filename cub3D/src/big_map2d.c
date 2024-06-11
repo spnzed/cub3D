@@ -29,15 +29,6 @@ static void	paint_gray(int *scr, t_map *map, int p)
 	}
 }
 
-/*static void	paint_black(int *scr)
-{
-	int	p;
-
-	p = -1;
-	while (++p < HEIGHT * WIDTH)
-		scr[p] = 0x000000;
-}*/
-
 // static void	draw_player(int *scr, int xpl, int ypl, int color)
 // {
 // 	int	x;
@@ -91,12 +82,6 @@ static void	fill_bigmap(int *scr, t_map *map, int p, int i)
 
 int	get_bigmap2d(t_data *info)
 {
-	// int	mp_xp;
-	// int	mp_yp;
-	// int	p;
-	//int	col_w;
-//	float	endx;
-//	float	endy;
 	t_point *pts;
 	
 	pts = ft_calloc(sizeof(pts), 2);
@@ -125,6 +110,6 @@ int	get_bigmap2d(t_data *info)
 	//fill_bigmap(info->mlx->img.img_adr, &info->map, p, 0);
 	// draw_player(info->mlx->img.img_adr, info->player.x,
 	// 	info->player.y, 0x00FFFF);
-	draw_line(info->mlx->img.img_adr, pts, 0x00FFFF, 1);
+	//draw_line(info->mlx->img.img_adr, pts, 0x00FFFF, 1);
 	return (0);
 }

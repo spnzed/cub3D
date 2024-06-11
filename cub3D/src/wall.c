@@ -24,7 +24,7 @@ float	remove_fish(int player_dir, int ray_ang, int ray_len)
 	return (distance);
 }
 
-void	draw_wall(t_data *info, int *scr, int ang, int i)
+void static	draw_wallcol(t_data *info, int *scr, int ang, int i)
 {
 	float distance;
 	int height;
@@ -76,4 +76,17 @@ void	draw_wall(t_data *info, int *scr, int ang, int i)
 	// 		}
 	// 	}
 	// }
+}
+
+void draw_walls(t_data *info)
+{
+	int i;
+
+	i = 0;
+	while (i < 480) //haura de ser WIDTH
+	{
+		draw_wallcol(info, info->mlx->img.img_adr, info->ray[i].ang, i);
+		i++;
+	}
+
 }
