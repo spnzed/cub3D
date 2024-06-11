@@ -30,14 +30,14 @@ static float	*most_vangles(t_map *m, t_player *p, float ang, float *end)
 
 	rd = ft_all_floatarr();
 	ntan = tan(deg_to_rad(ang));
-	if (ang > 90 && ang < 270) // looking left
+	if (ang > 90 && ang < 270)
 	{
 		end[X] = (((int)(p->x) / m->cell_w) * m->cell_w) - 0.0001;
 		end[Y] = (p->x - end[X]) * ntan + p->y;
 		rd[X] = -(m->cell_w);
 		rd[Y] = rd[X] * -ntan;
 	}
-	if (ang < 90 || ang > 270) //looking right
+	if (ang < 90 || ang > 270)
 	{
 		end[X] = (((int)(p->x) / m->cell_w) * m->cell_w) + m->cell_w;
 		end[Y] = (p->x - end[X]) * ntan + p->y;
@@ -71,8 +71,8 @@ static int	vertic_maplines(t_map *m, t_player *p, float ang, float *end)
 		mpos[X] = (int)(end[X]) / m->cell_w;
 		mpos[Y] = (int)(end[Y]) / m->cell_w;
 		mp = mpos[Y] * m->size[X] + mpos[X];
-		if (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 1) //we hit a wall
-			dof = m->size[X]; //finish the loop
+		if (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 1)
+			dof = m->size[X];
 		else
 			upd_end(end, rd);
 		++dof;

@@ -36,51 +36,58 @@ static float	*most_hangles(t_map *m, t_player *p, float ang, float *end)
 		rd[Y] = -(m->cell_w);
 		rd[X] = rd[Y] * atan;
 	}
-	if (ang > 180 && ang < 360)
+	else if (ang > 180 && ang < 360)
 	{
 		end[Y] = (((int)(p->y) / m->cell_w) * m->cell_w) + m->cell_w;
 		end[X] = (p->y - end[Y]) * -atan + p->x;
 		rd[Y] = m->cell_w;
 		rd[X] = rd[Y] * atan;
 	}
+	else
+		rd = NULL;
 	return (rd);
+}
+
+static int	horiz_ray(float ang, int i)
+{
+	if (ang == 0 || ang == 180)
+		return (i);
+	else
+		return (-1);
+}
+
+static int	back_rd(float *end, float *rd, int i)
+{
+	end[X] -= rd[X];
+	end[Y] -= rd[Y];
+	return (i);
 }
 
 int	horiz_maplines(t_map *m, t_player *p, float ang, float *end)
 {
 	float	*rd;
 	int		dof;
-	int		mpos[2];
 	int		mp;
 
-	rd = NULL;
-	dof = 0;
-	if ((ang > 0 && ang < 180) || (ang > 180 && ang < 360))
-		rd = most_hangles(m, p, ang, end);
-	if (ang == 0 || ang == 180)
-		dof = m->size[Y];
-	while (dof < m->size[Y])
+	rd = most_hangles(m, p, ang, end);
+	dof = horiz_ray(ang, m->size[Y]);
+	while (++dof < m->size[Y])
 	{
-		mpos[X] = (int)(end[X]) / m->cell_w;
-		mpos[Y] = (int)(end[Y]) / m->cell_w;
-		mp = mpos[Y] * m->size[X] + mpos[X];
-		if (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 1) //we hit a wall
-			dof = m->size[Y]; //finish the loop
+		mp = (int)(end[Y]) / m->cell_w * m->size[X] + (int)(end[X]) / m->cell_w;
+		if (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 1)
+			dof = m->size[Y];
 		else
 			upd_end(end, rd);
-		if ((m->arr)[mp] == 0 && (int)ang % 45 == 0 && (int)ang % 90 != 0) // map, ang-mp, end, rd, dof > massa variables
-		{
-			if (((int)ang == 45 && (m->arr)[mp - 1] == 1 && (m->arr)[mp + m->size[X]] == 1)
-				|| ((int)ang == 135 && (m->arr)[mp + 1] == 1 && (m->arr)[mp + m->size[X]] == 1)
-				|| ((int)ang == 225 && (m->arr)[mp + 1] == 1 && (m->arr)[mp - m->size[X]] == 1)
-				|| ((int)ang == 315 && (m->arr)[mp - 1] == 1 && (m->arr)[mp - m->size[X]] == 1))
-			{
-				end[X] -= rd[X];
-				end[Y] -= rd[Y];
-				dof = m->size[Y];
-			}
-		}
-		++dof;
+		if ((m->arr)[mp] == 0 && (int)ang % 45 == 0 && (int)ang % 90 != 0
+			&& (((int)ang == 45 && (m->arr)[mp - 1] == 1
+			&& (m->arr)[mp + m->size[X]] == 1)
+			|| ((int)ang == 135 && (m->arr)[mp + 1] == 1
+			&& (m->arr)[mp + m->size[X]] == 1)
+			|| ((int)ang == 225 && (m->arr)[mp + 1] == 1
+			&& (m->arr)[mp - m->size[X]] == 1)
+			|| ((int)ang == 315 && (m->arr)[mp - 1] == 1
+			&& (m->arr)[mp - m->size[X]] == 1)))
+			dof = back_rd(end, rd, m->size[Y]);
 	}
 	return (mp);
 }

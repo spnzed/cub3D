@@ -40,7 +40,6 @@ static void	feed_ray(t_data *info, t_point *ends, int i)
 	a = abs(ends[0].x - ends[1].x);
 	b = abs(ends[0].y - ends[1].y);
 	(info->ray)[i].len = sqrt((a * a + b * b));
-	// (info->ray)[i].ang = ang;
 }
 
 static void	fill_ray(int *scr, t_data *info, float ang, int i)
@@ -58,16 +57,12 @@ static void	fill_ray(int *scr, t_data *info, float ang, int i)
 	pts[1].x = 0;
 	pts[1].y = 0;
 	(info->ray)[i].ang = ang;
-	//ray_end(scr, pts, ang);
-	//printf("fill_ray player X: %f, player Y: %f\n", info->player.x, info->player.y);
+	
 	ray_end_or(&(info->map), &(info->player), ang, &((info->ray)[i]));
 	pts[1].x = (int)((info->ray)[i].end[X]);
 	pts[1].y = (int)((info->ray)[i].end[Y]);
-//	printf("ang: %f, pts[0].x: %i, pts[0].y: %i, pts[1].x: %i, pts[1].y: %i\n", ang, pts[0].x, pts[0].y, pts[1].x, pts[1].y);
 	draw_line(scr, pts, 0xFF0000, 1);
 	feed_ray(info, pts, i);
-	//fix_or(info->ray);
-	//draw_wall(info, scr, ang, i);
 }
 
 static void	init_arr(t_data *info)
@@ -92,8 +87,6 @@ void	cast_rays(t_data *info)
 	init_arr(info);
 	while (i < 480) //1 > WIDTH
 	{
-		//fill_ray(info->map2d, info, angle_correction(ang), i);
-		//printf("i: %i, ang: %f\n", i, ang);
 		fill_ray(info->mlx->img.img_adr, info, angle_correction(ang), i);
 		i++;
 		ang = ang - incr;
