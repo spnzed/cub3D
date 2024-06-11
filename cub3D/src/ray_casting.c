@@ -17,7 +17,7 @@ static void fix_or(t_ray *r)
 	int	i;
 
 	i = 1;
-	while (i < 479) // haura de ser WIDTH - 1
+	while (i < WIDTH - 1) // haura de ser WIDTH - 1
 	{
 		if ((int)r[i].ang % 45 == 0 && (int)r[i].ang % 90 != 0
 			&& r[i].wall_or != r[i - 1].wall_or
@@ -67,7 +67,7 @@ static void	fill_ray(int *scr, t_data *info, float ang, int i)
 
 static void	init_arr(t_data *info)
 {
-	info->ray = ft_calloc(sizeof(t_ray), 480); //1 > WIDTH
+	info->ray = ft_calloc(sizeof(t_ray), WIDTH); //1 > WIDTH
 	if (!info->ray)
 	{
 		ft_err("Error: Malloc\n");
@@ -82,12 +82,13 @@ void	cast_rays(t_data *info)
 	float	incr;
 
 	i = 0;
-	incr = 0.125; //(float)60 / (float)(1); //1 > WIDTH
+	incr = (float)60 / (float)(WIDTH); //1 > WIDTH
 	ang = info->player.dir + 30.0;
 	init_arr(info);
-	while (i < 480) //1 > WIDTH
+	while (i < WIDTH) //1 > WIDTH
 	{
 		fill_ray(info->mlx->img.img_adr, info, angle_correction(ang), i);
+		printf("i: %i, ang: %f\n", i, ang);
 		i++;
 		ang = ang - incr;
 	}
