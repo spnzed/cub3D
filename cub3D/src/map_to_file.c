@@ -80,6 +80,6 @@ char	**map_to_file(t_data *info, t_map *map, char **file)
 		exit(1);
 	}
 	get_grid(grid, file, map->size, map->grid_pos);
-	info->map.cell_w = 48;
+	info->map.cell_w = SCALE;
 	return (grid);
 }
