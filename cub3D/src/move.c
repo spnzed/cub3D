@@ -34,6 +34,8 @@ void	move_front(t_data *info)
 	{
 		info->player.x += info->player.dx;
 		info->player.y += info->player.dy;
+		info->minipl.x += info->player.dx / 4;
+		info->minipl.y += info->player.dy / 4;
 	}
 }
 
@@ -44,6 +46,8 @@ void	move_back(t_data *info)
 	{
 		info->player.x -= info->player.dx;
 		info->player.y -= info->player.dy;
+		info->minipl.x -= info->player.dx / 4;
+		info->minipl.y -= info->player.dy / 4;
 	}
 }
 
@@ -61,6 +65,8 @@ void	move_right(t_data *info)
 	{
 		info->player.x += new_dx;
 		info->player.y += new_dy;
+		info->minipl.x += new_dx / 4;
+		info->minipl.y += new_dy / 4;
 	}
 }
 
@@ -78,5 +84,7 @@ void	move_left(t_data *info)
 	{
 		info->player.x -= new_dx;
 		info->player.y -= new_dy;
+		info->minipl.x -= new_dx / 4;
+		info->minipl.y -= new_dy / 4;
 	}
 }
