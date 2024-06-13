@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:59:47 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/31 20:17:15 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/06/13 12:51:29 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	check_grid(char *line, int y, t_data *info)
 	return (0);
 }
 
-static int	weatborder(char **grid, int x, int y)
+static int	weatborder(t_data *info, char **grid, int y, int x)
 {
 	int	i;
 	int	j;
@@ -53,9 +53,9 @@ static int	weatborder(char **grid, int x, int y)
 		{
 			if (y + i != 0 && x + j != 0)
 			{
-				if (x + i >= ft_arrlen(grid) || x + i < 0
-					|| y + j >= ft_strlen(grid[x]) || y + j < 0
-					|| grid[x + i][y + j] == ' ')
+				if (y + i >= info->map.size[Y] || y + i < 0
+					|| x + j >= info->map.size[X] || x + j < 0
+					|| grid[y + i][x + j] == ' ')
 					return (1);
 			}
 			j++;
@@ -65,47 +65,27 @@ static int	weatborder(char **grid, int x, int y)
 	return (0);
 }
 
-static int	check_border(char **scene, int i)
+int	check_map_border(t_data *info, char **grid)
 {
+	int	i;
 	int	j;
 
-	while (scene[i])
+	i = 0;
+	while (i < info->map.size[Y])
 	{
 		j = 0;
-		while (scene[i][j])
+		while (j < info->map.size[X])
 		{
-			if (weatborder(scene, i, j))
+			if (weatborder(info, grid, i, j))
 			{
-				if (scene[i][j] == '0')
+				if (grid[i][j] == '0')
 					return (ft_err("Error: Map: Not Surrounded by Walls\n"), 1);
-				if (ft_strchr("NSWE", scene[i][j]))
+				if (ft_strchr("NSWE", grid[i][j]))
 					return (ft_err("Error: Map: Invalid Player Spawn\n"), 1);
 			}
 			j++;
 		}
 		i++;
-	}
-	return (0);
-}
-
-int	check_map_border(char **scene)
-{
-	int	i;
-	int	count;
-
-	i = -1;
-	count = 0;
-	while (scene[++i])
-	{
-		if (ft_strlen(scene[i]) > 1)
-		{
-			if (count > 5)
-			{
-				if (check_border(scene, i))
-					return (1);
-			}
-			count++;
-		}
 	}
 	return (0);
 }

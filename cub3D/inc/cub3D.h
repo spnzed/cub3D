@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/06/07 19:59:44 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/06/13 11:39:16 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,7 @@ void	draw_wall(t_data *info, int *scr, int ang, int i);
 void	get_file(char *file, t_data *info);
 int		handle_map(char *file, t_data *info);
 int		check_map_char(char **scene, t_data *info);
-int		check_map_border(char **scene);
+int		check_map_border(t_data *info, char **scene);
 int		check_textures(char **scene, t_data *info);
 char	*get_color(char *str, char rgb);
 char	**map_to_file(t_data *info, t_map *map, char **file);

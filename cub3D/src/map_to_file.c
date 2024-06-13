@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_to_file.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:15:19 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/31 20:39:51 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/06/13 12:58:29 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,6 @@ static int	get_width(char **file)
 	return (width);
 }
 
-static void	put_spaces(char	*str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		str[i] = ' ';
-		i++;
-	}
-}
-
 static void	put_lines(char *str, char *file_line)
 {
 	int	i;
@@ -54,11 +42,17 @@ static void	put_lines(char *str, char *file_line)
 static void	get_grid(char **grid, char **file, int size[2], int grid_p)
 {
 	int	i;
+	int	j;
 
 	i = 0;
+	j = 0;
 	while (i < size[Y])
 	{
-		put_spaces(grid[i]);
+		while (j < size[X])
+		{
+			grid[i][j] = ' ';
+			j++;
+		}
 		put_lines(grid[i], file[grid_p]);
 		i++;
 		grid_p++;
