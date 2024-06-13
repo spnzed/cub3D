@@ -20,10 +20,10 @@ static char	**get_scene_lines(int fd, int lines)
 	i = 0;
 	scene = malloc(sizeof(char *) * (lines + 1));
 	if (!scene)
-	{
+//	{
 		ft_err("Error: Malloc\n");
-		exit (1);
-	}
+	// 	exit (1);
+	// }
 	scene[lines] = NULL;
 	while (i < lines)
 	{

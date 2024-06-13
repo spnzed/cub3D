@@ -47,19 +47,19 @@ static int	check_extension(char *file)
 
 int	check_args(int argc, char **argv, t_data *info)
 {
-	int	err;
+	// int	err;
 
-	err = 0;
+	// err = 0;
 	if (argc < 2)
-		err = ft_err("Error: Not Enough Arguments\n");
+		ft_err("Error: Not Enough Arguments\n");
 	else if (argc > 2)
-		err = ft_err("Error: Too Many Arguments\n");
+		ft_err("Error: Too Many Arguments\n");
 	else if (ft_strlen(argv[1]) <= 4)
-		err = ft_err("Error: Invalid Path\n");
+		ft_err("Error: Invalid Path\n");
 	else if (check_extension(argv[1]))
-		err = ft_err("Error: Incorrect File Extension\n");
-	if (err)
-		exit(1);
+		ft_err("Error: Incorrect File Extension\n");
+	// if (err)
+	// 	exit(1);
 	else
 		handle_map(argv[1], info);
 	// upd_vars(info);

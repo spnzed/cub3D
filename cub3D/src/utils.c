@@ -56,7 +56,7 @@ void	close_file(int fd, char **scene, bool arr)
 		if (arr)
 			ft_arrfree(scene);
 		ft_err("Error: Cannot Close File\n");
-		exit(1);
+		// exit(1);
 	}
 	return ;
 }

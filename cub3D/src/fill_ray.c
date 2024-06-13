@@ -114,10 +114,10 @@ void	fill_ray(int *scr, t_data *info, float ang, int i)
 
 	pts = ft_calloc(sizeof(t_point), 2);
 	if (!pts)
-	{
+	//{
 		ft_err("Error: Malloc\n");
-		exit (1);
-	}
+		//exit (1);
+	}//
 	pts[0].x = (int)(info->player.x);
 	pts[0].y = (int)(info->player.y);
 	pts[1].x = 0;

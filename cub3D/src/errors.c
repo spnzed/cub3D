@@ -17,5 +17,5 @@ int	ft_err(char *str)
 	ft_putstr_fd(RED, 2);
 	ft_putstr_fd(str, 2);
 	ft_putstr_fd(RESET, 2);
-	return (1);
+	exit (1);
 }

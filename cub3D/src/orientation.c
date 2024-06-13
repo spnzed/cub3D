@@ -74,7 +74,7 @@ static int	vertic_maplines(t_map *m, t_player *p, float ang, float *end)
 		mpos[Y] = (int)(end[Y]) / m->cell_w;
 		mp = mpos[Y] * m->size[X] + mpos[X];
 		//printf("dof: %i, mp: %i, end[X]: %f, end[Y]: %f\n", dof, mp, end[X], end[Y]);
-		if ((mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 1) || end[Y] < 0 || end[X] < 0) // caldrà afegir quan surti per només sota
+		if (end[Y] < 0 || end[X] < 0 || (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 1)) // caldrà afegir quan surti per només sota
 			break ; //dof = m->size[X];
 		else
 			upd_end(end, rd);

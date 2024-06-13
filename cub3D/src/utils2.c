@@ -18,10 +18,10 @@ float	*ft_all_floatarr(void)
 
 	arr = ft_calloc(sizeof(float), 2);
 	if (!arr)
-	{
+//	{
 		ft_err("Error: Malloc\n");
-		exit (1);
-	}
+	// 	exit (1);
+	// }
 	return (arr);
 }
 
@@ -31,10 +31,10 @@ float	*alloc_floatarr(t_player *pl)
 
 	arr = ft_calloc(sizeof(float), 2);
 	if (!arr)
-	{
+	//{
 		ft_err("Error: Malloc\n");
-		exit (1);
-	}
+	// 	exit (1);
+	// }
 	arr[X] = pl->x;
 	arr[Y] = pl->y;
 	return (arr);

@@ -94,12 +94,12 @@ int	get_bigmap2d(t_data *info)
 	// pts[0].y = (int)(info->player.y);
 	// pts[1].x = (int)(info->player.x + info->player.dx * 15);
 	// pts[1].y = (int)(info->player.y + info->player.dy * 15);
-	info->map2d = ft_calloc(sizeof(int), WIDTH * HEIGHT); //SCALE * info->map.size[X] * SCALE * info->map.size[Y]);
-	if (!info->map2d)
-	{
-		ft_err("Error: Malloc\n");
-		return (1);
-	}
+	// info->map2d = ft_calloc(sizeof(int), WIDTH * HEIGHT); //SCALE * info->map.size[X] * SCALE * info->map.size[Y]);
+	// if (!info->map2d)
+	// {
+	// 	ft_err("Error: Malloc\n");
+	// 	return (1);
+	// }
 //	col_w = SCALE / 8 * 6;
 	// mp_xp = 0;
 	// mp_yp = 0;

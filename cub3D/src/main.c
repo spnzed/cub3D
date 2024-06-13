@@ -18,10 +18,10 @@ void	init_keys(t_mlx *mlx)
 
 	keys = ft_calloc(sizeof(t_keys), 1);
 	if (!keys)
-	{
+//	{
 		ft_err("Error: Malloc\n");
-		exit (1);
-	}
+	// 	exit (1);
+	// }
 	keys->w = 0;
 	keys->a = 0;
 	keys->d = 0;
@@ -35,10 +35,10 @@ static t_data	*init_info(void)
 
 	info = ft_calloc(1, sizeof(t_data));
 	if (!info)
-	{
+//	{
 		ft_err("Error: Malloc\n");
-		exit (1);
-	}
+	// 	exit (1);
+	// }
 	info->map.grid_pos = -1;
 	info->parameters.north = NULL;
 	info->parameters.south = NULL;
@@ -53,7 +53,7 @@ static int	init_window(t_data *info)
 {
 	info->mlx = (t_mlx *)malloc(sizeof(t_mlx));
 	if (!info->mlx)
-		exit (1);
+		exit (1); // aqui no posem error?
 	info->mlx->mlx = mlx_init();
 	info->mlx->win = mlx_new_window(info->mlx->mlx, WIDTH, HEIGHT, "cub3D");
 	init_keys(info->mlx);

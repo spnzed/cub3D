@@ -16,7 +16,7 @@ void	put_position(t_data *info)
 {
 	int		col_w;
 
-	col_w = SCALE / 4; //amplada cel.la/columna minimap
+	col_w = SCALE / 8; //amplada cel.la/columna minimap
 	info->player.x = info->map.spawn[X] * SCALE + SCALE / 2;
 	info->player.y = info->map.spawn[Y] * SCALE + SCALE / 2;
 	info->map.map_size = info->map.size[X] * info->map.size[Y];
@@ -24,6 +24,12 @@ void	put_position(t_data *info)
 	info->player.dy = -sin(deg_to_rad(info->player.dir));
 	info->minipl.x = 8 + info->map.spawn[X] * col_w + col_w / 2; //primer 8 es offset (marge/separacio amb el limit de la pantalla)
 	info->minipl.y = 8 + info->map.spawn[Y] * col_w + col_w / 2; //els altres 2 8 son l'amplada de cel.la del minimap
+	info->map2d = ft_calloc(sizeof(int), SCALE * info->map.size[X] * SCALE * info->map.size[Y]); // WIDTH * HEIGHT);
+	if (!info->map2d)
+//	{
+		ft_err("Error: Malloc\n");
+// 		exit (1);
+// 	}
 }
 
 static void	check_img_scale(t_img *img)
@@ -65,5 +71,5 @@ void	put_images(t_data *info)
 {
 	create_image(info);
 	create_textures(info);
-	new_scene(info);
+	//new_scene(info);
 }
