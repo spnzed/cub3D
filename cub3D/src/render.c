@@ -78,5 +78,7 @@ int	render(t_data *info)
 	new_scene(info);
 	mlx_put_image_to_window(info->mlx->mlx,
 		info->mlx->win, info->mlx->img.img, 0, 0);
+	free(info->map2d);
+	free(info->ray);
 	return (0);
 }
