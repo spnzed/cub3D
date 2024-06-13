@@ -48,9 +48,9 @@ static float	*most_hangles(t_map *m, t_player *p, float ang, float *end)
 	return (rd);
 }
 
-static int	horiz_ray(float ang, int i)
+static int	horiz_ray(float ang, int i, float *end, t_map *m)
 {
-	if (ang == 0 || ang == 180)
+	if (ang == 0 || ang == 180 || end[X] < 0 || end[X] > m->cell_w * m->size[X])
 		return (i);
 	else
 		return (-1);
@@ -70,12 +70,12 @@ int	horiz_maplines(t_map *m, t_player *p, float ang, float *end)
 	int		mp;
 
 	rd = most_hangles(m, p, ang, end);
-	dof = horiz_ray(ang, m->size[Y]);
+	dof = horiz_ray(ang, m->size[Y], end, m);
 	while (++dof < m->size[Y])
 	{
 		mp = (int)(end[Y]) / m->cell_w * m->size[X] + (int)(end[X]) / m->cell_w;
-		if (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 1)
-			dof = m->size[Y];
+		if ((mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 1) || end[Y] < 0 || end[X] < 0)
+			break ; //dof = m->size[Y];
 		else
 			upd_end(end, rd);
 		if ((m->arr)[mp] == 0 && (int)ang % 45 == 0 && (int)ang % 90 != 0

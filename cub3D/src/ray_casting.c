@@ -6,28 +6,27 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:21:29 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/06/11 22:38:03 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/06/13 10:26:27 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void fix_or(t_ray *r)
+static void fix_or_feedtext_p(t_ray *r)
 {
 	int	i;
 
 	i = 1;
-	while (i < 479) // haura de ser WIDTH - 1
+	while (i < WIDTH - 1) // haura de ser WIDTH - 1
 	{
 		if ((int)r[i].ang % 45 == 0 && (int)r[i].ang % 90 != 0
 			&& r[i].wall_or != r[i - 1].wall_or
 			&& r[i].wall_or != r[i + 1].wall_or)
-		{
-			// printf("BEFORE r[i + 1].or: %c, r[%i].ang: %f, r[%i].wall_or: %c\n", r[i + 1].wall_or, i, r[i].ang, i, r[i].wall_or);
-			// printf("r[%i].ang (i - 1): %f, r[%i].wall_or (i - 1): %c\n", i - 1, r[i - 1].ang, i - 1, r[i].wall_or);
 			r[i].wall_or = r[i - 1].wall_or;
-			//printf("AFTER r[%i].ang: %f, r[%i].wall_or: %c\n", i, r[i].ang, i, r[i].wall_or);
-		}
+		if (r[i].wall_or == 'N' || r[i].wall_or == 'S')
+			r[i].text_p = (int)(r[i].end)[X] % SCALE;
+		else if (r[i].wall_or == 'E' || r[i].wall_or == 'W')
+			r[i].text_p = (int)(r[i].end)[Y] % SCALE;
 		i++;
 	}
 }
@@ -67,12 +66,12 @@ static void	fill_ray(int *scr, t_data *info, float ang, int i)
 
 static void init_arr(t_data *info)
 {
-    info->ray = ft_calloc(sizeof(t_ray), WIDTH); // WIDTH en lugar de 480
-    if (!info->ray)
-    {
-        ft_err("Error: Malloc\n");
-        exit(1);
-    }
+	info->ray = ft_calloc(sizeof(t_ray), WIDTH); //1 > WIDTH
+	if (!info->ray)
+	{
+		ft_err("Error: Malloc\n");
+		exit (1);
+	}
 }
 
 void cast_rays(t_data *info)
@@ -81,15 +80,18 @@ void cast_rays(t_data *info)
     int i;
     float incr;
 
-    i = 0;
-    incr = 60.0 / WIDTH; // Calcula el incremento angular
-    ang = info->player.dir + 30.0;
-    init_arr(info);
-    while (i < WIDTH)
-    {
-        fill_ray(info->mlx->img.img_adr, info, angle_correction(ang), i);
-        i++;
-        ang = ang - incr;
-    }
-    fix_or(info->ray);
+	i = 0;
+	incr = (float)60 / (float)(WIDTH);
+	ang = info->player.dir + 30.0;
+	init_arr(info);
+	while (i < WIDTH)
+	{
+		fill_ray(info->map2d, info, angle_correction(ang), i);
+		i++;
+		ang = ang - incr;
+	}
+	fix_or_feedtext_p(info->ray);
+// 	i = -1;
+// 	while(++i < 100)
+// 		printf("ray[%i].wall_or: %c, ray[%i].map_p: %i, ray->len: %f\n", i, (info->ray)[i].wall_or, i, (info->ray)[i].map_p, (info->ray)[i].len);
 }

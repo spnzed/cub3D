@@ -12,22 +12,22 @@
 
 #include "cub3D.h"
 
-static void	paint_gray(int *scr, t_map *map, int p)
-{
-	int	i;
+// static void	paint_gray(int *scr, t_map *map, int p)
+// {
+// 	int	i;
 
-	i = 0;
-	while (i < SCALE / 8 * 6 * map->size[Y])
-	{
-		while (p < SCALE / 8 * 6 * map->size[X] + (WIDTH * i))
-		{
-			scr[p] = 0x808080;
-			++p;
-		}
-		i++;
-		p = WIDTH * i;
-	}
-}
+// 	i = 0;
+// 	while (i < SCALE * map->size[Y])
+// 	{
+// 		while (p < SCALE * map->size[X] + (WIDTH * i))
+// 		{
+// 			scr[p] = 0x808080;
+// 			++p;
+// 		}
+// 		i++;
+// 		p = WIDTH * i;
+// 	}
+// }
 
 // static void	draw_player(int *scr, int xpl, int ypl, int color)
 // {
@@ -60,17 +60,17 @@ static void	fill_bigmap(int *scr, t_map *map, int p, int i)
 	k = 0;
 	while (++j < map->size[Y])
 	{
-		while (i < SCALE / 8 * 6 * (j + 1))
+		while (i < SCALE * (j + 1))
 		{
 			while (map->grid[j][k])
 			{
-				while (++p < (SCALE / 8 * 6 * (k + 1) + (WIDTH * i)))
+				while (++p < (SCALE * (k + 1) + (WIDTH * i))) //SCALE * info->map.size[X] >> en comptes de WIDTH ???
 				{
-					if (map->grid[j][k] == '1' && i % 48 != 0
-						&& (p - WIDTH * i) % 48 != 0) 
+					if (map->grid[j][k] == '1' && i % SCALE != 0
+						&& (p - WIDTH * i) % SCALE != 0) //SCALE * info->map.size[X] >> en comptes de WIDTH ???
 						scr[p] = 0xffffff;
-					else if (map->grid[j][k] != '1' && i % 48 != 0
-						&& (p - WIDTH * i) % 48 != 0)
+					else if (map->grid[j][k] != '1' && i % SCALE != 0
+						&& (p - WIDTH * i) % SCALE != 0) //SCALE * info->map.size[X] >> en comptes de WIDTH ???
 						scr[p] = 0x000000;
 				}
 				k++;
@@ -82,19 +82,19 @@ static void	fill_bigmap(int *scr, t_map *map, int p, int i)
 
 int	get_bigmap2d(t_data *info)
 {
-	t_point *pts;
+	// t_point *pts;
 	
-	pts = ft_calloc(sizeof(pts), 2);
-	if (!pts)
-	{
-		ft_err("Error: Malloc\n");
-		return (1);
-	}
-	pts[0].x = (int)(info->player.x);
-	pts[0].y = (int)(info->player.y);
-	pts[1].x = (int)(info->player.x + info->player.dx * 15);
-	pts[1].y = (int)(info->player.y + info->player.dy * 15);
-	info->map2d = ft_calloc(sizeof(int), WIDTH * HEIGHT);
+	// pts = ft_calloc(sizeof(pts), 2);
+	// if (!pts)
+	// {
+	// 	ft_err("Error: Malloc\n");
+	// 	return (1);
+	// }
+	// pts[0].x = (int)(info->player.x);
+	// pts[0].y = (int)(info->player.y);
+	// pts[1].x = (int)(info->player.x + info->player.dx * 15);
+	// pts[1].y = (int)(info->player.y + info->player.dy * 15);
+	info->map2d = ft_calloc(sizeof(int), WIDTH * HEIGHT); //SCALE * info->map.size[X] * SCALE * info->map.size[Y]);
 	if (!info->map2d)
 	{
 		ft_err("Error: Malloc\n");
@@ -104,12 +104,13 @@ int	get_bigmap2d(t_data *info)
 	// mp_xp = 0;
 	// mp_yp = 0;
 	// p = mp_yp * WIDTH + mp_xp;
-	//fill_bigmap(info->map2d, &info->map, p, 0);
-	paint_gray(info->mlx->img.img_adr, &info->map, 0);
-	fill_bigmap(info->mlx->img.img_adr, &info->map, -1, 0);
+	fill_bigmap(info->map2d, &info->map, -1, 0);
+	//printf("hola\n");
+	//paint_gray(info->mlx->img.img_adr, &info->map, 0);
+	//fill_bigmap(info->mlx->img.img_adr, &info->map, -1, 0);
 	//fill_bigmap(info->mlx->img.img_adr, &info->map, p, 0);
 	// draw_player(info->mlx->img.img_adr, info->player.x,
-	// 	info->player.y, 0x00FFFF);
+	//  	info->player.y, 0x00FFFF);
 	//draw_line(info->mlx->img.img_adr, pts, 0x00FFFF, 1);
 	return (0);
 }

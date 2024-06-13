@@ -147,6 +147,7 @@ typedef struct s_ray
 	int		map_p;
 	float	end[2]; //posició (x, y) de l'extrem final del raig (oposat a la posició del jugador)
 	float	ang;
+	int		text_p;
 //	int		line_height;
 //	int		draw_start;
 //	int		draw_end;

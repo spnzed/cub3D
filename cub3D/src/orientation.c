@@ -44,6 +44,7 @@ static float	*most_vangles(t_map *m, t_player *p, float ang, float *end)
 		rd[X] = m->cell_w;
 		rd[Y] = rd[X] * -ntan;
 	}
+	//printf("most_vangles - end[X]: %f, end[Y]: %f\n", end[X], end[Y]);
 	return (rd);
 }
 
@@ -66,17 +67,20 @@ static int	vertic_maplines(t_map *m, t_player *p, float ang, float *end)
 		rd = most_vangles(m, p, ang, end);
 	if (ang == 90 || ang == 270 || end[Y] < 0)
 		dof = m->size[X];
+	//printf("BEFORE ang: %f\n", ang);
 	while (dof < m->size[X])
 	{
 		mpos[X] = (int)(end[X]) / m->cell_w;
 		mpos[Y] = (int)(end[Y]) / m->cell_w;
 		mp = mpos[Y] * m->size[X] + mpos[X];
-		if (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 1)
-			dof = m->size[X];
+		//printf("dof: %i, mp: %i, end[X]: %f, end[Y]: %f\n", dof, mp, end[X], end[Y]);
+		if ((mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 1) || end[Y] < 0 || end[X] < 0) // caldrà afegir quan surti per només sota
+			break ; //dof = m->size[X];
 		else
 			upd_end(end, rd);
 		++dof;
 	}
+	//printf("AFTER ang: %f\n", ang);
 	return (mp);
 }
 
@@ -94,6 +98,8 @@ void	ray_end_or(t_map *map, t_player *pl, float ang, t_ray *ray)
 	ray->end[Y] = hend[Y];
 	ray->len = sqrt((hend[X] - pl->x) * (hend[X] - pl->x)
 		+ (hend[Y] - pl->y) * (hend[Y] - pl->y));
+	vend[X] = pl->x;
+	vend[Y] = pl->y;
 	ray->map_p = vertic_maplines(map, pl, ang, vend);
 	v_len = sqrt((vend[X] - pl->x) * (vend[X] - pl->x)
 		+ (vend[Y] - pl->y) * (vend[Y] - pl->y));
