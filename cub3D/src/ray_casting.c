@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:21:29 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/06/11 20:43:38 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/06/11 22:38:03 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static void	fill_ray(int *scr, t_data *info, float ang, int i)
 {
 	t_point	*pts;
 
+	(void)scr;
 	pts = ft_calloc(sizeof(t_point), 2);
 	if (!pts)
 	{
@@ -57,11 +58,10 @@ static void	fill_ray(int *scr, t_data *info, float ang, int i)
 	pts[1].x = 0;
 	pts[1].y = 0;
 	(info->ray)[i].ang = ang;
-	
 	ray_end_or(&(info->map), &(info->player), ang, &((info->ray)[i]));
 	pts[1].x = (int)((info->ray)[i].end[X]);
 	pts[1].y = (int)((info->ray)[i].end[Y]);
-	draw_line(scr, pts, 0xFF0000, 1);
+	//draw_line(scr, pts, 0xFF0000, 1);
 	feed_ray(info, pts, i);
 }
 
@@ -81,7 +81,6 @@ void cast_rays(t_data *info)
     int i;
     float incr;
 
-	printf("Hola\n");
     i = 0;
     incr = 60.0 / WIDTH; // Calcula el incremento angular
     ang = info->player.dir + 30.0;
@@ -91,7 +90,6 @@ void cast_rays(t_data *info)
         fill_ray(info->mlx->img.img_adr, info, angle_correction(ang), i);
         i++;
         ang = ang - incr;
-		printf("Adios, %d\n", i);
     }
     fix_or(info->ray);
 }

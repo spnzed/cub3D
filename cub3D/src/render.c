@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:46:35 by aaespino          #+#    #+#             */
-/*   Updated: 2024/06/11 20:22:08 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/06/11 22:39:05 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ void	handle_key(t_data *info)
 
 void	new_scene(t_data *info)
 {
-	get_bigmap2d(info);
+	//get_bigmap2d(info);
 	//mini_map(info);
 	cast_rays(info);
-	mini_map(info);
 	draw_walls(info);
+	mini_map(info);
 }
 
 int	render(t_data *info)

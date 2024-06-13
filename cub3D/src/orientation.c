@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:43:13 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/06/11 22:03:18 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/06/11 22:39:13 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static float	*most_vangles(t_map *m, t_player *p, float ang, float *end)
 
 void	upd_end(float *end, float *rd)
 {
-	printf("Llega aqui?\n");
 	end[X] += rd[X];
 	end[Y] += rd[Y];
 }
@@ -75,13 +74,9 @@ static int	vertic_maplines(t_map *m, t_player *p, float ang, float *end)
 		if (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 1)
 			dof = m->size[X];
 		else
-		{
-			printf("Peta aqui\n");
 			upd_end(end, rd);
-		}
 		++dof;
 	}
-	printf("Como estas\n");
 	return (mp);
 }
 
