@@ -74,11 +74,11 @@ int	horiz_maplines(t_map *m, t_player *p, float ang, float *end)
 	while (++dof < m->size[Y])
 	{
 		mp = (int)(end[Y]) / m->cell_w * m->size[X] + (int)(end[X]) / m->cell_w;
-		if ((mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 1) || end[Y] < 0 || end[X] < 0)
+		if (end[Y] < 0 || end[X] < 0 || (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 1))
 			break ; //dof = m->size[Y];
 		else
 			upd_end(end, rd);
-		if ((m->arr)[mp] == 0 && (int)ang % 45 == 0 && (int)ang % 90 != 0
+		if (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 0 && (int)ang % 45 == 0 && (int)ang % 90 != 0
 			&& (((int)ang == 45 && (m->arr)[mp - 1] == 1
 			&& (m->arr)[mp + m->size[X]] == 1)
 			|| ((int)ang == 135 && (m->arr)[mp + 1] == 1
