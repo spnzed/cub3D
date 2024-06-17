@@ -62,6 +62,7 @@ static void	fill_ray(int *scr, t_data *info, float ang, int i)
 	pts[1].y = (int)((info->ray)[i].end[Y]);
 	//draw_line(scr, pts, 0xFF0000, 1);
 	feed_ray(info, pts, i);
+	free(pts);
 }
 
 static void init_arr(t_data *info)

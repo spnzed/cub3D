@@ -14,19 +14,21 @@
 
 void	init_keys(t_mlx *mlx)
 {
-	t_keys	*keys;
+	//t_keys	*keys;
 
-	keys = ft_calloc(sizeof(t_keys), 1);
-	if (!keys)
+	mlx->keys = ft_calloc(sizeof(t_keys), 1);
+	if (!mlx->keys)
 //	{
 		ft_err("Error: Malloc\n");
 	// 	exit (1);
 	// }
-	keys->w = 0;
-	keys->a = 0;
-	keys->d = 0;
-	keys->s = 0;
-	mlx->keys = keys;
+	mlx->keys->w = 0;
+	mlx->keys->a = 0;
+	mlx->keys->d = 0;
+	mlx->keys->s = 0;
+	mlx->keys->r_arr = 0;
+	mlx->keys->l_arr = 0;
+	//mlx->keys = keys;
 }
 
 static t_data	*init_info(void)

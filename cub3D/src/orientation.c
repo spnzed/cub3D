@@ -21,6 +21,7 @@ static void v_shorter(float *hend, float *vend, t_ray *ray, float ang)
 		ray->wall_or = 'E';
 	if (ang < 90 || ang > 270)
 		ray->wall_or = 'W';
+	free(vend);
 }
 
 static float	*most_vangles(t_map *m, t_player *p, float ang, float *end)
@@ -81,6 +82,7 @@ static int	vertic_maplines(t_map *m, t_player *p, float ang, float *end)
 		++dof;
 	}
 	//printf("AFTER ang: %f\n", ang);
+	free(rd);
 	return (mp);
 }
 
@@ -109,5 +111,5 @@ void	ray_end_or(t_map *map, t_player *pl, float ang, t_ray *ray)
 		ray->len = v_len;
 	}
 	else
-		h_shorter(vend, ray, ang, h_mpos);
+		h_shorter(vend, hend, ray, h_mpos);
 }

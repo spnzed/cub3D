@@ -12,14 +12,15 @@
 
 #include "cub3D.h"
 
-void  h_shorter(float *vend, t_ray *ray, float ang, int h_mpos)
+void  h_shorter(float *vend, float *hend, t_ray *ray, int h_mpos)
 {
 	free(vend);
 	ray->map_p = h_mpos;
-	if (ang < 180 && ang > 0)
+	if (ray->ang < 180 && ray->ang > 0)
 		ray->wall_or = 'S';
-	if (ang > 180 && ang < 360)
+	if (ray->ang > 180 && ray->ang < 360)
 		ray->wall_or = 'N';
+	free(hend);
 }
 
 static float	*most_hangles(t_map *m, t_player *p, float ang, float *end)
@@ -89,5 +90,6 @@ int	horiz_maplines(t_map *m, t_player *p, float ang, float *end)
 			&& (m->arr)[mp - m->size[X]] == 1)))
 			dof = back_rd(end, rd, m->size[Y]);
 	}
+	free(rd);
 	return (mp);
 }
