@@ -67,12 +67,9 @@ char	**map_to_file(t_data *info, t_map *map, char **file)
 	map->size[Y] = ft_arrlen(file + info->map.grid_pos);
 	grid = (char **)ft_alloc_array(sizeof(char), map->size[Y] + 1,
 		map->size[X]);
-	grid[map->size[Y]] = NULL;
 	if (!grid)
-	{
-		ft_err("Error: Malloc: Allocation Failed\n"); // pensar quin missatge posem en cada cas, crec que caldria unificar
-		exit(1);
-	}
+		ft_err("Error: Malloc\n");
+	grid[map->size[Y]] = NULL;
 	get_grid(grid, file, map->size, map->grid_pos);
 	info->map.cell_w = SCALE;
 	return (grid);

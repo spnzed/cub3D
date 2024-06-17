@@ -26,10 +26,7 @@ void	put_position(t_data *info)
 	info->minipl.y = 8 + info->map.spawn[Y] * col_w + col_w / 2; //els altres 2 8 son l'amplada de cel.la del minimap
 	info->map2d = ft_calloc(sizeof(int), SCALE * info->map.size[X] * SCALE * info->map.size[Y]); // WIDTH * HEIGHT);
 	if (!info->map2d)
-//	{
 		ft_err("Error: Malloc\n");
-// 		exit (1);
-// 	}
 }
 
 static void	check_img_scale(t_img *img)
@@ -37,7 +34,6 @@ static void	check_img_scale(t_img *img)
 	if (img->width == SCALE && img->height == SCALE)
 		return ;
 	ft_err("Error: Insert Only Textures of 64 x 64 Pixels\n");
-	exit(1);
 }
 
 static void	paint_walls(t_data *info, char *file, t_img *img)
@@ -45,17 +41,11 @@ static void	paint_walls(t_data *info, char *file, t_img *img)
 	img->img = mlx_xpm_file_to_image(info->mlx->mlx,
 			file, &img->width, &img->height);
 	if (!img->img)
-	{
 		ft_err("Error: Couldn't Convert File .xpm to Image\n");
-		exit(1);
-	}
 	img->img_adr = (int *)mlx_get_data_addr(
 			img->img, &img->bpp, &img->str_len, &img->endian);
 	if (!img->img_adr)
-	{
 		ft_err("Error: Not Able to get MLX_IMG_ADR\n");
-		exit(1);
-	}
 	check_img_scale(img);
 }
 
@@ -71,5 +61,4 @@ void	put_images(t_data *info)
 {
 	create_image(info);
 	create_textures(info);
-	//new_scene(info);
 }

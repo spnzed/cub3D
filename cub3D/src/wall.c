@@ -69,7 +69,7 @@ void draw_walls(t_data *info)
 	int i;
 
 	i = 0;
-	while (i < WIDTH) //haura de ser WIDTH
+	while (i < WIDTH)
 	{
 		draw_wallcol(info, info->mlx->img.img_adr, info->ray[i].ang, i);
 		i++;

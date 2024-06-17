@@ -71,10 +71,7 @@ static void	check_parameters(t_data *info, char *line, int i)
 		info->parameters.ceiling = check_color_element(line, \
 			info->parameters.ceiling);
 	else if (line[0] != '\0')
-	//{
 		ft_err("Error: Parameters: Doesn't Folow Guidelines\n");
-	// 	exit (1);
-	// }
 }
 
 static int	open_textures(t_data *info)

@@ -54,11 +54,11 @@
 // # define HEIGHT 1080
 // # define WIDTH 1920
 //Ester
-// # define HEIGHT 810
-// # define WIDTH 1380
+# define HEIGHT 810
+# define WIDTH 1380
 //Aaron
-# define HEIGHT 890
-# define WIDTH 1470
+//# define HEIGHT 890
+//# define WIDTH 1470
 # define SPEED 3
 
 typedef struct s_point

@@ -12,83 +12,6 @@
 
 #include "cub3D.h"
 
-// static int	rayend_mappos(t_point hit, char wll_or, int cell_w, int *m_sz)
-// {
-// 	int	res;
-// 	int	y_off;
-// 	//int	x_off;
-
-// 	res = 0;
-// 	//x_off = WIDTH / 2 - m_sz[X] * cell_w / 2;
-// 	y_off = HEIGHT - (m_sz[Y] * cell_w);
-// 	//printf("y_off: %i, m_sz[Y]: %i, cell_w: %i\n", y_off, m_sz[Y], cell_w);
-// 	if (wll_or == 'E' || wll_or == 'W')
-// 		res = (hit.y + y_off) / cell_w;
-// 	if (wll_or == 'N' || wll_or == 'S')
-// 		res = hit.x / cell_w;
-// 	//	res = (hit.x + x_off) / cell_w;
-// 	// if (wll_or == 'S')
-// 	// {
-// 	// 	printf("wall_or: %c\n", wll_or);
-// 	// 	printf("wall_or: %i\n", wll_or);
-// 	// 	printf("hit_x: %i, hit_y: %i, y_off: %i, m_sz[Y]: %i, cell_w: %i\n", hit.x, hit.y, y_off, m_sz[Y], cell_w);
-// 	// 	printf("res: %i\n", res);
-// 	// }
-// 	return (res);
-// }
-
-// static char	get_wall_or(int *scr, t_point r_end, t_ray *ray, int i)
-// {
-// 	int		pos;
-// 	char	res;
-
-// 	res = 0;
-// 	pos = r_end.y * WIDTH + r_end.x;
-// 	/*if (i > 0)
-// 	{
-// 		if ((ray[i - 1].wall_or == 'N' || ray[i - 1].wall_or == 'S')
-// 			&& ray[i].end[Y] == ray[i - 1].end[Y])
-// 			return (ray[i - 1].wall_or);
-// 		else if ((ray[i - 1].wall_or == 'E' || ray[i - 1].wall_or == 'W')
-// 			&& ray[i].end[X] == ray[i - 1].end[X])
-// 			return (ray[i - 1].wall_or);
-// 	}*/
-// 	if (ray[i].ang < 90 && scr[pos - WIDTH] == 0xFFFFFF)// && scr[pos + 1] != 0xFFFFFF) && ray[i].ang > 0 
-// 		res = 'S';
-// 	else if (ray[i].ang < 90)
-// 		res = 'W';
-// 	else if (ray[i].ang < 180 && scr[pos - WIDTH] == 0xFFFFFF)// && scr[pos - 1] != 0xFFFFFF)
-// 		res = 'S';
-// 	else if (ray[i].ang < 180)
-// 		res = 'E';
-// 	else if (ray[i].ang < 270 && scr[pos + WIDTH] == 0xFFFFFF)// && scr[pos - 1] != 0xFFFFFF)
-// 		res = 'N';
-// 	else if (ray[i].ang < 270)
-// 		res = 'E';
-// 	else if (scr[pos + WIDTH] == 0xFFFFFF)// && scr[pos + 1] != 0xFFFFFF)
-// 		res = 'N';
-// 	else
-// 		res = 'W';
-// 	return (res);
-// }
-// static char check_orientation(int *scr, t_point r_end, t_ray *ray, int i)
-// {
-// 	int	or;
-
-// 	or = 0;
-// 	if (ray[i].ang == 0)
-// 		or = 'W';
-// 	else if (ray[i].ang == 90)
-// 		or = 'S';
-// 	else if (ray[i].ang == 180)
-// 		or = 'E';
-// 	else if (ray[i].ang == 270)
-// 		or = 'N';
-// 	else
-// 		or = get_wall_or(scr,r_end, ray, i);
-// 	return (or);
-// }
-
 static void	feed_ray(t_data *info, t_point *ends, int i, float ang)
 {
 	int	a;
@@ -97,15 +20,7 @@ static void	feed_ray(t_data *info, t_point *ends, int i, float ang)
 	a = abs(ends[0].x - ends[1].x);
 	b = abs(ends[0].y - ends[1].y);
 	(info->ray)[i].len = sqrt((a * a + b * b));
-//	printf("ang: %f\n", ang);
 	(info->ray)[i].ang = ang;
-//	printf("(info->ray)[%i].ang: %f\n", i, (info->ray)[i].ang);
-	//(info->ray)[i].wall_or = get_wall_or(info->map2d, ends[1]);
-	// (info->ray)[i].map_p = rayend_mappos(ends[1], (info->ray)[i].wall_or,
-	// 	info->map.cell_w, info->map.size);
-	// (info->ray)[i].wall_or = check_orientation(info->mlx->img.img_adr, ends[1], info->ray, i);
-	//(info->ray)[i].end[X] = ends[1].x;
-	//(info->ray)[i].end[Y] = ends[1].y;
 }
 
 void	fill_ray(int *scr, t_data *info, float ang, int i)
@@ -114,21 +29,14 @@ void	fill_ray(int *scr, t_data *info, float ang, int i)
 
 	pts = ft_calloc(sizeof(t_point), 2);
 	if (!pts)
-	//{
 		ft_err("Error: Malloc\n");
-		//exit (1);
-	}//
 	pts[0].x = (int)(info->player.x);
 	pts[0].y = (int)(info->player.y);
 	pts[1].x = 0;
 	pts[1].y = 0;
-	//ray_end(scr, pts, ang);
-	//printf("fill_ray player X: %f, player Y: %f\n", info->player.x, info->player.y);
 	ray_end_or(&(info->map), &(info->player), ang, &((info->ray)[i]));
 	pts[1].x = (int)((info->ray)[i].end[X]);
 	pts[1].y = (int)((info->ray)[i].end[Y]);
-	// printf("ang: %f, pts[0].x: %i, pts[0].y: %i, pts[1].x: %i, pts[1].y: %i\n", ang, pts[0].x, pts[0].y, pts[1].x, pts[1].y);
-	// draw_line(scr, pts, 0xFF0000, 1);
 	feed_ray(info, pts, i, ang);
 	draw_wall(info, scr, ang, i);
 }

@@ -22,10 +22,7 @@ static int	*grid2intarr(t_map map)
 	j = -1;
 	arr = (int *)ft_calloc(sizeof(int), map.size[X] * map.size[Y]);
 	if (!arr)
-//	{
 		ft_err("Error: Malloc\n");
-	// 	exit (1);
-	// }
 	while (++i < map.size[Y])
 	{
 		while (++j < map.size[X])

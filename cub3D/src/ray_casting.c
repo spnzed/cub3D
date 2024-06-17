@@ -17,7 +17,7 @@ static void fix_or_feedtext_p(t_ray *r)
 	int	i;
 
 	i = 1;
-	while (i < WIDTH - 1) // haura de ser WIDTH - 1
+	while (i < WIDTH - 1)
 	{
 		if ((int)r[i].ang % 45 == 0 && (int)r[i].ang % 90 != 0
 			&& r[i].wall_or != r[i - 1].wall_or
@@ -48,10 +48,7 @@ static void	fill_ray(int *scr, t_data *info, float ang, int i)
 	(void)scr;
 	pts = ft_calloc(sizeof(t_point), 2);
 	if (!pts)
-//	{
 		ft_err("Error: Malloc\n");
-	// 	exit (1);
-	// }
 	pts[0].x = (int)(info->player.x);
 	pts[0].y = (int)(info->player.y);
 	pts[1].x = 0;
@@ -60,7 +57,6 @@ static void	fill_ray(int *scr, t_data *info, float ang, int i)
 	ray_end_or(&(info->map), &(info->player), ang, &((info->ray)[i]));
 	pts[1].x = (int)((info->ray)[i].end[X]);
 	pts[1].y = (int)((info->ray)[i].end[Y]);
-	//draw_line(scr, pts, 0xFF0000, 1);
 	feed_ray(info, pts, i);
 	free(pts);
 }
@@ -69,10 +65,7 @@ static void init_arr(t_data *info)
 {
 	info->ray = ft_calloc(sizeof(t_ray), WIDTH);
 	if (!info->ray)
-//	{
 		ft_err("Error: Malloc\n");
-	// 	exit (1);
-	// }
 }
 
 void cast_rays(t_data *info)

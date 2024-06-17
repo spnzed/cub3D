@@ -45,7 +45,6 @@ static float	*most_vangles(t_map *m, t_player *p, float ang, float *end)
 		rd[X] = m->cell_w;
 		rd[Y] = rd[X] * -ntan;
 	}
-	//printf("most_vangles - end[X]: %f, end[Y]: %f\n", end[X], end[Y]);
 	return (rd);
 }
 
@@ -68,20 +67,17 @@ static int	vertic_maplines(t_map *m, t_player *p, float ang, float *end)
 		rd = most_vangles(m, p, ang, end);
 	if (ang == 90 || ang == 270 || end[Y] < 0)
 		dof = m->size[X];
-	//printf("BEFORE ang: %f\n", ang);
 	while (dof < m->size[X])
 	{
 		mpos[X] = (int)(end[X]) / m->cell_w;
 		mpos[Y] = (int)(end[Y]) / m->cell_w;
 		mp = mpos[Y] * m->size[X] + mpos[X];
-		//printf("dof: %i, mp: %i, end[X]: %f, end[Y]: %f\n", dof, mp, end[X], end[Y]);
 		if (end[Y] < 0 || end[X] < 0 || (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 1)) // caldrà afegir quan surti per només sota
-			break ; //dof = m->size[X];
+			break ;
 		else
 			upd_end(end, rd);
 		++dof;
 	}
-	//printf("AFTER ang: %f\n", ang);
 	free(rd);
 	return (mp);
 }

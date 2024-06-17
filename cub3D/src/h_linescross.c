@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   v_linescross.c                                     :+:      :+:    :+:   */
+/*   h_linescross.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -76,7 +76,7 @@ int	horiz_maplines(t_map *m, t_player *p, float ang, float *end)
 	{
 		mp = (int)(end[Y]) / m->cell_w * m->size[X] + (int)(end[X]) / m->cell_w;
 		if (end[Y] < 0 || end[X] < 0 || (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 1))
-			break ; //dof = m->size[Y];
+			break ;
 		else
 			upd_end(end, rd);
 		if (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 0 && (int)ang % 45 == 0 && (int)ang % 90 != 0
