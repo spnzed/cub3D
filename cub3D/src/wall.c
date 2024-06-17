@@ -43,7 +43,7 @@ void draw_text(t_img texture, int *scr, int offset, int height, int tex_x, int i
     }
 }
 
-void static draw_wallcol(t_data *info, int *scr, int ang, int i)
+static void draw_wallcol(t_data *info, int *scr, int ang, int i)
 {
     float distance;
     int height;

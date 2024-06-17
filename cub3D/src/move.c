@@ -6,7 +6,7 @@
 /*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 16:31:55 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/27 18:09:53 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/06/17 21:18:36 by erosas-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	move_front(t_data *info)
 	if (!wall_found(info->player.x + info->player.dx * 2,
 		info->player.y + info->player.dy * 2, &(info->map)))
 	{
-		info->player.x += info->player.dx;
-		info->player.y += info->player.dy;
+		info->player.x += info->player.dx * 2;
+		info->player.y += info->player.dy * 2;
 		info->minipl.x += info->player.dx / 8;
 		info->minipl.y += info->player.dy / 8;
 	}
@@ -44,8 +44,8 @@ void	move_back(t_data *info)
 	if (!wall_found(info->player.x - info->player.dx * 2,
 		info->player.y - info->player.dy * 2, &(info->map)))
 	{
-		info->player.x -= info->player.dx;
-		info->player.y -= info->player.dy;
+		info->player.x -= info->player.dx * 2;
+		info->player.y -= info->player.dy * 2;
 		info->minipl.x -= info->player.dx / 8;
 		info->minipl.y -= info->player.dy / 8;
 	}
@@ -63,10 +63,10 @@ void	move_right(t_data *info)
 	if (!wall_found(info->player.x + new_dx * 2,
 		info->player.y + new_dy * 2, &(info->map)))
 	{
-		info->player.x += new_dx;
-		info->player.y += new_dy;
-		info->minipl.x += new_dx / 8;
-		info->minipl.y += new_dy / 8;
+		info->player.x += new_dx * 2;
+		info->player.y += new_dy * 2;
+		info->minipl.x += new_dx / 4;
+		info->minipl.y += new_dy / 4;
 	}
 }
 
@@ -82,9 +82,9 @@ void	move_left(t_data *info)
 	if (!wall_found(info->player.x - new_dx * 2,
 		info->player.y - new_dy * 2, &(info->map)))
 	{
-		info->player.x -= new_dx;
-		info->player.y -= new_dy;
-		info->minipl.x -= new_dx / 8;
-		info->minipl.y -= new_dy / 8;
+		info->player.x -= new_dx * 2;
+		info->player.y -= new_dy * 2;
+		info->minipl.x -= new_dx / 4;
+		info->minipl.y -= new_dy / 4;
 	}
 }
