@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-static void v_shorter(float *hend, float *vend, t_ray *ray, float ang)
+static void	v_shorter(float *hend, float *vend, t_ray *ray, float ang)
 {
 	free(hend);
 	ray->end[X] = vend[X];
@@ -72,7 +72,8 @@ static int	vertic_maplines(t_map *m, t_player *p, float ang, float *end)
 		mpos[X] = (int)(end[X]) / m->cell_w;
 		mpos[Y] = (int)(end[Y]) / m->cell_w;
 		mp = mpos[Y] * m->size[X] + mpos[X];
-		if (end[Y] < 0 || end[X] < 0 || (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 1)) // caldrà afegir quan surti per només sota
+		if (end[Y] < 0 || end[X] < 0 || (mp < m->size[X] * m->size[Y]
+				&& (m->arr)[mp] == 1))
 			break ;
 		else
 			upd_end(end, rd);
@@ -95,12 +96,12 @@ void	ray_end_or(t_map *map, t_player *pl, float ang, t_ray *ray)
 	ray->end[X] = hend[X];
 	ray->end[Y] = hend[Y];
 	ray->len = sqrt((hend[X] - pl->x) * (hend[X] - pl->x)
-		+ (hend[Y] - pl->y) * (hend[Y] - pl->y));
+			+ (hend[Y] - pl->y) * (hend[Y] - pl->y));
 	vend[X] = pl->x;
 	vend[Y] = pl->y;
 	ray->map_p = vertic_maplines(map, pl, ang, vend);
 	v_len = sqrt((vend[X] - pl->x) * (vend[X] - pl->x)
-		+ (vend[Y] - pl->y) * (vend[Y] - pl->y));
+			+ (vend[Y] - pl->y) * (vend[Y] - pl->y));
 	if ((v_len < ray->len && ang != 90 && ang != 270) || ang == 0 || ang == 180)
 	{
 		v_shorter(hend, vend, ray, ang);

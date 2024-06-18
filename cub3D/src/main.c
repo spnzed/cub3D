@@ -14,8 +14,6 @@
 
 void	init_keys(t_mlx *mlx)
 {
-	//t_keys	*keys;
-
 	mlx->keys = ft_calloc(sizeof(t_keys), 1);
 	if (!mlx->keys)
 		ft_err("Error: Malloc\n");
@@ -25,7 +23,6 @@ void	init_keys(t_mlx *mlx)
 	mlx->keys->s = 0;
 	mlx->keys->r_arr = 0;
 	mlx->keys->l_arr = 0;
-	//mlx->keys = keys;
 }
 
 static t_data	*init_info(void)

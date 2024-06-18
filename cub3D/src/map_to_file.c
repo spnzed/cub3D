@@ -66,7 +66,7 @@ char	**map_to_file(t_data *info, t_map *map, char **file)
 	map->size[X] = get_width(file + info->map.grid_pos);
 	map->size[Y] = ft_arrlen(file + info->map.grid_pos);
 	grid = (char **)ft_alloc_array(sizeof(char), map->size[Y] + 1,
-		map->size[X]);
+			map->size[X]);
 	if (!grid)
 		ft_err("Error: Malloc\n");
 	grid[map->size[Y]] = NULL;

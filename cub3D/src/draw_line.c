@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-void add_line_item(int *buff, int x, int y, int color, int thickness)
+void	add_line_item(int *buff, int x, int y, int color, int thickness)
 {
     // Esta función agrega un punto (x, y) al buffer de pantalla con el color dado
     // y un grosor de línea dado

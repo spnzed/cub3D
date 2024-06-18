@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-static void fix_or_feedtext_p(t_ray *r)
+static void	fix_or_feedtext_p(t_ray *r)
 {
 	int	i;
 
@@ -61,23 +61,23 @@ static void	fill_ray(int *scr, t_data *info, float ang, int i)
 	free(pts);
 }
 
-static void init_arr(t_data *info)
+static void	init_rays_arr(t_data *info)
 {
 	info->ray = ft_calloc(sizeof(t_ray), WIDTH);
 	if (!info->ray)
 		ft_err("Error: Malloc\n");
 }
 
-void cast_rays(t_data *info)
+void	cast_rays(t_data *info)
 {
-    float ang;
-    int i;
-    float incr;
+	float	ang;
+	int		i;
+	float	incr;
 
 	i = 0;
 	incr = (float)60 / (float)(WIDTH);
 	ang = info->player.dir + 30.0;
-	init_arr(info);
+	init_rays_arr(info);
 	while (i < WIDTH)
 	{
 		fill_ray(info->map2d, info, angle_correction(ang), i);

@@ -49,13 +49,17 @@ void	handle_key(t_data *info)
 		exit(1);
 	}
 	if (info->mlx->keys->w)
-		move_front(info);
+		move_front(&(info->player), &(info->minipl), &(info->map));
+		//move_front(info);
 	if (info->mlx->keys->a)
-		move_left(info);
+		move_left(&(info->player), &(info->minipl), &(info->map));
+		//move_left(info);
 	if (info->mlx->keys->s)
-		move_back(info);
+		move_back(&(info->player), &(info->minipl), &(info->map));
+		//move_back(info);
 	if (info->mlx->keys->d)
-		move_right(info);
+		move_right(&(info->player), &(info->minipl), &(info->map));
+		//move_right(info);
 	if (info->mlx->keys->l_arr)
 		move_l_arrow(info);
 	if (info->mlx->keys->r_arr)
@@ -67,7 +71,8 @@ void	new_scene(t_data *info)
 	//get_bigmap2d(info);
 	cast_rays(info);
 	draw_walls(info);
-	if ((info->map.size[X] * 8 < WIDTH / 4) && (info->map.size[Y] * 8 < HEIGHT / 4))
+	if ((info->map.size[X] * 8 < WIDTH / 4)
+		&& (info->map.size[Y] * 8 < HEIGHT / 4))
 		mini_map(info);
 }
 

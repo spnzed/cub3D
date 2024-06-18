@@ -21,7 +21,6 @@ void	move_r_arrow(t_data *info)
 	info->player.dy = -sin(deg_to_rad(info->player.dir));
 }
 
-
 void	move_l_arrow(t_data *info)
 {
 	info->player.dir += 1;

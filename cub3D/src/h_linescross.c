@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-void  h_shorter(float *vend, float *hend, t_ray *ray, int h_mpos)
+void	h_shorter(float *vend, float *hend, t_ray *ray, int h_mpos)
 {
 	free(vend);
 	ray->map_p = h_mpos;
@@ -29,7 +29,7 @@ static float	*most_hangles(t_map *m, t_player *p, float ang, float *end)
 	float	*rd;
 
 	rd = ft_all_floatarr();
-	atan = - 1 / tan(deg_to_rad(ang));
+	atan = -1 / tan(deg_to_rad(ang));
 	if (ang > 0 && ang < 180)
 	{
 		end[Y] = (((int)(p->y) / m->cell_w) * m->cell_w) - 0.0001;
@@ -45,16 +45,11 @@ static float	*most_hangles(t_map *m, t_player *p, float ang, float *end)
 		rd[X] = rd[Y] * atan;
 	}
 	else
+	{
+		free(rd);
 		rd = NULL;
+	}
 	return (rd);
-}
-
-static int	horiz_ray(float ang, int i, float *end, t_map *m)
-{
-	if (ang == 0 || ang == 180 || end[X] < 0 || end[X] > m->cell_w * m->size[X])
-		return (i);
-	else
-		return (-1);
 }
 
 static int	back_rd(float *end, float *rd, int i)
@@ -64,30 +59,42 @@ static int	back_rd(float *end, float *rd, int i)
 	return (i);
 }
 
-int	horiz_maplines(t_map *m, t_player *p, float ang, float *end)
+static int	concave_corner(t_map *m, float a, int mp)
+{
+	if (((int)a == 45 && (m->arr)[mp - 1] == 1
+		&& (m->arr)[mp + m->size[X]] == 1)
+		|| ((int)a == 135 && (m->arr)[mp + 1] == 1
+		&& (m->arr)[mp + m->size[X]] == 1)
+		|| ((int)a == 225 && (m->arr)[mp + 1] == 1
+		&& (m->arr)[mp - m->size[X]] == 1)
+		|| ((int)a == 315 && (m->arr)[mp - 1] == 1
+		&& (m->arr)[mp - m->size[X]] == 1))
+		return (1);
+	return (0);
+}
+
+int	horiz_maplines(t_map *m, t_player *p, float a, float *end)
 {
 	float	*rd;
 	int		dof;
 	int		mp;
 
-	rd = most_hangles(m, p, ang, end);
-	dof = horiz_ray(ang, m->size[Y], end, m);
+	rd = most_hangles(m, p, a, end);
+	dof = -1;
+	if (a == 0 || a == 180 || end[X] < 0 || end[X] > m->cell_w * m->size[X])
+		dof = m->size[Y];
 	while (++dof < m->size[Y])
 	{
-		mp = (int)(end[Y]) / m->cell_w * m->size[X] + (int)(end[X]) / m->cell_w;
-		if (end[Y] < 0 || end[X] < 0 || (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 1))
+		mp = (int)(end[Y]) / m->cell_w * m->size[X]
+			+ (int)(end[X]) / m->cell_w;
+		if (end[Y] < 0 || end[X] < 0
+			|| (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 1))
 			break ;
 		else
 			upd_end(end, rd);
-		if (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 0 && (int)ang % 45 == 0 && (int)ang % 90 != 0
-			&& (((int)ang == 45 && (m->arr)[mp - 1] == 1
-			&& (m->arr)[mp + m->size[X]] == 1)
-			|| ((int)ang == 135 && (m->arr)[mp + 1] == 1
-			&& (m->arr)[mp + m->size[X]] == 1)
-			|| ((int)ang == 225 && (m->arr)[mp + 1] == 1
-			&& (m->arr)[mp - m->size[X]] == 1)
-			|| ((int)ang == 315 && (m->arr)[mp - 1] == 1
-			&& (m->arr)[mp - m->size[X]] == 1)))
+		if (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 0
+			&& (int)a % 45 == 0 && (int)a % 90 != 0
+			&& (concave_corner(m, a, mp) == 1))
 			dof = back_rd(end, rd, m->size[Y]);
 	}
 	free(rd);

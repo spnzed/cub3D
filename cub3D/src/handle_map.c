@@ -27,7 +27,7 @@ static int	*grid2intarr(t_map map)
 	{
 		while (++j < map.size[X])
 		{
-			if ((map.grid)[i][j] == '1')
+			if ((map.grid)[i][j] == '1' || (map.grid)[i][j] == ' ')
 				arr[i * map.size[X] + j] = 1;
 			else
 				arr[i * map.size[X] + j] = 0;
