@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:59:47 by aaespino          #+#    #+#             */
-/*   Updated: 2024/06/13 12:51:29 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/06/18 21:00:02 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	check_grid(char *line, int y, t_data *info)
 			info->map.spawn[1] = y;
 			spawn++;
 		}
-		if (!ft_strchr("10NSWE ", line[x]))
+		if (!ft_strchr("10NSWE \t", line[x]))
 			return (ft_err("Error: Map: Invalid Characters\n"), 1);
 	}
 	return (0);
@@ -101,7 +101,7 @@ int	check_map_char(char **scene, t_data *info)
 	count = 0;
 	while (scene[++i])
 	{
-		if (ft_strlen(scene[i]) > 1)
+		if (ft_strlen(scene[i]) > 1 && !ft_strisspace(scene[i]))
 		{
 			if (count > 5)
 			{
@@ -111,7 +111,7 @@ int	check_map_char(char **scene, t_data *info)
 						return (1);
 				}
 				else if (check_grid(scene[i], ++j, info))
-					return (1);
+					return (1);	
 			}
 			count++;
 		}

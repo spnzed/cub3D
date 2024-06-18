@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_parameters.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 14:04:46 by aaespino          #+#    #+#             */
-/*   Updated: 2024/06/17 20:42:00 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/06/18 20:13:05 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@ static char	*check_texture_element(char *line, char *param)
 		ft_err("Error: Parameters: Repeated Element Found\n");
 		exit(1);
 	}
-	line = ft_strnchr(line + 2, ' ');
+	line = ft_strnchr(line + 2, '/');
+	while (ft_isspace(*line))
+		line++;
 	if (ft_strrcmp(line, ".xpm") != 0)
 	{
 		ft_err("Error: Parameters: Incorrect Format\n");
 		exit(1);
 	}
-	param = ft_strdup(line);
+	param = ft_strtrim(line, "\t");
 	return (param);
 }
 
@@ -50,27 +52,30 @@ static int	check_color_element(char *line, int color)
 	return (ret);
 }
 
-static void	check_parameters(t_data *info, char *line, int i)
+static void	check_parameters(t_data *info, char *line)
 {
-	if (!ft_strncmp(line, "NO", 2) && i == 0)
+	while (ft_isspace(*line))
+		line++;
+	if (!ft_strncmp(line, "NO", 2))
 		info->parameters.north = check_texture_element(line, \
 			info->parameters.north);
-	else if (!ft_strncmp(line, "SO", 2) && i == 1)
+	else if (!ft_strncmp(line, "SO", 2))
 		info->parameters.south = check_texture_element(line, \
 			info->parameters.south);
-	else if (!ft_strncmp(line, "WE", 2) && i == 2)
+	else if (!ft_strncmp(line, "WE", 2))
 		info->parameters.west = check_texture_element(line, \
 			info->parameters.west);
-	else if (!ft_strncmp(line, "EA", 2) && i == 3)
+	else if (!ft_strncmp(line, "EA", 2))
 		info->parameters.east = check_texture_element(line, \
 			info->parameters.east);
-	else if (!ft_strncmp(line, "F", 1) && i == 4)
+	else if (!ft_strncmp(line, "F", 1))
 		info->parameters.floor = check_color_element(line, \
 			info->parameters.floor);
-	else if (!ft_strncmp(line, "C", 1) && i == 5)
+	else if (!ft_strncmp(line, "C", 1))
 		info->parameters.ceiling = check_color_element(line, \
 			info->parameters.ceiling);
 	else if (line[0] != '\0')
+
 		ft_err("Error: Parameters: Doesn't Follow Guidelines\n");
 }
 
@@ -96,10 +101,10 @@ int	check_textures(char **scene, t_data *info)
 	count = 0;
 	while (scene[++i])
 	{
-		if (ft_strlen(scene[i]) > 1)
+		if (ft_strlen(scene[i]) > 1 && !ft_strisspace(scene[i]))
 		{
 			if (count < 6)
-				check_parameters(info, scene[i], count);
+				check_parameters(info, scene[i]);
 			count++;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 19:04:07 by aaespino          #+#    #+#             */
-/*   Updated: 2024/06/13 11:04:23 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/06/19 00:06:29 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void draw_wallcol(t_data *info, int *scr, int ang, int i)
     distance = remove_fish(info->player.dir, ang, info->ray[i].len);
     height = (SCALE * HEIGHT) / (distance); // Calcula la altura de la línea
     if (height > HEIGHT)
-        height = HEIGHT;
+        height = HEIGHT - 1;
     offset = (HEIGHT / 2) - (height / 2); // Calcula el offset de la línea
 	if (info->ray[i].wall_or == 'N')
 		draw_text(info->mlx->north, scr, offset, height, info->ray[i].text_p, i);

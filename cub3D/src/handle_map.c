@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:43:32 by aaespino          #+#    #+#             */
-/*   Updated: 2024/06/13 12:02:03 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/06/18 22:40:13 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ static void	check_map(t_data *info)
 void	parse_map(t_data *info, char **grid)
 {
 	info->map.grid = map_to_file(info, &info->map, grid);
+	for (int i = 0; info->map.grid[i]; i++)
+		printf("[%s]\n", info->map.grid[i]);
+	printf("\n");
+	for (int i = info->map.grid_pos; grid[i]; i++)
+		printf("[%s]\n", grid[i]);
 	info->map.arr = grid2intarr(info->map);
 	if (check_map_border(info, info->map.grid))
 		exit(1);

@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:15:19 by aaespino          #+#    #+#             */
-/*   Updated: 2024/06/13 12:58:29 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/06/18 22:42:25 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	get_width(char **file)
 	width = 0;
 	while (file[++i])
 	{
-		if (ft_strlen(file[i]) > width)
+		if (ft_strlentab(file[i]) > width)
 			width = ft_strlen(file[i]);
 	}
 	return (width);
@@ -30,13 +30,27 @@ static int	get_width(char **file)
 static void	put_lines(char *str, char *file_line)
 {
 	int	i;
+	int	j;
+	static int c = 0;
 
 	i = 0;
+	j = 0;
 	while (file_line[i])
 	{
-		str[i] = file_line[i];
+		if (file_line[i] == '\t')
+		{
+			str[j] = ' ';
+			str[j + 1] = ' ';
+			str[j + 2] = ' ';
+			str[j + 3] = ' ';
+			j += 3;
+		}
+		else
+			str[j] = file_line[i];
+		j++;
 		i++;
 	}
+	c++;
 }
 
 static void	get_grid(char **grid, char **file, int size[2], int grid_p)
@@ -48,6 +62,7 @@ static void	get_grid(char **grid, char **file, int size[2], int grid_p)
 	j = 0;
 	while (i < size[Y])
 	{
+		j = 0;
 		while (j < size[X])
 		{
 			grid[i][j] = ' ';
