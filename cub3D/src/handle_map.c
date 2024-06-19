@@ -48,11 +48,11 @@ static void	check_map(t_data *info)
 void	parse_map(t_data *info, char **grid)
 {
 	info->map.grid = map_to_file(info, &info->map, grid);
-	for (int i = 0; info->map.grid[i]; i++)
-		printf("[%s]\n", info->map.grid[i]);
-	printf("\n");
-	for (int i = info->map.grid_pos; grid[i]; i++)
-		printf("[%s]\n", grid[i]);
+	// for (int i = 0; info->map.grid[i]; i++)
+	// 	printf("[%s]\n", info->map.grid[i]);
+	// printf("\n");
+	// for (int i = info->map.grid_pos; grid[i]; i++)
+	// 	printf("[%s]\n", grid[i]);
 	info->map.arr = grid2intarr(info->map);
 	if (check_map_border(info, info->map.grid))
 		exit(1);

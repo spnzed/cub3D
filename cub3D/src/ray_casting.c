@@ -45,7 +45,7 @@ static void	fill_ray(int *scr, t_data *info, float ang, int i)
 {
 	t_point	*pts;
 
-	(void)scr;
+	(void)scr; // esborrar aixo abans d'entregar
 	pts = ft_calloc(sizeof(t_point), 2);
 	if (!pts)
 		ft_err("Error: Malloc\n");

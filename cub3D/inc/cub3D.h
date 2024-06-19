@@ -156,7 +156,7 @@ typedef struct s_ray
 {
 	char	wall_or; // N, S, E, W
 	float	len;
-	int		map_p;
+	int		map_p; //crec que aixo ja no ho fem servir... COMPROVAR AL FINAL I ESBORRAR SI CAL ABANS DE TANCAR EL PROJECTE
 	float	end[2]; //posició (x, y) de l'extrem final del raig (oposat a la posició del jugador)
 	float	ang;
 	int		text_p;
