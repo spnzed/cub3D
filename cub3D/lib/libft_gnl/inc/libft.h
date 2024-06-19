@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 15:58:15 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/04/22 18:17:18 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/06/18 20:31:00 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 int		ft_dbllen(char **s);
 int		ft_strcmp(char *s1, char *s2);
 char	*get_next_line(int fd);
+int		ft_strisspace(char *s);
+int		ft_strlentab(const char *str);
 
 #endif

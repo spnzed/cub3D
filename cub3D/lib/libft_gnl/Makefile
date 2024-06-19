@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+         #
+#    By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/10 17:33:17 by erosas-c          #+#    #+#              #
-#    Updated: 2024/04/22 16:34:13 by aaespino         ###   ########.fr        #
+#    Updated: 2024/06/18 20:10:19 by aaronespino      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC_FILES 	= 	ft_arrfree.c ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c f
 				ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_dbllen.c ft_isspace.c\
 				ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
 				ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c ft_strcmp.c get_next_line.c \
+				ft_strisspace.c \
 
 SRCS		=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
