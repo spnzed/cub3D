@@ -58,6 +58,7 @@ static void	fill_ray(int *scr, t_data *info, float ang, int i)
 	pts[1].x = (int)((info->ray)[i].end[X]);
 	pts[1].y = (int)((info->ray)[i].end[Y]);
 	feed_ray(info, pts, i);
+	draw_line(info->mlx->img.img_adr, pts, 0x00FFFF, 1);
 	free(pts);
 }
 

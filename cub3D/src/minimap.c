@@ -22,12 +22,12 @@ static void	fill_map(int *scr, t_data *info)
 	p[Y] = 8;
 	pos = p[Y] * WIDTH + p[X];
 	mp = 0;
-	while (p[Y] < (8 + (SCALE / 4) * info->map.size[Y]))
+	while (p[Y] < (8 + (SCALE / 8) * info->map.size[Y]))
 	{
-		while (p[X] < (8 + (SCALE / 4) * info->map.size[X]))
+		while (p[X] < (8 + (SCALE / 8) * info->map.size[X]))
 		{
-			mp = info->map.size[X] * ((p[Y] - 8) / (SCALE / 4))
-				+ ((p[X] - 8) / (SCALE / 4));
+			mp = info->map.size[X] * ((p[Y] - 8) / (SCALE / 8))
+				+ ((p[X] - 8) / (SCALE / 8));
 			pos = p[Y] * WIDTH + p[X];
 			if (info->map.arr[mp] == 1)
 				scr[pos] = 0x000000;
@@ -45,13 +45,13 @@ static void	draw_minipl(int *scr, int xpl, int ypl, int color)
 	int	x;
 	int	y;
 
-	x = xpl - 3;
-	y = ypl - 3;
-	while (++y <= ypl + 2)
+	x = xpl - 2;
+	y = ypl - 2;
+	while (++y <= ypl + 1)
 	{
-		while (++x <= xpl + 2)
+		while (++x <= xpl + 1)
 			scr[y * WIDTH + x] = color;
-		x = xpl - 3;
+		x = xpl - 2;
 	}
 }
 

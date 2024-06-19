@@ -12,22 +12,22 @@
 
 #include "cub3D.h"
 
-// static void	paint_gray(int *scr, t_map *map, int p)
-// {
-// 	int	i;
+static void	paint_gray(int *scr, t_map *map, int p)
+{
+	int	i;
 
-// 	i = 0;
-// 	while (i < SCALE * map->size[Y])
-// 	{
-// 		while (p < SCALE * map->size[X] + (WIDTH * i))
-// 		{
-// 			scr[p] = 0x808080;
-// 			++p;
-// 		}
-// 		i++;
-// 		p = WIDTH * i;
-// 	}
-// }
+	i = 0;
+	while (i < SCALE / 2 * map->size[Y])
+	{
+		while (p < SCALE / 2 * map->size[X] + (WIDTH * i))
+		{
+			scr[p] = 0x808080;
+			++p;
+		}
+		i++;
+		p = WIDTH * i;
+	}
+}
 
 // static void	draw_player(int *scr, int xpl, int ypl, int color)
 // {
@@ -60,17 +60,17 @@ static void	fill_bigmap(int *scr, t_map *map, int p, int i)
 	k = 0;
 	while (++j < map->size[Y])
 	{
-		while (i < SCALE * (j + 1))
+		while (i < SCALE / 2 * (j + 1))
 		{
 			while (map->grid[j][k])
 			{
-				while (++p < (SCALE * (k + 1) + (WIDTH * i))) //SCALE * info->map.size[X] >> en comptes de WIDTH ???
+				while (++p < (SCALE / 2 * (k + 1) + (WIDTH * i))) //SCALE * info->map.size[X] >> en comptes de WIDTH ???
 				{
-					if (map->grid[j][k] == '1' && i % SCALE != 0
-						&& (p - WIDTH * i) % SCALE != 0) //SCALE * info->map.size[X] >> en comptes de WIDTH ???
+					if (map->grid[j][k] == '1' && i % (SCALE / 2) != 0
+						&& (p - WIDTH * i) % (SCALE / 2) != 0) //SCALE * info->map.size[X] >> en comptes de WIDTH ???
 						scr[p] = 0xffffff;
-					else if (map->grid[j][k] != '1' && i % SCALE != 0
-						&& (p - WIDTH * i) % SCALE != 0) //SCALE * info->map.size[X] >> en comptes de WIDTH ???
+					else if (map->grid[j][k] != '1' && i % (SCALE / 2) != 0
+						&& (p - WIDTH * i) % (SCALE / 2) != 0) //SCALE * info->map.size[X] >> en comptes de WIDTH ???
 						scr[p] = 0x000000;
 				}
 				k++;
@@ -104,10 +104,10 @@ int	get_bigmap2d(t_data *info)
 	// mp_xp = 0;
 	// mp_yp = 0;
 	// p = mp_yp * WIDTH + mp_xp;
-	fill_bigmap(info->map2d, &info->map, -1, 0);
+	//fill_bigmap(info->map2d, &info->map, -1, 0);
 	//printf("hola\n");
-	//paint_gray(info->mlx->img.img_adr, &info->map, 0);
-	//fill_bigmap(info->mlx->img.img_adr, &info->map, -1, 0);
+	paint_gray(info->mlx->img.img_adr, &info->map, 0);
+	fill_bigmap(info->mlx->img.img_adr, &info->map, -1, 0);
 	//fill_bigmap(info->mlx->img.img_adr, &info->map, p, 0);
 	// draw_player(info->mlx->img.img_adr, info->player.x,
 	//  	info->player.y, 0x00FFFF);

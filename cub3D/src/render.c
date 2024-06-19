@@ -68,9 +68,9 @@ void	handle_key(t_data *info)
 
 void	new_scene(t_data *info)
 {
-	//get_bigmap2d(info);
+	get_bigmap2d(info);
 	cast_rays(info);
-	draw_walls(info);
+	//draw_walls(info);
 	if ((info->map.size[X] * 8 < WIDTH / 4)
 		&& (info->map.size[Y] * 8 < HEIGHT / 4))
 		mini_map(info);
