@@ -17,8 +17,8 @@ void	put_position(t_data *info)
 	int		col_w;
 
 	col_w = SCALE / 8; //amplada cel.la/columna minimap
-	info->player.x = info->map.spawn[X] * SCALE / 2 + SCALE / 2 / 2;
-	info->player.y = info->map.spawn[Y] * SCALE / 2 + SCALE / 2 / 2;
+	info->player.x = info->map.spawn[X] * SCALE / 2 + SCALE / 2 / 2; //RESIZING SCALE / 2;
+	info->player.y = info->map.spawn[Y] * SCALE / 2+ SCALE / 2 / 2; //RESIZING SCALE / 2;
 	info->map.map_size = info->map.size[X] * info->map.size[Y];
 	info->player.dx = cos(deg_to_rad(info->player.dir));
 	info->player.dy = -sin(deg_to_rad(info->player.dir));

@@ -55,10 +55,11 @@ static void	fill_ray(int *scr, t_data *info, float ang, int i)
 	pts[1].y = 0;
 	(info->ray)[i].ang = ang;
 	ray_end_or(&(info->map), &(info->player), ang, &((info->ray)[i]));
+//	printf("ray %i map_p: %i, ray len: %f\n", i, (info->ray[i]).map_p, (info->ray[i]).len);
 	pts[1].x = (int)((info->ray)[i].end[X]);
 	pts[1].y = (int)((info->ray)[i].end[Y]);
 	feed_ray(info, pts, i);
-	draw_line(info->mlx->img.img_adr, pts, 0x00FFFF, 1);
+	//draw_line(info->mlx->img.img_adr, pts, 0x00FFFF, 1);
 	free(pts);
 }
 

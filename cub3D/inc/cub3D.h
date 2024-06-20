@@ -71,7 +71,7 @@
 //Aaron
 //# define HEIGHT 890
 //# define WIDTH 1470
-# define SPEED 2
+# define SPEED 1
 
 typedef struct s_point
 {

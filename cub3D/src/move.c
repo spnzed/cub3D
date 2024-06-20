@@ -32,8 +32,8 @@ void	move_front(t_player *p, t_player *minipl, t_map *m)
 	{
 		p->x += p->dx * SPEED;
 		p->y += p->dy * SPEED;
-		minipl->x += p->dx / 4 * SPEED;
-		minipl->y += p->dy / 4 * SPEED;
+		minipl->x += p->dx / 8 * SPEED;
+		minipl->y += p->dy / 8 * SPEED;
 	}
 }
 
@@ -43,8 +43,8 @@ void	move_back(t_player *p, t_player *minipl, t_map *m)
 	{
 		p->x -= p->dx * SPEED;
 		p->y -= p->dy * SPEED;
-		minipl->x -= p->dx / 4 * SPEED;
-		minipl->y -= p->dy / 4 * SPEED;
+		minipl->x -= p->dx / 8 * SPEED;
+		minipl->y -= p->dy / 8 * SPEED;
 	}
 }
 
@@ -61,8 +61,8 @@ void	move_right(t_player *p, t_player *minipl, t_map *m)
 	{
 		p->x += new_dx * SPEED;
 		p->y += new_dy * SPEED;
-		minipl->x += new_dx / 4 * SPEED;
-		minipl->y += new_dy / 4 * SPEED;
+		minipl->x += new_dx / 8 * SPEED;
+		minipl->y += new_dy / 8 * SPEED;
 	}
 }
 
@@ -79,8 +79,8 @@ void	move_left(t_player *p, t_player *minipl, t_map *m)
 	{
 		p->x -= new_dx * SPEED;
 		p->y -= new_dy * SPEED;
-		minipl->x -= new_dx / 4 * SPEED;
-		minipl->y -= new_dy / 4 * SPEED;
+		minipl->x -= new_dx / 8 * SPEED; //RESIZING
+		minipl->y -= new_dy / 8 * SPEED;
 	}
 }
 

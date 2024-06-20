@@ -52,9 +52,9 @@ static int	init_window(t_data *info)
 	init_keys(info->mlx);
 	put_images(info);
 	put_position(info);
-	int i = -1;
-	while (++i < 602)
-		printf("map pos in arr (%i): %i\n", i, info->map.arr[i]);
+	// int i = -1;
+	// while (++i < 602)
+	// 	printf("map pos in arr (%i): %i\n", i, info->map.arr[i]);
 	return (0);
 }
 
