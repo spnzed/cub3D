@@ -17,9 +17,9 @@ static void	paint_gray(int *scr, t_map *map, int p)
 	int	i;
 
 	i = 0;
-	while (i < SCALE / 2 * map->size[Y])
+	while (i < SCALE * map->size[Y]) //RESIZING
 	{
-		while (p < SCALE / 2 * map->size[X] + (WIDTH * i))
+		while (p < SCALE * map->size[X] + (WIDTH * i)) //RESIZING
 		{
 			scr[p] = 0x808080;
 			++p;
@@ -60,17 +60,17 @@ static void	fill_bigmap(int *scr, t_map *map, int p, int i)
 	k = 0;
 	while (++j < map->size[Y])
 	{
-		while (i < SCALE / 2 * (j + 1))
+		while (i < SCALE * (j + 1)) // RESIZING
 		{
 			while (map->grid[j][k])
 			{
-				while (++p < (SCALE / 2 * (k + 1) + (WIDTH * i))) //SCALE * info->map.size[X] >> en comptes de WIDTH ???
+				while (++p < (SCALE * (k + 1) + (WIDTH * i))) //RESIZING SCALE * info->map.size[X] >> en comptes de WIDTH ???
 				{
-					if (map->grid[j][k] == '1' && i % (SCALE / 2) != 0
-						&& (p - WIDTH * i) % (SCALE / 2) != 0) //SCALE * info->map.size[X] >> en comptes de WIDTH ???
+					if (map->grid[j][k] == '1' && i % (SCALE) != 0 //RESIZING
+						&& (p - WIDTH * i) % (SCALE) != 0) //RESIZING SCALE * info->map.size[X] >> en comptes de WIDTH ???
 						scr[p] = 0xffffff;
-					else if (map->grid[j][k] != '1' && i % (SCALE / 2) != 0
-						&& (p - WIDTH * i) % (SCALE / 2) != 0) //SCALE * info->map.size[X] >> en comptes de WIDTH ???
+					else if (map->grid[j][k] != '1' && i % (SCALE) != 0 //RESIZING
+						&& (p - WIDTH * i) % (SCALE) != 0) //RESIZING SCALE * info->map.size[X] >> en comptes de WIDTH ???
 						scr[p] = 0x000000;
 				}
 				k++;

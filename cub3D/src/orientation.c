@@ -33,7 +33,7 @@ static float	*most_vangles(t_map *m, t_player *p, float ang, float *end)
 	ntan = tan(deg_to_rad(ang));
 	if (ang > 90 && ang < 270)
 	{
-		end[X] = (((int)(p->x) / m->cell_w) * m->cell_w) - 0.0001;
+		end[X] = (((int)(p->x) / m->cell_w) * m->cell_w) - 0.0001 * m->size[X] / 11;
 		end[Y] = (p->x - end[X]) * ntan + p->y;
 		rd[X] = -(m->cell_w);
 		rd[Y] = rd[X] * -ntan;
@@ -96,12 +96,12 @@ void	ray_end_or(t_map *map, t_player *pl, float ang, t_ray *ray)
 	ray->end[X] = hend[X];
 	ray->end[Y] = hend[Y];
 	ray->len = sqrt((hend[X] - pl->x) * (hend[X] - pl->x)
-			+ (hend[Y] - pl->y) * (hend[Y] - pl->y));
+			+ (hend[Y] - pl->y) * (hend[Y] - pl->y)); //RESIZING * 2
 	vend[X] = pl->x;
 	vend[Y] = pl->y;
 	ray->map_p = vertic_maplines(map, pl, ang, vend);
 	v_len = sqrt((vend[X] - pl->x) * (vend[X] - pl->x)
-			+ (vend[Y] - pl->y) * (vend[Y] - pl->y));
+			+ (vend[Y] - pl->y) * (vend[Y] - pl->y)); //RESIZING * 2
 	if ((v_len < ray->len && ang != 90 && ang != 270) || ang == 0 || ang == 180)
 	{
 		v_shorter(hend, vend, ray, ang);

@@ -1,0 +1,5 @@
+mlx_shaders.c:6:10: fatal error: 'OpenGL/gl3.h' file not found
+#include <OpenGL/gl3.h>
+         ^~~~~~~~~~~~~~
+1 error generated.
+make[1]: *** [<builtin>: mlx_shaders.o] Error 1

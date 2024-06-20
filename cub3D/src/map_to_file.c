@@ -86,6 +86,6 @@ char	**map_to_file(t_data *info, t_map *map, char **file)
 		ft_err("Error: Malloc\n");
 	grid[map->size[Y]] = NULL;
 	get_grid(grid, file, map->size, map->grid_pos);
-	info->map.cell_w = SCALE;// / 2; //RESIZING
+	info->map.cell_w = SCALE; //RESIZING
 	return (grid);
 }

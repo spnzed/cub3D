@@ -24,22 +24,22 @@ static void	fix_or_feedtext_p(t_ray *r)
 			&& r[i].wall_or != r[i + 1].wall_or)
 			r[i].wall_or = r[i - 1].wall_or;
 		if (r[i].wall_or == 'N' || r[i].wall_or == 'S')
-			r[i].text_p = (int)(r[i].end)[X] % SCALE;
+			r[i].text_p = ((int)(r[i].end)[X] % SCALE); //RESIZING
 		else if (r[i].wall_or == 'E' || r[i].wall_or == 'W')
-			r[i].text_p = (int)(r[i].end)[Y] % SCALE;
+			r[i].text_p = ((int)(r[i].end)[Y] % SCALE); //RESIZING
 		i++;
 	}
 }
 
-static void	feed_ray(t_data *info, t_point *ends, int i)
-{
-	int	a;
-	int	b;
+// static void	feed_ray(t_data *info, t_point *ends, int i)
+// {
+// 	int	a;
+// 	int	b;
 
-	a = abs(ends[0].x - ends[1].x);
-	b = abs(ends[0].y - ends[1].y);
-	(info->ray)[i].len = sqrt((a * a + b * b));
-}
+// 	a = abs(ends[0].x - ends[1].x);
+// 	b = abs(ends[0].y - ends[1].y);
+// 	(info->ray)[i].len = sqrt((a * a + b * b));
+// }
 
 static void	fill_ray(int *scr, t_data *info, float ang, int i)
 {
@@ -55,11 +55,12 @@ static void	fill_ray(int *scr, t_data *info, float ang, int i)
 	pts[1].y = 0;
 	(info->ray)[i].ang = ang;
 	ray_end_or(&(info->map), &(info->player), ang, &((info->ray)[i]));
-//	printf("ray %i map_p: %i, ray len: %f\n", i, (info->ray[i]).map_p, (info->ray[i]).len);
+	// if (i == WIDTH / 2)
+	// 	printf("ang: %f, ray len fill_ray: %f\n", ang, (info->ray[i]).len);
 	pts[1].x = (int)((info->ray)[i].end[X]);
 	pts[1].y = (int)((info->ray)[i].end[Y]);
-	feed_ray(info, pts, i);
-	//draw_line(info->mlx->img.img_adr, pts, 0x00FFFF, 1);
+//	feed_ray(info, pts, i);
+//	draw_line(info->mlx->img.img_adr, pts, 0x00FFFF, 1);
 	free(pts);
 }
 
