@@ -33,14 +33,14 @@ static float	*most_vangles(t_map *m, t_player *p, float ang, float *end)
 	ntan = tan(deg_to_rad(ang));
 	if (ang > 90 && ang < 270)
 	{
-		end[X] = (((int)(p->x) / m->cell_w) * m->cell_w) - 0.0001 * m->size[X] / 11;
+		end[X] = (((int)(p->x) / m->cell_w) * m->cell_w) - 0.0001;// * m->size[X] / 21;
 		end[Y] = (p->x - end[X]) * ntan + p->y;
 		rd[X] = -(m->cell_w);
 		rd[Y] = rd[X] * -ntan;
 	}
 	if (ang < 90 || ang > 270)
 	{
-		end[X] = (((int)(p->x) / m->cell_w) * m->cell_w) + m->cell_w;
+		end[X] = (((int)(p->x) / m->cell_w) * m->cell_w) + m->cell_w;// + 0.0001 * m->size[Y] / 15;
 		end[Y] = (p->x - end[X]) * ntan + p->y;
 		rd[X] = m->cell_w;
 		rd[Y] = rd[X] * -ntan;

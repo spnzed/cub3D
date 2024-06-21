@@ -51,7 +51,7 @@ static void draw_wallcol(t_data *info, int *scr, int ang, int i)
 
     distance = remove_fish(info->player.dir, ang, info->ray[i].len);
     height = (SCALE * HEIGHT) / (distance); // Calcula la altura de la línea
-    if (height > HEIGHT)
+    if (height > HEIGHT || distance < 1.0)
         height = HEIGHT - 1;
     offset = (HEIGHT / 2) - (height / 2); // Calcula el offset de la línea
 	if (info->ray[i].wall_or == 'N')

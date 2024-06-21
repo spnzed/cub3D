@@ -60,18 +60,18 @@
 
 # define SCALE 64
 //Campus OLD
-// # define HEIGHT 1080
-// # define WIDTH 1920
+# define HEIGHT 1080
+# define WIDTH 1920
 //Campus LINUX
-# define HEIGHT 1620
-# define WIDTH 2880
+//# define HEIGHT 1620
+//# define WIDTH 2880
 //Ester
 // # define HEIGHT 810
 // # define WIDTH 1380
 //Aaron
 //# define HEIGHT 890
 //# define WIDTH 1470
-# define SPEED 2
+# define SPEED 3
 
 typedef struct s_point
 {
@@ -160,36 +160,7 @@ typedef struct s_ray
 	float	end[2]; //posició (x, y) de l'extrem final del raig (oposat a la posició del jugador)
 	float	ang;
 	int		text_p;
-//	int		line_height;
-//	int		draw_start;
-//	int		draw_end;
-	/*float	p[2];  //ray position p[X] , p[Y] (when it gets crossing "map virtual" horizontal/vertical lines of the grid)
-	float	off[2]; //ray offset off[X], off[Y], example: Y offset when crossing horizontal lines will be 48 if there are 48 pixels per map row
-	int		num; // order/position in the array of t_rays structures. One membre/number per ray, starting from 0, as being an array.
-	int		dir;*/
-	/*double	perpwalldist;
-	int		draw[2];
-	int		step[2];
-	int		side[2];
-	bool	hit;*/
 }	t_ray;
-
-/*typedef struct s_rays
-{
-	double	camera;
-	double	plane[2];
-	double	pos[2];
-	double	dir[2];
-	double	raydir[2];
-	double	deltadist[2];
-	double	sidedist[2];
-	double	perpwalldist;
-	int		draw[2];
-	int		step[2];
-	int		side[2];
-	int		lineh;
-	bool	hit;
-}	t_rays;*/
 
 typedef struct s_data
 {
@@ -223,10 +194,6 @@ int		rgb_check(char *channel);
 int		ft_press(int keycode, t_mlx *mlx);
 int		ft_release(int keycode, t_mlx *mlx);
 int		ft_cross(t_mlx *mlx);
-// void	move_right(t_data *info);
-// void	move_left(t_data *info);
-// void	move_front(t_data *info);
-// void	move_back(t_data *info);
 void	move_front(t_player *p, t_player *minipl, t_map *m);
 void	move_back(t_player *p, t_player *minipl, t_map *m);
 void	move_left(t_player *p, t_player *minipl, t_map *m);
@@ -242,13 +209,10 @@ void	draw_line(int *scr, t_point *pts, int color, int thickness);
 void	init_temp(t_data *info);
 void	new_scene(t_data *info);
 void	init_players(t_data *info);
-//void	fill_ray(int *scr, t_data *info, float ang, int i);
 void	create_image(t_data *info);
 void	init_texture(t_data *info);
 void	ray_casting(t_data *info);
-//void	draw_rays(t_data *info);
 void	other_angles(int *scr, t_point *pts, float ang);
-//void	ray_end(int *scr, t_point *pts, float ang);
 void	cast_rays(t_data *info);
 int		init_window2(t_data *info);
 void	init_loop2(t_data *info);
@@ -259,6 +223,7 @@ void	draw_walls(t_data *info);
 int		horiz_maplines(t_map *m, t_player *p, float ang, float *end);
 void	h_shorter(float *vend, float *hend, t_ray *ray, int h_mpos);
 void	upd_end(float *end, float *rd);
+int		concave_corner(t_map *m, float a, int mp);
 
 //		Utils
 int		ft_count_lines(int fd);

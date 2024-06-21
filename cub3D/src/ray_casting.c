@@ -12,7 +12,22 @@
 
 #include "cub3D.h"
 
-static void	fix_or_feedtext_p(t_ray *r)
+static void feedtext_p(t_ray *r)
+{
+	int	i;
+
+	i = 1;
+	while (i < WIDTH - 1)
+	{
+		if (r[i].wall_or == 'N' || r[i].wall_or == 'S')
+			r[i].text_p = ((int)(r[i].end)[X] % SCALE); //RESIZING
+		else if (r[i].wall_or == 'E' || r[i].wall_or == 'W')
+			r[i].text_p = ((int)(r[i].end)[Y] % SCALE); //RESIZING
+		i++;
+	}
+}
+
+static void	fix_or(t_ray *r)
 {
 	int	i;
 
@@ -23,10 +38,9 @@ static void	fix_or_feedtext_p(t_ray *r)
 			&& r[i].wall_or != r[i - 1].wall_or
 			&& r[i].wall_or != r[i + 1].wall_or)
 			r[i].wall_or = r[i - 1].wall_or;
-		if (r[i].wall_or == 'N' || r[i].wall_or == 'S')
-			r[i].text_p = ((int)(r[i].end)[X] % SCALE); //RESIZING
-		else if (r[i].wall_or == 'E' || r[i].wall_or == 'W')
-			r[i].text_p = ((int)(r[i].end)[Y] % SCALE); //RESIZING
+		// if (r[i].wall_or == r[i - 1].wall_or && r[i].map_p == r[i - 1].map_p
+		// 	&& fabs(r[i].len - r[i - 1].len) > 5.0)
+		// 	r[i].len = r[i - 1].len;
 		i++;
 	}
 }
@@ -59,6 +73,7 @@ static void	fill_ray(int *scr, t_data *info, float ang, int i)
 	// 	printf("ang: %f, ray len fill_ray: %f\n", ang, (info->ray[i]).len);
 	pts[1].x = (int)((info->ray)[i].end[X]);
 	pts[1].y = (int)((info->ray)[i].end[Y]);
+
 //	feed_ray(info, pts, i);
 //	draw_line(info->mlx->img.img_adr, pts, 0x00FFFF, 1);
 	free(pts);
@@ -83,9 +98,12 @@ void	cast_rays(t_data *info)
 	init_rays_arr(info);
 	while (i < WIDTH)
 	{
-		fill_ray(info->map2d, info, angle_correction(ang), i);
+		fill_ray(info->mlx->img.img_adr, info, angle_correction(ang), i);
 		i++;
 		ang = ang - incr;
 	}
-	fix_or_feedtext_p(info->ray);
+	i = -1;
+	while (++i < WIDTH)
+		fix_or(info->ray);
+	feedtext_p(info->ray);
 }

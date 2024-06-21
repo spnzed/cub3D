@@ -32,7 +32,7 @@ static float	*most_hangles(t_map *m, t_player *p, float ang, float *end)
 	atan = -1 / tan(deg_to_rad(ang));
 	if (ang > 0 && ang < 180)
 	{
-		end[Y] = (((int)(p->y) / m->cell_w) * m->cell_w) - 0.0001 * m->size[X] / 11;
+		end[Y] = (((int)(p->y) / m->cell_w) * m->cell_w) - 0.0001;// * m->size[X] / 11;
 		end[X] = (p->y - end[Y]) * -atan + p->x;
 		rd[Y] = -(m->cell_w);
 		rd[X] = rd[Y] * atan;
@@ -59,7 +59,7 @@ static int	back_rd(float *end, float *rd, int i)
 	return (i);
 }
 
-static int	concave_corner(t_map *m, float a, int mp)
+int	concave_corner(t_map *m, float a, int mp)
 {
 	if (((int)a == 45 && (m->arr)[mp - 1] == 1
 		&& (m->arr)[mp + m->size[X]] == 1)
