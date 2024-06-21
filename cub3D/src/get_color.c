@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 15:44:19 by aaespino          #+#    #+#             */
-/*   Updated: 2024/06/18 20:02:02 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/06/21 23:07:24 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@ int	rgb_check(char *rgb)
 	if (!rgb)
 		return (1);
 	trim = ft_strtrim(rgb, " ");
-	while (ft_isspace(*trim))
-		trim++;
-	if (!ft_istype_iter(trim, ft_isdigit))
+	int i = 0;
+	while (ft_isspace(trim[i]))
+		i++;
+	if (!ft_istype_iter(trim+i, ft_isdigit))
 		return (free(trim), 1);
-	if (!ft_isint(trim))
+	if (!ft_isint(trim+i))
 		return (free(trim), 1);
+	free(trim);
 	return (0);
 }
 

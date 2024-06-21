@@ -3,48 +3,66 @@
 /*                                                        :::      ::::::::   */
 /*   loop_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:43:39 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/21 17:48:37 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/06/21 23:50:32 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	ft_esc(int keycode, t_mlx *mlx)
+static void	free_grid(char **grid, int size[2])
 {
-	if (keycode == KEY_ESC)
+	int	i;
+
+	i = 0;
+	while (i < size[Y])
 	{
-		mlx_destroy_image(mlx->mlx, mlx->img.img);
-		mlx_destroy_window(mlx->mlx, mlx->win);
-		free(mlx);
-		exit(1);
+		free(grid[i]);
+		i++;
 	}
-	return (0);
+	free(grid);
 }
 
-int	ft_press(int keycode, t_mlx *mlx)
+
+static int	ft_esc(t_data *info, t_mlx *mlx)
 {
-	if (!mlx->keys)
+	if (info->map.grid)
+		free_grid(info->map.grid, info->map.size);
+	if (mlx->keys)
+	{
+		free(mlx->keys);
+		mlx->keys = NULL;
+	}
+	if (info->mlx->img.img)
+		mlx_destroy_image(info->mlx->mlx, info->mlx->img.img);
+	if (info->mlx->win)
+		mlx_destroy_window(info->mlx->mlx, info->mlx->win);
+	exit(1);
+}
+
+int	ft_press(int keycode, t_data *info)
+{
+	if (!info->mlx->keys)
 	{
 		ft_err("Error: key struct is not initialized\n");
 		exit(1);
 	}
 	if (keycode == KEY_W)
-		mlx->keys->w = 1;
+		info->mlx->keys->w = 1;
 	if (keycode == KEY_A)
-		mlx->keys->a = 1;
+		info->mlx->keys->a = 1;
 	if (keycode == KEY_S)
-		mlx->keys->s = 1;
+		info->mlx->keys->s = 1;
 	if (keycode == KEY_D)
-		mlx->keys->d = 1;
+		info->mlx->keys->d = 1;
 	if (keycode == KEY_LEFT)
-		mlx->keys->l_arr = 1;
+		info->mlx->keys->l_arr = 1;
 	if (keycode == KEY_RIGHT)
-		mlx->keys->r_arr = 1;
+		info->mlx->keys->r_arr = 1;
 	if (keycode == KEY_ESC)
-		ft_esc(keycode, mlx);
+		ft_esc(info, info->mlx);
 	return (0);
 }
 
@@ -70,14 +88,18 @@ int	ft_release(int keycode, t_mlx *mlx)
 	return (0);
 }
 
-int	ft_cross(t_mlx *mlx)
+int	ft_cross(t_data *info, t_mlx *mlx)
 {
-	if (mlx->img.img)
-		mlx_destroy_image(mlx->mlx, mlx->img.img);
-	if (mlx->win)
-		mlx_destroy_window(mlx->mlx, mlx->win);
-	if (mlx)
-		free(mlx);
+	if (info->map.grid)
+		free_grid(info->map.grid, info->map.size);
+	if (mlx->keys)
+	{
+		free(mlx->keys);
+		mlx->keys = NULL;
+	}
+	if (info->mlx->img.img)
+		mlx_destroy_image(info->mlx->mlx, info->mlx->img.img);
+	if (info->mlx->win)
+		mlx_destroy_window(info->mlx->mlx, info->mlx->win);
 	exit(1);
-	return (0);
 }
