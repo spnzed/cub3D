@@ -17,17 +17,16 @@ static int	wall_found(float x, float y, t_map *m, t_player *p)
 	int	mp;
 	int	mx;
 	int	my;
-
+(void)p;
 	mx = (int)(x) / m->cell_w;
 	my = (int)(y) / m->cell_w;
 	mp = my * m->size[X] + mx;
 	if ((m->arr)[mp] == 1)
 		return (1);
 	else if (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 0
-		&& (int)(p->dir) % 45 == 0 && (int)(p->dir) % 90 != 0
-		&& (concave_corner(m, p->dir, mp) == 1))
-			return (1);
-	
+	 	&& (int)(p->dir) % 45 == 0 && (int)(p->dir) % 90 != 0
+	 	&& (concave_corner(m, p->dir, mp) == 1))
+	 		return (1);
 	return (0);
 }
 

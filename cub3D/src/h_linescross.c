@@ -59,15 +59,29 @@ static int	back_rd(float *end, float *rd, int i)
 	return (i);
 }
 
+// int	concave_corner(t_map *m, float a, int mp)
+// {
+// 	if (((int)a == 45 && (m->arr)[mp - 1] == 1
+// 		&& (m->arr)[mp + m->size[X]] == 1)
+// 		|| ((int)a == 135 && (m->arr)[mp + 1] == 1
+// 		&& (m->arr)[mp + m->size[X]] == 1)
+// 		|| ((int)a == 225 && (m->arr)[mp + 1] == 1
+// 		&& (m->arr)[mp - m->size[X]] == 1)
+// 		|| ((int)a == 315 && (m->arr)[mp - 1] == 1
+// 		&& (m->arr)[mp - m->size[X]] == 1))
+// 		return (1);
+// 	return (0);
+// }
+
 int	concave_corner(t_map *m, float a, int mp)
 {
-	if (((int)a == 45 && (m->arr)[mp - 1] == 1
+	if (((int)a > 0 && (int)a < 90 && (m->arr)[mp - 1] == 1
 		&& (m->arr)[mp + m->size[X]] == 1)
-		|| ((int)a == 135 && (m->arr)[mp + 1] == 1
+		|| ((int)a > 90 && (int)a < 180 && (m->arr)[mp + 1] == 1
 		&& (m->arr)[mp + m->size[X]] == 1)
-		|| ((int)a == 225 && (m->arr)[mp + 1] == 1
+		|| ((int)a > 180 && (int)a < 270 && (m->arr)[mp + 1] == 1
 		&& (m->arr)[mp - m->size[X]] == 1)
-		|| ((int)a == 315 && (m->arr)[mp - 1] == 1
+		|| ((int)a > 270 && (int)a < 360 && (m->arr)[mp - 1] == 1
 		&& (m->arr)[mp - m->size[X]] == 1))
 		return (1);
 	return (0);
@@ -93,7 +107,7 @@ int	horiz_maplines(t_map *m, t_player *p, float a, float *end)
 		else
 			upd_end(end, rd);
 		if (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 0
-			&& (int)a % 45 == 0 && (int)a % 90 != 0
+		//	&& (int)a % 45 == 0 && (int)a % 90 != 0
 			&& (concave_corner(m, a, mp) == 1))
 			dof = back_rd(end, rd, m->size[Y]);
 	}

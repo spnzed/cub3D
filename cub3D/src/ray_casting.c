@@ -45,16 +45,6 @@ static void	fix_or(t_ray *r)
 	}
 }
 
-// static void	feed_ray(t_data *info, t_point *ends, int i)
-// {
-// 	int	a;
-// 	int	b;
-
-// 	a = abs(ends[0].x - ends[1].x);
-// 	b = abs(ends[0].y - ends[1].y);
-// 	(info->ray)[i].len = sqrt((a * a + b * b));
-// }
-
 static void	fill_ray(int *scr, t_data *info, float ang, int i)
 {
 	t_point	*pts;
@@ -69,12 +59,9 @@ static void	fill_ray(int *scr, t_data *info, float ang, int i)
 	pts[1].y = 0;
 	(info->ray)[i].ang = ang;
 	ray_end_or(&(info->map), &(info->player), ang, &((info->ray)[i]));
-	// if (i == WIDTH / 2)
-	// 	printf("ang: %f, ray len fill_ray: %f\n", ang, (info->ray[i]).len);
+//	printf("i: %i ang: %f, ray len fill_ray: %f\n", i, ang, (info->ray[i]).len);
 	pts[1].x = (int)((info->ray)[i].end[X]);
 	pts[1].y = (int)((info->ray)[i].end[Y]);
-
-//	feed_ray(info, pts, i);
 //	draw_line(info->mlx->img.img_adr, pts, 0x00FFFF, 1);
 	free(pts);
 }
