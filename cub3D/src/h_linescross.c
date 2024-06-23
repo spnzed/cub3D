@@ -75,13 +75,13 @@ static int	back_rd(float *end, float *rd, int i)
 
 int	concave_corner(t_map *m, float a, int mp)
 {
-	if (((int)a > 0 && (int)a < 90 && (m->arr)[mp - 1] == 1
+	if (((int)a >= 0 && (int)a < 90 && (m->arr)[mp - 1] == 1
 		&& (m->arr)[mp + m->size[X]] == 1)
-		|| ((int)a > 90 && (int)a < 180 && (m->arr)[mp + 1] == 1
+		|| ((int)a >= 90 && (int)a < 180 && (m->arr)[mp + 1] == 1
 		&& (m->arr)[mp + m->size[X]] == 1)
-		|| ((int)a > 180 && (int)a < 270 && (m->arr)[mp + 1] == 1
+		|| ((int)a >= 180 && (int)a < 270 && (m->arr)[mp + 1] == 1
 		&& (m->arr)[mp - m->size[X]] == 1)
-		|| ((int)a > 270 && (int)a < 360 && (m->arr)[mp - 1] == 1
+		|| ((int)a >= 270 && (int)a <= 360 && (m->arr)[mp - 1] == 1
 		&& (m->arr)[mp - m->size[X]] == 1))
 		return (1);
 	return (0);

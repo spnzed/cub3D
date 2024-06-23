@@ -122,6 +122,7 @@ typedef struct s_map
 	int		spawn[2];
 	int		cell_w;
 	int		*arr;
+	int		p[2];
 //	int		player_dir; //en principi no cal tenir-ho 2 vegades - JA ES A PARAMETERS
 //	int		floor;  //en principi no cal tenir-ho 2 vegades - JA ES A PARAMETERS
 //	int		ceiling; //en principi no cal tenir-ho 2 vegades - JA ES A PARAMETERS
@@ -144,6 +145,7 @@ typedef struct s_player
 	float	dir; //era p_dir pero crec que no te sentit, no cal la p i nomes alalrga els caracters que calen
 	float	dx; //p_dir_x_cos;  //seria dx suposo (el desplacament d'x)
 	float	dy; //p_dir_y_sin; //idem per a y
+	float	o[2];
 	float	n[2]; // AIXO Q ES???
 	//int		w;//temp per fer quadradet del jugador en 2D
 	//int		h;//temp per fer quadradet del jugador en 2D

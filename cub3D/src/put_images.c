@@ -22,6 +22,8 @@ void	put_position(t_data *info)
 	info->map.map_size = info->map.size[X] * info->map.size[Y];
 	info->player.dx = cos(deg_to_rad(info->player.dir));
 	info->player.dy = -sin(deg_to_rad(info->player.dir));
+	info->player.o[X] = 10;
+	info->player.o[Y] = 10;
 	info->minipl.x = 8 + info->map.spawn[X] * col_w + col_w / 2;
 	info->minipl.y = 8 + info->map.spawn[Y] * col_w + col_w / 2;
 	info->map2d = ft_calloc(sizeof(int),

@@ -12,6 +12,31 @@
 
 #include "cub3D.h"
 
+// static int	move_concave(t_player *p, t_map *m)
+// {
+// 	int curr_mp;
+// 	int next_mp;
+
+// 	curr_mp = ((int)(p->y) / m->cell_w) * m->size[X] + (int)(p->x) / m->cell_w;
+// 	next_mp = ((int)(p->y + p->dy) / m->cell_w) * m->size[X] + (int)(p->x + p->dx) / m->cell_w;
+// 	if (m->arr[curr_mp] == 0 && m->arr[next_mp] == 0)
+// 	{
+// 		if (m->arr[curr_mp + 1] == 1 && m->arr[curr_mp - m->size[X] == 1]
+// 			&& m->arr[next_mp - 1] == 1 && m->arr[next_mp + m->size[X] == 1])
+// 			return (1);
+// 		else if (m->arr[curr_mp - 1] == 1 && m->arr[curr_mp + m->size[X] == 1]
+// 			&& m->arr[next_mp + 1] == 1 && m->arr[next_mp - m->size[X] == 1])
+// 			return (1);
+// 		else if (m->arr[curr_mp + 1] == 1 && m->arr[curr_mp + m->size[X] == 1]
+// 			&& m->arr[next_mp - 1] == 1 && m->arr[next_mp - m->size[X] == 1])
+// 			return (1);
+// 		else if (m->arr[curr_mp - 1] == 1 && m->arr[curr_mp - m->size[X] == 1]
+// 			&& m->arr[next_mp + 1] == 1 && m->arr[next_mp + m->size[X] == 1])
+// 			return (1);
+// 	}
+// 	return (0);
+// }
+
 static int	wall_found(float x, float y, t_map *m, t_player *p)
 {
 	int	mp;
@@ -23,39 +48,92 @@ static int	wall_found(float x, float y, t_map *m, t_player *p)
 	mp = my * m->size[X] + mx;
 	if ((m->arr)[mp] == 1)
 		return (1);
-	else if (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 0
-	 	&& (int)(p->dir) % 45 == 0 && (int)(p->dir) % 90 != 0
-	 	&& (concave_corner(m, p->dir, mp) == 1))
-	 		return (1);
+	// else if (move_concave(p, m))
+	// 	return (1);
+		
+		// mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 0
+	 	// && (int)(p->dir) % 45 == 0 && (int)(p->dir) % 90 != 0 // aquest no serveix perque sembla que no necessariament creua en aquests angles
+	 	// && (concave_corner(m, p->dir, mp) == 1)) //si nomes posem aquest es para on no toca
+	 	// 	return (1);
 	return (0);
 }
 
 void	move_front(t_player *p, t_player *minipl, t_map *m)
 {
-	if (!wall_found(p->x + p->dx, p->y + p->dy, m, p)
-		&& !wall_found(p->x + p->dx * 2, p->y + p->dy * 2, m, p)
-		&& !wall_found(p->x + p->dx * 3, p->y + p->dy * 3, m, p)
-		&& !wall_found(p->x + p->dx * 4, p->y + p->dy * 4, m, p))
+	int plus_x_mp;
+	//int minus_x_mp;
+	int plus_y_mp;
+	//int minus_y_mp;
+
+	if (p->dx < 0)
+		p->o[X] = -20; // o = offset possible desplaçament
+	if (p->dy < 0)
+		p->o[Y] = -20;
+	m->p[X] = p->x / SCALE;
+	m->p[Y] = p->y / SCALE;
+	plus_x_mp = (p->x + p->o[X]) / SCALE;
+	//minus_x_mp = (m->p[X] - p->o[X]) / SCALE;
+	plus_y_mp = (p->y + p->o[Y]) / SCALE;
+	//minus_y_mp = (m->p[Y] - p->o[Y]) / SCALE;
+	if (m->arr[m->p[Y] * m->size[X] + plus_x_mp] == 0)
 	{
 		p->x += p->dx * SPEED;
-		p->y += p->dy * SPEED;
 		minipl->x += p->dx / 4 * SPEED;
+	}
+	if (m->arr[plus_y_mp * m->size[X] + m->p[X]] == 0)
+	{
+		p->y += p->dy * SPEED;
 		minipl->y += p->dy / 4 * SPEED;
 	}
+	// if (!wall_found(p->x + p->dx, p->y + p->dy, m, p)
+	// 	&& !wall_found(p->x + p->dx * 2, p->y + p->dy * 2, m, p)
+	// 	&& !wall_found(p->x + p->dx * 3, p->y + p->dy * 3, m, p)
+	// 	&& !wall_found(p->x + p->dx * 4, p->y + p->dy * 4, m, p))
+	// {
+	// 	p->x += p->dx * SPEED;
+	// 	p->y += p->dy * SPEED;
+	// 	minipl->x += p->dx / 4 * SPEED;
+	// 	minipl->y += p->dy / 4 * SPEED;
+	// }
 }
 
 void	move_back(t_player *p, t_player *minipl, t_map *m)
 {
-	if (!wall_found(p->x - p->dx, p->y - p->dy, m, p)
-		&& !wall_found(p->x - p->dx * 2, p->y - p->dy * 2, m, p)
-		&& !wall_found(p->x - p->dx * 3, p->y - p->dy * 3, m, p)
-		&& !wall_found(p->x - p->dx * 4, p->y - p->dy * 4, m, p))
+	//int plus_x_mp;
+	int minus_x_mp;
+	//int plus_y_mp;
+	int minus_y_mp;
+
+	if (p->dx < 0)
+		p->o[X] = -10; // o = offset possible desplaçament
+	if (p->dy < 0)
+		p->o[Y] = -10;
+	m->p[X] = p->x / SCALE;
+	m->p[Y] = p->y / SCALE;
+	//plus_x_mp = (p->x + p->o[X]) / SCALE;
+	minus_x_mp = (p->x - p->o[X]) / SCALE;
+	//plus_y_mp = (p->y + p->o[Y]) / SCALE;
+	minus_y_mp = (p->y - p->o[Y]) / SCALE;
+	if (m->arr[m->p[Y] * m->size[X] + minus_x_mp] == 0)
 	{
 		p->x -= p->dx * SPEED;
-		p->y -= p->dy * SPEED;
 		minipl->x -= p->dx / 4 * SPEED;
+	}
+	if (m->arr[minus_y_mp * m->size[X] + m->p[X]] == 0)
+	{
+		p->y -= p->dy * SPEED;
 		minipl->y -= p->dy / 4 * SPEED;
 	}
+	// if (!wall_found(p->x - p->dx, p->y - p->dy, m, p)
+	// 	&& !wall_found(p->x - p->dx * 2, p->y - p->dy * 2, m, p)
+	// 	&& !wall_found(p->x - p->dx * 3, p->y - p->dy * 3, m, p)
+	// 	&& !wall_found(p->x - p->dx * 4, p->y - p->dy * 4, m, p))
+	// {
+	// 	p->x -= p->dx * SPEED;
+	// 	p->y -= p->dy * SPEED;
+	// 	minipl->x -= p->dx / 4 * SPEED;
+	// 	minipl->y -= p->dy / 4 * SPEED;
+	// }
 }
 
 void	move_right(t_player *p, t_player *minipl, t_map *m)
