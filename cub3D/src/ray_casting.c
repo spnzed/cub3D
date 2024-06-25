@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-static void feedtext_p(t_ray *r)
+static void	feedtext_p(t_ray *r)
 {
 	int	i;
 
@@ -20,9 +20,9 @@ static void feedtext_p(t_ray *r)
 	while (i < WIDTH - 1)
 	{
 		if (r[i].wall_or == 'N' || r[i].wall_or == 'S')
-			r[i].text_p = ((int)(r[i].end)[X] % SCALE); //RESIZING
+			r[i].text_p = ((int)(r[i].end)[X] % SCALE);
 		else if (r[i].wall_or == 'E' || r[i].wall_or == 'W')
-			r[i].text_p = ((int)(r[i].end)[Y] % SCALE); //RESIZING
+			r[i].text_p = ((int)(r[i].end)[Y] % SCALE);
 		i++;
 	}
 }
@@ -38,18 +38,14 @@ static void	fix_or(t_ray *r)
 			&& r[i].wall_or != r[i - 1].wall_or
 			&& r[i].wall_or != r[i + 1].wall_or)
 			r[i].wall_or = r[i - 1].wall_or;
-		// if (r[i].wall_or == r[i - 1].wall_or && r[i].map_p == r[i - 1].map_p
-		// 	&& fabs(r[i].len - r[i - 1].len) > 5.0)
-		// 	r[i].len = r[i - 1].len;
 		i++;
 	}
 }
 
-static void	fill_ray(int *scr, t_data *info, float ang, int i)
+static void	fill_ray(t_data *info, float ang, int i)
 {
 	t_point	*pts;
 
-	(void)scr; // esborrar aixo abans d'entregar
 	pts = ft_calloc(sizeof(t_point), 2);
 	if (!pts)
 		ft_err("Error: Malloc\n");
@@ -59,10 +55,8 @@ static void	fill_ray(int *scr, t_data *info, float ang, int i)
 	pts[1].y = 0;
 	(info->ray)[i].ang = ang;
 	ray_end_or(&(info->map), &(info->player), ang, &((info->ray)[i]));
-//	printf("i: %i ang: %f, ray len fill_ray: %f\n", i, ang, (info->ray[i]).len);
 	pts[1].x = (int)((info->ray)[i].end[X]);
 	pts[1].y = (int)((info->ray)[i].end[Y]);
-//	draw_line(info->mlx->img.img_adr, pts, 0x00FFFF, 1);
 	free(pts);
 }
 
@@ -85,7 +79,7 @@ void	cast_rays(t_data *info)
 	init_rays_arr(info);
 	while (i < WIDTH)
 	{
-		fill_ray(info->mlx->img.img_adr, info, angle_correction(ang), i);
+		fill_ray(info, angle_correction(ang), i);
 		i++;
 		ang = ang - incr;
 	}

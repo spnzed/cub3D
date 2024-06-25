@@ -12,23 +12,18 @@
 
 #include "cub3D.h"
 
-void	add_line_item(int *buff, int x, int y, int color, int thickness)
+void	add_line_item(int *buff, int x, int y, int color)
 {
-    // Esta función agrega un punto (x, y) al buffer de pantalla con el color dado
-    // y un grosor de línea dado
-    for (int i = x - thickness / 2; i <= x + thickness / 2; i++)
+    if (y - x >= INT_MIN / WIDTH && y - x <= INT_MAX / WIDTH)
     {
-        for (int j = y - thickness / 2; j <= y + thickness / 2; j++)
-        {
-            if (i >= 0 && i < WIDTH && j >= 0 && j < HEIGHT)
-            {
-                buff[j * WIDTH + i] = color;
-            }
-        }
+        if (((y * WIDTH) + x) < (HEIGHT * WIDTH) && (y * WIDTH + x) >= 0)
+		{
+			buff[(y * WIDTH) + x] = color;
+		}
     }
 }
 
-void	fill_lo(int *buffer, t_point pt0, t_point pt1, int color, int thickness)
+void	fill_lo(int *buffer, t_point pt0, t_point pt1, int color)
 {
 	int	dy;
 	int	dist;
@@ -45,7 +40,7 @@ void	fill_lo(int *buffer, t_point pt0, t_point pt1, int color, int thickness)
 	dist = (2 * dy) - (pt1.x - pt0.x);
 	while (x <= pt1.x)
 	{
-		add_line_item(buffer, x, y, color, thickness);
+		add_line_item(buffer, x, y, color);
 		if (dist > 0)
 		{
 			y = y + yi;
@@ -57,7 +52,7 @@ void	fill_lo(int *buffer, t_point pt0, t_point pt1, int color, int thickness)
 	}
 }
 
-void	fill_hi(int *scr, t_point pt0, t_point pt1, int color, int thickness)
+void	fill_hi(int *scr, t_point pt0, t_point pt1, int color)
 {
 	int	dx;
 	int	dist;
@@ -74,7 +69,7 @@ void	fill_hi(int *scr, t_point pt0, t_point pt1, int color, int thickness)
 	dist = (2 * dx) - (pt1.y - pt0.y);
 	while (y <= pt1.y)
 	{
-		add_line_item(scr, x, y, color, thickness);
+		add_line_item(scr, x, y, color);
 		if (dist > 0)
 		{
 			x = x + xi;
@@ -86,20 +81,20 @@ void	fill_hi(int *scr, t_point pt0, t_point pt1, int color, int thickness)
 	}
 }
 
-void	draw_line(int *scr, t_point *pts, int color, int thickness)
+void	draw_line(int *scr, t_point *pts, int color)
 {
 	if (abs(pts[1].y - pts[0].y) <= abs(pts[1].x - pts[0].x))
 	{
 		if (pts[0].x > pts[1].x)
-			fill_lo(scr, pts[1], pts[0], color, thickness);
+			fill_lo(scr, pts[1], pts[0], color);
 		else
-			fill_lo(scr, pts[0], pts[1], color, thickness);
+			fill_lo(scr, pts[0], pts[1], color);
 	}
 	else
 	{
 		if (pts[0].y > pts[1].y)
-			fill_hi(scr, pts[1], pts[0], color, thickness);
+			fill_hi(scr, pts[1], pts[0], color);
 		else
-			fill_hi(scr, pts[0], pts[1], color, thickness);
+			fill_hi(scr, pts[0], pts[1], color);
 	}
 }

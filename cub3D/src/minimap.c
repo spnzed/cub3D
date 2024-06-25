@@ -40,21 +40,6 @@ static void	fill_map(int *scr, t_data *info)
 	}
 }
 
-// static void	draw_minipl(int *scr, int xpl, int ypl, int color)
-// {
-// 	int	x;
-// 	int	y;
-
-// 	x = xpl - 3;
-// 	y = ypl - 3;
-// 	while (++y <= ypl + 2)
-// 	{
-// 		while (++x <= xpl + 2)
-// 			scr[y * WIDTH + x] = color;
-// 		x = xpl - 3;
-// 	}
-// }
-
 static void	print_miniray(int *scr, t_ray *r, t_player *minipl)
 {
 	t_point	minipts[2];
@@ -63,7 +48,7 @@ static void	print_miniray(int *scr, t_ray *r, t_player *minipl)
 	minipts[0].y = (int)(minipl->y);
 	minipts[1].x = 8 + (int)(r->end[X]) / 4;
 	minipts[1].y = 8 + (int)(r->end[Y]) / 4;
-	draw_line(scr, minipts, 0x00FFFF, 1);
+	draw_line(scr, minipts, 0x00FFFF);
 }
 
 void	mini_map(t_data *info)
@@ -72,8 +57,6 @@ void	mini_map(t_data *info)
 
 	i = -1;
 	fill_map(info->mlx->img.img_adr, info);
-	// draw_minipl(info->mlx->img.img_adr, info->minipl.x,
-	// 	info->minipl.y, 0xFFFF00);
 	while (++i < WIDTH)
 		print_miniray(info->mlx->img.img_adr, &(info->ray[i]), &(info->minipl));
 }

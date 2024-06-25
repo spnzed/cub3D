@@ -12,39 +12,14 @@
 
 #include "cub3D.h"
 
-// static int	move_concave(t_player *p, t_map *m)
-// {
-// 	int curr_mp;
-// 	int next_mp;
-
-// 	curr_mp = ((int)(p->y) / m->cell_w) * m->size[X] + (int)(p->x) / m->cell_w;
-// 	next_mp = ((int)(p->y + p->dy) / m->cell_w) * m->size[X] + (int)(p->x + p->dx) / m->cell_w;
-// 	if (m->arr[curr_mp] == 0 && m->arr[next_mp] == 0)
-// 	{
-// 		if (m->arr[curr_mp + 1] == 1 && m->arr[curr_mp - m->size[X] == 1]
-// 			&& m->arr[next_mp - 1] == 1 && m->arr[next_mp + m->size[X] == 1])
-// 			return (1);
-// 		else if (m->arr[curr_mp - 1] == 1 && m->arr[curr_mp + m->size[X] == 1]
-// 			&& m->arr[next_mp + 1] == 1 && m->arr[next_mp - m->size[X] == 1])
-// 			return (1);
-// 		else if (m->arr[curr_mp + 1] == 1 && m->arr[curr_mp + m->size[X] == 1]
-// 			&& m->arr[next_mp - 1] == 1 && m->arr[next_mp - m->size[X] == 1])
-// 			return (1);
-// 		else if (m->arr[curr_mp - 1] == 1 && m->arr[curr_mp - m->size[X] == 1]
-// 			&& m->arr[next_mp + 1] == 1 && m->arr[next_mp + m->size[X] == 1])
-// 			return (1);
-// 	}
-// 	return (0);
-// }
-
 static int	move_concave(float dx, float dy, t_player *p, t_map *m)
 {
-	m->p[X] = (int)(p->x + dx) / SCALE;
+	m->p[X] = (int)(p->x + dx * 10) / SCALE;
 	m->p[Y] = (int)(p->y) / SCALE;
 	if (m->arr[m->p[Y] * m->size[X] + m->p[X]] == 1)
 		return (1);
 	m->p[X] = (int)(p->x) / SCALE;
-	m->p[Y] = (int)(p->y + dy) / SCALE;
+	m->p[Y] = (int)(p->y + dy * 10) / SCALE;
 	if (m->arr[m->p[Y] * m->size[X] + m->p[X]] == 1)
 		return (1);
 	return (0);

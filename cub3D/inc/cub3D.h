@@ -19,7 +19,7 @@
 # include <signal.h>
 # include <stdbool.h>
 # include <math.h>
-# include <limits.h>  //draw_line, no estic segura que calgui finalment
+# include <limits.h>
 # include "../lib/libft_gnl/inc/libft.h"
 # include "../lib/mlx/mlx.h"
 
@@ -207,7 +207,7 @@ float	angle_correction(float ang);
 void	mini_map(t_data *info);
 int		render(t_data *info);
 int		get_bigmap2d(t_data *info);
-void	draw_line(int *scr, t_point *pts, int color, int thickness);
+void	draw_line(int *scr, t_point *pts, int color);//, int thickness);
 void	init_temp(t_data *info);
 void	new_scene(t_data *info);
 void	init_players(t_data *info);
