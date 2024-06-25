@@ -52,7 +52,7 @@ static float	*most_hangles(t_map *m, t_player *p, float ang, float *end)
 	return (rd);
 }
 
-static int	back_rd(float *end, float *rd, int i)
+int	back_rd(float *end, float *rd, int i)
 {
 	end[X] -= rd[X];
 	end[Y] -= rd[Y];
