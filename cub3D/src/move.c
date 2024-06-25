@@ -37,20 +37,30 @@
 // 	return (0);
 // }
 
+static int	move_concave(float dx, float dy, t_player *p, t_map *m)
+{
+	m->p[X] = (int)(p->x + dx) / SCALE;
+	m->p[Y] = (int)(p->y) / SCALE;
+	if (m->arr[m->p[Y] * m->size[X] + m->p[X]] == 1)
+		return (1);
+	m->p[X] = (int)(p->x) / SCALE;
+	m->p[Y] = (int)(p->y + dy) / SCALE;
+	if (m->arr[m->p[Y] * m->size[X] + m->p[X]] == 1)
+		return (1);
+	return (0);
+}
+
 static int	wall_found(float x, float y, t_map *m, t_player *p)
 {
 	int	mp;
 	int	mx;
 	int	my;
 (void)p;
-	mx = (int)(x) / m->cell_w;
-	my = (int)(y) / m->cell_w;
+	mx = (int)(x) / SCALE;
+	my = (int)(y) / SCALE;
 	mp = my * m->size[X] + mx;
 	if ((m->arr)[mp] == 1)
 		return (1);
-	// else if (move_concave(p, m))
-	// 	return (1);
-		
 		// mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 0
 	 	// && (int)(p->dir) % 45 == 0 && (int)(p->dir) % 90 != 0 // aquest no serveix perque sembla que no necessariament creua en aquests angles
 	 	// && (concave_corner(m, p->dir, mp) == 1)) //si nomes posem aquest es para on no toca
@@ -82,7 +92,8 @@ void	move_front(t_player *p, t_player *minipl, t_map *m)
 	if (!wall_found(p->x + p->dx, p->y + p->dy, m, p)
 		&& !wall_found(p->x + p->dx * 2, p->y + p->dy * 2, m, p)
 		&& !wall_found(p->x + p->dx * 3, p->y + p->dy * 3, m, p)
-		&& !wall_found(p->x + p->dx * 4, p->y + p->dy * 4, m, p))
+		&& !wall_found(p->x + p->dx * 4, p->y + p->dy * 4, m, p)
+		&& !move_concave(p->dx, p->dy, p, m))
 		// && m->arr[m->p[Y] * m->size[X] + plus_x_mp] == 0
 		// && m->arr[plus_y_mp * m->size[X] + m->p[X]] == 0)
 	{
@@ -127,7 +138,8 @@ void	move_back(t_player *p, t_player *minipl, t_map *m)
 	if (!wall_found(p->x - p->dx, p->y - p->dy, m, p)
 		&& !wall_found(p->x - p->dx * 2, p->y - p->dy * 2, m, p)
 		&& !wall_found(p->x - p->dx * 3, p->y - p->dy * 3, m, p)
-		&& !wall_found(p->x - p->dx * 4, p->y - p->dy * 4, m, p))
+		&& !wall_found(p->x - p->dx * 4, p->y - p->dy * 4, m, p)
+		&& !move_concave((p->dx * -1), (p->dy * -1), p, m))
 	{
 		p->x -= p->dx * SPEED;
 		p->y -= p->dy * SPEED;
@@ -168,7 +180,8 @@ void	move_right(t_player *p, t_player *minipl, t_map *m)
 	if (!wall_found(p->x + new_dx, p->y + new_dy, m, p)
 		&& !wall_found(p->x + new_dx * 2, p->y + new_dy * 2, m, p)
 		&& !wall_found(p->x + new_dx * 3, p->y + new_dy * 3, m, p)
-		&& !wall_found(p->x + new_dx * 4, p->y + new_dy * 4, m, p))
+		&& !wall_found(p->x + new_dx * 4, p->y + new_dy * 4, m, p)
+		&& !move_concave(new_dx, new_dy, p, m))
 	{
 		p->x += new_dx * SPEED;
 		p->y += new_dy * SPEED;
@@ -189,7 +202,8 @@ void	move_left(t_player *p, t_player *minipl, t_map *m)
 	if (!wall_found(p->x - new_dx, p->y - new_dy, m, p)
 		&& !wall_found(p->x - new_dx * 2, p->y - new_dy * 2, m, p)
 		&& !wall_found(p->x - new_dx * 3, p->y - new_dy * 3, m, p)
-		&& !wall_found(p->x - new_dx * 4, p->y - new_dy * 4, m, p))
+		&& !wall_found(p->x - new_dx * 4, p->y - new_dy * 4, m, p)
+		&& !move_concave((new_dx * -1), (new_dy * -1), p, m))
 	{
 		p->x -= new_dx * SPEED;
 		p->y -= new_dy * SPEED;
