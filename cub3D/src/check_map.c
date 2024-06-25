@@ -111,7 +111,7 @@ int	check_map_char(char **scene, t_data *info)
 						return (1);
 				}
 				else if (check_grid(scene[i], ++j, info))
-					return (1);	
+					return (1);
 			}
 			count++;
 		}

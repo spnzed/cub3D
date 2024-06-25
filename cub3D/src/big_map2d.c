@@ -17,9 +17,9 @@ static void	paint_gray(int *scr, t_map *map, int p)
 	int	i;
 
 	i = 0;
-	while (i < SCALE * map->size[Y]) //RESIZING
+	while (i < SCALE * map->size[Y])
 	{
-		while (p < SCALE * map->size[X] + (WIDTH * i)) //RESIZING
+		while (p < SCALE * map->size[X] + (WIDTH * i))
 		{
 			scr[p] = 0x808080;
 			++p;
@@ -28,21 +28,6 @@ static void	paint_gray(int *scr, t_map *map, int p)
 		p = WIDTH * i;
 	}
 }
-
-// static void	draw_player(int *scr, int xpl, int ypl, int color)
-// {
-// 	int	x;
-// 	int	y;
-
-// 	x = xpl - 3;
-// 	y = ypl - 3;
-// 	while (++y < ypl + 3)
-// 	{
-// 		while (++x < xpl + 3)
-// 			scr[y * WIDTH + x] = color;
-// 		x = xpl - 3;
-// 	}
-// }
 
 static void	ft_updvalues(int *i, int *p, int *k)
 {
@@ -60,17 +45,17 @@ static void	fill_bigmap(int *scr, t_map *map, int p, int i)
 	k = 0;
 	while (++j < map->size[Y])
 	{
-		while (i < SCALE * (j + 1)) // RESIZING
+		while (i < SCALE * (j + 1))
 		{
 			while (map->grid[j][k])
 			{
-				while (++p < (SCALE * (k + 1) + (WIDTH * i))) //RESIZING SCALE * info->map.size[X] >> en comptes de WIDTH ???
+				while (++p < (SCALE * (k + 1) + (WIDTH * i)))
 				{
-					if (map->grid[j][k] == '1' && i % (SCALE) != 0 //RESIZING
-						&& (p - WIDTH * i) % (SCALE) != 0) //RESIZING SCALE * info->map.size[X] >> en comptes de WIDTH ???
+					if (map->grid[j][k] == '1' && i % (SCALE) != 0
+						&& (p - WIDTH * i) % (SCALE) != 0)
 						scr[p] = 0xffffff;
-					else if (map->grid[j][k] != '1' && i % (SCALE) != 0 //RESIZING
-						&& (p - WIDTH * i) % (SCALE) != 0) //RESIZING SCALE * info->map.size[X] >> en comptes de WIDTH ???
+					else if (map->grid[j][k] != '1' && i % (SCALE) != 0
+						&& (p - WIDTH * i) % (SCALE) != 0)
 						scr[p] = 0x000000;
 				}
 				k++;
@@ -82,35 +67,7 @@ static void	fill_bigmap(int *scr, t_map *map, int p, int i)
 
 int	get_bigmap2d(t_data *info)
 {
-	// t_point *pts;
-	
-	// pts = ft_calloc(sizeof(pts), 2);
-	// if (!pts)
-	// {
-	// 	ft_err("Error: Malloc\n");
-	// 	return (1);
-	// }
-	// pts[0].x = (int)(info->player.x);
-	// pts[0].y = (int)(info->player.y);
-	// pts[1].x = (int)(info->player.x + info->player.dx * 15);
-	// pts[1].y = (int)(info->player.y + info->player.dy * 15);
-	// info->map2d = ft_calloc(sizeof(int), WIDTH * HEIGHT); //SCALE * info->map.size[X] * SCALE * info->map.size[Y]);
-	// if (!info->map2d)
-	// {
-	// 	ft_err("Error: Malloc\n");
-	// 	return (1);
-	// }
-//	col_w = SCALE / 8 * 6;
-	// mp_xp = 0;
-	// mp_yp = 0;
-	// p = mp_yp * WIDTH + mp_xp;
-	//fill_bigmap(info->map2d, &info->map, -1, 0);
-	//printf("hola\n");
 	paint_gray(info->mlx->img.img_adr, &info->map, 0);
 	fill_bigmap(info->mlx->img.img_adr, &info->map, -1, 0);
-	//fill_bigmap(info->mlx->img.img_adr, &info->map, p, 0);
-	// draw_player(info->mlx->img.img_adr, info->player.x,
-	//  	info->player.y, 0x00FFFF);
-	//draw_line(info->mlx->img.img_adr, pts, 0x00FFFF, 1);
 	return (0);
 }

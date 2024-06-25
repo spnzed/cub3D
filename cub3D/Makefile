@@ -20,7 +20,7 @@ NAME			=		cub3d
 
 # --- Compiler flags --------------------------------------------------------- #
 
-CFLAGS			=		-MMD -Wall -Wextra -Werror -g #-fsanitize='leak'
+CFLAGS			=		-MMD -Wall -Wextra -Werror -g -fsanitize='leak'
 LIBMLX_FLAGS	=		-lmlx -lX11 -lXext -lm -lbsd
 
 # --- Directories ------------------------------------------------------------ #
@@ -41,12 +41,12 @@ LIB_INCLUDE		=		-L $(LIBFT_DIR) -lft -L $(LIBMLX_DIR) $(LIBMLX_FLAGS)
 
 OBJ_FILES 		= 		$(SRC_FILES:.c=.o)
 DEP_FILES 		= 		$(SRC_FILES:.c=.d)
-SRC_FILES	=	arguments.c			big_map2d.c			check_map.c			check_parameters.c 	\
-				create_image.c		draw_line.c			errors.c			get_color.c			\
-				get_file.c			h_linescross.c		handle_map.c		loop_functions.c	\
-				main.c				map_to_file.c 		minimap.c			move_arrows.c		\
-				move.c				orientation.c		put_images.c		ray_casting.c		\
-				render.c 			utils.c				utils2.c			wall.c	
+SRC_FILES	=	arguments.c			check_map.c			check_parameters.c 	create_image.c		\
+				draw_line.c			errors.c			get_color.c			get_file.c			\
+				h_linescross.c		handle_map.c		loop_functions.c	main.c				\
+				map_to_file.c 		minimap.c			move_arrows.c		move.c				\
+				orientation.c		put_images.c		ray_casting.c		render.c 			\
+				utils.c				utils2.c			wall.c	
 
 # --- Files full paths ------------------------------------------------------- #
 

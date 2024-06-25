@@ -53,7 +53,7 @@ static void	print_miniray(int *scr, t_ray *r, t_player *minipl)
 
 void	mini_map(t_data *info)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	fill_map(info->mlx->img.img_adr, info);

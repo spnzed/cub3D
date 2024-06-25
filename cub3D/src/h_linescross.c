@@ -32,16 +32,16 @@ static float	*most_hangles(t_map *m, t_player *p, float ang, float *end)
 	atan = -1 / tan(deg_to_rad(ang));
 	if (ang > 0 && ang < 180)
 	{
-		end[Y] = (((int)(p->y) / m->cell_w) * m->cell_w) - 0.0001 * m->size[X] / 11;
+		end[Y] = (((int)(p->y) / SCALE) * SCALE) - 0.0001 * m->size[X] / 11;
 		end[X] = (p->y - end[Y]) * -atan + p->x;
-		rd[Y] = -(m->cell_w);
+		rd[Y] = -(SCALE);
 		rd[X] = rd[Y] * atan;
 	}
 	else if (ang > 180 && ang < 360)
 	{
-		end[Y] = (((int)(p->y) / m->cell_w) * m->cell_w) + m->cell_w;
+		end[Y] = (((int)(p->y) / SCALE) * SCALE) + SCALE;
 		end[X] = (p->y - end[Y]) * -atan + p->x;
-		rd[Y] = m->cell_w;
+		rd[Y] = SCALE;
 		rd[X] = rd[Y] * atan;
 	}
 	else
@@ -59,21 +59,7 @@ static int	back_rd(float *end, float *rd, int i)
 	return (i);
 }
 
-// int	concave_corner(t_map *m, float a, int mp)
-// {
-// 	if (((int)a == 45 && (m->arr)[mp - 1] == 1
-// 		&& (m->arr)[mp + m->size[X]] == 1)
-// 		|| ((int)a == 135 && (m->arr)[mp + 1] == 1
-// 		&& (m->arr)[mp + m->size[X]] == 1)
-// 		|| ((int)a == 225 && (m->arr)[mp + 1] == 1
-// 		&& (m->arr)[mp - m->size[X]] == 1)
-// 		|| ((int)a == 315 && (m->arr)[mp - 1] == 1
-// 		&& (m->arr)[mp - m->size[X]] == 1))
-// 		return (1);
-// 	return (0);
-// }
-
-int	concave_corner(t_map *m, float a, int mp)
+static int	concave_corner(t_map *m, float a, int mp)
 {
 	if (((int)a >= 0 && (int)a < 90 && (m->arr)[mp - 1] == 1
 		&& (m->arr)[mp + m->size[X]] == 1)
@@ -95,19 +81,18 @@ int	horiz_maplines(t_map *m, t_player *p, float a, float *end)
 
 	rd = most_hangles(m, p, a, end);
 	dof = -1;
-	if (a == 0 || a == 180 || end[X] < 0 || end[X] > m->cell_w * m->size[X])
+	if (a == 0 || a == 180 || end[X] < 0 || end[X] > SCALE * m->size[X])
 		dof = m->size[Y];
 	while (++dof < m->size[Y])
 	{
-		mp = (int)(end[Y]) / m->cell_w * m->size[X]
-			+ (int)(end[X]) / m->cell_w;
+		mp = (int)(end[Y]) / SCALE * m->size[X]
+			+ (int)(end[X]) / SCALE;
 		if (end[Y] < 0 || end[X] < 0
 			|| (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 1))
 			break ;
 		else
 			upd_end(end, rd);
 		if (mp < m->size[X] * m->size[Y] && (m->arr)[mp] == 0
-		//	&& (int)a % 45 == 0 && (int)a % 90 != 0
 			&& (concave_corner(m, a, mp) == 1))
 			dof = back_rd(end, rd, m->size[Y]);
 	}

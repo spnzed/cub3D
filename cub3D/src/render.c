@@ -41,7 +41,7 @@ static void	paint_ceil_floor(int *p, int floor, int ceiling)
 	}
 }
 
-void	handle_key(t_data *info)
+static void	handle_key(t_data *info)
 {
 	if (!info->mlx->mlx)
 	{
@@ -62,9 +62,8 @@ void	handle_key(t_data *info)
 		move_r_arrow(info);
 }
 
-void	new_scene(t_data *info)
+static void	new_scene(t_data *info)
 {
-	//get_bigmap2d(info);
 	cast_rays(info);
 	draw_walls(info);
 	if ((info->map.size[X] * 8 < WIDTH / 4)
@@ -80,7 +79,6 @@ int	render(t_data *info)
 	new_scene(info);
 	mlx_put_image_to_window(info->mlx->mlx,
 		info->mlx->win, info->mlx->img.img, 0, 0);
-	//free(info->map2d);
 	free(info->ray);
 	return (0);
 }

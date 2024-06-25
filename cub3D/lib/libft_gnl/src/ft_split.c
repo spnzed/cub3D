@@ -66,9 +66,9 @@ static char	**free_all(char	**res, int n)
 
 char	**ft_split(char const *s, char c)
 {
-	int	str_count;
+	int		str_count;
 	char	**res;
-	int	n;
+	int		n;
 	char	*p;
 
 	p = 0;

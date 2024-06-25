@@ -31,7 +31,6 @@ static void	put_lines(char *str, char *file_line)
 {
 	int	i;
 	int	j;
-//	static int c = 0;
 
 	i = 0;
 	j = 0;
@@ -50,7 +49,6 @@ static void	put_lines(char *str, char *file_line)
 		j++;
 		i++;
 	}
-	//c++;
 }
 
 static void	get_grid(char **grid, char **file, int size[2], int grid_p)
@@ -86,6 +84,5 @@ char	**map_to_file(t_data *info, t_map *map, char **file)
 		ft_err("Error: Malloc\n");
 	grid[map->size[Y]] = NULL;
 	get_grid(grid, file, map->size, map->grid_pos);
-	info->map.cell_w = SCALE; //RESIZING
 	return (grid);
 }

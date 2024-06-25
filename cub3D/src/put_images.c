@@ -16,20 +16,14 @@ void	put_position(t_data *info)
 {
 	int		col_w;
 
-	col_w = SCALE / 4; //amplada cel.la/columna minimap
-	info->player.x = info->map.spawn[X] * SCALE + SCALE / 2; //RESIZING SCALE / 2;
-	info->player.y = info->map.spawn[Y] * SCALE + SCALE / 2; //RESIZING SCALE / 2;
+	col_w = SCALE / 4;
+	info->player.x = info->map.spawn[X] * SCALE + SCALE / 2;
+	info->player.y = info->map.spawn[Y] * SCALE + SCALE / 2;
 	info->map.map_size = info->map.size[X] * info->map.size[Y];
 	info->player.dx = cos(deg_to_rad(info->player.dir));
 	info->player.dy = -sin(deg_to_rad(info->player.dir));
-	info->player.o[X] = 20;
-	info->player.o[Y] = 20;
 	info->minipl.x = 8 + info->map.spawn[X] * col_w + col_w / 2;
 	info->minipl.y = 8 + info->map.spawn[Y] * col_w + col_w / 2;
-	info->map2d = ft_calloc(sizeof(int),
-			SCALE * info->map.size[X] * SCALE * info->map.size[Y]);
-	if (!info->map2d)
-		ft_err("Error: Malloc\n");
 }
 
 static void	check_img_scale(t_img *img)

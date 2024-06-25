@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-void	init_keys(t_mlx *mlx)
+static void	init_keys(t_mlx *mlx)
 {
 	mlx->keys = ft_calloc(sizeof(t_keys), 1);
 	if (!mlx->keys)
@@ -52,9 +52,6 @@ static int	init_window(t_data *info)
 	init_keys(info->mlx);
 	put_images(info);
 	put_position(info);
-	// int i = -1;
-	// while (++i < 602)
-	// 	printf("map pos in arr (%i): %i\n", i, info->map.arr[i]);
 	return (0);
 }
 

@@ -117,15 +117,10 @@ typedef struct s_map
 	char	**grid;
 	int		grid_pos;
 	int		map_size;
-	int		scale; //tpoc no te sentit si l'unic que fa es igualar-la al define SCALE, per això posem SCALE directament on calgui i llestos]
 	int		size[2];
 	int		spawn[2];
-	int		cell_w;
 	int		*arr;
 	int		p[2];
-//	int		player_dir; //en principi no cal tenir-ho 2 vegades - JA ES A PARAMETERS
-//	int		floor;  //en principi no cal tenir-ho 2 vegades - JA ES A PARAMETERS
-//	int		ceiling; //en principi no cal tenir-ho 2 vegades - JA ES A PARAMETERS
 }			t_map;
 
 typedef struct s_parameters
@@ -142,24 +137,17 @@ typedef struct s_player
 {
 	float	x;
 	float	y;
-	float	dir; //era p_dir pero crec que no te sentit, no cal la p i nomes alalrga els caracters que calen
+	float	dir;
 	float	dx;
 	float	dy;
-	float	o[2]; //aixo potser finalment no ho faig servir
-	float	n[2]; // AIXO Q ES???
-	//int		w;//temp per fer quadradet del jugador en 2D
-	//int		h;//temp per fer quadradet del jugador en 2D
-	//float	dx; // x controlar dif. desplaçament segons angle, en cada una de les 2 dimensions
-	//float	dy; // x controlar dif. desplaçament segons angle, en cada una de les 2 dimensions
-	//int		len; //temp per projectar rajos i veure com rota la barra en 2D
 }	t_player;
 
 typedef struct s_ray
 {
-	char	wall_or; // N, S, E, W
+	char	wall_or;
 	float	len;
-	int		map_p; //crec que aixo ja no ho fem servir... COMPROVAR AL FINAL I ESBORRAR SI CAL ABANS DE TANCAR EL PROJECTE
-	float	end[2]; //posició (x, y) de l'extrem final del raig (oposat a la posició del jugador)
+	int		map_p;
+	float	end[2];
 	float	ang;
 	int		text_p;
 }	t_ray;
@@ -173,11 +161,6 @@ typedef struct s_data
 	t_map			map;
 	t_player		player;
 	t_player		minipl;
-	int				dir;
-	int				dir_cor[2];
-	int				p_plane_x;
-	int				p_plane_y;
-	int				*map2d; //creat erosas x emmagatzemar map2d i raycasting en 2d que no es projecten en pantalla
 }	t_data;
 
 //		Program
@@ -206,26 +189,17 @@ float	deg_to_rad(float d);
 float	angle_correction(float ang);
 void	mini_map(t_data *info);
 int		render(t_data *info);
-int		get_bigmap2d(t_data *info);
-void	draw_line(int *scr, t_point *pts, int color);//, int thickness);
+void	draw_line(int *scr, t_point *pts, int color);
 void	init_temp(t_data *info);
-void	new_scene(t_data *info);
-void	init_players(t_data *info);
 void	create_image(t_data *info);
 void	init_texture(t_data *info);
-void	ray_casting(t_data *info);
-void	other_angles(int *scr, t_point *pts, float ang);
 void	cast_rays(t_data *info);
-int		init_window2(t_data *info);
-void	init_loop2(t_data *info);
-void	init_keys(t_mlx *mlx);
-void	handle_key(t_data *info);
 void	ray_end_or(t_map *map, t_player *pl, float ang, t_ray *ray);
 void	draw_walls(t_data *info);
 int		horiz_maplines(t_map *m, t_player *p, float ang, float *end);
 void	h_shorter(float *vend, float *hend, t_ray *ray, int h_mpos);
 void	upd_end(float *end, float *rd);
-int		concave_corner(t_map *m, float a, int mp);
+int		move_concave(float dx, float dy, t_player *p, t_map *m);
 
 //		Utils
 int		ft_count_lines(int fd);

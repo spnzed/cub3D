@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-float degToRad(int a) { return a*M_PI/180.0;}
+float degToRad(int a) { return a * M_PI / 180.0;}
 
 float	remove_fish(int player_dir, int ray_ang, int ray_len)
 {

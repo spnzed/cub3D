@@ -14,13 +14,11 @@
 
 void	add_line_item(int *buff, int x, int y, int color)
 {
-    if (y - x >= INT_MIN / WIDTH && y - x <= INT_MAX / WIDTH)
-    {
-        if (((y * WIDTH) + x) < (HEIGHT * WIDTH) && (y * WIDTH + x) >= 0)
-		{
+	if (y - x >= INT_MIN / WIDTH && y - x <= INT_MAX / WIDTH)
+	{
+		if (((y * WIDTH) + x) < (HEIGHT * WIDTH) && (y * WIDTH + x) >= 0)
 			buff[(y * WIDTH) + x] = color;
-		}
-    }
+	}
 }
 
 void	fill_lo(int *buffer, t_point pt0, t_point pt1, int color)
