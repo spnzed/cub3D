@@ -60,58 +60,60 @@ static int	wall_found(float x, float y, t_map *m, t_player *p)
 
 void	move_front(t_player *p, t_player *minipl, t_map *m)
 {
-	int plus_x_mp;
-	int plus_y_mp;
+	// int plus_x_mp;
+	// int plus_y_mp;
 
-	if (p->dx < 0)
-		p->o[X] = -10; // o = offset possible desplaçament
-	if (p->dy < 0)
-		p->o[Y] = -10;
-	m->p[X] = p->x / SCALE;
-	m->p[Y] = p->y / SCALE;
-	plus_x_mp = (p->x + p->o[X]) / SCALE;
-	plus_y_mp = (p->y + p->o[Y]) / SCALE;
-	if (m->arr[m->p[Y] * m->size[X] + plus_x_mp] == 0
-		&& m->arr[plus_y_mp * m->size[X] + m->p[X]] == 0)
-	{
-		p->x += p->dx * 0.5 * SPEED;
-		p->y += p->dy * 0.5 * SPEED;
-		minipl->x += p->dx * 0.5 / 4 * SPEED;
-		minipl->y += p->dy * 0.5 / 4 * SPEED;
-	}
-	// if (!wall_found(p->x + p->dx, p->y + p->dy, m, p)
-	// 	&& !wall_found(p->x + p->dx * 2, p->y + p->dy * 2, m, p)
-	// 	&& !wall_found(p->x + p->dx * 3, p->y + p->dy * 3, m, p)
-	// 	&& !wall_found(p->x + p->dx * 4, p->y + p->dy * 4, m, p))
+	// if (p->dx < 0)
+	// 	p->o[X] = -20; // o = offset possible desplaçament
+	// if (p->dy < 0)
+	// 	p->o[Y] = -20;
+	// m->p[X] = p->x / SCALE;
+	// m->p[Y] = p->y / SCALE;
+	// plus_x_mp = (p->x + p->o[X]) / SCALE;
+	// plus_y_mp = (p->y + p->o[Y]) / SCALE;
+	// if (m->arr[m->p[Y] * m->size[X] + plus_x_mp] == 0
+	// 	&& m->arr[plus_y_mp * m->size[X] + m->p[X]] == 0)
 	// {
 	// 	p->x += p->dx * SPEED;
-	// 	p->y += p->dy * SPEED;
 	// 	minipl->x += p->dx / 4 * SPEED;
+	// 	p->y += p->dy * SPEED;
 	// 	minipl->y += p->dy / 4 * SPEED;
 	// }
+	if (!wall_found(p->x + p->dx, p->y + p->dy, m, p)
+		&& !wall_found(p->x + p->dx * 2, p->y + p->dy * 2, m, p)
+		&& !wall_found(p->x + p->dx * 3, p->y + p->dy * 3, m, p)
+		&& !wall_found(p->x + p->dx * 4, p->y + p->dy * 4, m, p))
+		// && m->arr[m->p[Y] * m->size[X] + plus_x_mp] == 0
+		// && m->arr[plus_y_mp * m->size[X] + m->p[X]] == 0)
+	{
+		p->x += p->dx * SPEED;
+		p->y += p->dy * SPEED;
+		minipl->x += p->dx / 4 * SPEED;
+		minipl->y += p->dy / 4 * SPEED;
+	}
 }
 
 void	move_back(t_player *p, t_player *minipl, t_map *m)
 {
-	int minus_x_mp;
-	int minus_y_mp;
+	// int minus_x_mp;
+	// int minus_y_mp;
 
-	if (p->dx < 0)
-		p->o[X] = -10; // o = offset possible desplaçament
-	if (p->dy < 0)
-		p->o[Y] = -10;
-	m->p[X] = p->x / SCALE;
-	m->p[Y] = p->y / SCALE;
-	minus_x_mp = (p->x - p->o[X]) / SCALE;
-	minus_y_mp = (p->y - p->o[Y]) / SCALE;
-	if (m->arr[m->p[Y] * m->size[X] + minus_x_mp] == 0
-		&& m->arr[minus_y_mp * m->size[X] + m->p[X]] == 0)
-	{
-		p->x -= p->dx * 0.5 * SPEED;
-		p->y -= p->dy * 0.5 * SPEED;
-		minipl->x -= p->dx * 0.5 / 4 * SPEED;
-		minipl->y -= p->dy * 0.5 / 4 * SPEED;
-	}
+	// if (p->dx < 0)
+	// 	p->o[X] = -20; // o = offset possible desplaçament
+	// if (p->dy < 0)
+	// 	p->o[Y] = -20;
+	// m->p[X] = p->x / SCALE;
+	// m->p[Y] = p->y / SCALE;
+	// minus_x_mp = (p->x - p->o[X]) / SCALE;
+	// minus_y_mp = (p->y - p->o[Y]) / SCALE;
+	// if (m->arr[m->p[Y] * m->size[X] + minus_x_mp] == 0
+	// 	&& m->arr[minus_y_mp * m->size[X] + m->p[X]] == 0)
+	// {
+	// 	p->x -= p->dx * SPEED;
+	// 	minipl->x -= p->dx / 4 * SPEED;
+	// 	p->y -= p->dy * SPEED;
+	// 	minipl->y -= p->dy / 4 * SPEED;
+	// }
 	// if (m->arr[m->p[Y] * m->size[X] + minus_x_mp] == 0)
 	// {
 	// 	p->x -= p->dx * 0.5 * SPEED;
@@ -122,16 +124,16 @@ void	move_back(t_player *p, t_player *minipl, t_map *m)
 	// 	p->y -= p->dy * 0.5 * SPEED;
 	// 	minipl->y -= p->dy * 0.5 / 4 * SPEED;
 	// }
-	// if (!wall_found(p->x - p->dx, p->y - p->dy, m, p)
-	// 	&& !wall_found(p->x - p->dx * 2, p->y - p->dy * 2, m, p)
-	// 	&& !wall_found(p->x - p->dx * 3, p->y - p->dy * 3, m, p)
-	// 	&& !wall_found(p->x - p->dx * 4, p->y - p->dy * 4, m, p))
-	// {
-	// 	p->x -= p->dx * SPEED;
-	// 	p->y -= p->dy * SPEED;
-	// 	minipl->x -= p->dx / 4 * SPEED;
-	// 	minipl->y -= p->dy / 4 * SPEED;
-	// }
+	if (!wall_found(p->x - p->dx, p->y - p->dy, m, p)
+		&& !wall_found(p->x - p->dx * 2, p->y - p->dy * 2, m, p)
+		&& !wall_found(p->x - p->dx * 3, p->y - p->dy * 3, m, p)
+		&& !wall_found(p->x - p->dx * 4, p->y - p->dy * 4, m, p))
+	{
+		p->x -= p->dx * SPEED;
+		p->y -= p->dy * SPEED;
+		minipl->x -= p->dx / 4 * SPEED;
+		minipl->y -= p->dy / 4 * SPEED;
+	}
 }
 
 void	move_right(t_player *p, t_player *minipl, t_map *m)
@@ -139,40 +141,40 @@ void	move_right(t_player *p, t_player *minipl, t_map *m)
 	float	new_dir;
 	float	new_dx;
 	float	new_dy;
-	int 	plus_x_mp;
-	int 	plus_y_mp;
+	// int 	plus_x_mp;
+	// int 	plus_y_mp;
 
 	new_dir = angle_correction(90 - p->dir);
 	new_dx = cos(deg_to_rad(new_dir));
 	new_dy = sin(deg_to_rad(new_dir));
-	if (new_dx < 0)
-		p->o[X] = -10; // o = offset possible desplaçament
-	if (new_dy < 0)
-		p->o[Y] = -10;
-	m->p[X] = p->x / SCALE;
-	m->p[Y] = p->y / SCALE;
-	plus_x_mp = (p->x + p->o[X]) / SCALE;
-	//minus_x_mp = (p->x - p->o[X]) / SCALE;
-	plus_y_mp = (p->y + p->o[Y]) / SCALE;
-	//minus_y_mp = (p->y - p->o[Y]) / SCALE;
-	if (m->arr[m->p[Y] * m->size[X] + plus_x_mp] == 0
-		&& m->arr[plus_y_mp * m->size[X] + m->p[X]] == 0)
-	{
-		p->x += p->dx * 0.5 * SPEED;
-		p->y += p->dy * 0.5 * SPEED;
-		minipl->x += p->dx * 0.5 / 4 * SPEED;
-		minipl->y += p->dy * 0.5 / 4 * SPEED;
-	}
-	// if (!wall_found(p->x + new_dx, p->y + new_dy, m, p)
-	// 	&& !wall_found(p->x + new_dx * 2, p->y + new_dy * 2, m, p)
-	// 	&& !wall_found(p->x + new_dx * 3, p->y + new_dy * 3, m, p)
-	// 	&& !wall_found(p->x + new_dx * 4, p->y + new_dy * 4, m, p))
+	// if (new_dx < 0)
+	// 	p->o[X] = -20; // o = offset possible desplaçament
+	// if (new_dy < 0)
+	// 	p->o[Y] = -20;
+	// m->p[X] = p->x / SCALE;
+	// m->p[Y] = p->y / SCALE;
+	// plus_x_mp = (p->x + p->o[X]) / SCALE;
+	// //minus_x_mp = (p->x - p->o[X]) / SCALE;
+	// plus_y_mp = (p->y + p->o[Y]) / SCALE;
+	// //minus_y_mp = (p->y - p->o[Y]) / SCALE;
+	// if (m->arr[m->p[Y] * m->size[X] + plus_x_mp] == 0
+	// 	&& m->arr[plus_y_mp * m->size[X] + m->p[X]] == 0)
 	// {
 	// 	p->x += new_dx * SPEED;
-	// 	p->y += new_dy * SPEED;
 	// 	minipl->x += new_dx / 4 * SPEED;
+	// 	p->y += new_dy * SPEED;
 	// 	minipl->y += new_dy / 4 * SPEED;
 	// }
+	if (!wall_found(p->x + new_dx, p->y + new_dy, m, p)
+		&& !wall_found(p->x + new_dx * 2, p->y + new_dy * 2, m, p)
+		&& !wall_found(p->x + new_dx * 3, p->y + new_dy * 3, m, p)
+		&& !wall_found(p->x + new_dx * 4, p->y + new_dy * 4, m, p))
+	{
+		p->x += new_dx * SPEED;
+		p->y += new_dy * SPEED;
+		minipl->x += new_dx / 4 * SPEED;
+		minipl->y += new_dy / 4 * SPEED;
+	}
 }
 
 void	move_left(t_player *p, t_player *minipl, t_map *m)
