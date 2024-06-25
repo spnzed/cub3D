@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/06/21 23:19:36 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/06/26 00:18:00 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,13 @@ typedef struct s_img
 	int		height;
 	int		width;
 }	t_img;
+
+typedef struct s_dtext
+{
+	int		tex_x;
+	float	tex_y;
+	int		tex_pixel;
+}	t_dtext;
 
 typedef struct s_mlx
 {
