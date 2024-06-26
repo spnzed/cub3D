@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 14:04:46 by aaespino          #+#    #+#             */
-/*   Updated: 2024/06/18 20:13:05 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/06/21 22:58:12 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ static int	check_color_element(char *line, int color)
 		ret = ft_err("Error: Parameters: Incorrect Format\n");
 	else
 		ret = gen_color(ft_atoi(red), ft_atoi(green), ft_atoi(blue));
+	free(red);
+	free(green);
+	free(blue);
 	return (ret);
 }
 

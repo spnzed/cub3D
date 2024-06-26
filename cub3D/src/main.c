@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 20:53:28 by erosas-c          #+#    #+#             */
-/*   Updated: 2024/05/14 18:54:34 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/06/21 23:51:09 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ static int	init_window(t_data *info)
 
 static void	init_loop(t_data *info)
 {
-	mlx_hook(info->mlx->win, 2, 1L << 0, &ft_press, info->mlx);
+	mlx_hook(info->mlx->win, 2, 1L << 0, &ft_press, info);
 	mlx_hook(info->mlx->win, 3, 1L << 1, &ft_release, info->mlx);
-	mlx_hook(info->mlx->win, 17, 0, &ft_cross, info->mlx);
+	mlx_hook(info->mlx->win, 17, 0, &ft_cross, info);
 	mlx_loop_hook(info->mlx->mlx, &render, info);
 	mlx_loop(info->mlx->mlx);
 }

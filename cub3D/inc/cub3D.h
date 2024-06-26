@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/06/17 21:16:23 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/06/26 00:18:00 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,13 @@ typedef struct s_img
 	int		width;
 }	t_img;
 
+typedef struct s_dtext
+{
+	int		tex_x;
+	float	tex_y;
+	int		tex_pixel;
+}	t_dtext;
+
 typedef struct s_mlx
 {
 	void	*mlx;
@@ -178,9 +185,9 @@ char	**map_to_file(t_data *info, t_map *map, char **file);
 void	put_images(t_data *info);
 void	put_position(t_data *info);
 int		rgb_check(char *channel);
-int		ft_press(int keycode, t_mlx *mlx);
+int		ft_press(int keycode, t_data *info);
 int		ft_release(int keycode, t_mlx *mlx);
-int		ft_cross(t_mlx *mlx);
+int		ft_cross(t_data *info, t_mlx *mlx);
 void	move_front(t_player *p, t_player *minipl, t_map *m);
 void	move_back(t_player *p, t_player *minipl, t_map *m);
 void	move_left(t_player *p, t_player *minipl, t_map *m);

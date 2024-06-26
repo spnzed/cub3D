@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:28:53 by aaespino          #+#    #+#             */
-/*   Updated: 2024/05/14 17:47:26 by erosas-c         ###   ########.fr       */
+/*   Updated: 2024/06/21 22:28:44 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	ft_count_lines(int fd)
 		free(buff);
 		buff = get_next_line(fd);
 	}
+	free(buff);
 	return (count);
 }
 
