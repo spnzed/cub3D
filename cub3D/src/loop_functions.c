@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:43:39 by aaespino          #+#    #+#             */
-/*   Updated: 2024/06/21 23:50:32 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/06/27 00:04:45 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	free_grid(char **grid, int size[2])
 		free(grid[i]);
 		i++;
 	}
+	free(grid[i]);
 	free(grid);
 }
 

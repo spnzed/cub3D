@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:15:19 by aaespino          #+#    #+#             */
-/*   Updated: 2024/06/21 23:52:30 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/06/26 23:57:34 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	get_width(char **file)
 	while (file[++i])
 	{
 		if (ft_strlentab(file[i]) > width)
-			width = ft_strlen(file[i]);
+			width = ft_strlentab(file[i]);
 	}
 	return (width);
 }
@@ -82,7 +82,6 @@ char	**map_to_file(t_data *info, t_map *map, char **file)
 			map->size[X]);
 	if (!grid)
 		ft_err("Error: Malloc\n");
-	grid[map->size[Y]] = NULL;
 	get_grid(grid, file, map->size, map->grid_pos);
 	return (grid);
 }
