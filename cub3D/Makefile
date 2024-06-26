@@ -3,87 +3,95 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+         #
+#    By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/06/17 19:41:29 by erosas-c          #+#    #+#              #
-#    Updated: 2024/06/17 20:23:51 by erosas-c         ###   ########.fr        #
+#    Created: 2023/08/04 17:25:20 by erosas-c          #+#    #+#              #
+#    Updated: 2024/06/13 12:58:35 by aaronespino      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# --- Variables -------------------------------------------------------------- #
+NAME		=	cub3D
+HEADER		=	inc/
 
-CC				=		gcc
-HEADER_NAME		=		cub3d.h
-LIBMLX_NAME		=		libmlx.a
-LIBFT_NAME		=		libft.a
-NAME			=		cub3d
+SRC_DIR		=	src/
 
-# --- Compiler flags --------------------------------------------------------- #
+INC_DIR		=	inc
+SRC_FILES	=	arguments.c			check_map.c			check_parameters.c 	create_image.c	\
+				draw_line.c			errors.c			get_color.c			get_file.c		\
+				h_linescross.c		handle_map.c		loop_functions.c	main.c			\
+				map_to_file.c 		minimap.c			move_arrows.c		move.c			\
+				orientation.c		put_images.c		ray_casting.c		render.c		\
+				utils.c				utils2.c			wall.c								\
+					
+OBJ_DIR		=	obj/
+OBJ_FILES	=	$(SRC_FILES:.c=.o)
+OBJS		=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
 
-CFLAGS			=		-MMD -Wall -Wextra -Werror -g #-fsanitize='leak'
-LIBMLX_FLAGS	=		-lmlx -lX11 -lXext -lm -lbsd
+DEP_FILES	=	$(SRC_FILES:.c=.d)
+DEPS		=	$(addprefix $(OBJ_DIR), $(DEP_FILES))
 
-# --- Directories ------------------------------------------------------------ #
+LIBFT_DIR	=	lib/libft_gnl
+LIBFT		=	$(LIBFT_DIR)/libft.a
 
-LIBMLX_DIR		=		lib/minilibx-linux/
-LIBFT_DIR		=		lib/libft_gnl/
-INC_DIR			=		inc/
-SRC_DIR			=		src/
-OBJ_DIR			=		obj/
-DEP_DIR			= 		$(OBJ_DIR)
+MLX_DIR		=	lib/mlx
+MLX 		= 	$(MLX_DIR)/libmlx.a
 
-# --- Includes --------------------------------------------------------------- #
+INCLUDE		=	-I $(INC_DIR) -I $(LIBFT_DIR)/inc -I $(MLX_DIR)
+FRAMES 		= 	-framework OpenGL -framework AppKit 
 
-INCLUDES		=		-I $(INC_DIR) -I $(LIBFT_DIR) -I $(LIBMLX_DIR)
-LIB_INCLUDE		=		-L $(LIBFT_DIR) -lft -L $(LIBMLX_DIR) $(LIBMLX_FLAGS)
+CC			=	gcc
+CFLAGS		=	-Wall -Wextra -Werror -MMD #-fsanitize='address' -g
+CLEAN_CAR	=	\033[2K\r
 
-# --- Files ------------------------------------------------------------------ #
+RM			=	rm -rf
 
-OBJ_FILES 		= 		$(SRC_FILES:.c=.o)
-DEP_FILES 		= 		$(SRC_FILES:.c=.d)
-SRC_FILES	=	arguments.c			check_map.c			check_parameters.c 	create_image.c		\
-				draw_line.c			errors.c			get_color.c			get_file.c			\
-				h_linescross.c		handle_map.c		loop_functions.c	main.c				\
-				map_to_file.c 		minimap.c			move_arrows.c		move.c				\
-				orientation.c		put_images.c		ray_casting.c		render.c 			\
-				utils.c				utils2.c			wall.c	
+######################################################################
 
-# --- Files full paths ------------------------------------------------------- #
+all: make_libs $(NAME)
 
-LIBFT_PATH		= 		$(addprefix $(LIBFT_DIR), $(LIBFT_NAME))
-LIBMLX_PATH		= 		$(addprefix $(LIBMLX_DIR), $(LIBMLX_NAME))
-OBJ_PATH		=		$(addprefix $(OBJ_DIR), $(OBJ_FILES))
-DEP_PATH		=		$(addprefix $(DEP_DIR), $(DEP_FILES))
+make_libs:
+	@make -C lib/libft_gnl/
+	@$(MAKE) -C lib/mlx 2> ERRORS
+	@rm ERRORS
 
-# --- Compilation rules ------------------------------------------------------ #
+$(NAME): $(OBJS) $(LIBFT) $(MLX)
+	@$(CC) $(CFLAGS) -L $(LIBFT_DIR) -lft -L $(MLX_DIR) -lmlx $(FRAMES) $(OBJS) -o $@
+	@sleep 0.2
+	@echo "$(CLEAN_CAR)$(OK_COLOR)Cub3D compiled!$(NO_COLOR)"
+	@echo "Use $(BLUE_COLOR)./cub3D$(NO_COLOR) to launch the program"
 
-all:
-		mkdir -p $(OBJ_DIR)
-		$(MAKE) -C $(LIBFT_DIR)
-		$(MAKE) -C $(LIBMLX_DIR)
-		$(MAKE) $(NAME)
+$(OBJS): | $(OBJ_DIR)
 
-$(NAME): $(OBJ_PATH) $(LIBMLX_PATH) Makefile
-	$(CC) $(CFLAGS)  $(INCLUDES) $(OBJ_PATH) -o $@ $(LIB_INCLUDE)
+$(OBJ_DIR):
+	@mkdir $@
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) $(INCLUDES) -MMD -c $< -o $@
+$(OBJ_DIR)%.o:	$(SRC_DIR)%.c
+	@$(CC) $(CFLAGS) $(INCLUDE) -g -c $< -o $@
+	@printf "$(CLEAN_CAR)$(OK_COLOR)[Compiling cub3D]$(BLUE_COLOR) : $(WARN_COLOR)$<$(NO_COLOR)\r"
 
--include $(DEP_PATH)
+clean:
+	@make -C lib/libft_gnl/ clean
+	@make -C lib/mlx/ clean
+	@$(RM) $(OBJ_DIR)
+	@echo "$(ERROR_COLOR)Dependencies and objects removed$(NO_COLOR)"
 
-# --- Cleaning rules --------------------------------------------------------- #
+fclean: clean
+	@make -C lib/libft_gnl/ fclean
+	@$(RM) $(NAME)
+	@echo "$(ERROR_COLOR)$(NAME) removed$(NO_COLOR)"
 
-clean:	
-			rm -f $(OBJ_PATH) $(DEP_PATH)
-			rm -rf $(OBJ_DIR)c
-			$(MAKE) -C $(LIBFT_DIR) clean
-			$(MAKE) -C $(LIBMLX_DIR) clean
+re: fclean all
 
-fclean:		clean
-			rm -f $(NAME)
-			$(MAKE) -C $(LIBFT_DIR) fclean
-			$(MAKE) -C $(LIBMLX_DIR) clean
+-include $(DEPS)
 
-re:			fclean all
+.PHONY: all libft clean fclean re
 
-.PHONY:		all clean fclean re
+NO_COLOR		=	\x1b[0m
+OK_COLOR		=	\x1b[32;01m
+ERROR_COLOR		=	\x1b[31;01m
+WARN_COLOR		=	\x1b[33;01m
+BLUE_COLOR		=	\x1b[34;01m
+
+OK_STRING		=	$(OK_COLOR)[OK]$(NO_COLOR)
+ERROR_STRING	=	$(ERROR_COLOR)[ERRORS]$(NO_COLOR)
+WARN_STRING		=	$(WARN_COLOR)[WARNINGS]$(NO_COLOR)
