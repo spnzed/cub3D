@@ -38,6 +38,8 @@ static void	fix_or(t_ray *r)
 			&& r[i].wall_or != r[i - 1].wall_or
 			&& r[i].wall_or != r[i + 1].wall_or)
 			r[i].wall_or = r[i - 1].wall_or;
+		if (r[i].len < 1.0)
+			r[i].len = 1.0;
 		i++;
 	}
 }
