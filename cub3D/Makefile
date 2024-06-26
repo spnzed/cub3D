@@ -40,7 +40,7 @@ INCLUDE		=	-I $(INC_DIR) -I $(LIBFT_DIR)/inc -I $(MLX_DIR)
 FRAMES 		= 	-framework OpenGL -framework AppKit 
 
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror -MMD #-fsanitize='address' -g
+CFLAGS		=	-Wall -Wextra -Werror -MMD -fsanitize='address' -g
 CLEAN_CAR	=	\033[2K\r
 
 RM			=	rm -rf
