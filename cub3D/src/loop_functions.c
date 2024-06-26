@@ -25,7 +25,6 @@ static void	free_grid(char **grid, int size[2])
 	free(grid);
 }
 
-
 static int	ft_esc(t_data *info, t_mlx *mlx)
 {
 	if (info->map.grid)

@@ -15,16 +15,17 @@
 int	rgb_check(char *rgb)
 {
 	char	*trim;
+	int		i;
 
+	i = 0;
 	if (!rgb)
 		return (1);
 	trim = ft_strtrim(rgb, " ");
-	int i = 0;
 	while (ft_isspace(trim[i]))
 		i++;
-	if (!ft_istype_iter(trim+i, ft_isdigit))
+	if (!ft_istype_iter(trim + i, ft_isdigit))
 		return (free(trim), 1);
-	if (!ft_isint(trim+i))
+	if (!ft_isint(trim + i))
 		return (free(trim), 1);
 	free(trim);
 	return (0);
