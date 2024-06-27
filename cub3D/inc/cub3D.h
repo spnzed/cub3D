@@ -60,20 +60,17 @@
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
 
-//Campus
-# define HEIGHT 1080
-# define WIDTH 1920
-//Ester
-// # define HEIGHT 810
-// # define WIDTH 1380
-//Aaron
-//# define HEIGHT 890
-//# define WIDTH 1470
+//Campus Mac
+// # define HEIGHT 1080
+// # define WIDTH 1920
+//Campus Linux
+# define HEIGHT 2025
+# define WIDTH 3600
 
 //Mac Speed
 // # define SPEED 2
 //Campus SPEED with Linux
-# define SPEED 4
+# define SPEED 8
 
 typedef struct s_point
 {
