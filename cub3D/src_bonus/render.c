@@ -66,6 +66,9 @@ static void	new_scene(t_data *info)
 {
 	cast_rays(info);
 	draw_walls(info);
+	if ((info->map.size[X] * 8 < WIDTH / 4)
+		&& (info->map.size[Y] * 8 < HEIGHT / 4))
+		mini_map(info);
 }
 
 int	render(t_data *info)
