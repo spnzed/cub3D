@@ -27,7 +27,7 @@ int	move_concave(float dx, float dy, t_player *p, t_map *m)
 
 void	move_r_arrow(t_data *info)
 {
-	info->player.dir -= 1 * SPEED / 4;
+	info->player.dir -= 1;
 	if (info->player.dir < 0)
 		info->player.dir += 360;
 	info->player.dx = cos(deg_to_rad(info->player.dir));
@@ -36,7 +36,7 @@ void	move_r_arrow(t_data *info)
 
 void	move_l_arrow(t_data *info)
 {
-	info->player.dir += 1 * SPEED / 4;
+	info->player.dir += 1;
 	if (info->player.dir > 360)
 		info->player.dir -= 360;
 	info->player.dx = cos(deg_to_rad(info->player.dir));

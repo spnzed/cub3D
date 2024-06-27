@@ -105,9 +105,9 @@ $(OBJ_DIR_BONUS)%.o: $(SRC_DIR_BONUS)%.c | $(OBJ_DIR_BONUS)
 
 clean:	
 			rm -f $(OBJ_PATH) $(DEP_PATH)
-			rm -rf $(OBJ_DIR)c
+			rm -rf $(OBJ_DIR)
 			rm -f $(OBJ_PATH_BONUS) $(DEP_PATH_BONUS)
-			rm -rf $(OBJ_DIR_BONUS)c
+			rm -rf $(OBJ_DIR_BONUS)
 			$(MAKE) -C $(LIBFT_DIR) clean
 			$(MAKE) -C $(LIBMLX_DIR) clean
 
