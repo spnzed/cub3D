@@ -36,7 +36,7 @@ DEP_FILES	=	$(SRC_FILES:.c=.d)
 DEPS		=	$(addprefix $(OBJ_DIR), $(DEP_FILES))
 
 CC 			= 	gcc
-FLAGS 		= 	-Wall -Werror -Wextra -MDD
+FLAGS 		= 	-Wall -Werror -Wextra -MMD
 RM    		= 	rm -rf
 
 INC			=	-I inc/
