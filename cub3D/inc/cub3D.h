@@ -184,7 +184,7 @@ void	put_position(t_data *info);
 int		rgb_check(char *channel);
 int		ft_press(int keycode, t_data *info);
 int		ft_release(int keycode, t_mlx *mlx);
-int		ft_cross(t_data *info, t_mlx *mlx);
+int		ft_cross(t_data *info); //, t_mlx *mlx);
 void	move_front(t_player *p, t_player *minipl, t_map *m);
 void	move_back(t_player *p, t_player *minipl, t_map *m);
 void	move_left(t_player *p, t_player *minipl, t_map *m);

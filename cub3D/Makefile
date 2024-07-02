@@ -13,14 +13,14 @@
 # --- Variables -------------------------------------------------------------- #
 
 CC				=	gcc
-HEADER_NAME		=	cub3d.h
+HEADER_NAME		=	cub3D.h
 LIBMLX_NAME		=	libmlx.a
 LIBFT_NAME		=	libft.a
-NAME			=	cub3d
+NAME			=	cub3D
 
 # --- Compiler flags --------------------------------------------------------- #
 
-CFLAGS			=	-MMD -Wall -Wextra -Werror -g
+CFLAGS			=	-MMD -Wall -Wextra -Werror -g -fsanitize='leak'
 LIBMLX_FLAGS	=	-lmlx -lX11 -lXext -lm -lbsd
 
 # --- Directories ------------------------------------------------------------ #
@@ -34,7 +34,7 @@ DEP_DIR			= 	$(OBJ_DIR)
 
 # --- Bonus --------------------------------------------------------------- #
 
-NAME_BONUS		=	cub3d_bonus
+NAME_BONUS		=	cub3D_bonus
 OBJ_DIR_BONUS	=	obj_bonus/
 SRC_DIR_BONUS	=	src_bonus/
 OBJ_PATH_BONUS	=	$(addprefix $(OBJ_DIR_BONUS), $(OBJ_FILES_BONUS))
