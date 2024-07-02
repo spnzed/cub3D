@@ -54,7 +54,7 @@ void	move_back(t_player *p, t_player *minipl, t_map *m)
 		p->y -= p->dy * SPEED;
 }
 
-void	move_right(t_player *p, t_player *minipl, t_map *m) 
+void	move_right(t_player *p, t_player *minipl, t_map *m)
 {
 	float	new_dir;
 	float	new_dx;

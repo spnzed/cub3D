@@ -21,7 +21,7 @@
 # include <math.h>
 # include <limits.h>
 # include "../lib/libft_gnl/inc/libft.h"
-# include "../lib/mlx/mlx.h"
+# include "../lib/minilibx-linux/mlx.h"
 
 # define X 0
 # define Y 1
