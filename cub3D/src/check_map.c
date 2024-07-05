@@ -90,7 +90,7 @@ int	check_map_border(t_data *info, char **grid)
 	return (0);
 }
 
-static void compr_end_grid(char **scene, int i)
+static void	compr_end_grid(char **scene, int i)
 {
 	while (scene[i])
 	{
@@ -117,11 +117,11 @@ int	check_map_char(char **scene, t_data *info)
 			{
 				if (info->map.grid_pos == -1)
 					check_grid(scene[i], i, info);
-				else 
+				else
 					check_grid(scene[i], ++j, info);
 			}
 		}
-		else if (info->map.grid_pos != -1 && ft_strlen(scene[i]) == 0 
+		else if (info->map.grid_pos != -1 && ft_strlen(scene[i]) == 0
 			&& count != 0 && scene[i + 1] != NULL)
 			break ;
 	}

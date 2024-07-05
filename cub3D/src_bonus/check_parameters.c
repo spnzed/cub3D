@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 14:04:46 by aaespino          #+#    #+#             */
-/*   Updated: 2024/06/21 22:58:12 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/07/04 18:44:00 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,13 @@
 
 static char	*check_texture_element(char *line, char *param)
 {
-	if (param != NULL && !param)
-	{
+	if (ft_strlen(param) != 0)
 		ft_err("Error: Parameters: Repeated Element Found\n");
-		exit(1);
-	}
 	line = ft_strnchr(line + 2, '/');
 	while (ft_isspace(*line))
 		line++;
 	if (ft_strrcmp(line, ".xpm") != 0)
-	{
 		ft_err("Error: Parameters: Incorrect Format\n");
-		exit(1);
-	}
 	param = ft_strtrim(line, "\t");
 	return (param);
 }
@@ -77,7 +71,7 @@ static void	check_parameters(t_data *info, char *line)
 	else if (!ft_strncmp(line, "C", 1))
 		info->parameters.ceiling = check_color_element(line, \
 			info->parameters.ceiling);
-	else if (line[0] != '\0')
+	else
 		ft_err("Error: Parameters: Doesn't Follow Guidelines\n");
 }
 
@@ -87,10 +81,7 @@ static int	open_textures(t_data *info)
 		|| valid_file(info->parameters.south)
 		|| valid_file(info->parameters.west)
 		|| valid_file(info->parameters.east))
-	{
 		ft_err("Error: Parameters: Can't Open Textures\n");
-		return (1);
-	}
 	return (0);
 }
 
@@ -103,13 +94,14 @@ int	check_textures(char **scene, t_data *info)
 	count = 0;
 	while (scene[++i])
 	{
-		if (ft_strlen(scene[i]) > 1 && !ft_strisspace(scene[i]))
+		if (ft_strlen(scene[i]) > 0 && !ft_strisspace(scene[i]))
 		{
 			if (count < 6)
 				check_parameters(info, scene[i]);
 			count++;
 		}
 	}
+	duplicated_texture_file(info);
 	if (open_textures(info))
 		return (1);
 	return (0);

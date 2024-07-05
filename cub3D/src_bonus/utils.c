@@ -43,10 +43,7 @@ int	open_file(char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-	{
 		ft_err("Error: Cannot Open File\n");
-		exit(1);
-	}
 	return (fd);
 }
 

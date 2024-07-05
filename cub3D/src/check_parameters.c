@@ -14,19 +14,13 @@
 
 static char	*check_texture_element(char *line, char *param)
 {
-	if (param != NULL && !param)
-	{
+	if (ft_strlen(param) != 0)
 		ft_err("Error: Parameters: Repeated Element Found\n");
-		exit(1);
-	}
 	line = ft_strnchr(line + 2, '/');
 	while (ft_isspace(*line))
 		line++;
 	if (ft_strrcmp(line, ".xpm") != 0)
-	{
 		ft_err("Error: Parameters: Incorrect Format\n");
-		exit(1);
-	}
 	param = ft_strtrim(line, "\t");
 	return (param);
 }
@@ -87,10 +81,7 @@ static int	open_textures(t_data *info)
 		|| valid_file(info->parameters.south)
 		|| valid_file(info->parameters.west)
 		|| valid_file(info->parameters.east))
-	{
 		ft_err("Error: Parameters: Can't Open Textures\n");
-		return (1);
-	}
 	return (0);
 }
 
@@ -110,6 +101,7 @@ int	check_textures(char **scene, t_data *info)
 			count++;
 		}
 	}
+	duplicated_texture_file(info);
 	if (open_textures(info))
 		return (1);
 	return (0);

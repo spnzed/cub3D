@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+         #
+#    By: erosas-c <erosas-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/17 19:41:29 by erosas-c          #+#    #+#              #
-#    Updated: 2024/07/04 19:42:41 by aaronespino      ###   ########.fr        #
+#    Updated: 2024/06/17 20:23:51 by erosas-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/07/04 18:24:19 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/06/26 00:18:00 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <math.h>
 # include <limits.h>
 # include "../lib/libft_gnl/inc/libft.h"
-# include "../lib/mlx/mlx.h"
+# include "../lib/minilibx-linux/mlx.h"
 
 # define X 0
 # define Y 1
@@ -43,22 +43,22 @@
 # define SCALE 64
 
 //Mac Keycodes
-# define KEY_ESC 53
-# define KEY_W 13
-# define KEY_A 0
-# define KEY_S 1
-# define KEY_D 2
-# define KEY_LEFT 123
-# define KEY_RIGHT 124
+// # define KEY_ESC 53
+// # define KEY_W 13
+// # define KEY_A 0
+// # define KEY_S 1
+// # define KEY_D 2
+// # define KEY_LEFT 123
+// # define KEY_RIGHT 124
 
 //Linux Keycodes
-// # define KEY_ESC 65307
-// # define KEY_W 119
-// # define KEY_A 97
-// # define KEY_S 115
-// # define KEY_D 100
-// # define KEY_LEFT 65361
-// # define KEY_RIGHT 65363
+# define KEY_ESC 65307
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
 
 //Campus Mac
 # define HEIGHT 1080
@@ -207,6 +207,7 @@ void	h_shorter(float *vend, float *hend, t_ray *ray, int h_mpos);
 void	upd_end(float *end, float *rd);
 int		move_concave(float dx, float dy, t_player *p, t_map *m);
 int		back_rd(float *end, float *rd, int i);
+void	duplicated_texture_file(t_data *info);
 
 //		Utils
 int		ft_count_lines(int fd);
