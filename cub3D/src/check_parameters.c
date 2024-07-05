@@ -33,6 +33,8 @@ static int	check_color_element(char *line, int color)
 	char	*blue;
 
 	ret = 0;
+	if (!ft_strchr(line, ','))
+		ft_err("Error: Parameters: Incorrect Format\n");
 	if (color > 0)
 		ret = ft_err("Error: Parameters: Repeated Element Found\n");
 	line = ft_strnchr(line + 1, ' ');

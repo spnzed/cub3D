@@ -20,7 +20,7 @@ NAME			=	cub3D
 
 # --- Compiler flags --------------------------------------------------------- #
 
-CFLAGS			=	-MMD -Wall -Wextra -Werror -g
+CFLAGS			=	-MMD -Wall -Wextra -Werror -g -fsanitize=address
 LIBMLX_FLAGS	=	-lmlx -lX11 -lXext -lm -lbsd
 
 # --- Directories ------------------------------------------------------------ #

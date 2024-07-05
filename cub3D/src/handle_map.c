@@ -43,6 +43,8 @@ static void	check_map(t_data *info)
 		exit(1);
 	if (check_map_char(info->scene, info))
 		exit(1);
+	if (info->map.spawn[X] == 0 && info->map.spawn[Y] == 0)
+		ft_err("Error: Map: Player Not Found\n");
 }
 
 void	parse_map(t_data *info, char **grid)
