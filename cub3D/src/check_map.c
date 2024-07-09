@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:59:47 by aaespino          #+#    #+#             */
-/*   Updated: 2024/07/04 19:36:41 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/07/09 19:30:35 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,29 +40,38 @@ static int	check_grid(char *line, int y, t_data *info)
 	return (0);
 }
 
-static int	weatborder(t_data *info, char **grid, int y, int x)
+static int weatborder(t_data *info, char **grid, int y, int x)
 {
-	int	i;
-	int	j;
+    int i;
+    int j;
 
-	i = -1;
-	while (i <= 1)
-	{
-		j = -1;
-		while (j <= 1)
-		{
-			if (y + i != 0 && x + j != 0)
-			{
-				if (y + i >= info->map.size[Y] || y + i < 0
-					|| x + j >= info->map.size[X] || x + j < 0
-					|| grid[y + i][x + j] == ' ')
-					return (1);
-			}
-			j++;
-		}
-		i++;
-	}
-	return (0);
+    i = -1;
+    while (i <= 1)
+    {
+        j = -1;
+        while (j <= 1)
+        {
+            // Se omite (0, 0) como posición válida
+            if (y + i != y || x + j != x)
+            {
+                // Verifica si la posición (y + i, x + j) está fuera de los límites del mapa
+                if (y + i >= info->map.size[Y] || y + i < 0
+                    || x + j >= info->map.size[X] || x + j < 0)
+                {
+                    return 1;
+                }
+
+                // Verifica si la celda (y + i, x + j) no es una esquina y es vacía
+                if ((i == 0 || j == 0) && grid[y + i][x + j] == ' ')
+                {
+                    return 1;
+                }
+            }
+            j++;
+        }
+        i++;
+    }
+    return 0;
 }
 
 int	check_map_border(t_data *info, char **grid)
@@ -79,7 +88,12 @@ int	check_map_border(t_data *info, char **grid)
 			if (weatborder(info, grid, i, j))
 			{
 				if (grid[i][j] == '0')
+				{
+					printf("[%s]\n", grid[i - 1]);
+					printf("[%s]\t[%d]\n", grid[i], j);
+					printf("[%s]\n", grid[i + 1]);
 					ft_err("Error: Map: Not Surrounded by Walls\n");
+				}
 				if (ft_strchr("NSWE", grid[i][j]))
 					ft_err("Error: Map: Invalid Player Spawn\n");
 			}

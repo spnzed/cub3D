@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:14:54 by aaespino          #+#    #+#             */
-/*   Updated: 2024/06/26 00:18:00 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/07/09 19:07:52 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <math.h>
 # include <limits.h>
 # include "../lib/libft_gnl/inc/libft.h"
-# include "../lib/minilibx-linux/mlx.h"
+# include "../lib/mlx/mlx.h"
 
 # define X 0
 # define Y 1
@@ -42,23 +42,23 @@
 
 # define SCALE 64
 
-//Mac Keycodes
-// # define KEY_ESC 53
-// # define KEY_W 13
-// # define KEY_A 0
-// # define KEY_S 1
-// # define KEY_D 2
-// # define KEY_LEFT 123
-// # define KEY_RIGHT 124
+// Mac Keycodes
+# define KEY_ESC 53
+# define KEY_W 13
+# define KEY_A 0
+# define KEY_S 1
+# define KEY_D 2
+# define KEY_LEFT 123
+# define KEY_RIGHT 124
 
 //Linux Keycodes
-# define KEY_ESC 65307
-# define KEY_W 119
-# define KEY_A 97
-# define KEY_S 115
-# define KEY_D 100
-# define KEY_LEFT 65361
-# define KEY_RIGHT 65363
+// # define KEY_ESC 65307
+// # define KEY_W 119
+// # define KEY_A 97
+// # define KEY_S 115
+// # define KEY_D 100
+// # define KEY_LEFT 65361
+// # define KEY_RIGHT 65363
 
 //Campus Mac
 # define HEIGHT 1080
