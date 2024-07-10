@@ -19,9 +19,9 @@ INC_DIR		=	inc
 SRC_FILES	=	arguments.c			check_map.c			check_parameters.c 	create_image.c	\
 				draw_line.c			errors.c			get_color.c			get_file.c		\
 				h_linescross.c		handle_map.c		loop_functions.c	main.c			\
-				map_to_file.c 		move_arrows.c		move.c			\
-				orientation.c		put_images.c		ray_casting.c		render.c		\
-				utils.c				utils2.c			wall.c								\
+				map_to_file.c 		move_arrows.c		move.c				orientation.c	\
+				put_images.c		ray_casting.c		render.c			utils.c			\
+				utils2.c			wall.c													\
 					
 OBJ_DIR		=	obj/
 OBJ_FILES	=	$(SRC_FILES:.c=.o)
@@ -40,7 +40,7 @@ INCLUDE		=	-I $(INC_DIR) -I $(LIBFT_DIR)/inc -I $(MLX_DIR)
 FRAMES 		= 	-framework OpenGL -framework AppKit 
 
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror -MMD #-fsanitize='address' -g
+CFLAGS		=	-Wall -Wextra -Werror -MMD -g -fsanitize='address'
 CLEAN_CAR	=	\033[2K\r
 
 RM			=	rm -rf
