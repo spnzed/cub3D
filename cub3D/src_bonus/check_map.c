@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:59:47 by aaespino          #+#    #+#             */
-/*   Updated: 2024/07/04 19:36:41 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/07/09 19:30:35 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,34 +35,35 @@ static int	check_grid(char *line, int y, t_data *info)
 			spawn++;
 		}
 		if (!ft_strchr("10NSWE \t", line[x]))
-			ft_err("Error: Map: Invalid Characters\n");
+			ft_err("Error: Map: Doesn't Follow Guidelines\n");
 	}
 	return (0);
 }
 
-static int	weatborder(t_data *info, char **grid, int y, int x)
+static int weatborder(t_data *info, char **grid, int y, int x)
 {
-	int	i;
-	int	j;
+    int i;
+    int j;
 
-	i = -1;
-	while (i <= 1)
-	{
-		j = -1;
-		while (j <= 1)
-		{
-			if (y + i != 0 && x + j != 0)
-			{
-				if (y + i >= info->map.size[Y] || y + i < 0
-					|| x + j >= info->map.size[X] || x + j < 0
-					|| grid[y + i][x + j] == ' ')
-					return (1);
-			}
-			j++;
-		}
-		i++;
-	}
-	return (0);
+    i = -1;
+    while (i <= 1)
+    {
+        j = -1;
+        while (j <= 1)
+        {
+            if (y + i != y || x + j != x)
+            {
+                if (y + i >= info->map.size[Y] || y + i < 0
+                    || x + j >= info->map.size[X] || x + j < 0)
+                    return 1;
+                if ((i == 0 || j == 0) && grid[y + i][x + j] == ' ')
+                    return 1;
+            }
+            j++;
+        }
+        i++;
+    }
+    return 0;
 }
 
 int	check_map_border(t_data *info, char **grid)

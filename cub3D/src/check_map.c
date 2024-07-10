@@ -35,7 +35,7 @@ static int	check_grid(char *line, int y, t_data *info)
 			spawn++;
 		}
 		if (!ft_strchr("10NSWE \t", line[x]))
-			ft_err("Error: Map: Invalid Characters\n");
+			ft_err("Error: Map: Doesn't Follow Guidelines\n");
 	}
 	return (0);
 }
