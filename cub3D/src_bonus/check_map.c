@@ -81,7 +81,7 @@ int	check_map_border(t_data *info, char **grid)
 				if (grid[i][j] == '0')
 					ft_err("Error: Map: Not Surrounded by Walls\n");
 				if (ft_strchr("NSWE", grid[i][j]))
-					ft_err("Error: Map: Invalid Player Spawn\n");
+					ft_err("Error: Map: Doesn't Follow Guidelines\n");
 			}
 			j++;
 		}

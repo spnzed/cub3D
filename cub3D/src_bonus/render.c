@@ -44,10 +44,7 @@ static void	paint_ceil_floor(int *p, int floor, int ceiling)
 static void	handle_key(t_data *info)
 {
 	if (!info->mlx->mlx)
-	{
-		printf(RED"Error: MLX\n"RESET);
-		exit(1);
-	}
+		ft_err("Error: MLX\n");
 	if (info->mlx->keys->w)
 		move_front(&(info->player), &(info->minipl), &(info->map));
 	if (info->mlx->keys->a)
